@@ -1,0 +1,3 @@
+#!/bin/bash
+
+mv -f usr/share/dhclient.conf /etc/dhcp
