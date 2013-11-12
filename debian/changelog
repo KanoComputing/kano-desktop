@@ -1,5 +1,9 @@
-kano-connect (1.0-1) UNRELEASED; urgency=low
+kano-connect (1.0-1.1) unstable; urgency=low
 
+  [ Alex ]
   * Initial release. (Closes: #XXXXXX)
 
- -- Alex <alex@Kano>  Tue, 12 Nov 2013 11:30:19 +0000
+  [ Team Kano ]
+  * Package rebuilt, updated to revision f4a6f53b.
+
+ -- Team Kano <hello@kano.me>  Tue, 12 Nov 2013 11:42:01 +0000
