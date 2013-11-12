@@ -1,0 +1,21 @@
+#
+#  Sample /etc/network/interfaces file
+#  to work with Kanux and wireless auto-connect feature
+#
+
+auto lo
+
+iface lo inet loopback
+iface eth0 inet dhcp
+
+allow-hotplug eth0
+iface eth0 inet manual
+  post-up dhclient eth0
+  post-down pkill -xf 'dhclient eth0'
+
+allow-hotplug wlan0
+iface wlan0 inet manual
+#  post-up /usr/sbin/wlan-openassoc.sh up wlan0
+#  post-down /usr/sbin/wlan-openassoc.sh down wlan0
+
+iface default inet dhcp

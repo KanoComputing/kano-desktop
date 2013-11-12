@@ -1,0 +1,11 @@
+Source: kano-connect
+Maintainer: Alejandro Simon <alejandro@kano.me>
+Section: admin
+Priority: optional
+Standards-Version: 3.9.2
+Build-Depends: debhelper (>= 9)
+
+Package: kano-connect
+Architecture: all
+Depends: ${shlibs:Depends}, ${misc:Depends}
+Description: Software to make Kanux connect over Wireless networks automatically.

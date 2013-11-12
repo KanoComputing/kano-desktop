@@ -1,0 +1,9 @@
+./kanoconnect.py /usr/sbin
+./kanowifi.py /usr/sbin
+./wlan-openassoc.sh /usr/sbin
+./interfaces /etc/network
+./dhclient.conf /etc/dhcp
+./kanowifi.py /usr/sbin
+./kwifiprompt.py /usr/sbin
+./kwififuncs.py /usr/sbin
+
