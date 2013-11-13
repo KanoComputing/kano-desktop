@@ -14,7 +14,7 @@ import os, sys
 import subprocess
 
 sys.path.append('/usr/sbin')
-from kwififuncs import IWList, is_device, is_connected, connect, disconnect, KwifiCache
+from kwififuncs import IWList, is_device, is_connected, connect, disconnect, internet_on, KwifiCache
 
 NUM_NETWORKS=5
 
@@ -33,17 +33,9 @@ if __name__  ==  '__main__':
         subprocess.call(['typewriter_echo', 'You need root privileges to start this app. Please try sudo', '2', '1'])
         sys.exit (1)
 
-    # FIXME!!! This is randomly returning None when dongle plugged in indeed.
-    if not is_device(wiface):
-        subprocess.call(['typewriter_echo', 'First, plug in your wifi piece. If you don\'t want to use WiFi, press [ENTER]', '2', '1'])
-        # Wait for input or hardware reboot
-        var = raw_input ()
-        sys.exit(2)
-
     if os.access('/var/run/kanoconnect.py', os.R_OK):
         subprocess.call(['typewriter_echo', 'An instance of Kanoconnect.py is running.', '2', '1'])
         subprocess.call(['typewriter_echo', 'Please wait a few seconds and try again', '2', '1'])
-
         sys.exit(3)
 
     if len(sys.argv) > 1 and sys.argv[1] == '-s':
@@ -58,6 +50,27 @@ if __name__  ==  '__main__':
     #
     #  Start the walkthrough process to get connected
     #
+    
+    # Step 1: intro
+    subprocess.call(['clear'])
+    msg = 'WiFi Config!'
+    subprocess.call(['typewriter_echo', msg, '1', '2'])
+
+    # Step 2: check for internet connection
+    if internet_on():
+        msg = 'Good news! It looks like you already have internet'
+        subprocess.call(['typewriter_echo', msg, '1', '2'])
+        sys.exit(0)
+
+    # Step 3: check for WiFi dongle
+    # FIXME!!! This is randomly returning None when dongle plugged in indeed.
+    if not is_device(wiface):
+        subprocess.call(['typewriter_echo', 'First, plug in your wifi piece. If you don\'t want to use WiFi, press [ENTER]', '2', '1'])
+        # Wait for input or hardware reboot
+        var = raw_input ()
+        sys.exit(2)
+
+    # Step 4: WiFi dongle > show networks menu
     subprocess.call(['typewriter_echo', 'Help me find the signal.', '0', '2'])
     subprocess.call(['typewriter_echo', 'Choose a network:', '0', '2'])
 
@@ -104,8 +117,7 @@ if __name__  ==  '__main__':
         subprocess.call(['typewriter_echo', msg, '0', '2'])
         try:
             connect(wiface, essid, encryption, enckey)
-            online = True
-            subprocess.call(['typewriter_echo', 'Great! You are online!', '1', '2'])
+            online = internet_on()
         except:
             msg = 'Couldn\'t connect to %s. Was the password correct?' % essid
             subprocess.call(['typewriter_echo', msg, '1', '2'])
@@ -114,4 +126,17 @@ if __name__  ==  '__main__':
     if online:
         wificache.save(essid, encryption, enckey)
 
+    # Step 5: ping exercise
+    subprocess.call(['typewriter_echo', 'Excellent! let\'s check if internet is working.', '0', '2'])
+    subprocess.call(['typewriter_echo', 'Type: ping www.google.com', '1', '2'])
+    while True:
+        var = raw_input ()
+        if var == 'ping www.google.com' or var == 'ping google.com':
+            subprocess.call(['ping','google.com','-c','1'])
+            break
+        else:
+            subprocess.call(['typewriter_echo', 'Not the correct command, try again', '0', '2'])
+
+    # Step 6: exit
+    subprocess.call(['typewriter_echo', 'Great! Internet is working', '2', '2'])
     sys.exit(0)

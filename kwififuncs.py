@@ -4,7 +4,7 @@
 # desc: Common module for wireless support functions
 #
 
-import os, time, subprocess, syslog
+import os, time, subprocess, syslog, urllib2
 import shlex, json
 
 class IWList():
@@ -316,6 +316,13 @@ def disconnect(iface):
     time.sleep(3)
     return 
 
+def internet_on():
+    try:
+        response=urllib2.urlopen('http://74.125.228.100',timeout=1)
+        return True
+    except:
+        pass
+        return False
 
 
 class KwifiCache:
