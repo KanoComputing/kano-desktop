@@ -1,5 +1,5 @@
 #!/bin/bash
 
-sed -i 's/#timeout.*/timeout 20;/g' dhclient.conf
+sed -i 's/#timeout.*/timeout 20;/g' /etc/dhcp/dhclient.conf
 
 exit 0
