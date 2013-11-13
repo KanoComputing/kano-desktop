@@ -1,6 +1,0 @@
-./kanoconnect.py /usr/sbin
-./wlan-openassoc.sh /usr/sbin
-./interfaces /etc/network
-./kano-wifi.py /usr/sbin
-./kwififuncs.py /usr/sbin
-
