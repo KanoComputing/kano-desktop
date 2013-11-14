@@ -7,7 +7,6 @@ skel/* etc/skel
 gtk-themes/Kano usr/share/themes
 
 lxpanel/kano-shutdown.desktop usr/share/applications
-lxpanel/panel usr/share/lxpanel/profile/default/panels
 lxpanel/panel etc/skel/.config/lxpanel/LXDE/panels
 lxpanel/images/* usr/share/lxde/images
 
