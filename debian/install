@@ -4,16 +4,16 @@ images/* usr/share/kano-desktop/images
 
 skel/* etc/skel
 
-gtk-themes/Kano usr/share/themes                              # checked
+gtk-themes/Kano usr/share/themes
 
-lxpanel/kano-shutdown.desktop usr/share/applications          # checked
-lxpanel/panel usr/share/lxpanel/profile/default/panels        # checked
-lxpanel/panel etc/skel/.config/lxpanel/LXDE/panels            # checked
+lxpanel/kano-shutdown.desktop usr/share/applications
+lxpanel/panel usr/share/lxpanel/profile/default/panels
+lxpanel/panel etc/skel/.config/lxpanel/LXDE/panels
 lxpanel/images/* usr/share/lxde/images
 
-lightdm/lightdm-gtk-greeter.conf etc/lightdm/                 # checked
+lightdm/lightdm-gtk-greeter.conf etc/lightdm/
 
-idesk/.ideskrc etc/skel                                       # checked
-idesk/.idesktop etc/skel                                      # checked
+idesk/.ideskrc etc/skel
+idesk/.idesktop etc/skel
 
 fonts/* usr/share/fonts/kanux
