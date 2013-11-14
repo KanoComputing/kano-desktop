@@ -26,7 +26,9 @@ EOF
 
 case "$1" in
     configure)
-        cp $ldm_conf_loc $ldm_conf_loc-old
+        if [ -e "$ldm_conf_loc" ]; then
+            cp $ldm_conf_loc $ldm_conf_loc-old
+        fi
         echo "$ldm_conf" > $ldm_conf_loc
         ;;
 esac
