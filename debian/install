@@ -11,8 +11,6 @@ lxpanel/panel usr/share/lxpanel/profile/default/panels
 lxpanel/panel etc/skel/.config/lxpanel/LXDE/panels
 lxpanel/images/* usr/share/lxde/images
 
-lightdm/lightdm-gtk-greeter.conf etc/lightdm/
-
 idesk/.ideskrc etc/skel
 idesk/.idesktop etc/skel
 

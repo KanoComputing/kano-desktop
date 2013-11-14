@@ -1,34 +1,10 @@
 #!/bin/bash
 
-cfg="/etc/pam.d/login"
-
-last_msg_re='session\s\+optional\s\+pam_lastlog\.so'
-conf_line_re='session\s\+optional\s\+pam_motd\.so'
+ldm_conf_loc="/etc/lightdm/lightdm_gtk_greeter.conf"
 
 case "$1" in
     remove|upgrade)
-        # Clear motd
-        echo -n "" >/etc/motd
-        echo -n "" >/var/run/motd.dynamic
-
-        # Disable our motd service
-        update-rc.d -f update-motd remove 2>/dev/null >/dev/null
-
-        # Reenable the default motd service
-        update-rc.d motd defaults 2>/dev/null >/dev/null
-
-        # Remove our configuration entries
-        sed -i "/^$conf_line_re/d" $cfg
-
-        # Uncomment the old configuration entries
-        sed -i "s/^#\(${conf_line_re}\)/\1/" $cfg
-
-        # Enable the last login message printed by pam
-        sed -i "s/^#\(${last_msg_re}\)/\1/" $cfg
-
-        ;;
-    purge)
-        rm -rf /etc/motd.d
+        mv $ldm_conf_loc-old $ldm_conf_loc
         ;;
 esac
 

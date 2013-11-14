@@ -1,34 +1,33 @@
 #!/bin/bash
 
-cfg="/etc/pam.d/login"
+ldm_conf_loc="/etc/lightdm/lightdm-gtk-greeter.conf"
+ldm_conf=<<EOF
+#
+# background = Background file to use, either an image path or a color (e.g. #772953)
+# show-language-selector (true or false)
+# theme-name = GTK+ theme to use
+# font-name = Font to use
+# xft-antialias = Whether to antialias Xft fonts (true or false)
+# xft-dpi = Resolution for Xft in dots per inch (e.g. 96)
+# xft-hintstyle = What degree of hinting to use (hintnone, hintslight, hintmedium, or hintfull)
+# xft-rgba = Type of subpixel antialiasing (none, rgb, bgr, vrgb or vbgr)
+#
 
-last_msg_re='session\s\+optional\s\+pam_lastlog\.so'
-conf_line_re='session\s\+optional\s\+pam_motd\.so'
-new_conf='session optional pam_motd.so\
-session optional pam_motd.so motd=/run/motd.dynamic'
+[greeter]
+background=/usr/share/kano-desktop/wallpapers/kanux-background-blurred.png
+#show-language-selector=false
+theme-name=Kano
+font-name=Bariol
+xft-antialias=true
+#xft-dpi=
+xft-hintstyle=hintfull
+xft-rgba=rgb
+EOF
 
 case "$1" in
     configure)
-        # Judoka face is off by default
-        echo -n "" >/etc/motd
-
-        # Clear dynamic motd
-        echo -n "" >/var/run/motd.dynamic
-
-        # Disable the old motd service
-        update-rc.d -f motd remove 2>/dev/null >/dev/null
-
-        # Enable the new motd service
-        update-rc.d update-motd defaults 2>/dev/null >/dev/null
-
-        # Disable last login message printed by pam
-        sed -i "s/^\($last_msg_re\)/#\1/" $cfg
-
-        # Comment-out the old motd configuration
-        sed -i "s/^\($conf_line_re\)/#\1/" $cfg
-
-        # Insert the new config right after the old, commented one
-        sed -i "N; /^#${conf_line_re}.*\n#${conf_line_re}/a $new_conf" $cfg
+        cp $ldm_conf_loc $ldm_conf_loc-old
+        echo "$ldm_conf" > $ldm_conf_loc
         ;;
 esac
 
