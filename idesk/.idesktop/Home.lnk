@@ -1,0 +1,12 @@
+table Icon
+  Caption: $USER
+  AppID: \$HOM[E]
+  Command: /usr/sbin/kano-launcher.py "pcmanfm $HOME"
+  Singleton: true
+  Icon: /usr/share/kano-desktop/icons/kano-homefolder.png
+  Width: 138
+  Height: 128
+  X: 857
+  Y: 547
+end
+

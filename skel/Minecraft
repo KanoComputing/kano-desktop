@@ -1,0 +1,9 @@
+[Desktop Entry]
+Encoding=UTF-8
+Type=Application
+Name=Minecraft
+Name[en_GB]=Minecraft
+Icon=/usr/local/share/kano/minecraft-icon.png
+Exec=sh -c '~/mcpi/minecraft-pi'
+Comment[en_GB]=Minecraft Pi Edition
+StartupNotify=true

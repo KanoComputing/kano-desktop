@@ -1,0 +1,19 @@
+wallpapers/* usr/share/kano-desktop/wallpapers
+icons/* usr/share/kano-desktop/icons
+images/* usr/share/kano-desktop/images
+
+skel/* etc/skel
+
+gtk-themes/Kano usr/share/themes                              # checked
+
+lxpanel/kano-shutdown.desktop usr/share/applications          # checked
+lxpanel/panel usr/share/lxpanel/profile/default/panels        # checked
+lxpanel/panel etc/skel/.config/lxpanel/LXDE/panels            # checked
+lxpanel/images/* usr/share/lxde/images
+
+lightdm/lightdm-gtk-greeter.conf etc/lightdm/                 # checked
+
+idesk/.ideskrc etc/skel                                       # checked
+idesk/.idesktop etc/skel                                      # checked
+
+fonts/* usr/share/fonts/kanux

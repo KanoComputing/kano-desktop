@@ -1,0 +1,9 @@
+[Desktop Entry]
+Encoding=UTF-8
+Type=Application
+Name=Midori
+Name[en_GB]=Midori
+Icon=midori.png
+Exec=midori
+Comment[en_GB]=Midori Browser
+StartupNotify=true

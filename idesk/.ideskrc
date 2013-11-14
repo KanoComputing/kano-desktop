@@ -1,0 +1,44 @@
+table Config
+  FontName: Bariol
+  FontSize: 14
+  FontColor: #FFFFFF
+  ToolTip.FontSize: 10
+  ToolTip.FontName: Bariol
+  ToolTip.ForeColor: #0000FF
+  ToolTip.BackColor: #FFFFFF
+  ToolTip.CaptionOnHover: false
+  ToolTip.CaptionPlacement: Right
+  Locked: true
+  Transparency: 50
+  Shadow: true
+  ShadowColor: #000000
+  ShadowX: 1
+  ShadowY: 1
+  Bold: true
+  ClickDelay: 300
+  IconSnap: true
+  SnapWidth: 10
+  SnapHeight: 10
+  SnapOrigin: BottomRight
+  SnapShadow: false
+  SnapShadowTrans: 200
+  CaptionOnHover: false
+  CaptionPlacement: bottom
+  FillStyle: None
+  Background.Delay: 0
+  Background.Source: /
+  Background.File: /usr/share/kano-desktop/wallpapers/kanux-background.png
+  Background.Mode: Center
+  Background.Color: #C2CCFF
+end
+
+table Actions
+#  Lock: control right doubleClk
+#  Reload: middle doubleClk
+#  Drag: left hold
+#  EndDrag: left singleClk
+
+  Execute[0]: left doubleClk
+
+#  Execute[1]: right doubleClk
+end

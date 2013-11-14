@@ -1,0 +1,9 @@
+[Desktop Entry]
+Encoding=UTF-8
+Type=Application
+Name=KanuxBox
+Name[en_GB]=KanuxBox
+Icon=/usr/local/share/kano/kanuxbox.png
+Exec=/usr/sbin/kanuxbox
+Comment[en_GB]=Pulls files from Kano Dropbox
+StartupNotify=true
