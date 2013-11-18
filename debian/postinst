@@ -38,8 +38,8 @@ case "$1" in
         ln -s /usr/share/kano-desktop/config/pcmanfm /etc/skel/.config/pcmanfm
         ln -s /usr/share/kano-desktop/config/lxpanel /etc/skel/.config/lxpanel
 
-        ln -s /usr/share/kano-desktop/ideskrc /etc/skel/.ideskrc
-        ln -s /usr/share/kano-desktop/idesktop /etc/skel/.idesktop
+        ln -s /usr/share/kano-desktop/idesk/ideskrc /etc/skel/.ideskrc
+        ln -s /usr/share/kano-desktop/idesk/idesktop /etc/skel/.idesktop
 
         ;;
 esac
