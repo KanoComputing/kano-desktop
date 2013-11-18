@@ -26,10 +26,21 @@ EOF
 
 case "$1" in
     configure)
+        # Configure lightdm greeter
         if [ -e "$ldm_conf_loc" ]; then
             cp $ldm_conf_loc $ldm_conf_loc-old
         fi
         echo "$ldm_conf" > $ldm_conf_loc
+
+        # Make links in /etc/skel
+        ln -s /usr/share/kano-desktop/extras /etc/skel/Extras
+        ln -s /usr/share/kano-desktop/config/openbox /etc/skel/.config/openbox
+        ln -s /usr/share/kano-desktop/config/pcmanfm /etc/skel/.config/pcmanfm
+        ln -s /usr/share/kano-desktop/config/lxpanel /etc/skel/.config/lxpanel
+
+        ln -s /usr/share/kano-desktop/ideskrc /etc/skel/.ideskrc
+        ln -s /usr/share/kano-desktop/idesktop /etc/skel/.idesktop
+
         ;;
 esac
 

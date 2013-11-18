@@ -1,16 +1,20 @@
-wallpapers/* usr/share/kano-desktop/wallpapers
-icons/* usr/share/kano-desktop/icons
-images/* usr/share/kano-desktop/images
-
-skel/* etc/skel
+wallpapers usr/share/kano-desktop
+icons usr/share/kano-desktop
+images usr/share/kano-desktop
 
 gtk-themes/Kano usr/share/themes
 
-lxpanel/kano-shutdown.desktop usr/share/applications
-lxpanel/panel etc/skel/.config/lxpanel/LXDE/panels
-lxpanel/images/* usr/share/lxde/images
+applications/kano-shutdown.desktop usr/share/applications
 
-idesk/.ideskrc etc/skel
-idesk/.idesktop etc/skel
+config/lxsession etc/skel/.config
+config/midori etc/skel/.config
+
+config/lxpanel usr/share/kano-desktop/config
+config/openbox usr/share/kano-desktop/config
+config/pcmanfm usr/share/kano-desktop/config
+
+extras usr/share/kano-desktop
+
+idesk urs/share/kano-desktop
 
 fonts/* usr/share/fonts/kanux

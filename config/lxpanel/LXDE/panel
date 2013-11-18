@@ -34,7 +34,7 @@ Plugin {
 Plugin {
     type = menu
     Config {
-        image=/usr/share/lxde/images/startmenu.png
+        image=/usr/share/kano-desktop/images/startmenu.png
         system {
         }
         separator {

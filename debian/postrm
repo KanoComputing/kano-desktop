@@ -4,7 +4,17 @@ ldm_conf_loc="/etc/lightdm/lightdm_gtk_greeter.conf"
 
 case "$1" in
     remove|upgrade)
+        # Revert old ldm configuration
         mv $ldm_conf_loc-old $ldm_conf_loc
+
+        rm /etc/skel/Extras
+        rm /etc/skel/.config/openbox
+        rm /etc/skel/.config/pcmanfm
+        rm /etc/skel/.config/lxpanel
+
+        rm /etc/skel/.ideskrc
+        rm /etc/skel/.idesktop
+
         ;;
 esac
 
