@@ -1,8 +1,7 @@
 #!/bin/bash
 
 ldm_conf_loc="/etc/lightdm/lightdm-gtk-greeter.conf"
-ldm_conf=<<EOF
-#
+ldm_conf="#
 # background = Background file to use, either an image path or a color (e.g. #772953)
 # show-language-selector (true or false)
 # theme-name = GTK+ theme to use
@@ -22,7 +21,9 @@ xft-antialias=true
 #xft-dpi=
 xft-hintstyle=hintfull
 xft-rgba=rgb
-EOF
+"
+
+LXDE_AUTOSTART=/etc/xdg/lxsession/LXDE/autostart
 
 case "$1" in
     configure)
@@ -40,6 +41,8 @@ case "$1" in
 
         ln -s /usr/share/kano-desktop/idesk/ideskrc /etc/skel/.ideskrc
         ln -s /usr/share/kano-desktop/idesk/idesktop /etc/skel/.idesktop
+
+        sudo sed -i 's/\@pcmanfm --desktop --profile LXDE/\@idesk/g' $LXDE_AUTOSTART
 
         ;;
 esac
