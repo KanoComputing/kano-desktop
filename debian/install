@@ -15,6 +15,6 @@ config/pcmanfm/* usr/share/kano-desktop/config/pcmanfm
 
 extras/* usr/share/kano-desktop/extras
 
-idesk/* urs/share/kano-desktop/idesk
+idesk/* usr/share/kano-desktop/idesk
 
 fonts/* usr/share/fonts/kanux
