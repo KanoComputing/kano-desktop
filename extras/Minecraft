@@ -4,6 +4,6 @@ Type=Application
 Name=Minecraft
 Name[en_GB]=Minecraft
 Icon=/usr/share/kano-desktop/icons/minecraft-icon.png
-Exec=sh -c '~/mcpi/minecraft-pi'
+Exec=/usr/share/kano-desktop/minecraft-pi
 Comment[en_GB]=Minecraft Pi Edition
 StartupNotify=true
