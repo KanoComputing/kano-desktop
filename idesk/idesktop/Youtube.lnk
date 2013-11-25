@@ -1,0 +1,11 @@
+table Icon
+  Caption: Video
+  AppID: make-youtub[e]
+  Command: /usr/sbin/kano-launcher.py "lxterminal -t 'Make Youtube' -e /usr/sbin/make-video.sh"
+  Singleton: true
+  Icon: /usr/share/kano-desktop/icons/youtube.png
+  Width: 138
+  Height: 128
+  X: 29
+  Y: 547
+end

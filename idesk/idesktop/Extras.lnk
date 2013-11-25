@@ -1,0 +1,11 @@
+table Icon
+  Caption: Extras
+  AppID: pcmanfm Extra[s]
+  Command: /usr/sbin/kano-launcher.py "pcmanfm Extras"
+  Singleton: true
+  Icon: /usr/share/kano-desktop/icons/extras.png
+  Width: 138
+  Height: 128
+  X: 719
+  Y: 547
+end

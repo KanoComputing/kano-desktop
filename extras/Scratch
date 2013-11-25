@@ -1,0 +1,9 @@
+[Desktop Entry]
+Encoding=UTF-8
+Type=Application
+Name=Scratch
+Name[en_GB]=Scratch
+Icon=scratch.png
+Exec=scratch
+Comment[en_GB]=Scratch development environment
+StartupNotify=true

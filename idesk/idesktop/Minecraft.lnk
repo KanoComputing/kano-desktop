@@ -1,0 +1,11 @@
+table Icon
+  Caption: Minecraft
+  AppID: make-minecraf[t]
+  Command: /usr/sbin/kano-launcher.py /usr/sbin/make-minecraft.sh
+  Singleton: true
+  Icon: /usr/share/kano-desktop/icons/minecraft.png
+  Width: 138
+  Height: 128
+  X: 443
+  Y: 547
+end

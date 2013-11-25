@@ -1,0 +1,29 @@
+#!/bin/bash
+
+ldm_conf_loc="/etc/lightdm/lightdm_gtk_greeter.conf"
+
+case "$1" in
+    remove|upgrade)
+        # Revert old ldm configuration
+        if [ -e "$ldm_conf_loc-old" ]; then
+            mv $ldm_conf_loc-old $ldm_conf_loc
+        fi
+
+        # Removing links
+        rm -f /etc/skel/Extras
+        rm -f /etc/skel/.config/openbox
+        rm -f /etc/skel/.config/pcmanfm
+        rm -f /etc/skel/.config/lxpanel
+
+        rm -f /etc/skel/.ideskrc
+        rm -f /etc/skel/.idesktop
+
+        # Disable idesk
+        sudo sed -i 's/\@idesk/\@pcmanfm --desktop --profile LXDE/g' $LXDE_AUTOSTART
+
+        ;;
+esac
+
+#DEBHELPER#
+
+exit 0

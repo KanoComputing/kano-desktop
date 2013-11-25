@@ -1,0 +1,15 @@
+/usr/share/kano-desktop
+/usr/share/kano-desktop/wallpapers
+/usr/share/kano-desktop/icons
+/usr/share/kano-desktop/fonts
+/usr/share/kano-desktop/extras
+/usr/share/kano-desktop/idesk
+
+/usr/share/applications
+
+/usr/share/themes
+/usr/share/themes/Kano
+
+/etc/skel
+/etc/skel/.config
+/etc/skel/Downloads
