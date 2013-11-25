@@ -4,6 +4,6 @@ Type=Application
 Name=Updater
 Name[en_GB]=Updater
 Icon=/usr/share/kano-desktop/icons/kano-updater.png
-Exec=/usr/bin/kano-updater
+Exec=/bin/bash -c "sudo /usr/bin/kano-updater"
 Comment[en_GB]=Kanux Updater
 StartupNotify=true
