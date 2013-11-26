@@ -34,7 +34,6 @@ case "$1" in
         echo "$ldm_conf" > $ldm_conf_loc
 
         # Make links in /etc/skel
-        ln -s /usr/share/kano-desktop/extras /etc/skel/Extras
         ln -s /usr/share/kano-desktop/config/openbox /etc/skel/.config/openbox
         ln -s /usr/share/kano-desktop/config/pcmanfm /etc/skel/.config/pcmanfm
         ln -s /usr/share/kano-desktop/config/lxpanel /etc/skel/.config/lxpanel
