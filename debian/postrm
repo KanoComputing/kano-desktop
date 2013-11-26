@@ -10,7 +10,6 @@ case "$1" in
         fi
 
         # Removing links
-        rm -f /etc/skel/Extras
         rm -f /etc/skel/.config/openbox
         rm -f /etc/skel/.config/pcmanfm
         rm -f /etc/skel/.config/lxpanel
