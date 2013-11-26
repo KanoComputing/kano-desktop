@@ -1,0 +1,9 @@
+[Desktop Entry]
+Encoding=UTF-8
+Type=Application
+Name=Chromium
+Name[en_GB]=Chromium
+Icon=/usr/share/kano-desktop/icons/chromium.png
+Exec=chromium
+Comment[en_GB]=Chromium Browser
+StartupNotify=true
