@@ -1,7 +1,7 @@
 table Icon
   Caption: Extras
   AppID: pcmanfm Extra[s]
-  Command: /usr/sbin/kano-launcher.py "pcmanfm Extras"
+  Command: /usr/bin/kano-launcher "pcmanfm Extras"
   Singleton: true
   Icon: /usr/share/kano-desktop/icons/extras.png
   Width: 138

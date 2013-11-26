@@ -1,7 +1,7 @@
 table Icon
   Caption: Music
   AppID: make-musi[c]
-  Command: /usr/sbin/kano-launcher.py /usr/sbin/make-music.sh
+  Command: /usr/bin/kano-launcher /usr/bin/make-music
   Singleton: true
   Icon: /usr/share/kano-desktop/icons/sonicpi.png
   Width: 138

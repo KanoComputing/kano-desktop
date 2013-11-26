@@ -254,7 +254,7 @@
   <!-- Kano focus Keybinding for switching Kanux apps input focus -->
   <keybind key="F8">
     <action name="Execute">
-      <command>/usr/sbin/make-focus.py</command>
+      <command>/usr/bin/make-focus</command>
     </action>
   </keybind>
 

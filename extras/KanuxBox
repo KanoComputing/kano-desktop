@@ -4,6 +4,6 @@ Type=Application
 Name=KanuxBox
 Name[en_GB]=KanuxBox
 Icon=/usr/share/kano-desktop/icons/kanuxbox.png
-Exec=/usr/sbin/kanuxbox
+Exec=/usr/bin/kanuxbox
 Comment[en_GB]=Pulls files from Kano Dropbox
 StartupNotify=true
