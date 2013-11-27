@@ -1,8 +1,8 @@
 [Desktop Entry]
 Encoding=UTF-8
 Type=Application
-Name=Feedback
-Name[en_GB]=Feedback
+Name=VNC
+Name[en_GB]=VNC
 Icon=/usr/share/kano-desktop/icons/vnc.png
 Exec=
 Comment[en_GB]=Connect remotely through VNC

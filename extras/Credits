@@ -5,5 +5,5 @@ Name=Credits
 Name[en_GB]=Credits
 Icon=/usr/share/kano-desktop/icons/credits.png
 Exec=
-Comment[en_GB]=All the special people
+Comment[en_GB]=All the people we love
 StartupNotify=true
