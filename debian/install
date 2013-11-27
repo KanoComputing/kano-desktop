@@ -6,6 +6,7 @@ gtk-themes/Kano usr/share/themes
 
 applications/kano-shutdown.desktop usr/share/applications
 
+config/lxterminal/* etc/skel/.config/lxterminal
 config/lxsession/* etc/skel/.config/lxsession
 config/midori/* etc/skel/.config/midori
 
