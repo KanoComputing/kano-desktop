@@ -2,6 +2,9 @@
 
 ldm_conf_loc="/etc/lightdm/lightdm_gtk_greeter.conf"
 
+chromium_master_prefs=/etc/chromium/master_preferences
+chromium_bookmarks=/etc/chromium/initial_bookmarks.html
+
 case "$1" in
     remove|upgrade)
         # Revert old ldm configuration
@@ -16,6 +19,14 @@ case "$1" in
 
         rm -f /etc/skel/.ideskrc
         rm -f /etc/skel/.idesktop
+
+        if [ -e "$chromium_bookmarks-old" ]; then
+            mv $chromium_bookmarks-old $chromium_bookmarks
+        fi
+
+        if [ -e "$chromium_master_prefs-old" ]; then
+            mv $chromium_master_prefs-old $chromium_master_prefs
+        fi
 
         # Disable idesk
         sudo sed -i 's/\@idesk/\@pcmanfm --desktop --profile LXDE/g' $LXDE_AUTOSTART

@@ -23,6 +23,9 @@ xft-hintstyle=hintfull
 xft-rgba=rgb
 "
 
+chromium_master_prefs=/etc/chromium/master_preferences
+chromium_bookmarks=/etc/chromium/initial_bookmarks.html
+
 LXDE_AUTOSTART=/etc/xdg/lxsession/LXDE/autostart
 
 case "$1" in
@@ -41,6 +44,14 @@ case "$1" in
         ln -s /usr/share/kano-desktop/idesk/ideskrc /etc/skel/.ideskrc
         ln -s /usr/share/kano-desktop/idesk/idesktop /etc/skel/.idesktop
 
+        # Configure chromium
+        cp $chromium_master_prefs $chromium_master_prefs.old
+        cat chromium/master_preferences >$chromium_master_prefs
+
+        cp $chromium_bookmarks $chromium_bookmarks.old
+        cat chromium/initial_bookmarks.html >$chromium_bookmarks
+
+        # Set idesk as the desktop manager
         sudo sed -i 's/\@pcmanfm --desktop --profile LXDE/\@idesk/g' $LXDE_AUTOSTART
 
         ;;
