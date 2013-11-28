@@ -2,8 +2,6 @@ wallpapers/* usr/share/kano-desktop/wallpapers
 icons/* usr/share/kano-desktop/icons
 images/* usr/share/kano-desktop/images
 
-gtk-themes/Kano usr/share/themes
-
 applications/kano-shutdown.desktop usr/share/applications
 
 config/lxterminal/* etc/skel/.config/lxterminal
