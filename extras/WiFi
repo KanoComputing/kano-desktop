@@ -4,6 +4,6 @@ Type=Application
 Name=WiFi
 Name[en_GB]=WiFi
 Icon=/usr/share/kano-desktop/icons/wifi.png
-Exec=/usr/bin/kano-launcher "lxterminal -t 'WiFi' -e sudo /usr/bin/kano-connect"
+Exec=/usr/bin/kano-launcher "lxterminal -t 'WiFi' -e sudo /usr/bin/kano-wifi"
 Comment[en_GB]=WiFi configuration program
 StartupNotify=true
