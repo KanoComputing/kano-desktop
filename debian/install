@@ -14,6 +14,8 @@ config/lxpanel/* usr/share/kano-desktop/config/lxpanel
 config/openbox/* usr/share/kano-desktop/config/openbox
 config/pcmanfm/* usr/share/kano-desktop/config/pcmanfm
 
+config/chromium/* usr/share/kano-desktop/config/chromium
+
 extras/* usr/share/kano-desktop/extras
 
 idesk/* usr/share/kano-desktop/idesk

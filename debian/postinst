@@ -24,7 +24,10 @@ xft-rgba=rgb
 "
 
 chromium_master_prefs=/etc/chromium/master_preferences
+custom_chromium_master_prefs=/usr/share/kano-desktop/config/chromium/master_preferences
+
 chromium_bookmarks=/etc/chromium/initial_bookmarks.html
+custom_chromium_bookmarks=/usr/share/kano-desktop/config/chromium/initial_bookmarks.html
 
 LXDE_AUTOSTART=/etc/xdg/lxsession/LXDE/autostart
 
@@ -46,10 +49,10 @@ case "$1" in
 
         # Configure chromium
         cp $chromium_master_prefs $chromium_master_prefs.old
-        cat chromium/master_preferences >$chromium_master_prefs
+        cat $custom_chromium_master_prefs >$chromium_master_prefs
 
         cp $chromium_bookmarks $chromium_bookmarks.old
-        cat chromium/initial_bookmarks.html >$chromium_bookmarks
+        cat $custom_chromium_bookmarks >$chromium_bookmarks
 
         # Set idesk as the desktop manager
         sudo sed -i 's/\@pcmanfm --desktop --profile LXDE/\@idesk/g' $LXDE_AUTOSTART
