@@ -4,6 +4,8 @@ images/* usr/share/kano-desktop/images
 
 applications/kano-shutdown.desktop usr/share/applications
 
+gtk-themes/Kano usr/share/themes
+
 config/lxterminal/* etc/skel/.config/lxterminal
 config/lxsession/* etc/skel/.config/lxsession
 config/midori/* etc/skel/.config/midori
