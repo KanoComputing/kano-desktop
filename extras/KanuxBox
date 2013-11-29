@@ -1,9 +1,9 @@
 [Desktop Entry]
 Encoding=UTF-8
 Type=Application
-Name=KanuxBox
-Name[en_GB]=KanuxBox
+Name=Share
+Name[en_GB]=Share
 Icon=/usr/share/kano-desktop/icons/kanuxbox.png
 Exec=/usr/bin/kanuxbox
-Comment[en_GB]=Pulls files from Kano Dropbox
+Comment[en_GB]=Share your creations with your friends
 StartupNotify=true
