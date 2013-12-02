@@ -772,7 +772,11 @@
 
   <application class="Make-music">
     <decor>no</decor>
-  </application>>
+  </application>
+  
+  <application class="Kano-feedback">
+    <decor>no</decor>
+  </application>
 
 </applications>
 
