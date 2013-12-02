@@ -1,3 +1,9 @@
+kano-desktop (1.0-2) unstable; urgency=low
+
+  * Package rebuilt, updated to revision c194818b.
+
+ -- Team Kano <hello@kano.me>  Mon, 02 Dec 2013 22:04:35 +0000
+
 kano-desktop (1.0-1) unstable; urgency=low
 
   * Kanux MincePie
