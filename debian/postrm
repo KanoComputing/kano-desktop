@@ -20,6 +20,9 @@ case "$1" in
         rm -f /etc/skel/.ideskrc
         rm -f /etc/skel/.idesktop
 
+        # Remove trademark
+        rm -f /etc/skel/Trademark
+
         if [ -e "$chromium_bookmarks-old" ]; then
             mv $chromium_bookmarks-old $chromium_bookmarks
         fi

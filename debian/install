@@ -10,6 +10,8 @@ config/lxterminal/* etc/skel/.config/lxterminal
 config/lxsession/* etc/skel/.config/lxsession
 config/midori/* etc/skel/.config/midori
 
+Trademark etc/skel
+
 config/lxpanel/* usr/share/kano-desktop/config/lxpanel
 config/openbox/* usr/share/kano-desktop/config/openbox
 config/pcmanfm/* usr/share/kano-desktop/config/pcmanfm
