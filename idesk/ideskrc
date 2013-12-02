@@ -9,7 +9,7 @@ table Config
   ToolTip.CaptionOnHover: false
   ToolTip.CaptionPlacement: Right
   Locked: true
-  Transparency: 50
+  Transparency: 90
   Shadow: true
   ShadowColor: #000000
   ShadowX: 1
