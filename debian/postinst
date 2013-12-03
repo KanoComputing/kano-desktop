@@ -1,5 +1,10 @@
 #!/bin/bash
 
+# postinst
+#
+# Copyright (C) 2013 Kano Computing Ltd.
+# License:   http://www.gnu.org/licenses/gpl-2.0.txt GNU General Public License v2
+
 ldm_conf_loc="/etc/lightdm/lightdm-gtk-greeter.conf"
 ldm_conf="#
 # background = Background file to use, either an image path or a color (e.g. #772953)
