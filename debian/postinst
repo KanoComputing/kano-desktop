@@ -62,6 +62,10 @@ case "$1" in
         # Set idesk as the desktop manager
         sudo sed -i 's/\@pcmanfm --desktop --profile LXDE/\@idesk/g' $LXDE_AUTOSTART
 
+	# Update kanux installed fonts information for the X server
+	mkfontdir /usr/share/fonts/kanux
+	mkfontscale /usr/share/fonts/kanux
+
         ;;
 esac
 
