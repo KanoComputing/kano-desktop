@@ -6,6 +6,7 @@ table Icon
   Icon: /usr/share/kano-desktop/icons/snake.png
   Width: 138
   Height: 128
-  X: 167
-  Y: 547
+  Relative-To: bottom-centre
+  X: -345
+  Y: -221
 end
