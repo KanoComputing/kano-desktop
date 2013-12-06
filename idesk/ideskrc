@@ -27,8 +27,9 @@ table Config
   FillStyle: None
   Background.Delay: 0
   Background.Source: /
-  Background.File: /usr/share/kano-desktop/wallpapers/kanux-background.png
-  Background.Mode: Center
+  Background.File-4-3: /usr/share/kano-desktop/wallpapers/kanux-background-4-3.png
+  Background.File-16-9: /usr/share/kano-desktop/wallpapers/kanux-background-16-9.png
+  Background.Mode: scale
   Background.Color: #C2CCFF
 end
 

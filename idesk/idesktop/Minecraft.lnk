@@ -6,6 +6,7 @@ table Icon
   Icon: /usr/share/kano-desktop/icons/minecraft.png
   Width: 138
   Height: 128
-  X: 443
-  Y: 547
+  Relative-To: bottom-centre
+  X: -69
+  Y: -221
 end

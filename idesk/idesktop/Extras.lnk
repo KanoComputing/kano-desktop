@@ -6,6 +6,7 @@ table Icon
   Icon: /usr/share/kano-desktop/icons/extras.png
   Width: 138
   Height: 128
-  X: 719
-  Y: 547
+  Relative-To: bottom-centre
+  X: 207
+  Y: -221
 end

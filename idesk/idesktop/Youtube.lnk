@@ -6,6 +6,7 @@ table Icon
   Icon: /usr/share/kano-desktop/icons/youtube.png
   Width: 138
   Height: 128
-  X: 29
-  Y: 547
+  Relative-To: bottom-centre
+  X: -483
+  Y: -221
 end
