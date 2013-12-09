@@ -4,17 +4,22 @@
 #
 # Copyright (C) 2013 Kano Computing Ltd.
 # License:   http://www.gnu.org/licenses/gpl-2.0.txt GNU General Public License v2
+#
 
-ldm_conf_loc="/etc/lightdm/lightdm_gtk_greeter.conf"
+lightdm_greeter_config=/etc/lightdm/lightdm_gtk_greeter.conf
+lightdm_config=/etc/lightdm/lightdm.conf
 
 chromium_master_prefs=/etc/chromium/master_preferences
 chromium_bookmarks=/etc/chromium/initial_bookmarks.html
 
 case "$1" in
     remove|upgrade)
-        # Revert old ldm configuration
-        if [ -e "$ldm_conf_loc-old" ]; then
-            mv $ldm_conf_loc-old $ldm_conf_loc
+        # Revert old lightdm_config
+        if [ -e "$lightdm_greeter_config-old" ]; then
+            mv $lightdm_greeter_config-old $lightdm_greeter_config
+        fi
+        if [ -e "$lightdm_config-old" ]; then
+            mv $lightdm_config-old $lightdm_config
         fi
 
         # Removing links
@@ -25,13 +30,13 @@ case "$1" in
         rm -f /etc/skel/.ideskrc
         rm -f /etc/skel/.idesktop
 
-        # Remove trademark
-        rm -f /etc/skel/Trademark
+        # Remove copyright
+        rm -f /etc/skel/Copyright
 
+        # Revert chromium config
         if [ -e "$chromium_bookmarks-old" ]; then
             mv $chromium_bookmarks-old $chromium_bookmarks
         fi
-
         if [ -e "$chromium_master_prefs-old" ]; then
             mv $chromium_master_prefs-old $chromium_master_prefs
         fi
