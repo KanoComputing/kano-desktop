@@ -30,8 +30,8 @@ xft-rgba=rgb
 
 lightdm_greeter_config=/etc/lightdm/lightdm-gtk-greeter.conf
 custom_lightdm_greeter_config=/usr/share/kano-desktop/etc/lightdm/lightdm-gtk-greeter.conf
-lightdm_config=/etc/lightdm/lightdm.config
-custom_lightdm_config=/usr/share/kano-desktop/etc/lightdm/lightdm.config
+lightdm_config=/etc/lightdm/lightdm.conf
+custom_lightdm_config=/usr/share/kano-desktop/etc/lightdm/lightdm.conf
 
 chromium_master_prefs=/etc/chromium/master_preferences
 custom_chromium_master_prefs=/usr/share/kano-desktop/config/chromium/master_preferences
