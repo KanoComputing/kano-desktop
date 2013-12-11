@@ -1,9 +1,0 @@
-[Desktop Entry]
-Encoding=UTF-8
-Type=Application
-Name=VNC
-Name[en_GB]=VNC
-Icon=/usr/share/kano-desktop/icons/vnc.png
-Exec=/usr/bin/kano-vnc
-Comment[en_GB]=Connect remotely through VNC
-StartupNotify=true
