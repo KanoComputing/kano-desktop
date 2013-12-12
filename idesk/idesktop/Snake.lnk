@@ -1,7 +1,7 @@
 table Icon
   Caption: Snake
   AppID: make-snak[e]
-  Command: /usr/bin/kano-launcher "lxterminal -t 'Make Snake' --geometry=101x44 -e /usr/bin/make-snake"
+  Command: /usr/bin/kano-launcher "lxterminal -t 'Make Snake' -e /usr/bin/make-snake" "make-snake"
   Singleton: true
   Icon: /usr/share/kano-desktop/icons/snake.png
   Width: 138
