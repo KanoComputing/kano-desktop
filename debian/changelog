@@ -1,3 +1,10 @@
+kano-desktop (1.0-15.1) unstable; urgency=low
+
+  * Non-maintainer upload.
+  * Package rebuilt, updated to revision 46c10600.
+
+ -- Team Kano <hello@kano.me>  Tue, 17 Dec 2013 02:24:43 +0000
+
 kano-desktop (1.0-15) unstable; urgency=low
 
   * Package rebuilt, updated to revision fa0cfbc6.
