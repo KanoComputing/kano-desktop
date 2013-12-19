@@ -4,6 +4,6 @@ Type=Application
 Name=Credits
 Name[en_GB]=Credits
 Icon=/usr/share/kano-desktop/icons/credits.png
-Exec=/usr/bin/kano-launcher "lxterminal -t 'Credits' -e /usr/share/credits/make-credits.sh"
+Exec=/usr/bin/kano-launcher "lxterminal -t 'Credits' -e /usr/bin/make-credits"
 Comment[en_GB]=See who created the software
 StartupNotify=true
