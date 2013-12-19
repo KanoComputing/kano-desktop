@@ -7,7 +7,7 @@
 #
 
 lightdm_greeter_config=/etc/lightdm/lightdm-gtk-greeter.conf
-custom_lightdm_greeter_config=/usr/share/kano-desktop/etc/lightdm/lightdm-gtk-greeter.conf
+custom_lightdm_greeter_config=/usr/share/kano-desktop/lightdm/lightdm-gtk-greeter.conf
 
 lightdm_config=/etc/lightdm/lightdm.conf
 
