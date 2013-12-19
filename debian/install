@@ -18,7 +18,7 @@ config/pcmanfm/* usr/share/kano-desktop/config/pcmanfm
 
 config/chromium/* usr/share/kano-desktop/config/chromium
 
-etc/lightdm/* usr/share/kano-desktop/etc/lightdm
+lightdm/* usr/share/kano-desktop/lightdm
 
 extras/* usr/share/kano-desktop/extras
 

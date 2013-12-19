@@ -10,7 +10,6 @@ lightdm_greeter_config=/etc/lightdm/lightdm-gtk-greeter.conf
 custom_lightdm_greeter_config=/usr/share/kano-desktop/etc/lightdm/lightdm-gtk-greeter.conf
 
 lightdm_config=/etc/lightdm/lightdm.conf
-custom_lightdm_config=/usr/share/kano-desktop/etc/lightdm/lightdm.conf
 
 chromium_master_prefs=/etc/chromium/master_preferences
 custom_chromium_master_prefs=/usr/share/kano-desktop/config/chromium/master_preferences
@@ -31,12 +30,13 @@ case "$1" in
         ln -s /usr/share/kano-desktop/idesk/ideskrc /etc/skel/.ideskrc
         ln -s /usr/share/kano-desktop/idesk/idesktop /etc/skel/.idesktop
 
-        # configure lightdm
+        # Configure lightdm
         cp $lightdm_greeter_config $lightdm_greeter_config-old
         cat $custom_lightdm_greeter_config > $lightdm_greeter_config
 
-        cp $lightdm_config $lightdm_config-old
-        cat $custom_lightdm_config > $lightdm_config
+        # Display a list of user names when logging in
+        sed -i 's/#\?\s*\(greeter-hide-users\=\).*/\1false/' "$lightdm_config"
+        sed -i 's/^\s*\(user-session\=\).*/# \1default/' "$lightdm_config"
 
         # Configure chromium
         cp $chromium_master_prefs $chromium_master_prefs-old

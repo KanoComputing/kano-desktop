@@ -17,13 +17,14 @@ LXDE_AUTOSTART=/etc/xdg/lxsession/LXDE/autostart
 case "$1" in
     remove|upgrade)
 
-        # Revert old lightdm_config
+        # Revert old lightdm greeter config
         if [ -e "$lightdm_greeter_config-old" ]; then
             mv $lightdm_greeter_config-old $lightdm_greeter_config
         fi
-        if [ -e "$lightdm_config-old" ]; then
-            mv $lightdm_config-old $lightdm_config
-        fi
+
+        # Don't isplay a list of user names when logging in
+        sed -i 's/#\?\s*\(greeter-hide-users\=\).*/\1true/' "$lightdm_config"
+        sed -i 's/#\?\s*\(user-session\=\).*/\1default/' "$lightdm_config"
 
         # Removing links
         rm -f /etc/skel/.config/openbox
