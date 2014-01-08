@@ -751,13 +751,6 @@
   </application>
 -->
 
-  <application class="pong.py">
-    <position>
-      <x>194</x>
-      <y>140</y>
-    </position>
-  </application>
-  
   <application class="minecraft-pi">
     <layer>below</layer>
   </application>
