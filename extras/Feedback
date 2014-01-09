@@ -1,9 +1,0 @@
-[Desktop Entry]
-Encoding=UTF-8
-Type=Application
-Name=Feedback
-Name[en_GB]=Feedback
-Icon=/usr/share/kano-desktop/icons/feedback.png
-Exec=/usr/bin/kano-feedback
-Comment[en_GB]=Share your feedback with us
-StartupNotify=true

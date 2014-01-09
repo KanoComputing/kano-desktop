@@ -1,9 +1,0 @@
-[Desktop Entry]
-Encoding=UTF-8
-Type=Application
-Name=Keyboard
-Name[en_GB]=Keyboard
-Icon=/usr/share/kano-desktop/icons/kano-keyboard.png
-Exec=/usr/bin/kano-launcher "lxterminal -t 'Keyboard' -e sudo /usr/bin/kano-keyboard"
-Comment[en_GB]=Keyboard Configuration
-StartupNotify=true

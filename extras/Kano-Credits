@@ -1,9 +1,0 @@
-[Desktop Entry]
-Encoding=UTF-8
-Type=Application
-Name=Credits
-Name[en_GB]=Credits
-Icon=/usr/share/kano-desktop/icons/credits.png
-Exec=/usr/bin/kano-launcher "lxterminal -t 'Credits' -e /usr/bin/kano-credits"
-Comment[en_GB]=See who created the software
-StartupNotify=true
