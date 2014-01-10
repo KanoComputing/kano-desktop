@@ -1,9 +1,0 @@
-[Desktop Entry]
-Encoding=UTF-8
-Type=Application
-Name=Updater
-Name[en_GB]=Updater
-Icon=/usr/share/kano-desktop/icons/kano-updater.png
-Exec=/bin/bash -c "sudo /usr/bin/kano-updater"
-Comment[en_GB]=Kanux Updater
-StartupNotify=true
