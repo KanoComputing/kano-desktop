@@ -19,6 +19,16 @@ custom_chromium_bookmarks=/usr/share/kano-desktop/config/chromium/initial_bookma
 
 LXDE_AUTOSTART=/etc/xdg/lxsession/LXDE/autostart
 
+# This is to get squeak working on the system out of the box. Can be removed if short of space on SD.
+SQUEAKURL=http://ftp.squeak.org/4.3/Squeak-4.3-All-in-One.zip
+SQUEAKZIP=Squeak-4.3-All-in-One.zip
+SQUEAKDIR=squeak
+wget -nv $SQUEAKURL 
+unzip $SQUEAKZIP
+sudo mv Squeak-4.3-All-in-One.app/Contents/Resources $SQUEAKDIR
+rm -r Squeak-4.3-All-in-One.app
+rm Squeak-4.3-All-in-One.zip
+
 case "$1" in
     configure)
 
