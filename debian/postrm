@@ -14,8 +14,8 @@ chromium_bookmarks=/etc/chromium/initial_bookmarks.html
 
 LXDE_AUTOSTART=/etc/xdg/lxsession/LXDE/autostart
 
-rm /etc/skel/squeak
-rm -r /usr/share/squeak
+sudo rm /etc/skel/squeak
+sudo rm -r /usr/share/squeak
 
 case "$1" in
     remove|upgrade)
