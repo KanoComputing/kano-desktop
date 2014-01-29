@@ -1,9 +1,0 @@
-[Desktop Entry]
-Encoding=UTF-8
-Type=Application
-Name=Share
-Name[en_GB]=Share
-Icon=/usr/share/kano-desktop/icons/kano-share.png
-Exec=/usr/bin/kano-share
-Comment[en_GB]=Share your creations with your friends
-StartupNotify=true
