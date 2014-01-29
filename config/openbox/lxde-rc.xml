@@ -742,15 +742,6 @@
   # end of the example
 -->
 
-<!-- For future reference
-  <application class="Midori">
-    <position>
-      <x>0</x>
-      <y>0</y>
-    </position>
-  </application>
--->
-
   <application class="minecraft-pi">
     <layer>below</layer>
   </application>

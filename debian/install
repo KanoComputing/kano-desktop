@@ -8,7 +8,6 @@ gtk-themes/Kano usr/share/themes
 
 config/lxterminal/* etc/skel/.config/lxterminal
 config/lxsession/* etc/skel/.config/lxsession
-config/midori/* etc/skel/.config/midori
 
 Copyright etc/skel
 
