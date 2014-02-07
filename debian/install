@@ -11,6 +11,8 @@ config/lxsession/* etc/skel/.config/lxsession
 
 Copyright etc/skel
 
+rxvt/* etc/skel
+
 config/lxpanel/* usr/share/kano-desktop/config/lxpanel
 config/openbox/* usr/share/kano-desktop/config/openbox
 config/pcmanfm/* usr/share/kano-desktop/config/pcmanfm
