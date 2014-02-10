@@ -23,11 +23,11 @@ LXDE_AUTOSTART=/etc/xdg/lxsession/LXDE/autostart
 SQUEAKURL=http://ftp.squeak.org/4.3/Squeak-4.3-All-in-One.zip
 SQUEAKZIP=Squeak-4.3-All-in-One.zip
 SQUEAKDIR=/usr/share/squeak
-sudo mkdir $SQUEAKDIR
+mkdir $SQUEAKDIR
 wget -nv $SQUEAKURL 
 unzip $SQUEAKZIP
-sudo mv Squeak-4.3-All-in-One.app/Contents/Resources/* $SQUEAKDIR
-sudo ln -s /usr/share/squeak /etc/skel/
+mv Squeak-4.3-All-in-One.app/Contents/Resources/* $SQUEAKDIR
+ln -s /usr/share/squeak /etc/skel/
 rm -r Squeak-4.3-All-in-One.app
 rm Squeak-4.3-All-in-One.zip
 
