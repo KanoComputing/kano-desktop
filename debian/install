@@ -11,11 +11,11 @@ config/lxsession/* etc/skel/.config/lxsession
 
 Copyright etc/skel
 
-rxvt/.Xresources etc/skel
-
 config/lxpanel/* usr/share/kano-desktop/config/lxpanel
 config/openbox/* usr/share/kano-desktop/config/openbox
 config/pcmanfm/* usr/share/kano-desktop/config/pcmanfm
+
+config/rxvt/x11-rxvt etc/X11/Xresources
 
 config/chromium/* usr/share/kano-desktop/config/chromium
 
