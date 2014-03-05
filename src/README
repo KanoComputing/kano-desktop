@@ -1,0 +1,17 @@
+Kano-desktop - Manages application desktop icons
+================================================
+
+Based on:
+
+idesk: https://github.com/neagix/idesk
+vdesk: http://xvnkb.sourceforge.net/?menu=vdesk&lang=en
+
+To replace the desktop icon manager, edit this file
+
+  * /etc/xdg/lxsession/LXDE/autostart
+
+to add "@kano-desktop".
+
+Requirements to build the app:
+
+ * apt-get install libx11-dev, libxft-dev, libstartup-notification0-dev
