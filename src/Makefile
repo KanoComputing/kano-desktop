@@ -28,8 +28,8 @@ $(TARGET): main.o icon.o background.o configuration.o desktop.o
 icon.o: icon.cpp icon.h logging.h configuration.h
 	g++ -c $(DEBUGGING) $(XFTINC) icon.cpp
 
-main.o: main.cpp main.h configuration.h logging.h
-	g++ -c $(DEBUGGING) $(XFTINC) main.cpp
+main.o: main.cpp main.h configuration.h logging.h version.h
+	g++ -c $(DEBUGGING) $(XFTINC) $(SNINC) main.cpp
 
 background.o: background.cpp logging.h
 	g++ -c $(DEBUGGING) background.cpp
@@ -37,5 +37,5 @@ background.o: background.cpp logging.h
 configuration.o: configuration.cpp configuration.h logging.h
 	g++ -c $(DEBUGGING) configuration.cpp
 
-desktop.o: desktop.cpp desktop.h logging.h configuration.h
+desktop.o: desktop.cpp desktop.h logging.h configuration.h sn_callbacks.cpp
 	g++ -c $(DEBUGGING) $(XFTINC) $(SNINC) desktop.cpp

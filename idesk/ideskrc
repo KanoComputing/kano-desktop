@@ -16,6 +16,7 @@ table Config
   ShadowY: 1
   Bold: true
   ClickDelay: 300
+  IconStartDelay: 5000
   IconSnap: true
   SnapWidth: 10
   SnapHeight: 10
