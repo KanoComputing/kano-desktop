@@ -76,6 +76,11 @@ bool Configuration::load_conf(const char *filename)
 	ifile >> value;
 	configuration["clickdelay"] = value;
       }
+
+      if (token == "IconStartDelay:") {
+	ifile >> value;
+	configuration["iconstartdelay"] = value;
+      }
     }
  
   ifile.close();

@@ -63,9 +63,7 @@ bool Icon::is_singleton_running (void)
 	bAppRunning = false;
 	cout << "app " << appid << " is NOT running" << endl;
       }
-
     }
-
   return bAppRunning;
 }
 

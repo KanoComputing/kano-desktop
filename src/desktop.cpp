@@ -11,6 +11,8 @@
 #include <X11/Xutil.h>
 #include <X11/Xft/Xft.h>
 
+#include "sn_callbacks.cpp"
+
 //
 // TODO: Always keep an eye on libsn upgrades.
 // This API library is not officially conformed across different architectures
@@ -40,6 +42,12 @@ Desktop::~Desktop(void)
     {
       delete it->second;
     }
+
+  // Detach from Startup Notification library
+  if (sn_display) {
+    sn_display_unref (sn_display);
+    sn_display = 0;
+  }
 }
 
 bool Desktop::create_icons (Display *display)
@@ -63,63 +71,58 @@ bool Desktop::create_icons (Display *display)
       }
     }
 
+  // Setup a connection with startup notification library
+  // error_trap_push, error_trap_pop ???
+  sn_display = sn_display_new (display, error_trap_push, error_trap_pop);
+  sn_context = sn_launcher_context_new (sn_display, DefaultScreen (display));
+
   // returns true if at least one icon is available on the desktop
   return (bool) (nicon > 0);
 }
 
 
-/*
-static void Desktop::error_trap_push (SnDisplay *display, Display   *xdisplay){ ++error_trap_depth;}
-static void Desktop::error_trap_pop (SnDisplay *display, Display   *xdisplay){
-  if (error_trap_depth == 0)
-    {
-      fprintf (stderr, "Error trap underflow!\n");
-      exit (1);
-    }
-
-  XSync (xdisplay, False); 
-  --error_trap_depth;
-}
-*/
-
-
-bool Desktop::notify_hourglass_start (Display *display, int iconid, Time time)
+bool Desktop::notify_startup_load (Display *display, int iconid, Time time)
 {
-  bool bsuccess;
-  string command = pconf->get_icon_string (iconid, "filename");
+  bool bsuccess=false;
+  string name = pconf->get_icon_string (iconid, "command");
+  string command = pconf->get_icon_string (iconid, "command");
+  
+  if (!sn_context || sn_launcher_context_get_initiated (sn_context)) {
+    sn_launcher_context_unref (sn_context);
+    sn_context = sn_launcher_context_new (sn_display, DefaultScreen (display));
+  }
 
-  sn_display = sn_display_new (display, NULL, NULL);
-  sn_context = sn_launcher_context_new (sn_display, DefaultScreen (display));
-  if ((sn_context != NULL) && !sn_launcher_context_get_initiated (sn_context))
-    {
-      sn_launcher_context_set_name (sn_context, command.c_str());
-      sn_launcher_context_set_description (sn_context, command.c_str());
-      sn_launcher_context_set_binary_name (sn_context, command.c_str());
-      sn_launcher_context_set_icon_name(sn_context, command.c_str());
-      sn_launcher_context_initiate (sn_context, command.c_str(), command.c_str(), time);
-      bsuccess = true;
+  if (!sn_context) {
+    log ("could not acquire a startup notification context - hourglass not working");
+  }
+  else {
+    log1 ("startup notification for app", command);
 
-      // test application load
-      //usleep (1000*3000);
-    }
+    sn_launcher_context_set_name (sn_context, name.c_str());
+    sn_launcher_context_set_description (sn_context, command.c_str());
+    sn_launcher_context_set_binary_name (sn_context, command.c_str());
+    sn_launcher_context_set_icon_name(sn_context, name.c_str());
+    sn_launcher_context_initiate (sn_context, name.c_str(), command.c_str(), time);
+    sn_launcher_context_setup_child_process (sn_context);
+    bsuccess = true;
+  }
 
   return bsuccess;
 }
 
-bool Desktop::notify_hourglass_end (Display *display, int iconid, Time time)
+void Desktop::notify_startup_event (Display *display, XEvent *pev)
 {
-  if (sn_context != NULL) {
-    sn_launcher_context_setup_child_process (sn_context);
+  if (sn_context) {
+    sn_display_process_event (sn_display, pev);
+  }
+}
+
+bool Desktop::notify_startup_ready (Display *display)
+{
+  if (sn_context) {
     sn_launcher_context_unref (sn_context);
     sn_context = 0;
-    if (sn_display)
-      {
-	sn_display_unref (sn_display);
-	sn_display = 0;
-      }
   }
-
-  return true;
 }
 
 bool Desktop::process_and_dispatch(Display *display)
@@ -146,17 +149,25 @@ bool Desktop::process_and_dispatch(Display *display)
 	  // A double click event is defined by the time elapsed between 2 clicks: "clickdelay"
 	  // And a grace time period to protect nested double clicks: "clickgrace"
 	  // Note we are listening for both left and right mouse click events.
-
-	  log3 ("ButtonPress event to window and time ms", wtarget, ev.xbutton.time, last_click);
+	  log3 ("ButtonPress event: window, time, last click", wtarget, ev.xbutton.time, last_click);
 	  if (ev.xbutton.time - last_click < pconf->get_config_int("clickdelay")) 
 	    {
-	      log ("DOUBLE CLICK!");
-	      last_dblclick = ev.xbutton.time;
-	      
-	      // Tell the icon a mouse double click needs processing
-	      bstarted = iconHandlers[wtarget]->double_click (display, ev);
-	      notify_hourglass_start (display, iconHandlers[wtarget]->iconid, ev.xbutton.time);
-	      notify_hourglass_end (display, iconHandlers[wtarget]->iconid, ev.xbutton.time);
+	      // Protect the UI experience by disallowing a new app startup if one is in progress
+	      if (bstarted == true && (ev.xbutton.time - last_dblclick < pconf->get_config_int("iconstartdelay"))) {
+		log1 ("icon start request too fast (iconstartdelay)", pconf->get_config_int("iconstartdelay"));
+	      }
+	      else {
+		log ("DOUBLE CLICK!");
+		last_dblclick = ev.xbutton.time;
+		bstarted = false;
+
+		// Save to request an app startup: tell the icon a mouse double click needs processing
+		if (iconHandlers[wtarget]->is_singleton_running () == false) {
+		  // Notify system we are about to load a new app (hourglass)
+		  notify_startup_load (display, iconHandlers[wtarget]->iconid, ev.xbutton.time);
+		  bstarted = iconHandlers[wtarget]->double_click (display, ev);
+		}
+	      }
 	    }
 	  break;
 
@@ -186,6 +197,9 @@ bool Desktop::process_and_dispatch(Display *display)
 	default:
 	  break;
 	}
+
+      // Pass on rest of unhandled events to the startup notification library
+      notify_startup_event (display, &ev);
 
     } while (!finish);
 
