@@ -15,7 +15,7 @@ LIBS:=-lXft -lImlib2 -lstdc++ `pkg-config --libs libstartup-notification-1.0`
 XFTINC:=-I/usr/include/freetype2
 SNINC=-I/usr/include/startup-notification-1.0
 
-TARGET=kano-desktop
+TARGET=kdesk
 
 all: $(TARGET)
 
