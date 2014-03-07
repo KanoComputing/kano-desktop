@@ -1,3 +1,15 @@
+kano-desktop (1.0-57) unstable; urgency=low
+
+  * Package rebuilt, updated to revision 84a13909.
+
+ -- Team Kano <dev@kano.me>  Fri, 07 Mar 2014 21:02:00 +0000
+
+kano-desktop (1.0-56) unstable; urgency=low
+
+  * Package rebuilt, updated to revision cf9ed4a2.
+
+ -- Team Kano <dev@kano.me>  Fri, 07 Mar 2014 15:03:50 +0000
+
 kano-desktop (1.0-55) unstable; urgency=low
 
   * Package rebuilt, updated to revision 621f291a.
