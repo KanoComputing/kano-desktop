@@ -2,7 +2,3 @@
 
 %:
 	dh $@
-
-# The desktop icon manager kdesk
-
-	cd src && make -B
