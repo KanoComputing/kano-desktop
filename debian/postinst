@@ -39,6 +39,7 @@ case "$1" in
         ln -s /usr/share/kano-desktop/config/pcmanfm /etc/skel/.config/pcmanfm
         ln -s /usr/share/kano-desktop/config/lxpanel /etc/skel/.config/lxpanel
 
+        # FIXME: Change to "kdesk" when functional integration is approved
         ln -s /usr/share/kano-desktop/idesk/ideskrc /etc/skel/.ideskrc
         ln -s /usr/share/kano-desktop/idesk/idesktop /etc/skel/.idesktop
 
@@ -57,8 +58,8 @@ case "$1" in
         cp $chromium_bookmarks $chromium_bookmarks-old
         cat $custom_chromium_bookmarks >$chromium_bookmarks
 
-        # Set idesk as the desktop manager
-        sudo sed -i 's/\@pcmanfm --desktop --profile LXDE/\@idesk/g' $LXDE_AUTOSTART
+        # Set kdesk as the desktop manager
+        sudo sed -i 's/\@pcmanfm --desktop --profile LXDE/\@kdesk/g' $LXDE_AUTOSTART
 
         # Update kanux installed fonts information for the X server
         mkfontdir /usr/share/fonts/kanux

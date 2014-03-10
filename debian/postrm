@@ -34,6 +34,7 @@ case "$1" in
         rm -f /etc/skel/.config/pcmanfm
         rm -f /etc/skel/.config/lxpanel
 
+        # FIXME: change these names to kdesk when integration is approved
         rm -f /etc/skel/.ideskrc
         rm -f /etc/skel/.idesktop
 
@@ -48,8 +49,8 @@ case "$1" in
             mv $chromium_master_prefs-old $chromium_master_prefs
         fi
 
-        # Disable idesk
-        sudo sed -i 's/\@idesk/\@pcmanfm --desktop --profile LXDE/g' $LXDE_AUTOSTART
+        # Disable kdesk
+        sudo sed -i 's/\@kdesk/\@pcmanfm --desktop --profile LXDE/g' $LXDE_AUTOSTART
 
         ;;
 esac
