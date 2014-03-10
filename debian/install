@@ -26,3 +26,5 @@ extras/* usr/share/kano-desktop/extras
 idesk/* usr/share/kano-desktop/idesk
 
 fonts/* usr/share/fonts/kanux
+
+sounds/* usr/share/kano-desktop/sounds/

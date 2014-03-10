@@ -9,6 +9,11 @@ table Config
   ToolTip.CaptionOnHover: false
   ToolTip.CaptionPlacement: Right
   Locked: true
+
+  EnableSound: true
+  WelcomeSound: /usr/share/kano-desktop/sounds/piano-kano.mp3
+  DisabledIconSound: /usr/share/kano-desktop/sounds/plonk-short.mp3
+
   Transparency: 40
   Shadow: true
   ShadowColor: #000000
