@@ -23,7 +23,7 @@ lightdm/* usr/share/kano-desktop/lightdm
 
 extras/* usr/share/kano-desktop/extras
 
-idesk/* usr/share/kano-desktop/idesk
+kdesk/* usr/share/kano-desktop/kdesk
 
 fonts/* usr/share/fonts/kanux
 

@@ -39,10 +39,6 @@ case "$1" in
         ln -s /usr/share/kano-desktop/config/pcmanfm /etc/skel/.config/pcmanfm
         ln -s /usr/share/kano-desktop/config/lxpanel /etc/skel/.config/lxpanel
 
-        # FIXME: Change to "kdesk" when functional integration is approved
-        ln -s /usr/share/kano-desktop/idesk/ideskrc /etc/skel/.ideskrc
-        ln -s /usr/share/kano-desktop/idesk/idesktop /etc/skel/.idesktop
-
         # Configure lightdm
         cp $lightdm_greeter_config $lightdm_greeter_config-old
         cat $custom_lightdm_greeter_config > $lightdm_greeter_config
