@@ -34,10 +34,6 @@ case "$1" in
         rm -f /etc/skel/.config/pcmanfm
         rm -f /etc/skel/.config/lxpanel
 
-        # FIXME: change these names to kdesk when integration is approved
-        rm -f /etc/skel/.ideskrc
-        rm -f /etc/skel/.idesktop
-
         # Remove copyright
         rm -f /etc/skel/Copyright
 
