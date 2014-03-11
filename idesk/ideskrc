@@ -11,8 +11,9 @@ table Config
   Locked: true
 
   EnableSound: true
-  WelcomeSound: /usr/share/kano-desktop/sounds/piano-kano.mp3
-  DisabledIconSound: /usr/share/kano-desktop/sounds/plonk-short.mp3
+  SoundWelcome: /usr/share/kano-desktop/sounds/piano-kano.mp3
+  SoundLaunchApp: /usr/share/kano-desktop/sounds/start-app.mp3
+  SoundDisabledIcon: /usr/share/kano-desktop/sounds/plonk-short.mp3
 
   Transparency: 40
   Shadow: true
