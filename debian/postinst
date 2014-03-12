@@ -20,7 +20,7 @@ custom_chromium_bookmarks=/usr/share/kano-desktop/config/chromium/initial_bookma
 LXDE_AUTOSTART=/etc/xdg/lxsession/LXDE/autostart
 
 # This is to get squeak working on the system out of the box. Can be removed if short of space on SD.
-SQUEAKURL=http://80.243.184.98/public/squeak.tar.gz
+SQUEAKURL=http://dev.kano.me/public/squeak.tar.gz
 SQUEAKTAR=squeak.tar.gz
 SQUEAKDIR=/usr/share/squeak
 mkdir -p $SQUEAKDIR
