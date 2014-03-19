@@ -1,0 +1,11 @@
+[Desktop Entry]
+Encoding=UTF-8
+Type=Application
+Name=ePDFView
+Name[en_GB]=ePDFView
+Icon=epdfview.png
+Exec=epdfview %f
+Comment[en_GB]=Lightweight PDF document viewer
+StartupNotify=true
+Categories=Office;
+Terminal=false
