@@ -18,7 +18,6 @@ if [ $? -eq 1 ]; then
     # Install wolfram
     sudo apt-get install wolfram-engine
     if [ $? -eq 0 ]; then
-        echo "Creating icon"
         # Create icons on Extra folder
         # Wolfram
         sudo echo -e "[Desktop Entry]\n \
@@ -44,6 +43,12 @@ Categories=Application;Education;" > \
 /usr/share/kano-desktop/extras/Mathematika
         # Hide the installer
         sudo mv /usr/share/kano-desktop/extras/WolframInstaller /usr/share/kano-desktop/extras/.WolframInstaller
+        # Installed successfully
+        clear
+        typewriter_echo "Congratulations, Wolfram has been installed successfully." 0 1
+        typewriter_echo "Go to Extras and click on Wolfram or Mathematika to use it." 0 2
+        echo -n "Press [ENTER] to continue"
+        read dummy
     fi
 else
     echo "Wolfram is already installed in your Kanux system"
