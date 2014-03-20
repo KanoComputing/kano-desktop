@@ -1,0 +1,52 @@
+#!/bin/sh
+
+# Wolfram installer
+#
+# Copyright (C) 2014 Kano Computing Ltd.
+# License: http://www.gnu.org/licenses/gpl-2.0.txt GNU General Public License v2
+#
+
+# Check for root priviledges.
+if [ `id -u` -ne 0 ]; then
+    echo "The installer must be executed with root privileges" 1>&2
+    exit 1
+fi
+
+# Check if wolfram-engine is already installed
+dpkg -s awolfram-engine > /dev/null 2> /dev/null
+if [ $? -eq 1 ]; then
+    # Install wolfram
+    sudo apt-get install wolfram-engine
+    if [ $? -eq 0 ]; then
+        echo "Creating icon"
+        # Create icons on Extra folder
+        # Wolfram
+        sudo echo -e "[Desktop Entry]\n \
+Version=1.0\n \
+Type=Application\n \
+Name=Wolfram\n \
+Icon=wolfram.png\n \
+Exec=rxvt -title "Wolfram Language" -e wolfram\n \
+Comment[en_GB]=Technical Programming Environment\n \
+StartupNotify=true\n \
+Categories=Application;Education;" > \
+/usr/share/kano-desktop/extras/Wolfram
+       # Mathematika
+       sudo echo -e "[Desktop Entry]\n \
+Version=1.0\n \
+Type=Application\n \
+Name=Mathematica\n \
+Icon=Mathematica.png\n \
+Exec=/opt/Wolfram/WolframEngine/10.0/Executables/mathematica %F\n \
+Comment[en_GB]=Technical Computing System\n \
+StartupNotify=true\n \
+Categories=Application;Education;" > \
+/usr/share/kano-desktop/extras/Mathematika
+        # Hide the installer
+        sudo mv /usr/share/kano-desktop/extras/WolframInstaller /usr/share/kano-desktop/extras/.WolframInstaller
+    fi
+else
+    echo "Wolfram is already installed in your Kanux system"
+fi
+
+exit 0

@@ -48,6 +48,9 @@ case "$1" in
         # Disable kdesk
         sudo sed -i 's/\@kdesk/\@pcmanfm --desktop --profile LXDE/g' $LXDE_AUTOSTART
 
+        # Remove config file in sudoers
+        rm /etc/sudoers.d/wolfram-installer_conf
+
         ;;
 esac
 

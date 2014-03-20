@@ -31,6 +31,8 @@ ln -s /usr/share/squeak /etc/skel/
 rm -r squeak
 rm $SQUEAKTAR
 
+TMP_FILE=/tmp/wolfram-installer_conf
+
 case "$1" in
     configure)
 
@@ -61,6 +63,15 @@ case "$1" in
         mkfontdir /usr/share/fonts/kanux
         mkfontscale /usr/share/fonts/kanux
         fc-cache
+
+        # Create custom sudoers file
+        echo "%sudo ALL=(root) NOPASSWD: /usr/bin/wolfram-installer" > $TMP_FILE
+        # The owner and group for the sudoers file must both be 0
+        chown root:root $TMP_FILE
+        # The file permissions must be set to 0440
+        chmod 0440 $TMP_FILE
+        # Move the file to the sudoers directory
+        mv $TMP_FILE /etc/sudoers.d/
 
         ;;
 esac

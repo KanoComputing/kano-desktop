@@ -1,0 +1,11 @@
+[Desktop Entry]
+Encoding=UTF-8
+Type=Application
+Name=Wolfram Installer
+Name[en_GB]=Wolfram Installer
+Icon=wolfram-installer.png
+Exec=sudo /usr/bin/wolfram-installer
+Comment[en_GB]=Simple installer for wolfram-engine
+StartupNotify=true
+Categories=Application;Education;
+Terminal=false
