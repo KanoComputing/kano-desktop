@@ -15,6 +15,9 @@ table Config
   SoundLaunchApp: /usr/share/kano-desktop/sounds/start-app.mp3
   SoundDisabledIcon: /usr/share/kano-desktop/sounds/plonk-short.mp3
 
+  ScreenSaverTimeout: 480
+  ScreenSaverProgram: /usr/bin/kfbsaver
+
   Transparency: 40
   Shadow: true
   ShadowColor: #000000
