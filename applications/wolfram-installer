@@ -9,6 +9,18 @@
 # Check for root priviledges.
 if [ `id -u` -ne 0 ]; then
     echo "The installer must be executed with root privileges" 1>&2
+    echo -n "Press [ENTER] to exit"
+    read dummy
+    exit 1
+fi
+
+# We need at least 850MB of free space
+FreeSpace=`df -P | grep -v "Available" | awk '{print $4}' | head -n1`
+if [ $FreeSpace -le 850000 ]; then
+    typewriter_echo "You don't have enough available space, ~850MB required." 0 1
+    typewriter_echo "Please run Updater in Extras." 0 2
+    echo -n "Press [ENTER] to exit"
+    read dummy
     exit 1
 fi
 
@@ -47,11 +59,11 @@ Categories=Application;Education;" > \
         clear
         typewriter_echo "Congratulations, Wolfram has been installed successfully." 0 1
         typewriter_echo "Go to Extras and click on Wolfram or Mathematika to use it." 0 2
-        echo -n "Press [ENTER] to continue"
-        read dummy
     fi
 else
-    echo "Wolfram is already installed in your Kanux system"
+    typewriter_echo "Wolfram is already installed in your Kanux system" 0 2
 fi
 
+echo -n "Press [ENTER] to continue"
+read dummy
 exit 0
