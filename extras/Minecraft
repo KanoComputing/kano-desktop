@@ -1,0 +1,9 @@
+[Desktop Entry]
+Encoding=UTF-8
+Type=Application
+Name=Minecraft
+Name[en_GB]=Minecraft
+Icon=/usr/share/kano-desktop/icons/minecraft-icon.png
+Exec=/usr/share/make-minecraft/minecraft-pi
+Comment[en_GB]=Minecraft Pi Edition
+StartupNotify=true

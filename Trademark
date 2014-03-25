@@ -1,0 +1,18 @@
+Kano and Judoka logos are trademarks of Kano Computing Ltd. 
+They may not be used without the expressed written permission of Kano Computing.
+
+The following images and resources are subject to copyright:
+/usr/share/make-music/app/gui/images/*
+/usr/share/make-minecraft/minecraft/media/*
+/usr/share/make-pong/pong/media/*
+/usr/share/kano-blocks/blockly/media/*
+/usr/share/kano-desktop/images/*
+/usr/share/kano-desktop/wallpapers/*
+/usr/share/kano-desktop/icons/*
+/usr/share/kanuxbox/resources/*
+/usr/share/doc/kano-youtube/monkey.flv
+
+Copyright (C) 2013 Kano Computing Ltd.
+
+On Debian systems, the full text of the GNU General Public License version 2 can be found in `/usr/share/common-licenses/GPL-2'.
+Every Debian package installed in the system, contains the copyright and license information which can be found in /usr/share/doc/$PACKAGENAME/copyright.

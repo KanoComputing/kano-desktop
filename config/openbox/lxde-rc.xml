@@ -742,6 +742,22 @@
   # end of the example
 -->
 
+<!-- For future reference
+  <application class="Midori">
+    <position>
+      <x>0</x>
+      <y>0</y>
+    </position>
+  </application>
+-->
+
+  <application class="pong.py">
+    <position>
+      <x>194</x>
+      <y>140</y>
+    </position>
+  </application>
+  
   <application class="minecraft-pi">
     <layer>below</layer>
   </application>
@@ -750,17 +766,13 @@
     <decor>no</decor>
   </application>
 
-  <application class="Make-music">
-    <decor>no</decor>
-  </application>
-  
-  <application class="Kano-feedback">
+  <application class="Midori">
     <decor>no</decor>
   </application>
 
-  <application class="pong.py">
+  <application class="Make-music">
     <decor>no</decor>
-  </application>
+  </application>>
 
 </applications>
 

@@ -1,14 +1,17 @@
-Source: kano-desktop
-Maintainer: Team Kano <dev@kano.me>
+Source: kano-desktop-holidays
+Maintainer: Radek Pazdera <radek@kano.me>
 Section: x11
 Priority: optional
 Standards-Version: 3.9.4
 Build-Depends: debhelper (>=9.0.0)
 
-Package: kano-desktop
+Package: kano-desktop-holidays
 Architecture: all
 Depends: ${misc:Depends}, ${shlibs:Depends}, openbox (>=3.5.2-4~kano.1),
-         kdesk (>=1.1-02), chromium, epdfview
+         idesk (>=0.7.7-1~kano.2), chromium
+Provides: kano-desktop
+Conflicts: kano-desktop
+Replaces: kano-desktop
 Description: The desktop experience of Kanux
  This package contains a variety of configuration files and resources that
  make up the whole KANO desktop experience on top of LXDE.

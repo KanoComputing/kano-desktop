@@ -9,25 +9,14 @@ table Config
   ToolTip.CaptionOnHover: false
   ToolTip.CaptionPlacement: Right
   Locked: true
-
-  EnableSound: true
-  SoundWelcome: /usr/share/kano-desktop/sounds/piano-kano.mp3
-  SoundLaunchApp: /usr/share/kano-desktop/sounds/start-app.mp3
-  SoundDisabledIcon: /usr/share/kano-desktop/sounds/plonk-short.mp3
-
-  ScreenSaverTimeout: 480
-  ScreenSaverProgram: /usr/bin/kfbsaver
-
-  Transparency: 40
+  Transparency: 50
   Shadow: true
   ShadowColor: #000000
   ShadowX: 1
   ShadowY: 1
   Bold: true
   ClickDelay: 300
-  IconStartDelay: 5000
   IconSnap: true
-  IconTitleGap: 10
   SnapWidth: 10
   SnapHeight: 10
   SnapOrigin: BottomRight
@@ -38,9 +27,8 @@ table Config
   FillStyle: None
   Background.Delay: 0
   Background.Source: /
-  Background.File-4-3: /usr/share/kano-desktop/wallpapers/kanux-background-4-3.png
-  Background.File-16-9: /usr/share/kano-desktop/wallpapers/kanux-background-16-9.png
-  Background.Mode: scale
+  Background.File: /usr/share/kano-desktop/wallpapers/kanux-background.png
+  Background.Mode: Center
   Background.Color: #C2CCFF
 end
 

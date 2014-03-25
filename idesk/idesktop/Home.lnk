@@ -6,8 +6,7 @@ table Icon
   Icon: /usr/share/kano-desktop/icons/kano-homefolder.png
   Width: 138
   Height: 128
-  Relative-To: bottom-centre
-  X: 345
-  Y: -221
+  X: 857
+  Y: 547
 end
 

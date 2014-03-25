@@ -1,0 +1,11 @@
+table Icon
+  Caption: Pong
+  AppID: make-pon[g]
+  Command: /usr/bin/kano-launcher /usr/bin/make-pong
+  Singleton: true
+  Icon: /usr/share/kano-desktop/icons/pong.png
+  Width: 138
+  Height: 128
+  X: 305
+  Y: 547
+end

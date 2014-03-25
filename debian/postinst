@@ -2,14 +2,31 @@
 
 # postinst
 #
-# Copyright (C) 2014 Kano Computing Ltd.
-# License: http://www.gnu.org/licenses/gpl-2.0.txt GNU General Public License v2
+# Copyright (C) 2013 Kano Computing Ltd.
+# License:   http://www.gnu.org/licenses/gpl-2.0.txt GNU General Public License v2
+
+ldm_conf_loc="/etc/lightdm/lightdm-gtk-greeter.conf"
+ldm_conf="#
+# background = Background file to use, either an image path or a color (e.g. #772953)
+# show-language-selector (true or false)
+# theme-name = GTK+ theme to use
+# font-name = Font to use
+# xft-antialias = Whether to antialias Xft fonts (true or false)
+# xft-dpi = Resolution for Xft in dots per inch (e.g. 96)
+# xft-hintstyle = What degree of hinting to use (hintnone, hintslight, hintmedium, or hintfull)
+# xft-rgba = Type of subpixel antialiasing (none, rgb, bgr, vrgb or vbgr)
 #
 
-lightdm_greeter_config=/etc/lightdm/lightdm-gtk-greeter.conf
-custom_lightdm_greeter_config=/usr/share/kano-desktop/lightdm/lightdm-gtk-greeter.conf
-
-lightdm_config=/etc/lightdm/lightdm.conf
+[greeter]
+background=/usr/share/kano-desktop/wallpapers/kanux-background-blurred.png
+#show-language-selector=false
+theme-name=Kano
+font-name=Bariol
+xft-antialias=true
+#xft-dpi=
+xft-hintstyle=hintfull
+xft-rgba=rgb
+"
 
 chromium_master_prefs=/etc/chromium/master_preferences
 custom_chromium_master_prefs=/usr/share/kano-desktop/config/chromium/master_preferences
@@ -19,59 +36,31 @@ custom_chromium_bookmarks=/usr/share/kano-desktop/config/chromium/initial_bookma
 
 LXDE_AUTOSTART=/etc/xdg/lxsession/LXDE/autostart
 
-# This is to get squeak working on the system out of the box. Can be removed if short of space on SD.
-SQUEAKURL=http://dev.kano.me/public/squeak.tar.gz
-SQUEAKTAR=squeak.tar.gz
-SQUEAKDIR=/usr/share/squeak
-mkdir -p $SQUEAKDIR
-wget -nv $SQUEAKURL
-tar -zxvf $SQUEAKTAR
-mv squeak/* $SQUEAKDIR
-ln -s /usr/share/squeak /etc/skel/
-rm -r squeak
-rm $SQUEAKTAR
-
-TMP_FILE=/tmp/wolfram-installer_conf
-
 case "$1" in
     configure)
+        # Configure lightdm greeter
+        if [ -e "$ldm_conf_loc" ]; then
+            cp $ldm_conf_loc $ldm_conf_loc-old
+        fi
+        echo "$ldm_conf" > $ldm_conf_loc
 
         # Make links in /etc/skel
         ln -s /usr/share/kano-desktop/config/openbox /etc/skel/.config/openbox
         ln -s /usr/share/kano-desktop/config/pcmanfm /etc/skel/.config/pcmanfm
         ln -s /usr/share/kano-desktop/config/lxpanel /etc/skel/.config/lxpanel
 
-        # Configure lightdm
-        cp $lightdm_greeter_config $lightdm_greeter_config-old
-        cat $custom_lightdm_greeter_config > $lightdm_greeter_config
-
-        # Display a list of user names when logging in
-        sed -i 's/#\?\s*\(greeter-hide-users\=\).*/\1false/' "$lightdm_config"
-        sed -i 's/^\s*\(user-session\=\).*/# \1default/' "$lightdm_config"
+        ln -s /usr/share/kano-desktop/idesk/ideskrc /etc/skel/.ideskrc
+        ln -s /usr/share/kano-desktop/idesk/idesktop /etc/skel/.idesktop
 
         # Configure chromium
-        cp $chromium_master_prefs $chromium_master_prefs-old
+        cp $chromium_master_prefs $chromium_master_prefs.old
         cat $custom_chromium_master_prefs >$chromium_master_prefs
 
-        cp $chromium_bookmarks $chromium_bookmarks-old
+        cp $chromium_bookmarks $chromium_bookmarks.old
         cat $custom_chromium_bookmarks >$chromium_bookmarks
 
-        # Set kdesk as the desktop manager
-        sudo sed -i 's/\@pcmanfm --desktop --profile LXDE/\@kdesk/g' $LXDE_AUTOSTART
-
-        # Update kanux installed fonts information for the X server
-        mkfontdir /usr/share/fonts/kanux
-        mkfontscale /usr/share/fonts/kanux
-        fc-cache
-
-        # Create custom sudoers file
-        echo "%sudo ALL=(root) NOPASSWD: /usr/bin/wolfram-installer" > $TMP_FILE
-        # The owner and group for the sudoers file must both be 0
-        chown root:root $TMP_FILE
-        # The file permissions must be set to 0440
-        chmod 0440 $TMP_FILE
-        # Move the file to the sudoers directory
-        mv $TMP_FILE /etc/sudoers.d/
+        # Set idesk as the desktop manager
+        sudo sed -i 's/\@pcmanfm --desktop --profile LXDE/\@idesk/g' $LXDE_AUTOSTART
 
         ;;
 esac

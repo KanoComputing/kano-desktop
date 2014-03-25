@@ -7,4 +7,3 @@ Icon=scratch.png
 Exec=scratch
 Comment[en_GB]=Scratch development environment
 StartupNotify=true
-Categories=Application;Education;

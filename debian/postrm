@@ -4,52 +4,40 @@
 #
 # Copyright (C) 2013 Kano Computing Ltd.
 # License:   http://www.gnu.org/licenses/gpl-2.0.txt GNU General Public License v2
-#
 
-lightdm_greeter_config=/etc/lightdm/lightdm_gtk_greeter.conf
-lightdm_config=/etc/lightdm/lightdm.conf
+ldm_conf_loc="/etc/lightdm/lightdm_gtk_greeter.conf"
 
 chromium_master_prefs=/etc/chromium/master_preferences
 chromium_bookmarks=/etc/chromium/initial_bookmarks.html
 
-LXDE_AUTOSTART=/etc/xdg/lxsession/LXDE/autostart
-
-sudo rm /etc/skel/squeak
-sudo rm -r /usr/share/squeak
-
 case "$1" in
     remove|upgrade)
-
-        # Revert old lightdm greeter config
-        if [ -e "$lightdm_greeter_config-old" ]; then
-            mv $lightdm_greeter_config-old $lightdm_greeter_config
+        # Revert old ldm configuration
+        if [ -e "$ldm_conf_loc-old" ]; then
+            mv $ldm_conf_loc-old $ldm_conf_loc
         fi
-
-        # Don't isplay a list of user names when logging in
-        sed -i 's/#\?\s*\(greeter-hide-users\=\).*/\1true/' "$lightdm_config"
-        sed -i 's/#\?\s*\(user-session\=\).*/\1default/' "$lightdm_config"
 
         # Removing links
         rm -f /etc/skel/.config/openbox
         rm -f /etc/skel/.config/pcmanfm
         rm -f /etc/skel/.config/lxpanel
 
-        # Remove copyright
-        rm -f /etc/skel/Copyright
+        rm -f /etc/skel/.ideskrc
+        rm -f /etc/skel/.idesktop
 
-        # Revert chromium config
+        # Remove trademark
+        rm -f /etc/skel/Trademark
+
         if [ -e "$chromium_bookmarks-old" ]; then
             mv $chromium_bookmarks-old $chromium_bookmarks
         fi
+
         if [ -e "$chromium_master_prefs-old" ]; then
             mv $chromium_master_prefs-old $chromium_master_prefs
         fi
 
-        # Disable kdesk
-        sudo sed -i 's/\@kdesk/\@pcmanfm --desktop --profile LXDE/g' $LXDE_AUTOSTART
-
-        # Remove config file in sudoers
-        rm /etc/sudoers.d/wolfram-installer_conf
+        # Disable idesk
+        sudo sed -i 's/\@idesk/\@pcmanfm --desktop --profile LXDE/g' $LXDE_AUTOSTART
 
         ;;
 esac

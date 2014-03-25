@@ -3,29 +3,23 @@ icons/* usr/share/kano-desktop/icons
 images/* usr/share/kano-desktop/images
 
 applications/kano-shutdown.desktop usr/share/applications
-applications/wolfram-installer usr/bin/
 
 gtk-themes/Kano usr/share/themes
 
 config/lxterminal/* etc/skel/.config/lxterminal
 config/lxsession/* etc/skel/.config/lxsession
+config/midori/* etc/skel/.config/midori
 
-Copyright etc/skel
+Trademark etc/skel
 
 config/lxpanel/* usr/share/kano-desktop/config/lxpanel
 config/openbox/* usr/share/kano-desktop/config/openbox
 config/pcmanfm/* usr/share/kano-desktop/config/pcmanfm
 
-config/rxvt/x11-rxvt etc/X11/Xresources
-
 config/chromium/* usr/share/kano-desktop/config/chromium
-
-lightdm/* usr/share/kano-desktop/lightdm
 
 extras/* usr/share/kano-desktop/extras
 
-kdesk/* usr/share/kano-desktop/kdesk
+idesk/* usr/share/kano-desktop/idesk
 
 fonts/* usr/share/fonts/kanux
-
-sounds/* usr/share/kano-desktop/sounds/
