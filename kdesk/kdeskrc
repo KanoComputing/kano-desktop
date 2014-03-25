@@ -16,7 +16,7 @@ table Config
   SoundDisabledIcon: /usr/share/kano-desktop/sounds/plonk-short.mp3
 
   ScreenSaverTimeout: 480
-  ScreenSaverProgram: /usr/bin/kfbsaver
+  ScreenSaverProgram: /usr/bin/kdesk-eglsaver
 
   Transparency: 40
   Shadow: true
