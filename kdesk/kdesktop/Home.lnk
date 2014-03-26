@@ -1,9 +1,11 @@
 table Icon
-  Caption: $USER
+  Caption:
   AppID: \$HOM[E]
   Command: /usr/bin/kano-launcher "pcmanfm $HOME"
   Singleton: true
   Icon: /usr/share/kano-desktop/icons/kano-homefolder.png
+  IconHover: /usr/share/kano-desktop/icons/Home-hover.png
+  HoverXOffset: 8
   Width: 138
   Height: 128
   Relative-To: bottom-centre
