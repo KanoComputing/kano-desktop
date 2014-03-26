@@ -59,6 +59,9 @@ case "$1" in
         # Set kdesk as the desktop manager
         sudo sed -i 's/\@pcmanfm --desktop --profile LXDE/\@kdesk/g' $LXDE_AUTOSTART
 
+        # And remove the defaut screen saver, as we provide our own
+        sudo sed -i 's/\@xscreensaver -no-splash//g' $LXDE_AUTOSTART
+
         # Update kanux installed fonts information for the X server
         mkfontdir /usr/share/fonts/kanux
         mkfontscale /usr/share/fonts/kanux
