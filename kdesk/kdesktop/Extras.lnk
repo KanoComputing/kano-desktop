@@ -5,7 +5,7 @@ table Icon
   Singleton: true
   Icon: /usr/share/kano-desktop/icons/extras.png
   IconHover: /usr/share/kano-desktop/icons/Extras-hover.png
-  HoverXOffset: 8
+  HoverXOffset: 0
   Width: 138
   Height: 128
   Relative-To: bottom-centre

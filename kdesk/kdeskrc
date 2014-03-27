@@ -27,7 +27,7 @@ table Config
   ClickDelay: 300
   IconStartDelay: 5000
   IconSnap: true
-  IconTitleGap: 10
+  IconTitleGap: 0
   SnapWidth: 10
   SnapHeight: 10
   SnapOrigin: BottomRight
