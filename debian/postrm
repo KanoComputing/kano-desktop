@@ -48,6 +48,10 @@ case "$1" in
         # Disable kdesk
         sudo sed -i 's/\@kdesk/\@pcmanfm --desktop --profile LXDE/g' $LXDE_AUTOSTART
 
+        # Restore volume control images of nuoveXT2 theme
+        # TODO: this won't be needed when we have our own icon theme
+        mv -f /usr/share/icons/nuoveXT2/icon-theme.cache.bak /usr/share/icons/nuoveXT2/icon-theme.cache
+
         # Remove config file in sudoers
         rm /etc/sudoers.d/wolfram-installer_conf
 

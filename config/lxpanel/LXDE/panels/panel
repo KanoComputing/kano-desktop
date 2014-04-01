@@ -70,6 +70,33 @@ Plugin {
 }
 
 Plugin {
+    type = launchbar
+    Config {
+        Button {
+            id=kano-settings.desktop
+        }
+    }
+}
+
+Plugin {
+    type = space
+    Config {
+        Size=8
+    }
+}
+
+Plugin {
+    type = volumealsa
+}
+
+Plugin {
+    type = space
+    Config {
+        Size=8
+    }
+}
+
+Plugin {
     type = dclock
     Config {
         ClockFmt=%R
