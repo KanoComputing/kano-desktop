@@ -3,6 +3,7 @@ icons/* usr/share/kano-desktop/icons
 images/* usr/share/kano-desktop/images
 
 applications/kano-shutdown.desktop usr/share/applications
+applications/kano-settings.desktop usr/share/applications
 applications/wolfram-installer usr/bin/
 
 gtk-themes/Kano usr/share/themes

@@ -6,7 +6,7 @@ Global {
     width=100
     height=44
     transparent=1
-    tintcolor=#d8762f
+    tintcolor=#FFFFFF
     alpha=255
     autohide=0
     heightwhenhidden=2
@@ -14,7 +14,7 @@ Global {
     setpartialstrut=1
     usefontcolor=1
     fontsize=15
-    fontcolor=#FFC093
+    fontcolor=#323232
     usefontsize=1
     background=0
     backgroundfile=/usr/share/lxpanel/images/background.png
@@ -30,14 +30,14 @@ Plugin {
         separator {
         }
         item {
-            command=run
+        command=run
         }
         separator {
         }
         item {
-            image=gnome-logout
-            name=Logout
-            action=lxsession-logout -p "Logout from this session?" -b /usr/share/kano-desktop/images/kano-logout-face.png -s top
+        image=gnome-logout
+        name=Logout
+        action=lxsession-logout -p "Logout from this session?" -b /usr/share/kano-desktop/images/kano-logout-face.png -s top
         }
     }
 }
@@ -66,6 +66,10 @@ Plugin {
 }
 
 Plugin {
+    type = tray
+}
+
+Plugin {
     type = dclock
     Config {
         ClockFmt=%R
@@ -79,6 +83,6 @@ Plugin {
 Plugin {
     type = space
     Config {
-        Size=20
+        Size=16
     }
 }
