@@ -13,8 +13,8 @@ Global {
     setdocktype=1
     setpartialstrut=1
     usefontcolor=1
-    fontsize=15
-    fontcolor=#323232
+    fontsize=13
+    fontcolor=#6E6E6E
     usefontsize=1
     background=0
     backgroundfile=/usr/share/lxpanel/images/background.png
@@ -73,15 +73,17 @@ Plugin {
     type = launchbar
     Config {
         Button {
-            id=kano-settings.desktop
+            id=kano-updater.desktop
         }
     }
 }
 
 Plugin {
-    type = space
+    type = launchbar
     Config {
-        Size=8
+        Button {
+            id=kano-settings.desktop
+        }
     }
 }
 
@@ -92,7 +94,7 @@ Plugin {
 Plugin {
     type = space
     Config {
-        Size=8
+        Size=16
     }
 }
 
