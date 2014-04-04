@@ -31,7 +31,8 @@ ln -s /usr/share/squeak /etc/skel/
 rm -r squeak
 rm $SQUEAKTAR
 
-TMP_FILE=/tmp/wolfram-installer_conf
+TMP_WOLFRAM_FILE=/tmp/wolfram-installer_conf
+TMP_LIBREOFFICE_FILE=/tmp/libreoffice-installer_conf
 
 case "$1" in
     configure)
@@ -72,14 +73,20 @@ case "$1" in
         cp -f /usr/share/kano-desktop/images/audio-volume-* /usr/share/icons/nuoveXT2/48x48/status
         mv -f /usr/share/icons/nuoveXT2/icon-theme.cache /usr/share/icons/nuoveXT2/icon-theme.cache.bak 2> /dev/null
 
-        # Create custom sudoers file
-        echo "%sudo ALL=(root) NOPASSWD: /usr/bin/wolfram-installer" > $TMP_FILE
+        # Create custom sudoers file for Wolfram
+        echo "%sudo ALL=(root) NOPASSWD: /usr/bin/wolfram-installer" > $TMP_WOLFRAM_FILE
         # The owner and group for the sudoers file must both be 0
-        chown root:root $TMP_FILE
+        chown root:root $TMP_WOLFRAM_FILE
         # The file permissions must be set to 0440
-        chmod 0440 $TMP_FILE
+        chmod 0440 $TMP_WOLFRAM_FILE
         # Move the file to the sudoers directory
-        mv $TMP_FILE /etc/sudoers.d/
+        mv $TMP_WOLFRAM_FILE /etc/sudoers.d/
+
+        # Create custom sudoers file for LibreOffice
+        echo "%sudo ALL=(root) NOPASSWD: /usr/bin/libreoffice-installer" > $TMP_LIBREOFFICE_FILE
+        chown root:root $TMP_LIBREOFFICE_FILE
+        chmod 0440 $TMP_LIBREOFFICE_FILE
+        mv $TMP_LIBREOFFICE_FILE /etc/sudoers.d/
 
         ;;
 esac
