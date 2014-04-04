@@ -1,0 +1,57 @@
+#!/bin/sh
+
+# LibreOffice installer
+#
+# Copyright (C) 2014 Kano Computing Ltd.
+# License: http://www.gnu.org/licenses/gpl-2.0.txt GNU General Public License v2
+#
+
+# Check for root priviledges.
+if [ `id -u` -ne 0 ]; then
+    echo "The installer must be executed with root privileges" 1>&2
+    echo -n "Press [ENTER] to exit"
+    read dummy
+    exit 1
+fi
+
+# We need at least 350MB of free space
+FreeSpace=`df -P | grep -v "Available" | awk '{print $4}' | head -n1`
+if [ $FreeSpace -le 350000 ]; then
+    typewriter_echo "You don't have enough available space, ~350MB required." 0 1
+    typewriter_echo "Please run Updater in Extras." 0 2
+    echo -n "Press [ENTER] to exit"
+    read dummy
+    exit 1
+fi
+
+# Check if libreoffice is already installed
+dpkg -s libreoffice > /dev/null 2> /dev/null
+if [ $? -eq 1 ]; then
+    # Install libreoffice
+    sudo apt-get install -y libreoffice
+    if [ $? -eq 0 ]; then
+        # Create icon on Extra folder
+        sudo echo -e "[Desktop Entry]\n \
+Version=1.0\n \
+Type=Application\n \
+Name=Wolfram\n \
+Icon=/usr/share/kano-desktop/icons/wolfram.png\n \
+Exec=rxvt -title "Wolfram Language" -e wolfram\n \
+Comment[en_GB]=Technical Programming Environment\n \
+StartupNotify=true\n \
+Categories=Application;Education;" > \
+/usr/share/kano-desktop/extras/Wolfram
+        # Hide the installer
+        sudo mv /usr/share/kano-desktop/extras/LibreOfficeInstaller /usr/share/kano-desktop/extras/.LibreOfficeInstaller
+        # Installed successfully
+        clear
+        typewriter_echo "Congratulations, LibreOffice has been installed successfully." 0 1
+        typewriter_echo "Go to Extras and click on LibreOffice to use it." 0 2
+    fi
+else
+    typewriter_echo "LibreOffice is already installed in your Kanux system" 0 2
+fi
+
+echo -n "Press [ENTER] to continue"
+read dummy
+exit 0
