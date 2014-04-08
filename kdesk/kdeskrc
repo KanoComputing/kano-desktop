@@ -18,6 +18,8 @@ table Config
   ScreenSaverTimeout: 480
   ScreenSaverProgram: /usr/bin/kdesk-eglsaver
 
+  OneClick: true
+
   Transparency: 40
   Shadow: true
   ShadowColor: #000000
