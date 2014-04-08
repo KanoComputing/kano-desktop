@@ -1,3 +1,9 @@
+kano-desktop (1.0-60) unstable; urgency=low
+
+  * Removed the extras directory
+
+ -- Team Kano <dev@kano.me>  Tue, 10 Apr 2014 15:17:58 +0000
+
 kano-desktop (1.0-59) unstable; urgency=low
 
   * Removed the extras icon

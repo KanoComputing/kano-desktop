@@ -5,8 +5,6 @@ images/* usr/share/kano-desktop/images
 applications/kano-shutdown.desktop usr/share/applications
 applications/kano-settings.desktop usr/share/applications
 applications/kano-updater.desktop usr/share/applications
-applications/wolfram-installer usr/bin/
-applications/libreoffice-installer usr/bin/
 
 gtk-themes/Kano usr/share/themes
 
@@ -24,8 +22,6 @@ config/rxvt/x11-rxvt etc/X11/Xresources
 config/chromium/* usr/share/kano-desktop/config/chromium
 
 lightdm/* usr/share/kano-desktop/lightdm
-
-extras/* usr/share/kano-desktop/extras
 
 kdesk/* usr/share/kano-desktop/kdesk
 
