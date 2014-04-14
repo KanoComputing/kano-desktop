@@ -115,3 +115,12 @@ Plugin {
         Size=16
     }
 }
+
+Plugin {
+    type = monitors
+    Config {
+         DisplayCPU=1
+         DisplayRAM=0
+         CPUColor=#FF8700
+    }
+}
