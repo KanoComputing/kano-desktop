@@ -24,7 +24,7 @@ config/chromium/* usr/share/kano-desktop/config/chromium
 lightdm/* usr/share/kano-desktop/lightdm
 
 kdesk/* usr/share/kano-desktop/kdesk
-kdesk/kdeskrc etc/skel/.kdeskrc
+kdesk/.kdeskrc etc/skel
 
 fonts/* usr/share/fonts/kanux
 
