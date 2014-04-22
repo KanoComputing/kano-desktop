@@ -70,11 +70,13 @@ Plugin {
 }
 
 Plugin {
-    type = launchbar
+    type = kano_updater
+}
+
+Plugin {
+    type = space
     Config {
-        Button {
-            id=kano-updater.desktop
-        }
+        Size=12
     }
 }
 
