@@ -1,9 +1,0 @@
-[Desktop Entry]
-Encoding=UTF-8
-Type=Application
-Name=Settings
-Name[en_GB]=Settings
-Icon=/usr/share/kano-desktop/images/settings.png
-Exec=sudo /usr/bin/kano-launcher /usr/bin/kano-settings settings
-Comment[en_GB]=Kanux system settings
-StartupNotify=true
