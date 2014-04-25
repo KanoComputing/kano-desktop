@@ -85,6 +85,13 @@ Plugin {
 }
 
 Plugin {
+    type = space
+    Config {
+        Size=12
+    }
+}
+
+Plugin {
     type = volumealsa
 }
 
