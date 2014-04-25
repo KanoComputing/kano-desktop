@@ -69,11 +69,6 @@ case "$1" in
         # And remove the defaut screen saver, as we provide our own
         sudo sed -i 's/\@xscreensaver -no-splash//g' $LXDE_AUTOSTART
 
-        # Update kanux installed fonts information for the X server
-        mkfontdir /usr/share/fonts/kanux
-        mkfontscale /usr/share/fonts/kanux
-        fc-cache
-
         # Create custom sudoers file for Wolfram
         echo "%sudo ALL=(root) NOPASSWD: /usr/bin/wolfram-installer" > $TMP_WOLFRAM_FILE
         # The owner and group for the sudoers file must both be 0
