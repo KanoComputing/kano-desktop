@@ -68,11 +68,6 @@ case "$1" in
         mkfontscale /usr/share/fonts/kanux
         fc-cache
 
-        # Copy volume control images to nuoveXT2 theme
-        # TODO: this won't be needed when we have our own icon theme
-        cp -f /usr/share/kano-desktop/images/audio-volume-* /usr/share/icons/nuoveXT2/48x48/status
-        mv -f /usr/share/icons/nuoveXT2/icon-theme.cache /usr/share/icons/nuoveXT2/icon-theme.cache.bak 2> /dev/null
-
         # Create custom sudoers file for Wolfram
         echo "%sudo ALL=(root) NOPASSWD: /usr/bin/wolfram-installer" > $TMP_WOLFRAM_FILE
         # The owner and group for the sudoers file must both be 0
