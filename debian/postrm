@@ -33,6 +33,7 @@ case "$1" in
         rm -f /etc/skel/.config/openbox
         rm -f /etc/skel/.config/pcmanfm
         rm -f /etc/skel/.config/lxpanel
+        rm -f /etc/skel/.kdeskrc
 
         # Remove copyright
         rm -f /etc/skel/Copyright
