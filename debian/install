@@ -22,6 +22,7 @@ config/chromium/* usr/share/kano-desktop/config/chromium
 lightdm/* usr/share/kano-desktop/lightdm
 
 kdesk/* usr/share/kano-desktop/kdesk
+kdesk/.kdeskrc usr/share/kano-desktop/kdesk
 kdesk/.kdeskrc etc/skel
 
 sounds/* usr/share/kano-desktop/sounds/
