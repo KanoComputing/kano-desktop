@@ -9,6 +9,9 @@
 lightdm_greeter_config=/etc/lightdm/lightdm-gtk-greeter.conf
 custom_lightdm_greeter_config=/usr/share/kano-desktop/lightdm/lightdm-gtk-greeter.conf
 
+openbox_rc=/etc/xdg/openbox/rc.xml
+custom_openbox_rc=/usr/share/kano-desktop/openbox/rc.xml
+
 lightdm_config=/etc/lightdm/lightdm.conf
 
 chromium_master_prefs=/etc/chromium/master_preferences
@@ -38,9 +41,12 @@ case "$1" in
     configure)
 
         # Make links in /etc/skel
-        ln -s /usr/share/kano-desktop/config/openbox /etc/skel/.config/openbox
         ln -s /usr/share/kano-desktop/config/pcmanfm /etc/skel/.config/pcmanfm
         ln -s /usr/share/kano-desktop/config/lxpanel /etc/skel/.config/lxpanel
+
+        # Configure openbox
+        cp $openbox_rc $openbox_rc-old
+        cat $custom_openbox_rc > $openbox_rc
 
         # Configure lightdm
         cp $lightdm_greeter_config $lightdm_greeter_config-old

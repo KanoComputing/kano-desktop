@@ -6,6 +6,8 @@
 # License:   http://www.gnu.org/licenses/gpl-2.0.txt GNU General Public License v2
 #
 
+openbox_rc=/etc/xdg/openbox/rc.xml
+
 lightdm_greeter_config=/etc/lightdm/lightdm_gtk_greeter.conf
 lightdm_config=/etc/lightdm/lightdm.conf
 
@@ -19,6 +21,11 @@ sudo rm -r /usr/share/squeak
 
 case "$1" in
     remove|upgrade)
+
+        # Revert old openbox config
+        if [ -e "$openbox_rc-old" ]; then
+            mv $openbox_rc-old $openbox_rc
+        fi
 
         # Revert old lightdm greeter config
         if [ -e "$lightdm_greeter_config-old" ]; then
