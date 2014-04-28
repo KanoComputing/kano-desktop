@@ -7,6 +7,7 @@
 #
 
 openbox_rc=/etc/xdg/openbox/rc.xml
+lxde_openbox_rc=/etc/xdg/openbox/LXDE/rc.xml
 
 lightdm_greeter_config=/etc/lightdm/lightdm_gtk_greeter.conf
 lightdm_config=/etc/lightdm/lightdm.conf
@@ -25,6 +26,10 @@ case "$1" in
         # Revert old openbox config
         if [ -e "$openbox_rc-old" ]; then
             mv $openbox_rc-old $openbox_rc
+        fi
+
+        if [ -e "$lxde_openbox_rc-old" ]; then
+            mv $lxde_openbox_rc-old $lxde_openbox_rc
         fi
 
         # Revert old lightdm greeter config
