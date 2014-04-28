@@ -14,7 +14,7 @@ Copyright etc/skel
 config/lxpanel/* usr/share/kano-desktop/config/lxpanel
 config/pcmanfm/* usr/share/kano-desktop/config/pcmanfm
 
-config/openbox/* usr/share/lxde/openbox/
+config/openbox/* usr/share/kano-desktop/openbox
 
 config/rxvt/x11-rxvt etc/X11/Xresources
 
