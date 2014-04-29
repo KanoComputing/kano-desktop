@@ -1,15 +1,14 @@
 table Icon
   Caption:
-  AppID: \$HOM[E]
-  Command: /usr/bin/kano-launcher "pcmanfm $HOME"
+  AppID: \$[W]ORLD
+  Command: /usr/bin/kano-world-launcher
   Singleton: true
-  Icon: /usr/share/kano-desktop/icons/kano-homefolder.png
-  IconHover: /usr/share/kano-desktop/icons/Home-hover.png
+  Icon: /usr/share/kano-desktop/icons/kano-world-launcher.png
+  IconHover: /usr/share/kano-desktop/icons/World-hover.png
   HoverXOffset: 0
-  Width: 138
-  Height: 128
-  Relative-To: bottom-centre
-  X: 351
-  Y: -221
+  Width: 46
+  Height: 46
+  Relative-To: top-right
+  X: -100
+  Y: 100
 end
-
