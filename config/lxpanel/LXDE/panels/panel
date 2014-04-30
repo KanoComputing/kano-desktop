@@ -70,25 +70,15 @@ Plugin {
 }
 
 Plugin {
+    type = kano_internet
+}
+
+Plugin {
     type = kano_updater
 }
 
 Plugin {
-    type = space
-    Config {
-        Size=12
-    }
-}
-
-Plugin {
     type = kano_settings
-}
-
-Plugin {
-    type = space
-    Config {
-        Size=12
-    }
 }
 
 Plugin {
@@ -98,7 +88,7 @@ Plugin {
 Plugin {
     type = space
     Config {
-        Size=16
+        Size=12
     }
 }
 
@@ -116,7 +106,7 @@ Plugin {
 Plugin {
     type = space
     Config {
-        Size=16
+        Size=12
     }
 }
 
