@@ -1,3 +1,9 @@
+kano-desktop (1.0-61) unstable; urgency=low
+
+  * kano-fonts separated
+
+ -- Team Kano <dev@kano.me>  Tue, 01 May 2014 17:23:00 +0000
+
 kano-desktop (1.0-60) unstable; urgency=low
 
   * Removed the extras directory
