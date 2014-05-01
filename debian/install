@@ -26,3 +26,4 @@ kdesk/* usr/share/kano-desktop/kdesk
 kdesk/.kdeskrc usr/share/kano-desktop/kdesk
 
 sounds/* usr/share/kano-desktop/sounds/
+videos /usr/share/kano-video/media
