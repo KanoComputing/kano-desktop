@@ -27,3 +27,6 @@ kdesk/.kdeskrc usr/share/kano-desktop/kdesk
 
 sounds/* usr/share/kano-desktop/sounds/
 videos /usr/share/kano-video/media
+
+lxde/desktop-directories/* /usr/share/desktop-directories
+lxde/lxde-applications.menu /etc/xdg/menus/
