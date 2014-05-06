@@ -1,0 +1,15 @@
+table Icon
+  Caption:
+  AppID: \$WORL[D]
+  Command: /usr/bin/kano-world-launcher
+  Icon: /usr/share/kano-desktop/icons/login-register.png
+  Message: Welcome!
+  Singleton: true
+  HoverXOffset: 0
+  HAlign: right
+  Width: 350
+  Height: 80
+  Relative-To: top-right
+  X: 50
+  Y: 50
+end

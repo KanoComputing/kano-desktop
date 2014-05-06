@@ -20,6 +20,8 @@ table Config
 
   OneClick: true
 
+  IconExit: /usr/share/kano-desktop/kdesk/icon-exits.sh
+
   Transparency: 40
   Shadow: true
   ShadowColor: #000000
