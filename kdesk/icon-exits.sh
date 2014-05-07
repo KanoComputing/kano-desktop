@@ -23,7 +23,7 @@ case $icon_name in
         # TODO: call get_xp to decide which icon needs be rendered
 	#printf "Icon: $icon\n"
 
-	printf "Message: Hello ${username^} !|Level $level\n"
+	printf "Message: ${username^} |Level $level\n"
 	;;
 
     *)
