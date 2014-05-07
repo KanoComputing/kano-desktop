@@ -29,4 +29,5 @@ sounds/* usr/share/kano-desktop/sounds/
 videos /usr/share/kano-video/media
 
 lxde/desktop-directories/* /usr/share/desktop-directories
+lxde/applications/* /usr/share/applications
 lxde/lxde-applications.menu /etc/xdg/menus/
