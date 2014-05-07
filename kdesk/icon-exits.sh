@@ -8,7 +8,7 @@ logfile=/tmp/iconexits.log
 
 case $icon_name in
 
-    "widget")
+    "loginregister")
 	# The Desktop Widget icon refreshes with the icon image for current points,
 	# And the left-side message with: username and current Kano level.
 	echo "Received exit for Desktop Kano Widget, updating status"
@@ -19,7 +19,7 @@ case $icon_name in
 	avatar_folder=${avatar[0]}
 	avatar_image="${avatar[1]}.png"
 	icon="/usr/share/kano-profile/media/images/avatars/230x180/$avatar_folder/$avatar_image"
-	
+
         # TODO: call get_xp to decide which icon needs be rendered
 	#printf "Icon: $icon\n"
 
