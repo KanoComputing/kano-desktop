@@ -20,7 +20,7 @@ table Config
 
   OneClick: true
 
-  IconExit: /usr/share/kano-desktop/kdesk/icon-exits.sh
+  IconHook: /usr/share/kano-desktop/kdesk/icon-hooks.sh
 
   Transparency: 40
   Shadow: true
