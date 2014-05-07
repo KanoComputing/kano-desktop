@@ -9,21 +9,42 @@ logfile=/tmp/iconexits.log
 case $icon_name in
 
     "loginregister")
-	# The Desktop Widget icon refreshes with the icon image for current points,
-	# And the left-side message with: username and current Kano level.
+	# Ask kano-profile for the username, experience and level,
+	# Then update the icon attributes accordingly.
 	echo "Received exit for Desktop Kano Widget, updating status"
+	IFS=$'\n'
+	kano_statuses=`kano-profile-cli get_stats`
+	echo "$kano_statuses"
+	for item in $kano_statuses
+	do
+	    eval line_item=($item)
 
-	username=`kano-profile-cli get_username`
-	level=`kano-profile-cli get_level`
-	avatar=(`kano-profile-cli get_avatar`)
-	avatar_folder=${avatar[0]}
-	avatar_image="${avatar[1]}.png"
-	icon="/usr/share/kano-profile/media/images/avatars/230x180/$avatar_folder/$avatar_image"
+	    case ${line_item[0]} in
+		"get_username:")
+		    username=${line_item[1]^}
+		    ;;
+		"is_registered:")
+		    is_registered=${line_item[1]}
+		    ;;
+		"get_xp:")
+		    experience=${line_item[1]}
+		    ;;
+		"get_level:")
+		    level=${line_item[1]}
+		    ;;
+		"get_avatar:")
+		    avatar_folder=${line_item[1]}
+		    avatar_file=${line_item[2]}.png
+		    ;;
+	    esac
+	done
 
-        # TODO: call get_xp to decide which icon needs be rendered
+        # FIXME: The avatar needs to be decided upon experience, avatar folder and file
+	#icon="/usr/share/kano-profile/media/images/avatars/230x180/$avatar_folder/$avatar_file"
 	#printf "Icon: $icon\n"
 
-	printf "Message: ${username^} |Level $level\n"
+	msg="$username|Level $level"
+	printf "Message: $msg\n"
 	;;
 
     *)
