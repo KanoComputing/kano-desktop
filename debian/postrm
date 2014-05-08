@@ -65,6 +65,9 @@ case "$1" in
         # Remove LibreOffice config file in sudoers
         rm /etc/sudoers.d/libreoffice-installer_conf
 
+        dpkg-divert --package kano-desktop --remove --rename \
+                    --divert /etc/xdg/menus/lxde-applications.menu.orig /etc/xdg/menus/lxde-applications.menu
+
         ;;
 esac
 
