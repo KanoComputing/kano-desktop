@@ -39,12 +39,16 @@ case $icon_name in
 	    esac
 	done
 
-        # FIXME: The avatar needs to be decided upon experience, avatar folder and file
-	#icon="/usr/share/kano-profile/media/images/avatars/230x180/$avatar_folder/$avatar_file"
-	#printf "Icon: $icon\n"
-
+	# Update the message area with username and current level
 	msg="$username|Level $level"
 	printf "Message: $msg\n"
+
+	# Update the icon with user's avatar and experience level icon
+	# TODO : kano-profile-cli needs to provide paths to these files
+	#experience_icon="/some/path/"
+	#avatar_icone="/some/path/"
+	#printf "Icon: $experience_icon\n"
+	#printf "IconStamp: $avatar_icon\n"
 	;;
 
     *)

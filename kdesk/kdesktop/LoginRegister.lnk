@@ -2,13 +2,12 @@ table Icon
   Caption:
   AppID: \$WORL[D]
   Command: /usr/bin/kano-profile-gui
-  Icon: /usr/share/kano-desktop/icons/login-register.png
   Message: Welcome!
   Singleton: true
   HoverXOffset: 0
   HAlign: right
   Width: 350
-  Height: 80
+  Height: 100
   Relative-To: top-right
   X: 50
   Y: 50
