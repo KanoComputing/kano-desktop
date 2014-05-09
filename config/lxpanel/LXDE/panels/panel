@@ -70,6 +70,10 @@ Plugin {
 }
 
 Plugin {
+    type = kano_profile
+}
+
+Plugin {
     type = kano_internet
 }
 
