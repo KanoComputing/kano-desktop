@@ -22,7 +22,7 @@ table Config
 
   IconHook: /usr/share/kano-desktop/kdesk/icon-hooks.sh
 
-  Transparency: 40
+  Transparency: 255
   Shadow: true
   ShadowColor: #000000
   ShadowX: 1
