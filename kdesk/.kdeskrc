@@ -20,7 +20,9 @@ table Config
 
   OneClick: true
 
-  Transparency: 40
+  IconHook: /usr/share/kano-desktop/kdesk/icon-hooks.sh
+
+  Transparency: 255
   Shadow: true
   ShadowColor: #000000
   ShadowX: 1

@@ -1,0 +1,14 @@
+table Icon
+  Caption:
+  AppID: \$WORL[D]
+  Command: /usr/bin/kano-world-launcher
+  Singleton: true
+  Icon: /usr/share/kano-desktop/icons/kano-world-launcher.png
+  IconHover: /usr/share/kano-desktop/icons/World-hover.png
+  HoverXOffset: 0
+  Width: 46
+  Height: 46
+  Relative-To: top-right
+  X: 50
+  Y: 200
+end

@@ -1,0 +1,14 @@
+table Icon
+  Caption:
+  AppID: kano-profile-gu[i]
+  Command: /usr/bin/kano-profile-gui
+  Message: Welcome!
+  Singleton: true
+  HoverXOffset: 0
+  HAlign: right
+  Width: 200
+  Height: 100
+  Relative-To: top-right
+  X: 50
+  Y: 50
+end
