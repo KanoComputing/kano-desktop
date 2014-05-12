@@ -1,0 +1,36 @@
+#!/bin/bash
+#
+# kano-uixinit
+#
+# Copyright (C) 2014 Kano Computing Ltd.
+# License:   http://www.gnu.org/licenses/gpl-2.0.txt GNU General Public License v2
+#
+#  This script is a wrapper on top of LXDE autoinit.
+#
+#  It starts kano-settings if needed and sets the background wallpaper
+#  It fits well on bootup and logoff-logon transitions.
+#
+
+# Kano-settings tells us if the user has completed setting up the system
+# loading completed from kano-profile
+completed=`kano-profile-cli load_app_state_variable kano-settings completed`
+if [ "$completed" != "1" ]; then
+   # First time we enter Kanux UI we want to go through kano-settings
+   # No distracting desktop icons or launchbar, but we want the wallpaper
+   /usr/bin/kdesk -w
+   sudo /usr/bin/kano-settings
+fi
+
+# We enter the Kano UIX interface after kano-settings.
+# It's not important if this stage has not been finalized
+# it will be restarted on next bootup or logoff/logon transition
+/usr/bin/lxpanel --profile LXDE &
+/usr/bin/kdesk &
+/usr/share/kano-vnc/startvnc &
+/usr/bin/startmouse &
+
+# Let kdesk breathe and setup the desktop, then update the widget
+# FIXME: Ideally we want something more robust than a sleep
+
+sleep 5
+kdesk -a loginregister
