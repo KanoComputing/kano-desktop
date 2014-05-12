@@ -29,7 +29,7 @@ if is_installed kano-profile-cli; then
             sudo /usr/bin/kano-settings
         fi
 
-        if [ is_installed kano-login ]; then
+        if is_installed kano-login; then
             registered=`kano-profile-cli is_registered`
             if [ "$registered" != "1" ]; then
                 sudo /usr/bin/kano-login
