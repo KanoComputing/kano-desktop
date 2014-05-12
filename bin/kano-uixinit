@@ -46,13 +46,13 @@ fi
 # We enter the Kano UIX interface after kano-settings.
 # It's not important if this stage has not been finalized
 # it will be restarted on next bootup or logoff/logon transition
-nohup /usr/bin/lxpanel --profile LXDE &
-nohup /usr/bin/kdesk &
-nohup /usr/share/kano-vnc/startvnc &
-nohup /usr/bin/startmouse &
+/usr/bin/lxpanel --profile LXDE &
+/usr/bin/kdesk &
+/usr/share/kano-vnc/startvnc &
+/usr/bin/startmouse &
 
 # Let kdesk breathe and setup the desktop, then update the widget
 # FIXME: Ideally we want something more robust than a sleep
 
 sleep 5
-nohup kdesk -a loginregister &
+kdesk -a loginregister
