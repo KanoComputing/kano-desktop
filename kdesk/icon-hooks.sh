@@ -1,6 +1,6 @@
 #!/bin/bash
 #
-# KDesk icon exits script - Dynamically update the desktops icons attributes.
+# KDesk Icon Hooks script - Dynamically update the desktops icons attributes.
 #
 # You can debug this hook script manually like so:
 #
