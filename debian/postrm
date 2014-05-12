@@ -17,8 +17,8 @@ chromium_bookmarks=/etc/chromium/initial_bookmarks.html
 
 LXDE_AUTOSTART=/etc/xdg/lxsession/LXDE/autostart
 
-sudo rm /etc/skel/squeak
-sudo rm -r /usr/share/squeak
+rm /etc/skel/squeak
+rm -r /usr/share/squeak
 
 case "$1" in
     remove|upgrade)
@@ -57,8 +57,8 @@ case "$1" in
             mv $chromium_master_prefs-old $chromium_master_prefs
         fi
 
-        # Disable kdesk
-        sudo sed -i 's/\@kdesk/\@pcmanfm --desktop --profile LXDE/g' $LXDE_AUTOSTART
+        # Remove kano-uixinit and replace it with lxpanel previous default
+        echo -e "@pcmanfm --desktop --profile LXDE\n@lxpanel --profile LXDE" >$LXDE_AUTOSTART
 
         # Remove Wolfram config file in sudoers
         rm /etc/sudoers.d/wolfram-installer_conf

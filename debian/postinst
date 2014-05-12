@@ -64,11 +64,8 @@ case "$1" in
         cp $chromium_bookmarks $chromium_bookmarks-old
         cat $custom_chromium_bookmarks >$chromium_bookmarks
 
-        # Set kdesk as the desktop manager
-        sudo sed -i 's/\@pcmanfm --desktop --profile LXDE/\@kdesk/g' $LXDE_AUTOSTART
-
-        # And remove the defaut screen saver, as we provide our own
-        sudo sed -i 's/\@xscreensaver -no-splash//g' $LXDE_AUTOSTART
+        # Reconfigure LXDE to run our custom startup script
+        echo "@kano-uixinit" > $LXDE_AUTOSTART
 
         ;;
 esac
