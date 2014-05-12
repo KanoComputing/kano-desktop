@@ -9,8 +9,8 @@ Package: kano-desktop
 Architecture: all
 Depends: ${misc:Depends}, ${shlibs:Depends}, openbox (>=3.5.2-4~kano.1),
          kdesk (>=1.1-02), chromium
-Replaces: kano-settings (<< 1.1-1.20140512)
-Breaks: kano-settings (<< 1.1-1.20140512)
+Replaces: kano-settings (<< 1.1-1.20140512build2)
+Breaks: kano-settings (<< 1.1-1.20140512build2)
 Description: The desktop experience of Kanux
  This package contains a variety of configuration files and resources that
  make up the whole KANO desktop experience on top of LXDE.
