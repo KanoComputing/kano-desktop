@@ -1,5 +1,5 @@
 gtk-color-scheme =
-"bg_color:#eeeeee\nfg_color:#000\nbase_color:#fff\ntext_color:#000\nselected_fg_color:#fff\nselected_bg_color:#ff8700"
+"bg_color:#f3f3f3\nfg_color:#000\nbase_color:#fff\ntext_color:#000\nselected_fg_color:#fff\nselected_bg_color:#ff8700"
 
 style "default"
 {
