@@ -29,7 +29,7 @@ if is_installed kano-profile-cli; then
             sudo /usr/bin/kano-settings
 
             registered=`kano-profile-cli is_registered`
-            if is_internet && [ "$registered" != "1" ]; then
+            if [ "$registered" != "1" ]; then
                 /usr/bin/kano-login first_boot
             fi
 
