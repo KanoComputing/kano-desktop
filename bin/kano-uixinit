@@ -28,11 +28,9 @@ if is_installed kano-profile-cli; then
             /usr/bin/kdesk -w
             sudo /usr/bin/kano-settings
 
-            if is_installed kano-login; then
-                registered=`kano-profile-cli is_registered`
-                if [ "$registered" != "1" ]; then
-                    /usr/bin/kano-login
-                fi
+            registered=`kano-profile-cli is_registered`
+            if is_internet && [ "$registered" != "1" ]; then
+                /usr/bin/kano-login first_boot
             fi
 
             # TODO: Add video
