@@ -27,19 +27,18 @@ if is_installed kano-profile-cli; then
         if [ "$settings_done" != "1" ]; then
             /usr/bin/kdesk -w
             sudo /usr/bin/kano-settings
-        fi
 
-        if is_installed kano-login; then
-            registered=`kano-profile-cli is_registered`
-            if [ "$registered" != "1" ]; then
-                /usr/bin/kano-login
+            if is_installed kano-login; then
+                registered=`kano-profile-cli is_registered`
+                if [ "$registered" != "1" ]; then
+                    /usr/bin/kano-login
+                fi
             fi
+
+            # TODO: Add video
+
+            kano-profile-gui
         fi
-
-        # TODO: Add video
-
-
-        kano-profile-gui
     fi
 fi
 
