@@ -3,7 +3,7 @@
 # kano-uixinit
 #
 # Copyright (C) 2014 Kano Computing Ltd.
-# License:   http://www.gnu.org/licenses/gpl-2.0.txt GNU General Public License v2
+# License: http://www.gnu.org/licenses/gpl-2.0.txt GNU General Public License v2
 #
 #  This script is a wrapper on top of LXDE autoinit.
 #
@@ -20,7 +20,7 @@ function is_installed
     fi
 }
 
-# The folowing block is related to the first bootflow
+# The following block is related to the first bootflow
 if is_installed kano-profile-cli; then
     if is_installed kano-settings; then
         settings_done=`kano-profile-cli load_app_state_variable kano-settings completed`
@@ -52,4 +52,4 @@ fi
 # FIXME: Ideally we want something more robust than a sleep
 
 sleep 5
-kdesk -a loginregister
+kdesk -a profile

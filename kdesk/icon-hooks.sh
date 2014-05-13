@@ -16,7 +16,7 @@ fi
 
 case $icon_name in
 
-    "loginregister")
+    "profile")
     # Ask kano-profile for the username, experience and level,
     # Then update the icon attributes accordingly.
     echo "Received exit for $icon_name, updating attributes.."
