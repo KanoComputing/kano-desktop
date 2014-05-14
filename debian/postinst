@@ -25,15 +25,14 @@ LXDE_AUTOSTART=/etc/xdg/lxsession/LXDE/autostart
 
 # This is to get squeak working on the system out of the box. Can be removed if short of space on SD.
 SQUEAKURL=http://dev.kano.me/public/squeak.tar.gz
-SQUEAKTAR=squeak.tar.gz
 SQUEAKDIR=/usr/share/squeak
 mkdir -p $SQUEAKDIR
-wget -nv $SQUEAKURL
-tar -zxvf $SQUEAKTAR
+wget -nv $SQUEAKURL -O tmp.tar.gz
+tar -zxvf tmp.tar.gz
 mv squeak/* $SQUEAKDIR
 ln -s /usr/share/squeak /etc/skel/
 rm -r squeak
-rm $SQUEAKTAR
+rm tmp.tar.gz
 
 case "$1" in
     configure)
