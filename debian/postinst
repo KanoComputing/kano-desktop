@@ -64,7 +64,8 @@ case "$1" in
         cat $custom_chromium_bookmarks >$chromium_bookmarks
 
         # Reconfigure LXDE to run our custom startup script
-        echo "@kano-uixinit" > $LXDE_AUTOSTART
+        echo "mkdir -p /home/\$USER/.kano-logs" > $LXDE_AUTOSTART
+        echo "/bin/bash -c \"/usr/bin/kano-uixinit >> /home/\$USER/.kano-logs/kano-uixinit.log\"" >> $LXDE_AUTOSTART
 
         ;;
 esac
