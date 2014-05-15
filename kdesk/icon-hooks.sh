@@ -7,9 +7,8 @@
 #  $ icon-hooks "myiconname" debug
 #
 
+# collect command-line parameters
 icon_name="$1"
-logfile=/tmp/iconexits.log
-
 if [ "$2" == "debug" ]; then
     debug="true"
 fi
@@ -19,7 +18,7 @@ case $icon_name in
     "profile")
     # Ask kano-profile for the username, experience and level,
     # Then update the icon attributes accordingly.
-    echo "Received exit for $icon_name, updating attributes.."
+    echo "Received hook call for $icon_name, updating attributes.."
     IFS=$'\n'
     kano_statuses=`kano-profile-cli get_stats`
 
