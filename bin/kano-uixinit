@@ -53,8 +53,3 @@ if is_internet; then
     sudo /usr/bin/check-for-updates
     /usr/bin/new-update-dialog
 fi
-
-# Let kdesk breathe and setup the desktop, then update the widget
-# FIXME: Ideally we want something more robust than a sleep
-sleep 5
-kdesk -a profile
