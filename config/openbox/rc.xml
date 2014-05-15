@@ -749,7 +749,7 @@
   <application class="minecraft-pi">
     <layer>below</layer>
   </application>
-  
+
   <application class="Zenity">
     <decor>no</decor>
   </application>
@@ -757,13 +757,16 @@
   <application class="Make-music">
     <decor>no</decor>
   </application>
-  
-  <application class="Kano-feedback">
-    <decor>no</decor>
-  </application>
 
   <application class="pong.py">
     <decor>no</decor>
+  </application>
+
+  <application class="Kano-levelup-minecraft">
+    <position force="yes">
+        <x>center</x>
+        <y>-20</y>
+    </position>
   </application>
 
 </applications>
