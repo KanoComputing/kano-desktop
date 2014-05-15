@@ -7,6 +7,9 @@
 #  $ icon-hooks "myiconname" debug
 #
 
+# We don't care about case sensitiveness for icon names
+shopt -s nocasematch
+
 # collect command-line parameters
 icon_name="$1"
 if [ "$2" == "debug" ]; then
