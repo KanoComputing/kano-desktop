@@ -1,8 +1,0 @@
-[Desktop Entry]
-Encoding=UTF-8
-Type=Application
-Name=Shutdown
-Comment=Shutdown your Kano kit
-Icon=/usr/share/kano-desktop/images/shutdown.png
-Exec=/usr/bin/kano-shutdown
-NoDisplay=true

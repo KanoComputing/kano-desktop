@@ -37,7 +37,7 @@ Plugin {
         item {
         image=gnome-logout
         name=Shutdown
-        action=lxsession-logout -p "Logout from this session?" -b /usr/share/kano-desktop/images/kano-logout-face.png -s top
+        action=kano-shutdown
         }
     }
 }
