@@ -60,11 +60,6 @@ case "$1" in
         # Remove kano-uixinit and replace it with lxpanel previous default
         echo -e "@pcmanfm --desktop --profile LXDE\n@lxpanel --profile LXDE" >$LXDE_AUTOSTART
 
-        # Remove Wolfram config file in sudoers
-        rm /etc/sudoers.d/wolfram-installer_conf
-        # Remove LibreOffice config file in sudoers
-        rm /etc/sudoers.d/libreoffice-installer_conf
-
         ;;
 esac
 
