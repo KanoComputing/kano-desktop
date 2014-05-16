@@ -16,6 +16,9 @@ if [ "$2" == "debug" ]; then
     debug="true"
 fi
 
+# default return code
+rc=0
+
 case $icon_name in
 
     "profile")
@@ -62,7 +65,19 @@ case $icon_name in
     printf "IconStamp: $avatar_file\n"
     ;;
 
+    "ScreenSaverStart")
+	# Return rc different than zero to cancel the screen saver
+        echo "Received exit for Screen Saver Start"
+	rc=0
+	;;
+
+    "ScreenSaverFinish")
+        echo "Received exit for Screen Saver Finish"
+        ;;
+
     *)
     echo "Received exit for icon name: $icon_name - ignoring"
     ;;
 esac
+
+exit $rc

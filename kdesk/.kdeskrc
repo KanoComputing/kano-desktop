@@ -15,7 +15,7 @@ table Config
   SoundLaunchApp: /usr/share/kano-desktop/sounds/start-app.mp3
   SoundDisabledIcon: /usr/share/kano-desktop/sounds/plonk-short.mp3
 
-  ScreenSaverTimeout: 480
+  ScreenSaverTimeout: 900
   ScreenSaverProgram: /usr/bin/kdesk-eglsaver
 
   OneClick: true
