@@ -1,6 +1,6 @@
 table Config
   FontName: Bariol
-  FontSize: 14
+  FontSize: 18
   FontColor: #FFFFFF
   ToolTip.FontSize: 10
   ToolTip.FontName: Bariol
