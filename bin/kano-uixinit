@@ -50,6 +50,5 @@ fi
 
 # check for updates and display the update dialog
 if is_internet; then
-    sudo /usr/bin/check-for-updates
     /usr/bin/new-update-dialog
 fi
