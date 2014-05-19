@@ -7,6 +7,9 @@
 #  $ icon-hooks "myiconname" debug
 #
 
+# we capture errors so we return meaningul responses to kdesk
+set +e
+
 # We don't care about case sensitiveness for icon names
 shopt -s nocasematch
 
@@ -27,10 +30,11 @@ case $icon_name in
     echo "Received hook call for $icon_name, updating attributes.."
     IFS=$'\n'
     kano_statuses=`kano-profile-cli get_stats`
+    apirc=$?
 
     # Uncomment me to debug kano profile API
     if [ "$debug" == "true" ]; then
-	printf "Kano Profile API returns:\n$kano_statuses\n"
+	printf "Kano Profile API returns rc=$apirc, data=\n$kano_statuses\n"
     fi
 
     for item in $kano_statuses
@@ -58,11 +62,18 @@ case $icon_name in
 
     # Update the message area with username and current level
     msg="$username|Level $level"
-    printf "Message: $msg\n"
+    if [ "$username" != "" ] && [ "$level" != "" ]; then
+	printf "Message: $msg\n"
+    fi
 
     # Update the icon with user's avatar and experience level icon
-    printf "Icon: $progress_file\n"
-    printf "IconStamp: $avatar_file\n"
+    if [ "$progress_file" != "" ]; then
+	printf "Icon: $progress_file\n"
+    fi
+
+    if [ "$avatar_file" != "" ]; then
+	printf "IconStamp: $avatar_file\n"
+    fi
     ;;
 
     "ScreenSaverStart")
