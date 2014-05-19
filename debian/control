@@ -8,7 +8,7 @@ Build-Depends: debhelper (>=9.0.0)
 Package: kano-desktop
 Architecture: all
 Depends: ${misc:Depends}, ${shlibs:Depends}, openbox (>=3.5.2-4~kano.1),
-         kdesk (>=1.1-02), chromium
+         kdesk (>=1.1-02), chromium, kano-themes
 Replaces: kano-settings (<< 1.1-1.20140512build2)
 Breaks: kano-settings (<< 1.1-1.20140512build2)
 Description: The desktop experience of Kanux

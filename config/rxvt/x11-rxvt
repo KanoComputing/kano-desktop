@@ -6,7 +6,7 @@
 ! Custom config for rxvt terminal
 
 URxvt.depth: 32
-URxvt.iconFile: /usr/share/kano-desktop/icons/terminal.png
+URxvt.iconFile: /usr/share/icons/Kano/66x66/apps/terminal.png
 URxvt.borderColor: #333333
 
 URxvt.background: #333333
