@@ -22,6 +22,9 @@ table Config
 
   IconHook: /usr/share/kano-desktop/kdesk/icon-hooks.sh
 
+  GridWidth: 135
+  GridHeight: 135
+
   Transparency: 255
   Shadow: true
   ShadowColor: #000000
