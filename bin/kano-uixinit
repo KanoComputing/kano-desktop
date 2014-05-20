@@ -51,7 +51,7 @@ fi
 # Disable XServer screen saver time and screen blanking (The display would become black)
 xset s off
 xset -dpms
-xxset s noblank
+xset s noblank
 
 # check for updates and display the update dialog
 if is_internet; then
