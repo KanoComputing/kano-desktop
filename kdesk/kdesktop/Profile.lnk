@@ -5,10 +5,10 @@ table Icon
   Message: Welcome!
   Singleton: true
   HoverXOffset: 0
-  HAlign: right
+  HAlign: left
   Width: 200
   Height: 100
-  Relative-To: top-right
+  Relative-To: top-left
   X: 50
-  Y: 50
+  Y: 23
 end
