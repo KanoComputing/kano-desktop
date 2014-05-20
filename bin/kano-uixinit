@@ -20,23 +20,25 @@ function is_installed
     fi
 }
 
+# log separation
+echo
+echo `date`
+
 # The following block is related to the first bootflow
-if is_installed kano-profile-cli; then
-    if is_installed kano-settings; then
-        settings_done=`kano-profile-cli load_app_state_variable kano-settings completed`
-        if [ "$settings_done" != "1" ]; then
-            /usr/bin/kdesk -w
-            sudo /usr/bin/kano-settings
+if is_installed kano-profile-cli && is_installed kano-settings; then
+    settings_done=`kano-profile-cli load_app_state_variable kano-settings completed`
+    if [ "$settings_done" != "1" ]; then
+        /usr/bin/kdesk -w
+        sudo /usr/bin/kano-settings
 
-            registered=`kano-profile-cli is_registered`
-            if [ "$registered" != "1" ]; then
-                /usr/bin/kano-login first_boot
-            fi
-
-            # TODO: Add video
-
-            kano-profile-gui
+        registered=`kano-profile-cli is_registered`
+        if [ "$registered" != "1" ]; then
+            /usr/bin/kano-login first_boot
         fi
+
+        # TODO: Add video
+
+        kano-profile-gui
     fi
 fi
 
@@ -45,15 +47,26 @@ fi
 # it will be restarted on next bootup or logoff/logon transition
 /usr/bin/lxpanel --profile LXDE &
 /usr/bin/kdesk &
-/usr/share/kano-vnc/startvnc &
+startvnc="/usr/share/kano-vnc/startvnc"
+if [ -f $startvnc ]; then
+    $startvnc &
+    echo "staring vnc"
+fi
 /usr/bin/startmouse &
 
 # Disable XServer screen saver time and screen blanking (The display would become black)
-xset s off
-xset -dpms
-xxset s noblank
+if is_installed xset; then
+    xset s off
+    xset -dpms
+    xset s noblank
+fi
 
-# check for updates and display the update dialog
+# check for updates (first time) and display the update dialog (every time)
+update_file="/var/cache/kano-updater/status"
 if is_internet; then
+    if [[ ! -f $update_file ]]; then
+        sudo /usr/bin/check-for-updates
+        echo "checking for updates"
+    fi
     /usr/bin/new-update-dialog
 fi
