@@ -25,6 +25,9 @@ table Config
   GridWidth: 135
   GridHeight: 135
 
+  GridIconWidth: 124
+  GridIconHeight: 132
+
   Transparency: 255
   Shadow: true
   ShadowColor: #000000

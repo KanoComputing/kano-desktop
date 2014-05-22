@@ -64,11 +64,6 @@ case "$1" in
 esac
 
 
-if [ remove = "$1" -o abort-install = "$1" -o disappear = "$1" ] || ( [ abort-upgrade = "$1" ] && dpkg --compare-versions "$2" lt 1.0-61.20140508 ); then
-    dpkg-divert --package kano-desktop --remove --rename \
-                --divert /etc/xdg/menus/lxde-applications.menu.orig /etc/xdg/menus/lxde-applications.menu
-fi
-
 #DEBHELPER#
 
 exit 0
