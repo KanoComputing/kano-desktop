@@ -1,6 +1,6 @@
 table Icon
   Caption:
-  AppID: \$WORL[D]
+  AppID: /usr/bin/kano-world-launche[r]
   Command: /usr/bin/kano-world-launcher
   Singleton: true
   Message: Kano World
