@@ -1,0 +1,14 @@
+table Icon
+  Caption:
+  AppID: /usr/bin/kano-feedbac[k]
+  Command: /usr/bin/kano-launcher /usr/bin/kano-feedback feedback
+  Singleton: true
+  Icon: /usr/share/kano-desktop/icons/feedback-desktop.png
+  IconHover: /usr/share/kano-desktop/icons/feedback-hover.png
+  HoverXOffset: 0
+  Width: 142
+  Height: 52
+  Relative-To: top-centre
+  X: 0
+  Y: 0
+end
