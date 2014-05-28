@@ -6,9 +6,9 @@ table Icon
   Icon: /usr/share/kano-desktop/icons/feedback-desktop.png
   IconHover: /usr/share/kano-desktop/icons/feedback-hover.png
   HoverXOffset: 0
-  Width: 142
-  Height: 52
+  Width: 42
+  Height: 42
   Relative-To: top-centre
-  X: 0
-  Y: 0
+  X: -21
+  Y: 30
 end
