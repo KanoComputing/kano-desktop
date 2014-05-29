@@ -60,6 +60,11 @@ case "$1" in
         # Remove kano-uixinit and replace it with lxpanel previous default
         echo -e "@pcmanfm --desktop --profile LXDE\n@lxpanel --profile LXDE" >$LXDE_AUTOSTART
 
+        # Set kdesk as the desktop manager
+        sudo sed -i 's/\@kano-uixinit/\@pcmanfm --desktop --profile LXDE/g' $LXDE_AUTOSTART
+        echo "@lxpanel --profile LXDE" >> $LXDE_AUTOSTART
+        echo "@xscreensaver -no-splash" >> $LXDE_AUTOSTART
+
         ;;
 esac
 
