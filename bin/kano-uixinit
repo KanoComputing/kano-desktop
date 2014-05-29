@@ -20,10 +20,6 @@ function is_installed
     fi
 }
 
-# log separation
-echo
-echo `date`
-
 # The following block is related to the first bootflow
 if is_installed kano-profile-cli && is_installed kano-settings; then
     settings_done=`kano-profile-cli load_app_state_variable kano-settings completed`
@@ -47,11 +43,6 @@ fi
 # it will be restarted on next bootup or logoff/logon transition
 /usr/bin/lxpanel --profile LXDE &
 /usr/bin/kdesk &
-startvnc="/usr/share/kano-vnc/startvnc"
-if [ -f $startvnc ]; then
-    $startvnc &
-    echo "staring vnc"
-fi
 /usr/bin/startmouse &
 
 # Disable XServer screen saver time and screen blanking (The display would become black)
@@ -66,7 +57,6 @@ update_file="/var/cache/kano-updater/status"
 if is_internet; then
     if [[ ! -f $update_file ]]; then
         sudo /usr/bin/check-for-updates
-        echo "checking for updates"
     fi
     /usr/bin/new-update-dialog
 fi
