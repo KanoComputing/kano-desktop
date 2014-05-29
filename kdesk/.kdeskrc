@@ -19,6 +19,7 @@ table Config
   ScreenSaverProgram: /usr/bin/kdesk-eglsaver
 
   OneClick: true
+  MaximizeSingleton: true
 
   IconHook: /usr/share/kano-desktop/kdesk/icon-hooks.sh
 

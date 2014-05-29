@@ -1,6 +1,6 @@
 table Icon
   Caption:
-  AppID: \$HOM[E]
+  AppID: pcmanfm
   Command: /usr/bin/kano-launcher "pcmanfm $HOME" "pcmanfm"
   Singleton: true
   Icon: /usr/share/kano-desktop/icons/kano-homefolder.png

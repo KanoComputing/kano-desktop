@@ -1,6 +1,6 @@
 table Icon
   Caption:
-  AppID: kano-profile-gu[i]
+  AppID: kano-profile-gui
   Command: /usr/bin/kano-profile-gui
   Message: Welcome!
   Singleton: true

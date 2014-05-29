@@ -1,6 +1,6 @@
 table Icon
   Caption:
-  AppID: /usr/bin/kano-feedbac[k]
+  AppID: kano-login
   Command: /usr/bin/kano-launcher /usr/bin/kano-feedback feedback
   Singleton: true
   Icon: /usr/share/kano-desktop/icons/feedback-desktop.png
