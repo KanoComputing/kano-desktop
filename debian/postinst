@@ -66,6 +66,12 @@ case "$1" in
         # Reconfigure LXDE to run our custom startup script
         echo "mkdir -p /home/\$USER/.kano-logs" > $LXDE_AUTOSTART
         echo "/bin/bash -c \"/usr/bin/kano-uixinit >> /home/\$USER/.kano-logs/kano-uixinit.log\"" >> $LXDE_AUTOSTART
+        
+        # Set kdesk as the desktop manager
+        sudo sed -i 's/\@pcmanfm --desktop --profile LXDE/\@kano-uixinit/g' $LXDE_AUTOSTART
+
+        # And remove the defaut screen saver, as we provide our own
+        sudo sed -i 's/\@xscreensaver -no-splash//g' $LXDE_AUTOSTART
 
         ;;
 esac
