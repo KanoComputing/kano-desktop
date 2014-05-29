@@ -65,7 +65,7 @@ case "$1" in
 
         # Set kdesk as the desktop manager
         sudo sed -i 's/\@pcmanfm --desktop --profile LXDE/\@kano-uixinit/g' $LXDE_AUTOSTART
-        sudo sed -i 's/@lxpanel --profile LXDE//g' $LXDE_AUTOSTART
+        sudo sed -i 's/\@lxpanel --profile LXDE//g' $LXDE_AUTOSTART
         sudo sed -i 's/\@xscreensaver -no-splash//g' $LXDE_AUTOSTART
 
         ;;
