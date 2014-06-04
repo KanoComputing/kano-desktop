@@ -24,9 +24,16 @@ function is_installed
 if is_installed kano-profile-cli && is_installed kano-settings; then
     settings_done=`kano-profile-cli load_app_state_variable kano-settings completed`
     if [ "$settings_done" != "1" ]; then
+        # load background
         /usr/bin/kdesk -w
+        
+        # settings wizard
         sudo /usr/bin/kano-settings
-        kano_profile_cli save_app_state_variable kano-settings completed 1
+        
+        # levelup dialog
+        kano-profile-cli save_app_state_variable kano-settings completed 1
+
+        # first login
         registered=`kano-profile-cli is_registered`
         if [ "$registered" != "1" ]; then
             /usr/bin/kano-login first_boot
@@ -34,6 +41,7 @@ if is_installed kano-profile-cli && is_installed kano-settings; then
 
         # TODO: Add video
 
+        # launch profile
         kano-profile-gui
     fi
 fi
