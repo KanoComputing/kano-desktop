@@ -41,8 +41,6 @@ if is_installed kano-profile-cli && is_installed kano-settings; then
 
         # TODO: Add video
 
-        # launch profile
-        kano-profile-gui
     fi
 fi
 
