@@ -44,8 +44,8 @@ if is_installed kano-profile-cli && is_installed kano-settings; then
             /usr/bin/kano-login first_boot
         fi
 
-        # TODO: Add video
         logger_info "Playing the video"
+        kano-video-cli -f /usr/share/kano-media/video/os_intro.mkv
 
         # launch profile
         logger_info "Launching kano-profile"
