@@ -28,11 +28,11 @@ if is_installed kano-profile-cli && is_installed kano-settings; then
     if [ "$settings_done" != "1" ]; then
         # load background
         /usr/bin/kdesk -w
-        
+
         # settings wizard
         logger_info "Launching kano-settings"
         sudo /usr/bin/kano-settings
-        
+
         # levelup dialog
         logger_debug "Marking kano-settings completed"
         kano-profile-cli save_app_state_variable kano-settings completed 1
@@ -47,10 +47,19 @@ if is_installed kano-profile-cli && is_installed kano-settings; then
         logger_info "Playing the video"
         kano-video-cli -f /usr/share/kano-media/videos/os_intro.mkv
 
-        # launch profile
-        logger_info "Launching kano-profile"
-        kano-profile-gui
     fi
+fi
+
+# check for updates (first time) and display the update dialog (every time)
+update_file="/var/cache/kano-updater/status"
+if is_internet; then
+    if [[ ! -f $update_file ]]; then
+        logger_info "Checking for update"
+        sudo /usr/bin/check-for-updates
+    fi
+    /usr/bin/new-update-dialog
+else
+    logger_info "Not checking for update, internet not available"
 fi
 
 # We enter the Kano UIX interface after kano-settings.
@@ -73,14 +82,4 @@ if is_installed xset; then
     xset s noblank
 fi
 
-# check for updates (first time) and display the update dialog (every time)
-update_file="/var/cache/kano-updater/status"
-if is_internet; then
-    if [[ ! -f $update_file ]]; then
-        logger_info "Checking for update"
-        sudo /usr/bin/check-for-updates
-    fi
-    /usr/bin/new-update-dialog
-else
-    logger_info "Not checking for update, internet not available"
-fi
+
