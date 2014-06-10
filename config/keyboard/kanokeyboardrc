@@ -94,10 +94,10 @@
 "wmctrl -k on"
   m:0x1 + c:48
 
-# Fn + 1
-"xcalc"
+# Fn + 1 : Increase volume
+"/usr/bin/kano-volume up"
   m:0x0 + c:75
 
 # Fn + 2
-"xcalc"
+"/usr/bin/kano-volume down"
   m:0x0 + c:76
