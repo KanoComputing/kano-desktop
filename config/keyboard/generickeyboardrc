@@ -70,36 +70,34 @@
 ##################################
 
 # Fn + 9
-#"xcalc"
-#  m:0x0 + c:18
+"xcalc"
+  m:0x0 + c:18
 
 # Fn + 0
-#"xcalc"
-#  m:0x0 + c:19
+"xcalc"
+  m:0x0 + c:19
 
 # Fn + -
-#"xcalc"
-#  m:0x0 + c:20
+"xcalc"
+  m:0x0 + c:20
 
 # Fn + =
-#"xcalc"
-#  m:0x0 + c:21
+"xcalc"
+  m:0x0 + c:21
 
 # Fn + backspace
-#"xcalc"
-#  m:0x0 + c:119
+"xcalc"
+  m:0x0 + c:119
 
-# FN + K : minimize all windows (Web Home)
+
+# Fn + K : minimize all windows (Web Home)
 "wmctrl -k on"
-  m:0x10 + c:180
-  Mod2 + XF86HomePage
+  m:0x1 + c:48
 
-# FN down : Volume down
-"/usr/bin/kano-volume down"
-  m:0x10 + c:122
-  Mod2 + XF86AudioLowerVolume
-
-# FN up: Volume up
+# Fn + 1 : Increase volume
 "/usr/bin/kano-volume up"
-  m:0x10 + c:123
-  Mod2 + XF86AudioRaiseVolume
+  m:0x0 + c:75
+
+# Fn + 2
+"/usr/bin/kano-volume down"
+  m:0x0 + c:76
