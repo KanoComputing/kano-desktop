@@ -42,6 +42,7 @@ case "$1" in
         ln -s /usr/share/kano-desktop/config/lxpanel /etc/skel/.config/lxpanel
         ln -s /usr/share/kano-desktop/config/lxterminal /etc/skel/.config/lxterminal
         ln -s /usr/share/kano-desktop/config/lxsession /etc/skel/.config/lxsession
+        ln -s /usr/share/kano-desktop/config/skel/.bash_aliases /etc/skel/.bash_aliases
         ln -s /usr/share/kano-desktop/Copyright /etc/skel/Copyright
 
         # Configure openbox
