@@ -22,7 +22,6 @@ case "$1" in
 
         # Remove squeak, but only from skel
         rm /etc/skel/squeak
-        # rm -r /usr/share/squeak
 
         # Revert old openbox config
         if [ -e "$openbox_rc-old" ]; then
