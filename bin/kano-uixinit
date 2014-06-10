@@ -75,7 +75,7 @@ logger_info "Launching startmouse"
 /usr/bin/startmouse &
 
 logger_info "Launching xbindkeys"
-/usr/bin/xbindkeys -f usr/share/kano-desktop/config/keyboard/kanokeyboardrc
+/usr/bin/xbindkeys -f /usr/share/kano-desktop/config/keyboard/kanokeyboardrc
 
 # Disable XServer screen saver time and screen blanking (The display would become black)
 if is_installed xset; then
