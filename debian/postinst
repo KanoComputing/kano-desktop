@@ -38,6 +38,8 @@ case "$1" in
     configure)
 
         # Make links in /etc/skel
+        mkdir -p /etc/skel/.config
+
         ln -s /usr/share/kano-desktop/config/pcmanfm /etc/skel/.config/pcmanfm
         ln -s /usr/share/kano-desktop/config/lxpanel /etc/skel/.config/lxpanel
         ln -s /usr/share/kano-desktop/config/lxterminal /etc/skel/.config/lxterminal
