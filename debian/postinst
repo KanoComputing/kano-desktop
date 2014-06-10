@@ -40,6 +40,9 @@ case "$1" in
         # Make links in /etc/skel
         ln -s /usr/share/kano-desktop/config/pcmanfm /etc/skel/.config/pcmanfm
         ln -s /usr/share/kano-desktop/config/lxpanel /etc/skel/.config/lxpanel
+        ln -s /usr/share/kano-desktop/config/lxterminal /etc/skel/.config/lxterminal
+        ln -s /usr/share/kano-desktop/config/lxsession /etc/skel/.config/lxsession
+        ln -s /usr/share/kano-desktop/Copyright /etc/skel/Copyright
 
         # Configure openbox
         cp $openbox_rc $openbox_rc-old
@@ -58,10 +61,10 @@ case "$1" in
 
         # Configure chromium
         cp $chromium_master_prefs $chromium_master_prefs-old
-        cat $custom_chromium_master_prefs >$chromium_master_prefs
+        cat $custom_chromium_master_prefs > $chromium_master_prefs
 
         cp $chromium_bookmarks $chromium_bookmarks-old
-        cat $custom_chromium_bookmarks >$chromium_bookmarks
+        cat $custom_chromium_bookmarks > $chromium_bookmarks
 
         # Set kdesk as the desktop manager
         sudo sed -i 's/\@pcmanfm --desktop --profile LXDE/\@kano-uixinit/g' $LXDE_AUTOSTART

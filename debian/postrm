@@ -42,11 +42,10 @@ case "$1" in
         sed -i 's/#\?\s*\(user-session\=\).*/\1default/' "$lightdm_config"
 
         # Removing links
-        rm -f /etc/skel/.config/openbox
         rm -f /etc/skel/.config/pcmanfm
         rm -f /etc/skel/.config/lxpanel
-
-        # Remove copyright
+        rm -f /etc/skel/.config/lxterminal
+        rm -f /etc/skel/.config/lxsession
         rm -f /etc/skel/Copyright
 
         # Revert chromium config
