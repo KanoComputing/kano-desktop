@@ -11,9 +11,7 @@ config/lxsession usr/share/kano-desktop/config
 config/lxpanel usr/share/kano-desktop/config
 config/pcmanfm usr/share/kano-desktop/config
 config/chromium usr/share/kano-desktop/config
-
-config/skel/.bashrc etc/skel
-config/skel/.bash_aliases usr/share/kano-desktop/config
+config/skel usr/share/kano-desktop/config
 
 config/keyboard/kanokeyboardrc usr/share/kano-desktop/config/keyboard
 
