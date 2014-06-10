@@ -90,8 +90,8 @@
   m:0x0 + c:119
 
 
-# Fn + K
-"xcalc"
+# Fn + K : minimize all windows (Web Home)
+"wmctrl -k on"
   m:0x1 + c:48
 
 # Fn + 1
