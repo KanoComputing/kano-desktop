@@ -18,6 +18,8 @@ config/rxvt/x11-rxvt etc/X11/Xresources
 
 config/chromium/* usr/share/kano-desktop/config/chromium
 
+config/keyboard/kanokeyboardrc usr/share/kano-desktop/config/keyboard
+
 lightdm/* usr/share/kano-desktop/lightdm
 
 kdesk/* usr/share/kano-desktop/kdesk
