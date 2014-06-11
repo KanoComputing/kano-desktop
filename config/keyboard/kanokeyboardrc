@@ -51,3 +51,19 @@
 "/usr/bin/kano-volume up"
   m:0x10 + c:123
   Mod2 + XF86AudioRaiseVolume
+
+# Save
+"/usr/bin/kano-signal save"
+  m:0x0 + c:191
+
+# Load
+"/usr/bin/kano-signal load"
+  m:0x0 + c:192
+
+# Share
+"/usr/bin/kano-signal share"
+  m:0x0 + c:193
+
+# Make
+"/usr/bin/kano-signal make"
+  m:0x0 + c:194
