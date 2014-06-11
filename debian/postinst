@@ -36,7 +36,6 @@ case "$1" in
             tar -zxvf tmp.tar.gz
             mv squeak/* $SQUEAKDIR
             rm -f /etc/skel/squeak
-            ln -s $SQUEAKDIR /etc/skel/
             rm -r squeak
             rm tmp.tar.gz
         fi
