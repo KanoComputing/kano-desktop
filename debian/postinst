@@ -53,7 +53,7 @@ case "$1" in
         ln -s /usr/share/kano-desktop/config/lxsession /etc/skel/.config/lxsession
         ln -s /usr/share/kano-desktop/Copyright /etc/skel/Copyright
 
-        cp /usr/share/kano-desktop/config/skel/.bashrc /etc/skel/
+        cp /usr/share/kano-desktop/config/profile/.bashrc /etc/skel/
 
         # Configure openbox
         cp $openbox_rc $openbox_rc-old
