@@ -23,23 +23,36 @@ custom_chromium_bookmarks=/usr/share/kano-desktop/config/chromium/initial_bookma
 
 LXDE_AUTOSTART=/etc/xdg/lxsession/LXDE/autostart
 
-# This is to get squeak working on the system out of the box. Can be removed if short of space on SD.
-SQUEAKURL=http://dev.kano.me/public/squeak.tar.gz
 SQUEAKDIR=/usr/share/squeak
-mkdir -p $SQUEAKDIR
-wget -nv $SQUEAKURL -O tmp.tar.gz
-tar -zxvf tmp.tar.gz
-mv squeak/* $SQUEAKDIR
-ln -s /usr/share/squeak /etc/skel/
-rm -r squeak
-rm tmp.tar.gz
 
 case "$1" in
     configure)
 
+        # Install squeak, but only if not present
+        if [ ! -d "$SQUEAKDIR" ]; then
+            SQUEAKURL=http://dev.kano.me/public/squeak.tar.gz
+            mkdir -p $SQUEAKDIR
+            wget -nv $SQUEAKURL -O tmp.tar.gz
+            tar -zxvf tmp.tar.gz
+            mv squeak/* $SQUEAKDIR
+            rm -f /etc/skel/squeak
+            rm -r squeak
+            rm tmp.tar.gz
+        fi
+
+        # create the squeak link to skel
+        ln -s $SQUEAKDIR /etc/skel/
+
         # Make links in /etc/skel
+        mkdir -p /etc/skel/.config
+
         ln -s /usr/share/kano-desktop/config/pcmanfm /etc/skel/.config/pcmanfm
         ln -s /usr/share/kano-desktop/config/lxpanel /etc/skel/.config/lxpanel
+        ln -s /usr/share/kano-desktop/config/lxterminal /etc/skel/.config/lxterminal
+        ln -s /usr/share/kano-desktop/config/lxsession /etc/skel/.config/lxsession
+        ln -s /usr/share/kano-desktop/Copyright /etc/skel/Copyright
+
+        cp /usr/share/kano-desktop/config/profile/.bashrc /etc/skel/
 
         # Configure openbox
         cp $openbox_rc $openbox_rc-old
@@ -58,10 +71,10 @@ case "$1" in
 
         # Configure chromium
         cp $chromium_master_prefs $chromium_master_prefs-old
-        cat $custom_chromium_master_prefs >$chromium_master_prefs
+        cat $custom_chromium_master_prefs > $chromium_master_prefs
 
         cp $chromium_bookmarks $chromium_bookmarks-old
-        cat $custom_chromium_bookmarks >$chromium_bookmarks
+        cat $custom_chromium_bookmarks > $chromium_bookmarks
 
         # Set kdesk as the desktop manager
         sudo sed -i 's/\@pcmanfm --desktop --profile LXDE/\@kano-uixinit/g' $LXDE_AUTOSTART

@@ -1,33 +1,27 @@
-wallpapers/* usr/share/kano-desktop/wallpapers
-icons/* usr/share/kano-desktop/icons
-images/* usr/share/kano-desktop/images
+wallpapers usr/share/kano-desktop
+icons usr/share/kano-desktop
+images usr/share/kano-desktop
+Copyright usr/share/kano-desktop
+config/openbox usr/share/kano-desktop
+lightdm usr/share/kano-desktop
+kdesk usr/share/kano-desktop
 
-gtk-themes/Kano usr/share/themes
-
-config/lxterminal/* etc/skel/.config/lxterminal
-config/lxsession/* etc/skel/.config/lxsession
-
-Copyright etc/skel
-
-config/lxpanel/* usr/share/kano-desktop/config/lxpanel
-config/pcmanfm/* usr/share/kano-desktop/config/pcmanfm
-
-config/openbox/* usr/share/kano-desktop/openbox
-
-config/rxvt/x11-rxvt etc/X11/Xresources
-
-config/chromium/* usr/share/kano-desktop/config/chromium
+config/lxterminal usr/share/kano-desktop/config
+config/lxsession usr/share/kano-desktop/config
+config/lxpanel usr/share/kano-desktop/config
+config/pcmanfm usr/share/kano-desktop/config
+config/chromium usr/share/kano-desktop/config
+config/profile usr/share/kano-desktop/config
 
 config/keyboard/kanokeyboardrc usr/share/kano-desktop/config/keyboard
 
-lightdm/* usr/share/kano-desktop/lightdm
+sounds usr/share/kano-media
+videos usr/share/kano-media
 
-kdesk/* usr/share/kano-desktop/kdesk
-kdesk/.kdeskrc usr/share/kano-desktop/kdesk
+gtk-themes/Kano usr/share/themes
 
-sounds/* usr/share/kano-media/sounds/
-videos/* /usr/share/kano-media/videos/
+config/rxvt/x11-rxvt etc/X11/Xresources
 
-lxde/applications/* /usr/share/applications
+lxde/applications usr/share
 
-bin/* /usr/bin
+bin usr
