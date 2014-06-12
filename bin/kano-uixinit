@@ -53,11 +53,8 @@ fi
 # check for updates (first time) and display the update dialog (every time)
 update_file="/var/cache/kano-updater/status"
 if is_internet; then
-    if [[ ! -f $update_file ]]; then
-        logger_info "Checking for update"
-        sudo /usr/bin/check-for-updates
-    fi
-    /usr/bin/new-update-dialog
+    logger_info "Checking for update"
+    sudo /usr/bin/check-for-updates -t 24 -d
 else
     logger_info "Not checking for update, internet not available"
 fi

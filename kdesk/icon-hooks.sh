@@ -80,7 +80,7 @@ case $icon_name in
 	# Return rc different than zero to cancel the screen saver
         echo "Received exit for Screen Saver Start - starting kano-sync and check-for-updates"
         kano-sync --backup -s &
-        sudo /usr/bin/check-for-updates &
+        sudo /usr/bin/check-for-updates -t 24 -d &
 	rc=0
 	;;
 
