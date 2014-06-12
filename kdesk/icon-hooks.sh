@@ -1,11 +1,16 @@
 #!/bin/bash
+
+# icon-hooks.sh
+# 
+# Copyright (C) 2014 Kano Computing Ltd.
+# License: http://www.gnu.org/licenses/gpl-2.0.txt GNU General Public License v2
 #
 # KDesk Icon Hooks script - Dynamically update the desktops icons attributes.
 #
 # You can debug this hook script manually like so:
 #
 #  $ icon-hooks "myiconname" debug
-#
+
 
 # we capture errors so we return meaningul responses to kdesk
 set +e
