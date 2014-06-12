@@ -1,10 +1,10 @@
 wallpapers usr/share/kano-desktop
 icons usr/share/kano-desktop
 images usr/share/kano-desktop
-Copyright usr/share/kano-desktop
 config/openbox usr/share/kano-desktop
 lightdm usr/share/kano-desktop
 kdesk usr/share/kano-desktop
+Legal usr/share/kano-desktop
 
 config/lxterminal usr/share/kano-desktop/config
 config/lxsession usr/share/kano-desktop/config

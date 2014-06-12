@@ -40,18 +40,20 @@ case "$1" in
             rm tmp.tar.gz
         fi
 
-        # create the squeak link to skel
+        # create the squeak link to /etc/skel
         ln -s $SQUEAKDIR /etc/skel/
 
-        # Make links in /etc/skel
+        # /etc/skel/.config
         mkdir -p /etc/skel/.config
-
         ln -s /usr/share/kano-desktop/config/pcmanfm /etc/skel/.config/pcmanfm
         ln -s /usr/share/kano-desktop/config/lxpanel /etc/skel/.config/lxpanel
         ln -s /usr/share/kano-desktop/config/lxterminal /etc/skel/.config/lxterminal
         ln -s /usr/share/kano-desktop/config/lxsession /etc/skel/.config/lxsession
-        ln -s /usr/share/kano-desktop/Copyright /etc/skel/Copyright
 
+        # /etc/skel/Legal
+        ln -s /usr/share/kano-desktop/Legal /etc/skel/Legal
+
+        # /etc/skel/.bashrc
         cp /usr/share/kano-desktop/config/profile/.bashrc /etc/skel/
 
         # Configure openbox
