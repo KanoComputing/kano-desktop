@@ -74,7 +74,16 @@ logger_info "Launching kdesk"
 logger_info "Launching startmouse"
 /usr/bin/startmouse &
 
-# TODO: Do some sort of "lsusb" magic to find it Kano Keyboard is plugged in
+# Load Kano Keyboard configuration file for Hotkeys, or a generic one for regular keyboards
+kano_keyboard=`python -c "from kano.utils import detect_kano_keyboard; print detect_kano_keyboard()"`
+keyboard_conf_dir="/usr/share/kano-desktop/config/keyboard"
+if [ "$kano_keyboard" == "True" ]; then
+    keyboard_conf="$keyboard_conf_dir/kanokeyboardrc"
+else
+    keyboard_conf="$keyboard_conf_dir/generickeyboardrc"
+fi
+logger_info "Launching xbindkeys with configuration: $keyboard_conf"
+
 logger_info "Launching xbindkeys"
 /usr/bin/xbindkeys -f /usr/share/kano-desktop/config/keyboard/kanokeyboardrc
 
