@@ -46,7 +46,7 @@ case "$1" in
         rm -f /etc/skel/.config/lxpanel
         rm -f /etc/skel/.config/lxterminal
         rm -f /etc/skel/.config/lxsession
-        rm -f /etc/skel/Copyright
+        rm -rf /etc/skel/Legal
 
         # Revert chromium config
         if [ -e "$chromium_bookmarks-old" ]; then
