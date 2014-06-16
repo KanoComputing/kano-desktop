@@ -22,12 +22,14 @@ function is_installed
     fi
 }
 
+# load background
+/usr/bin/kdesk -w &
+
 # The following block is related to the first bootflow
 if is_installed kano-profile-cli && is_installed kano-settings; then
     settings_done=`kano-profile-cli load_app_state_variable kano-settings completed`
     if [ "$settings_done" != "1" ]; then
-        # load background
-        /usr/bin/kdesk -w
+
 
         # settings wizard
         logger_info "Launching kano-settings"
@@ -50,10 +52,11 @@ if is_installed kano-profile-cli && is_installed kano-settings; then
     fi
 fi
 
-# check for updates (first time) and display the update dialog (every time)
+# check for updates and display the update dialog
+# restrict server communication to max once a week (168 hours)
 if is_internet; then
     logger_info "Checking for update"
-    sudo /usr/bin/check-for-updates -t 24 -d
+    sudo /usr/bin/check-for-updates -t 168 -d
 else
     logger_info "Not checking for update, internet not available"
 fi
