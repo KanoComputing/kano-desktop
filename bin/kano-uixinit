@@ -51,7 +51,6 @@ if is_installed kano-profile-cli && is_installed kano-settings; then
 fi
 
 # check for updates (first time) and display the update dialog (every time)
-update_file="/var/cache/kano-updater/status"
 if is_internet; then
     logger_info "Checking for update"
     sudo /usr/bin/check-for-updates -t 24 -d
