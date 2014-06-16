@@ -69,7 +69,7 @@ else
     keyboard_conf="$keyboard_conf_dir/generickeyboardrc"
 fi
 logger_info "Launching xbindkeys with configuration: $keyboard_conf"
-/usr/bin/xbindkeys -f /usr/share/kano-desktop/config/keyboard/kanokeyboardrc
+/usr/bin/xbindkeys -f $keyboard_conf
 
 # Disable XServer screen saver time and screen blanking (The display would become black)
 if is_installed xset; then
