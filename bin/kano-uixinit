@@ -52,24 +52,12 @@ if is_installed kano-profile-cli && is_installed kano-settings; then
     fi
 fi
 
-# check for updates and display the update dialog
-# restrict server communication to max once a week (168 hours)
-if is_internet; then
-    logger_info "Checking for update"
-    sudo /usr/bin/check-for-updates -t 168 -d
-else
-    logger_info "Not checking for update, internet not available"
-fi
 
 # We enter the Kano UIX interface after kano-settings.
 # It's not important if this stage has not been finalized
 # it will be restarted on next bootup or logoff/logon transition
-logger_info "Launching LXPanel"
-/usr/bin/lxpanel --profile LXDE &
 
-logger_info "Launching kdesk"
-/usr/bin/kdesk &
-
+# startmouse
 logger_info "Launching startmouse"
 /usr/bin/startmouse &
 
@@ -91,3 +79,22 @@ if is_installed xset; then
     xset -dpms
     xset s noblank
 fi
+
+# check for updates and display the update dialog
+# restrict server communication to max once a week (168 hours)
+if is_internet; then
+    logger_info "Checking for update"
+    sudo /usr/bin/check-for-updates -t 168 -d
+else
+    logger_info "Not checking for update, internet not available"
+fi
+
+# lxpanel
+logger_info "Launching LXPanel"
+/usr/bin/lxpanel --profile LXDE &
+
+# starting kdesk
+logger_info "Launching kdesk"
+/usr/bin/kdesk &
+
+
