@@ -57,6 +57,7 @@ fi
 # It's not important if this stage has not been finalized
 # it will be restarted on next bootup or logoff/logon transition
 
+# startmouse
 logger_info "Launching startmouse"
 /usr/bin/startmouse &
 
@@ -88,6 +89,7 @@ else
     logger_info "Not checking for update, internet not available"
 fi
 
+# lxpanel
 logger_info "Launching LXPanel"
 /usr/bin/lxpanel --profile LXDE &
 
