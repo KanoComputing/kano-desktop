@@ -1,3 +1,9 @@
+kano-desktop (1.1-1) unstable; urgency=low
+
+  * Prerelease review
+
+ -- Team Kano <dev@kano.me>  Tue, 17 Jun 2014 20:29:10 +0000
+
 kano-desktop (1.0-61) unstable; urgency=low
 
   * kano-fonts separated
