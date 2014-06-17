@@ -1,0 +1,36 @@
+#!/usr/bin/env bash
+
+# kano-bashrc
+# 
+# Copyright (C) 2014 Kano Computing Ltd.
+# License: http://www.gnu.org/licenses/gpl-2.0.txt GNU General Public License v2
+#
+# 
+
+# Setting prompt
+PS1='${debian_chroot:+($debian_chroot)}\[\033[01;33m\]\u@\h\[\033[00m\] \[\033[01;34m\]\w \$\[\033[00m\] '
+
+# Kano OS helper aliases
+alias grep='grep --color=auto'
+alias fgrep='fgrep --color=auto'
+alias egrep='egrep --color=auto'
+alias ll='ls -l'
+alias la='ls -A'
+alias l='ls -CF'
+
+# ifconfig alias
+alias ifconfig='/sbin/ifconfig'
+
+# kanux-version alias
+alias kanux-version='cat /etc/kanux_version'
+
+# set time alias using rdate
+alias set-time='sudo /usr/bin/rdate -cv $(cat /etc/timeserver.conf)'
+
+# aliases for enabling/disabling the syslog daemon
+alias syslog-enable='sudo update-rc.d inetutils-syslogd enable && sudo /etc/init.d/inetutils-syslogd start'
+alias syslog-disable='sudo update-rc.d inetutils-syslogd disable && sudo /etc/init.d/inetutils-syslogd stop'
+
+# aliases to enable / disable the root user from ssh logins
+alias rootssh-disable='sudo sed -i '\''s/DROPBEAR_EXTRA_ARGS=.*/DROPBEAR_EXTRA_ARGS="-g -w"/g'\'' /etc/default/dropbear && sudo /etc/init.d/dropbear restart'
+alias rootssh-enable='sudo sed -i '\''s/DROPBEAR_EXTRA_ARGS=.*/DROPBEAR_EXTRA_ARGS=/g'\'' /etc/default/dropbear && sudo /etc/init.d/dropbear restart'

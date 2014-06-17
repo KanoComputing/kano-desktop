@@ -1,11 +1,16 @@
 #!/bin/bash
+
+# icon-hooks.sh
+# 
+# Copyright (C) 2014 Kano Computing Ltd.
+# License: http://www.gnu.org/licenses/gpl-2.0.txt GNU General Public License v2
 #
 # KDesk Icon Hooks script - Dynamically update the desktops icons attributes.
 #
 # You can debug this hook script manually like so:
 #
 #  $ icon-hooks "myiconname" debug
-#
+
 
 # we capture errors so we return meaningul responses to kdesk
 set +e
@@ -80,7 +85,7 @@ case $icon_name in
 	# Return rc different than zero to cancel the screen saver
         echo "Received exit for Screen Saver Start - starting kano-sync and check-for-updates"
         kano-sync --backup -s &
-        sudo /usr/bin/check-for-updates &
+        sudo /usr/bin/check-for-updates -t 24 -d &
 	rc=0
 	;;
 

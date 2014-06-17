@@ -1,0 +1,69 @@
+# For the benefit of emacs users: -*- shell-script -*-
+###########################
+# xbindkeys configuration #
+###########################
+#
+# Version: 1.8.5
+#
+# If you edit this file, do not forget to uncomment any lines
+# that you change.
+# The pound(#) symbol may be used anywhere for comments.
+#
+# To specify a key, you can use 'xbindkeys --key' or
+# 'xbindkeys --multikey' and put one of the two lines in this file.
+#
+# The format of a command line is:
+#    "command to start"
+#       associated key
+#
+#
+# A list of keys is in /usr/include/X11/keysym.h and in
+# /usr/include/X11/keysymdef.h
+# The XK_ is not needed.
+#
+# List of modifier:
+#   Release, Control, Shift, Mod1 (Alt), Mod2 (NumLock),
+#   Mod3 (CapsLock), Mod4, Mod5 (Scroll).
+#
+
+# The release modifier is not a standard X modifier, but you can
+# use it if you want to catch release events instead of press events
+
+# By defaults, xbindkeys does not pay attention with the modifiers
+# NumLock, CapsLock and ScrollLock.
+# Uncomment the lines above if you want to pay attention to them.
+
+#keystate_numlock = enable
+#keystate_capslock = enable
+#keystate_scrolllock= enable
+
+# FN + K : minimize all windows (Web Home)
+"wmctrl -k on"
+  m:0x10 + c:180
+  Mod2 + XF86HomePage
+
+# FN down : Volume down
+"/usr/bin/kano-volume down"
+  m:0x10 + c:122
+  Mod2 + XF86AudioLowerVolume
+
+# FN up: Volume up
+"/usr/bin/kano-volume up"
+  m:0x10 + c:123
+  Mod2 + XF86AudioRaiseVolume
+
+# Save
+"/usr/bin/kano-signal save"
+  m:0x0 + c:191
+
+# Load
+"/usr/bin/kano-signal load"
+  m:0x0 + c:192
+
+# Share
+"/usr/bin/kano-signal share"
+  m:0x0 + c:193
+
+# Make
+"/usr/bin/kano-signal make"
+  m:0x0 + c:194

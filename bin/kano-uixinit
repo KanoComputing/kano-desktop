@@ -22,17 +22,19 @@ function is_installed
     fi
 }
 
+# load background
+/usr/bin/kdesk -w &
+
 # The following block is related to the first bootflow
 if is_installed kano-profile-cli && is_installed kano-settings; then
     settings_done=`kano-profile-cli load_app_state_variable kano-settings completed`
     if [ "$settings_done" != "1" ]; then
-        # load background
-        /usr/bin/kdesk -w
-        
+
+
         # settings wizard
         logger_info "Launching kano-settings"
         sudo /usr/bin/kano-settings
-        
+
         # levelup dialog
         logger_debug "Marking kano-settings completed"
         kano-profile-cli save_app_state_variable kano-settings completed 1
@@ -44,26 +46,31 @@ if is_installed kano-profile-cli && is_installed kano-settings; then
             /usr/bin/kano-login first_boot
         fi
 
-        # TODO: Add video
-        logger_info "Playing the video"
+        logger_info "Playing os_intro.mkv"
+        kano-video-cli -f /usr/share/kano-media/videos/os_intro.mkv
 
-        # launch profile
-        logger_info "Launching kano-profile"
-        kano-profile-gui
     fi
 fi
+
 
 # We enter the Kano UIX interface after kano-settings.
 # It's not important if this stage has not been finalized
 # it will be restarted on next bootup or logoff/logon transition
-logger_info "Launching LXPanel"
-/usr/bin/lxpanel --profile LXDE &
 
-logger_info "Launching kdesk"
-/usr/bin/kdesk &
-
+# startmouse
 logger_info "Launching startmouse"
 /usr/bin/startmouse &
+
+# Load Kano Keyboard configuration file for Hotkeys, or a generic one for regular keyboards
+kano_keyboard=`python -c "from kano.utils import detect_kano_keyboard; print detect_kano_keyboard()"`
+keyboard_conf_dir="/usr/share/kano-desktop/config/keyboard"
+if [ "$kano_keyboard" == "True" ]; then
+    keyboard_conf="$keyboard_conf_dir/kanokeyboardrc"
+else
+    keyboard_conf="$keyboard_conf_dir/generickeyboardrc"
+fi
+logger_info "Launching xbindkeys with configuration: $keyboard_conf"
+/usr/bin/xbindkeys -f $keyboard_conf
 
 # Disable XServer screen saver time and screen blanking (The display would become black)
 if is_installed xset; then
@@ -73,14 +80,21 @@ if is_installed xset; then
     xset s noblank
 fi
 
-# check for updates (first time) and display the update dialog (every time)
-update_file="/var/cache/kano-updater/status"
+# check for updates and display the update dialog
+# restrict server communication to max once a week (168 hours)
 if is_internet; then
-    if [[ ! -f $update_file ]]; then
-        logger_info "Checking for update"
-        sudo /usr/bin/check-for-updates
-    fi
-    /usr/bin/new-update-dialog
+    logger_info "Checking for update"
+    sudo /usr/bin/check-for-updates -t 168 -d
 else
     logger_info "Not checking for update, internet not available"
 fi
+
+# lxpanel
+logger_info "Launching LXPanel"
+/usr/bin/lxpanel --profile LXDE &
+
+# starting kdesk
+logger_info "Launching kdesk"
+/usr/bin/kdesk &
+
+
