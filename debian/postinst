@@ -31,11 +31,14 @@ case "$1" in
         # Install squeak, but only if not present
         if [ ! -d "$SQUEAKDIR" ]; then
             SQUEAKURL=http://dev.kano.me/public/squeak.tar.gz
+
+            rm -rf /etc/skel/squeak
+            rm -rf $SQUEAKDIR
+
             mkdir -p $SQUEAKDIR
             wget -nv $SQUEAKURL -O tmp.tar.gz
             tar -zxvf tmp.tar.gz
             mv squeak/* $SQUEAKDIR
-            rm -f /etc/skel/squeak
             rm -r squeak
             rm tmp.tar.gz
         fi

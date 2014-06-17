@@ -21,7 +21,7 @@ case "$1" in
     remove|upgrade)
 
         # Remove squeak, but only from skel
-        rm -f /etc/skel/squeak
+        rm -rf /etc/skel/squeak
 
         # Revert old openbox config
         if [ -e "$openbox_rc-old" ]; then
