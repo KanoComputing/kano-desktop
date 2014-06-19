@@ -12,6 +12,7 @@ config/lxpanel usr/share/kano-desktop/config
 config/pcmanfm usr/share/kano-desktop/config
 config/chromium usr/share/kano-desktop/config
 config/profile usr/share/kano-desktop/config
+config/autostart usr/share/kano-desktop/config
 
 config/keyboard/kanokeyboardrc usr/share/kano-desktop/config/keyboard
 config/keyboard/generickeyboardrc usr/share/kano-desktop/config/keyboard

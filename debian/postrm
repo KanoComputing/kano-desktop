@@ -15,7 +15,7 @@ lightdm_config=/etc/lightdm/lightdm.conf
 chromium_master_prefs=/etc/chromium/master_preferences
 chromium_bookmarks=/etc/chromium/initial_bookmarks.html
 
-LXDE_AUTOSTART=/etc/xdg/lxsession/LXDE/autostart
+lxde_autostart=/etc/xdg/lxsession/LXDE/autostart
 
 case "$1" in
     remove|upgrade)
@@ -56,10 +56,10 @@ case "$1" in
             mv $chromium_master_prefs-old $chromium_master_prefs
         fi
 
-        # Set kdesk as the desktop manager
-        sudo sed -i 's/\@kano-uixinit/\@pcmanfm --desktop --profile LXDE/g' $LXDE_AUTOSTART
-        echo "@lxpanel --profile LXDE" >> $LXDE_AUTOSTART
-        echo "@xscreensaver -no-splash" >> $LXDE_AUTOSTART
+        # Unset kdesk as the desktop manager
+        if [ -e "$lxde_autostart-old" ]; then
+            mv $lxde_autostart-old $lxde_autostart
+        fi
 
         ;;
 esac
