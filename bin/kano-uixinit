@@ -97,4 +97,9 @@ logger_info "Launching LXPanel"
 logger_info "Launching kdesk"
 /usr/bin/kdesk &
 
-
+# starting kano-vnc
+startvnc=/usr/share/kano-vnc/startvnc
+if [ -e $startvnc ]; then
+    logger_info "Launching startvnc"
+    $startvnc
+fi

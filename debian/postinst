@@ -21,7 +21,8 @@ custom_chromium_master_prefs=/usr/share/kano-desktop/config/chromium/master_pref
 chromium_bookmarks=/etc/chromium/initial_bookmarks.html
 custom_chromium_bookmarks=/usr/share/kano-desktop/config/chromium/initial_bookmarks.html
 
-LXDE_AUTOSTART=/etc/xdg/lxsession/LXDE/autostart
+lxde_autostart=/etc/xdg/lxsession/LXDE/autostart
+custom_lxde_autostart=/usr/share/kano-desktop/config/autostart/autostart
 
 SQUEAKDIR=/usr/share/squeak
 
@@ -82,9 +83,8 @@ case "$1" in
         cat $custom_chromium_bookmarks > $chromium_bookmarks
 
         # Set kdesk as the desktop manager
-        sudo sed -i 's/\@pcmanfm --desktop --profile LXDE/\@kano-uixinit/g' $LXDE_AUTOSTART
-        sudo sed -i 's/\@lxpanel --profile LXDE//g' $LXDE_AUTOSTART
-        sudo sed -i 's/\@xscreensaver -no-splash//g' $LXDE_AUTOSTART
+        cp $lxde_autostart $lxde_autostart-old
+        cp $custom_lxde_autostart $lxde_autostart
 
         ;;
 esac
