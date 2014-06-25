@@ -1,3 +1,9 @@
+kano-desktop (1.1-3) unstable; urgency=low
+
+  * Removing the sound files
+
+ -- Team Kano <dev@kano.me>  Wed, 25 Jun 2014 10:31:15 +0000
+
 kano-desktop (1.1-2) unstable; urgency=low
 
   * Removing the video files

@@ -17,7 +17,6 @@ config/autostart usr/share/kano-desktop/config
 config/keyboard/kanokeyboardrc usr/share/kano-desktop/config/keyboard
 config/keyboard/generickeyboardrc usr/share/kano-desktop/config/keyboard
 
-sounds usr/share/kano-media
 videos usr/share/kano-media
 
 gtk-themes/Kano usr/share/themes
