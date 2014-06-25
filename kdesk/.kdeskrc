@@ -1,9 +1,9 @@
 # .kdeskrc
-# 
+#
 # Copyright (C) 2014 Kano Computing Ltd.
 # License: http://www.gnu.org/licenses/gpl-2.0.txt GNU General Public License v2
 #
-# 
+#
 
 
 table Config
@@ -19,9 +19,9 @@ table Config
   Locked: true
 
   EnableSound: true
-  SoundWelcome: /usr/share/kano-media/sounds/kano_boot_up.mp3
-  SoundLaunchApp: /usr/share/kano-media/sounds/kano_open_app.mp3
-  SoundDisabledIcon: /usr/share/kano-media/sounds/kano_error.mp3
+  SoundWelcome: /usr/share/kano-media/sounds/kano_boot_up.wav
+  SoundLaunchApp: /usr/share/kano-media/sounds/kano_open_app.wav
+  SoundDisabledIcon: /usr/share/kano-media/sounds/kano_error.wav
 
   ScreenSaverTimeout: 900
   ScreenSaverProgram: /usr/bin/kdesk-eglsaver
