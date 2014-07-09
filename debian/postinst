@@ -54,6 +54,9 @@ case "$1" in
         ln -s /usr/share/kano-desktop/config/lxterminal /etc/skel/.config/lxterminal
         ln -s /usr/share/kano-desktop/config/lxsession /etc/skel/.config/lxsession
 
+        # ensure the user can write to lxpanel config file
+        chmod -R 777 /usr/share/kano-desktop/config/lxpanel
+
         # /etc/skel/Legal
         ln -s /usr/share/kano-desktop/Legal /etc/skel/Legal
 
