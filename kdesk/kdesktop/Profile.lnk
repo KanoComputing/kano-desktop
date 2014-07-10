@@ -7,7 +7,7 @@ table Icon
   HoverXOffset: 0
   HAlign: left
   Width: 200
-  Height: 100
+  Height: 90
   Relative-To: top-left
   X: 50
   Y: 23
