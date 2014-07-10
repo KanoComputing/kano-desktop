@@ -82,20 +82,39 @@ case $icon_name in
     ;;
 
     "ScreenSaverStart")
-	# Return rc different than zero to cancel the screen saver
-        echo "Received exit for Screen Saver Start - starting kano-sync and check-for-updates"
-        kano-sync --backup -s &
-        sudo /usr/bin/check-for-updates -t 24 -d &
+	# By default we let the screen saver kick in
+	echo "Received hook for Screen Saver Start"
 	rc=0
+
+	#
+	# Search for any programs that should not play along with the screen saver
+	# process names are pattern matched, so kano-updater will also find kano-updater-gui.
+	non_ssaver_processes="kano-updater kano-xbmc xbmc-bin minecraft-pi omxplayer"
+        for p in $non_ssaver_processes
+	do
+	    isalive=`pgrep -f "$p"`
+	    if [ "$isalive" != "" ]; then
+		echo "cancelling screen saver because process '$p' is running"
+		rc=1
+		break
+	    fi
+	done
+
+	if [ "$rc" == "0" ]; then
+	    echo "starting kano-sync and check-for-updates"
+	    kano-sync --backup -s &
+	    sudo /usr/bin/check-for-updates -t 24 -d &
+	fi
 	;;
 
     "ScreenSaverFinish")
-        echo "Received exit for Screen Saver Finish"
-        ;;
+	echo "Received hook for Screen Saver Finish"
+	;;
 
     *)
-    echo "Received exit for icon name: $icon_name - ignoring"
+    echo "Received hook for icon name: $icon_name - ignoring"
     ;;
 esac
 
+echo "Icon hooks returning rc=$rc"
 exit $rc
