@@ -30,7 +30,9 @@ Plugin {
         separator {
         }
         item {
-        command=run
+            image=/usr/share/kano-desktop/icons/kano-homefolder.png
+            name=Files
+            action=/usr/bin/pcmanfm
         }
         separator {
         }
