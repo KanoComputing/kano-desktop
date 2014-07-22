@@ -61,7 +61,7 @@ function first_boot_part_1
         fi
 
         if [ $EXIT_CODE -eq $LAUNCH_UPDATER ]; then
-           sudo kano-updater -f
+           sudo kano-updater -n
            /usr/bin/kano-init-flow $LAUNCH_SETTINGS
            EXIT_CODE=$?
         fi
