@@ -23,6 +23,7 @@ LAUNCH_KEYBOARD=7
 
 first_boot_file="$HOME/.kano-settings/first_boot"
 second_boot_file="$HOME/.kano-settings/second_boot"
+mkdir -p "$HOME/.kano-settings"
 
 function is_installed
 {
@@ -95,20 +96,22 @@ kano_keyboard=`python -c "from kano.utils import detect_kano_keyboard; print det
 check_for_updates=1
 
 # The following block is related to the first bootflow
-if [ ! -f first_boot_file ] && [ ! -f /boot/skip ]; then
+if [ ! -f $first_boot_file ] && [ ! -f /boot/skip ]; then
 
-    if [ ! -f second_boot_file ]; then
+    if [ ! -f $second_boot_file ]; then
         # first boot
         logger_info "Launching kano-init-flow first part"
         first_boot_part_1 $kano_keyboard
         logger_debug "Marking kano-init-flow rebooting"
-        touch second_boot_file
+        touch $second_boot_file
         sudo reboot
     else
         # second boot reboot
         logger_info "Launching kano-init-flow second part"
         first_boot_part_2
         logger_debug "Marking kano-init-flow completed"
+        rm $second_boot_file
+        touch $first_boot_file
         check_for_updates=0
     fi
 fi
