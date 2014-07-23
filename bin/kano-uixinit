@@ -13,12 +13,16 @@
 
 . /usr/share/kano-toolset/logging.sh
 
+LAUNCH_START=0
 LAUNCH_WIFI_CONFIG=1
 LAUNCH_UPDATER=2
 LAUNCH_SETTINGS=3
 LAUNCH_PROFILE=5
 LAUNCH_SWAG=6
 LAUNCH_KEYBOARD=7
+
+first_boot_file="$HOME/.kano-settings/first_boot"
+second_boot_file="$HOME/.kano-settings/second_boot"
 
 function is_installed
 {
@@ -40,7 +44,7 @@ function first_boot_part_1
     fi
 
     # Launch init flow from the beginning
-    sudo kano-init-flow 0
+    sudo kano-init-flow $LAUNCH_START
     EXIT_CODE=$?
 
     while [ $EXIT_CODE -le $LAUNCH_UPDATER ]; do
@@ -55,7 +59,7 @@ function first_boot_part_1
                 EXIT_CODE=$?
             else
                 # Launch again internet screen
-                sudo kano-init-flow 1
+                sudo kano-init-flow $LAUNCH_WIFI_CONFIG
                 EXIT_CODE=$?
             fi
         fi
@@ -88,44 +92,26 @@ function first_boot_part_2
 # detect kano-keyboard
 kano_keyboard=`python -c "from kano.utils import detect_kano_keyboard; print detect_kano_keyboard()"`
 
-first_boot=0
+check_for_updates=1
 
 # The following block is related to the first bootflow
-if is_installed kano-profile-cli && is_installed kano-settings; then
+if [ ! -f first_boot_file ] && [ ! -f /boot/skip ]; then
 
-    # DEV IMAGE: This is to skip the init-flow
-    if [ -f /boot/skip ]; then
-        kano-profile-cli save_app_state_variable kano-settings completed 1
-        first_boot=1
-
-    fi
-
-    # Get the status of the init
-    settings_done=`kano-profile-cli load_app_state_variable kano-settings completed`
-    if [ "$settings_done" != "1" ]; then
-
-        # After reboot
-        if [ "$settings_done" == "2" ]; then
-            logger_info "Launching kano-init-flow second part"
-            first_boot_part_2
-            logger_debug "Marking kano-init-flow completed"
-            kano-profile-cli save_app_state_variable kano-settings completed 1
-            first_boot=1
-        # First boot
-        else
-            logger_info "Launching kano-init-flow first part"
-            first_boot_part_1 $kano_keyboard
-            logger_debug "Marking kano-init-flow rebooting"
-            kano-profile-cli save_app_state_variable kano-settings completed 2
-            sudo reboot
-        fi
+    if [ ! -f second_boot_file ]; then
+        # first boot
+        logger_info "Launching kano-init-flow first part"
+        first_boot_part_1 $kano_keyboard
+        logger_debug "Marking kano-init-flow rebooting"
+        touch second_boot_file
+        sudo reboot
+    else
+        # second boot reboot
+        logger_info "Launching kano-init-flow second part"
+        first_boot_part_2
+        logger_debug "Marking kano-init-flow completed"
+        check_for_updates=0
     fi
 fi
-
-
-# We enter the Kano UIX interface after kano-init-flow.
-# It's not important if this stage has not been finalized
-# it will be restarted on next bootup or logoff/logon transition
 
 # startmouse
 logger_info "Launching startmouse"
@@ -151,11 +137,11 @@ fi
 
 # check for updates and display the update dialog
 # restrict server communication to max once a week (168 hours)
-if [ $first_boot -eq 0 ] && [ is_internet ]; then
+if [ $check_for_updates -eq 1 ] && [ is_internet ]; then
     logger_info "Checking for update"
     sudo /usr/bin/check-for-updates -t 168 -d
 else
-    logger_info "Not checking for update, internet not available"
+    logger_info "Not checking for update"
 fi
 
 # lxpanel
