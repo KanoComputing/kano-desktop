@@ -32,13 +32,13 @@ case $icon_name in
     "profile")
     # Ask kano-profile for the username, experience and level,
     # Then update the icon attributes accordingly.
-    echo "Received hook call for $icon_name, updating attributes.."
     IFS=$'\n'
     kano_statuses=`kano-profile-cli get_stats`
     apirc=$?
 
     # Uncomment me to debug kano profile API
     if [ "$debug" == "true" ]; then
+        echo "Received hook call for $icon_name, updating attributes.."
 	printf "Kano Profile API returns rc=$apirc, data=\n$kano_statuses\n"
     fi
 
@@ -104,7 +104,6 @@ case $icon_name in
 			msg="$msg|$notifications new notifications!"
 		    fi
 
-		    echo $msg >> /tmp/world.log
 		    printf "Message: $msg\n"
 		    ;;
 	    esac
@@ -114,7 +113,9 @@ case $icon_name in
 
     "ScreenSaverStart")
         # By default we let the screen saver kick in
-        echo "Received hook for Screen Saver Start"
+        if [ "$debug" == "true" ]; then
+            echo "Received hook for Screen Saver Start"
+        fi
         rc=0
 
         #
@@ -125,21 +126,27 @@ case $icon_name in
         do
             isalive=`pgrep -f "$p"`
             if [ "$isalive" != "" ]; then
-                echo "cancelling screen saver because process '$p' is running"
+                if [ "$debug" == "true" ]; then
+                    echo "cancelling screen saver because process '$p' is running"
+                fi
 		rc=1
 		break
 	    fi
 	done
 
 	if [ "$rc" == "0" ]; then
-	    echo "starting kano-sync and check-for-updates"
+            if [ "$debug" == "true" ]; then
+	        echo "starting kano-sync and check-for-updates"
+            fi
 	    kano-sync --backup -s &
 	    sudo /usr/bin/check-for-updates -t 24 -d &
 	fi
 	;;
 
     "ScreenSaverFinish")
-        echo "Received hook for Screen Saver Finish"
+        if [ "$debug" == "true" ]; then
+            echo "Received hook for Screen Saver Finish"
+        fi
 
         # TODO: Call the API to save how long the screeen saver ran for
         timerun=$2
@@ -150,5 +157,8 @@ case $icon_name in
     ;;
 esac
 
-echo "Icon hooks returning rc=$rc"
+if [ "$debug" == "true" ]; then
+    echo "Icon hooks returning rc=$rc"
+fi
+
 exit $rc
