@@ -86,8 +86,7 @@ case $icon_name in
 	IFS=$'\n'
 
 	# FIXME: Replace below line when API is ready
-	#kano_statuses=`kano-profile-cli get_stats`
-	kano_statuses=`echo -e "one: null\ntwo: null\nthree: something\nnotifications: 7\nmore: info\yupi: this is some garbage"`
+	kano_statuses=`kano-profile-cli get_notifications`
 	apirc=$?
 
 	if [ "$debug" == "true" ]; then
