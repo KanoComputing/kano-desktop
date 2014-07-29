@@ -81,20 +81,52 @@ case $icon_name in
     fi
     ;;
 
-    "ScreenSaverStart")
-	# By default we let the screen saver kick in
-	echo "Received hook for Screen Saver Start"
-	rc=0
 
-	#
-	# Search for any programs that should not play along with the screen saver
-	# process names are pattern matched, so kano-updater will also find kano-updater-gui.
-	non_ssaver_processes="kano-updater kano-xbmc xbmc-bin minecraft-pi omxplayer"
-        for p in $non_ssaver_processes
+    "world")
+	IFS=$'\n'
+
+	# FIXME: Replace below line when API is ready
+	#kano_statuses=`kano-profile-cli get_stats`
+	kano_statuses=`echo -e "one: null\ntwo: null\nthree: something\nnotifications: 7\nmore: info\yupi: this is some garbage"`
+	apirc=$?
+
+	if [ "$debug" == "true" ]; then
+	    printf "Kano Profile API returns rc=$apirc, data=\n$kano_statuses\n"
+	fi
+
+	for item in $kano_statuses
 	do
-	    isalive=`pgrep -f "$p"`
-	    if [ "$isalive" != "" ]; then
-		echo "cancelling screen saver because process '$p' is running"
+	    eval line_item=($item)
+	    case ${line_item[0]} in
+		"notifications:")
+		    msg="Kano World"
+		    notifications=${line_item[1]}
+		    if [ "$notifications" != "0" ]; then
+			msg="$msg|$notifications new notifications!"
+		    fi
+
+		    echo $msg >> /tmp/world.log
+		    printf "Message: $msg\n"
+		    ;;
+	    esac
+	done
+	;;
+
+
+    "ScreenSaverStart")
+        # By default we let the screen saver kick in
+        echo "Received hook for Screen Saver Start"
+        rc=0
+
+        #
+        # Search for any programs that should not play along with the screen saver
+        # process names are pattern matched, so kano-updater will also find kano-updater-gui.
+        non_ssaver_processes="kano-updater kano-xbmc xbmc-bin minecraft-pi omxplayer"
+        for p in $non_ssaver_processes
+        do
+            isalive=`pgrep -f "$p"`
+            if [ "$isalive" != "" ]; then
+                echo "cancelling screen saver because process '$p' is running"
 		rc=1
 		break
 	    fi
@@ -108,8 +140,11 @@ case $icon_name in
 	;;
 
     "ScreenSaverFinish")
-	echo "Received hook for Screen Saver Finish"
-	;;
+        echo "Received hook for Screen Saver Finish"
+
+        # TODO: Call the API to save how long the screeen saver ran for
+        timerun=$2
+        ;;
 
     *)
     echo "Received hook for icon name: $icon_name - ignoring"
