@@ -40,7 +40,11 @@ function first_boot_part_1
     # 1: Keyboard tutorial
     if [ "$1" == "True" ]; then
         kano-tutorial
+        # load background
+        /usr/bin/kdesk -w &
     else
+        # load background
+        /usr/bin/kdesk -w &
         # No keyboard detected
         sudo kano-init-flow $LAUNCH_KEYBOARD
     fi
@@ -89,9 +93,6 @@ function first_boot_part_2
     logger_info "Playing os_intro.mkv"
     kano-video-cli /usr/share/kano-media/videos/os_intro.mkv
 }
-
-# load background
-/usr/bin/kdesk -w &
 
 # detect kano-keyboard
 kano_keyboard=`python -c "from kano.utils import detect_kano_keyboard; print detect_kano_keyboard()"`
