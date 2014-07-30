@@ -34,8 +34,8 @@ table Config
   GridWidth: 140
   GridHeight: 125
 
-  GridIconWidth: 90
-  GridIconHeight: 90
+  GridIconWidth: 88
+  GridIconHeight: 88
 
   Transparency: 255
   Shadow: true
