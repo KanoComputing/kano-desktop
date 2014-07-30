@@ -9,7 +9,7 @@
 table Config
   FontName: Bariol
   FontSize: 22
-  SubtitleFontSize: 16
+  SubtitleFontSize: 14
   FontColor: #FFFFFF
   ToolTip.FontSize: 10
   ToolTip.FontName: Bariol
