@@ -142,7 +142,7 @@ case $icon_name in
             if [ "$debug" == "true" ]; then
                 echo "starting kano-sync and check-for-updates"
             fi
-            kano-sync --backup -s &
+            kano-sync --sync --backup -s &
             sudo /usr/bin/check-for-updates -t 24 -d &
         fi
         ;;
