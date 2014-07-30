@@ -93,21 +93,25 @@ case $icon_name in
 	    printf "Kano Profile API returns rc=$apirc, data=\n$kano_statuses\n"
 	fi
 
+	msg="Kano World"
+	icon="/usr/share/kano-desktop/icons/kano-world-launcher.png"
+
 	for item in $kano_statuses
 	do
 	    eval line_item=($item)
 	    case ${line_item[0]} in
 		"notifications:")
-		    msg="Kano World"
 		    notifications=${line_item[1]}
 		    if [ "$notifications" != "0" ]; then
+			icon="/usr/share/kano-desktop/icons/kano-world-launcher-alerts.png"
 			msg="$msg|$notifications notifications!"
 		    fi
-
-		    printf "Message: $msg\n"
 		    ;;
 	    esac
 	done
+
+	printf "Icon: $icon\n"
+	printf "Message: $msg\n"
 	;;
 
 

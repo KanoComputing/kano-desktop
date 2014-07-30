@@ -5,7 +5,6 @@ table Icon
   Singleton: true
   Message: Kano World
   Icon: /usr/share/kano-desktop/icons/kano-world-launcher.png
-  IconHover: /usr/share/kano-desktop/icons/World-hover.png
   HoverXOffset: 0
   HAlign: right
   Width: 300
