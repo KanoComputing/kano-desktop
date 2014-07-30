@@ -101,7 +101,7 @@ case $icon_name in
 		    msg="Kano World"
 		    notifications=${line_item[1]}
 		    if [ "$notifications" != "0" ]; then
-			msg="$msg|$notifications new notifications!"
+			msg="$msg|$notifications notifications!"
 		    fi
 
 		    printf "Message: $msg\n"
