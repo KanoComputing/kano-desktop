@@ -23,6 +23,7 @@ LAUNCH_KEYBOARD=7
 
 first_boot_file="$HOME/.kano-settings/first_boot"
 second_boot_file="$HOME/.kano-settings/second_boot"
+after_update_file="$HOME/.kano-settings/after_update"
 mkdir -p "$HOME/.kano-settings"
 
 function is_installed
@@ -67,6 +68,8 @@ function first_boot_part_1
 
         if [ $EXIT_CODE -eq $LAUNCH_UPDATER ]; then
            sudo kano-updater -n
+           # Create after update file to make sure we don't go through it again
+           touch $after_update_file
            sudo kano-init-flow $LAUNCH_SETTINGS
            EXIT_CODE=$?
         fi
@@ -99,11 +102,19 @@ check_for_updates=1
 if [ ! -f $first_boot_file ] && [ ! -f /boot/skip ]; then
 
     if [ ! -f $second_boot_file ]; then
-        # first boot
-        logger_info "Launching kano-init-flow first part"
-        first_boot_part_1 $kano_keyboard
+        # First part
+        if [ -f $after_update_file ]; then
+            # Resuming first boot
+            logger_info "Launching kano-init-flow after update"
+            sudo kano-init-flow $LAUNCH_SETTINGS
+        else
+            # first boot
+            logger_info "Launching kano-init-flow first part"
+            first_boot_part_1 $kano_keyboard
+        fi
         logger_debug "Marking kano-init-flow rebooting"
         touch $second_boot_file
+        rm $after_update_file
         sudo reboot
     else
         # second boot reboot
