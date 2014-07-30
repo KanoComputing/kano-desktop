@@ -88,6 +88,9 @@ function first_boot_part_1
 
 function first_boot_part_2
 {
+    # load background
+    /usr/bin/kdesk -w &
+    # Launch login screen
     kano-login first_boot
     sudo kano-init-flow $LAUNCH_SWAG
     logger_info "Playing os_intro.mkv"
@@ -126,6 +129,9 @@ if [ ! -f $first_boot_file ] && [ ! -f /boot/skip ]; then
         touch $first_boot_file
         check_for_updates=0
     fi
+else
+    # load background
+    /usr/bin/kdesk -w &
 fi
 
 # startmouse
