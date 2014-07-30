@@ -152,8 +152,9 @@ case $icon_name in
             echo "Received hook for Screen Saver Finish"
         fi
 
-        # TODO: Call the API to save how long the screeen saver ran for
+        # kanotracker collects how many times and for long the screen saver runs
         timerun=$2
+        kano-profile-cli increment_app_runtime screen-saver $timerun
         ;;
 
     *)
