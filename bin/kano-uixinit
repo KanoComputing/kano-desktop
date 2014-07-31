@@ -173,6 +173,9 @@ logger_info "Launching LXPanel"
 logger_info "Launching kdesk"
 /usr/bin/kdesk &
 
+# Report a startup event to Kano Tracker
+kano-profile-cli increment_app_runtime startup 0
+
 # Remove Homedir "Desktop" folder created by:
 # /usr/share/xsessions/lightdm-xsession.desktop
 rm -rf  ~/Desktop
