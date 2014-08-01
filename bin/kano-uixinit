@@ -40,14 +40,9 @@ function first_boot_part_1
     # 1: Keyboard tutorial
     if [ "$1" == "True" ]; then
         kano-tutorial
-        # load background
-        /usr/bin/kdesk -w &
-    else
-        # load background
-        /usr/bin/kdesk -w &
-        # No keyboard detected
-        sudo kano-init-flow $LAUNCH_KEYBOARD
     fi
+    # load background
+    /usr/bin/kdesk -w &
 
     # Launch init flow from the beginning
     sudo kano-init-flow $LAUNCH_START
