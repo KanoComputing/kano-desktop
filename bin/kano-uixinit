@@ -66,18 +66,20 @@ function first_boot_part_1
         fi
 
         if [ $EXIT_CODE -eq $LAUNCH_UPDATER ]; then
-           sudo kano-updater -n
-           # Create after update file to make sure we don't go through it again
-           touch $after_update_file
-           # regenerating ssh keys
-           sudo regenerate-ssh-keys &
-           sudo kano-init-flow $LAUNCH_SETTINGS
-           EXIT_CODE=$?
+            sudo kano-updater -n
+            # Create after update file to make sure we don't go through it again
+            touch $after_update_file
+            # regenerating ssh keys
+            if [ `kano-usertools number` -eq 1 ]; then
+                sudo regenerate-ssh-keys &
+            fi
+            sudo kano-init-flow $LAUNCH_SETTINGS
+            EXIT_CODE=$?
         fi
 
         # If you close window, stops application crashing
         if [ $EXIT_CODE -eq 0 ]; then
-           exit $?
+            exit $?
         fi
 
     done
