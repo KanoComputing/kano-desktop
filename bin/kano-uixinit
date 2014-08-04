@@ -69,6 +69,8 @@ function first_boot_part_1
            sudo kano-updater -n
            # Create after update file to make sure we don't go through it again
            touch $after_update_file
+           # regenerating ssh keys
+           sudo regenerate-ssh-keys
            sudo kano-init-flow $LAUNCH_SETTINGS
            EXIT_CODE=$?
         fi
