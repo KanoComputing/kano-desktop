@@ -18,11 +18,10 @@ LAUNCH_WIFI_CONFIG=1
 LAUNCH_UPDATER=2
 LAUNCH_SETTINGS=3
 LAUNCH_PROFILE=5
-LAUNCH_SWAG=6
-LAUNCH_KEYBOARD=7
 
 first_boot_file="$HOME/.kano-settings/first_boot"
 second_boot_file="$HOME/.kano-settings/second_boot"
+before_update_file="$HOME/.kano-settings/before_update"
 after_update_file="$HOME/.kano-settings/after_update"
 mkdir -p "$HOME/.kano-settings"
 
@@ -38,15 +37,33 @@ function is_installed
 function first_boot_part_1
 {
     # 1: Keyboard tutorial
-    if [ "$1" == "True" ]; then
+    if [ ! -f $before_update_file ] && [ "$1" == "True" ]; then
         kano-tutorial
     fi
     # load background
     /usr/bin/kdesk -w &
 
-    # Launch init flow from the beginning
-    sudo kano-init-flow $LAUNCH_START
-    EXIT_CODE=$?
+    if [ ! -f $before_update_file ]; then
+        # First boot
+        # Create before update file
+        touch $before_update_file
+        # Launch init flow from the beginning
+        sudo kano-init-flow $LAUNCH_START
+        EXIT_CODE=$?
+    else
+        # This is not the first boot, RPi reboot before updater step
+        # Check for internet
+        /usr/bin/is_internet
+        rc=$?
+        if [ "$rc" -eq "0" ]; then
+            sudo kano-init-flow $LAUNCH_UPDATER
+            EXIT_CODE=$?
+        else
+            # Launch again internet screen
+            sudo kano-init-flow $LAUNCH_WIFI_CONFIG
+            EXIT_CODE=$?
+        fi
+    fi
 
     while [ $EXIT_CODE -le $LAUNCH_UPDATER ]; do
 
@@ -91,7 +108,6 @@ function first_boot_part_2
     /usr/bin/kdesk -w &
     # Launch login screen
     kano-login first_boot
-    sudo kano-init-flow $LAUNCH_SWAG
     logger_info "Playing os_intro.mkv"
     kano-video-cli /usr/share/kano-media/videos/os_intro.mkv
 }
@@ -107,6 +123,8 @@ if [ ! -f $first_boot_file ] && [ ! -f /boot/skip ]; then
     if [ ! -f $second_boot_file ]; then
         # First part
         if [ -f $after_update_file ]; then
+            # load background
+            /usr/bin/kdesk -w &
             # Resuming first boot
             logger_info "Launching kano-init-flow after update"
             sudo kano-init-flow $LAUNCH_SETTINGS
