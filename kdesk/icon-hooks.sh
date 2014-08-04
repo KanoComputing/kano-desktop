@@ -104,7 +104,11 @@ case $icon_name in
                     notifications=${line_item[1]}
                     if [ "$notifications" != "0" ]; then
                         icon="/usr/share/kano-desktop/icons/kano-world-launcher-alerts.png"
-                        msg="$msg|$notifications notifications!"
+                        if [ "$notifications" == "1" ]; then
+                            msg="$msg|$notifications notification"
+                        else
+                            msg="$msg|$notifications notifications"
+                        fi
                     fi
                     ;;
             esac
