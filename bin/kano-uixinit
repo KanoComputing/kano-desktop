@@ -18,6 +18,7 @@ LAUNCH_WIFI_CONFIG=1
 LAUNCH_UPDATER=2
 LAUNCH_SETTINGS=3
 LAUNCH_PROFILE=5
+LAUNCH_SWAG=6
 
 first_boot_file="$HOME/.kano-settings/first_boot"
 second_boot_file="$HOME/.kano-settings/second_boot"
@@ -86,6 +87,7 @@ function first_boot_part_1
             sudo kano-updater -n
             # Create after update file to make sure we don't go through it again
             touch $after_update_file
+            rm $before_update_file
             # regenerating ssh keys
             if [ `kano-usertools number` -eq 1 ]; then
                 sudo regenerate-ssh-keys &
@@ -108,6 +110,7 @@ function first_boot_part_2
     /usr/bin/kdesk -w &
     # Launch login screen
     kano-login first_boot
+    sudo kano-init-flow $LAUNCH_SWAG
     logger_info "Playing os_intro.mkv"
     kano-video-cli /usr/share/kano-media/videos/os_intro.mkv
 }
