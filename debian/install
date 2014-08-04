@@ -23,6 +23,4 @@ gtk-themes/Kano usr/share/themes
 
 config/rxvt/x11-rxvt etc/X11/Xresources
 
-lxde/applications usr/share
-
 bin usr
