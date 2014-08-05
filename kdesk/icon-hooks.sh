@@ -96,12 +96,18 @@ case $icon_name in
         msg="Kano World"
         icon="/usr/share/kano-desktop/icons/kano-world-launcher.png"
 
+        # Uncomment line below to test your own notifications
+        #kano_statuses="notifications: 8901976323"
+
         for item in $kano_statuses
         do
             eval line_item=($item)
             case ${line_item[0]} in
                 "notifications:")
-                    notifications=${line_item[1]}
+
+                    # Extract numbers only - Any string will become 0 which meansno notifications.
+                    notifications=$(printf "%d" ${line_item[1]})
+
                     if [ "$notifications" != "0" ]; then
                         icon="/usr/share/kano-desktop/icons/kano-world-launcher-alerts.png"
                         if [ "$notifications" == "1" ]; then
