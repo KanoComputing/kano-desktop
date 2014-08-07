@@ -9,7 +9,7 @@ Package: kano-desktop
 Architecture: all
 Depends: ${misc:Depends}, openbox (>=3.5.2-4~kano.1),
          kdesk (>=1.1-02), chromium, kano-themes, lxmenu-data (>=0.1.2-3~kano),
-         kano-video-files, kano-init-flow
+         kano-video-files, kano-init-flow, kano-profile (>=1.2-1)
 Replaces: kano-settings (<< 1.1-1.20140512build2), kano-feedback (<< 1.1-3)
 Breaks: kano-settings (<< 1.1-1.20140512build2), kano-feedback (<< 1.1-3)
 Description: The desktop experience of Kanux
