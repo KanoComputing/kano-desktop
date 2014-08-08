@@ -10,8 +10,18 @@ The following images and resources are subject to copyright:
 /usr/share/kano-desktop/images/*
 /usr/share/kano-desktop/wallpapers/*
 /usr/share/kano-desktop/icons/*
-/usr/share/kanuxbox/resources/*
-/usr/share/kano-video/media/video/monkey.flv
+/usr/share/kano-video/media/*
+/usr/share/kano-media/*
+/usr/share/kano-updater/images/*
+/usr/share/kano-settings/icon/*
+/usr/share/kano-settings/media/Icons/*
+/usr/share/kano-settings/media/Graphics/*
+/usr/share/kano-settings/settings-widget.png
+/usr/share/kano-widgets/icons/*
+/usr/share/kano-init-flow/media/*
+/usr/share/kano-feedback/media/icons/*
+/usr/share/kano-apps/*
+/usr/share/kano/media/images/*
 
 Copyright (C) 2013, 2014 Kano Computing Ltd.
 
