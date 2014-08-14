@@ -30,6 +30,11 @@ Plugin {
         separator {
         }
         item {
+            image=/usr/share/kano-desktop/icons/apps.png
+            name=Apps
+            action=/usr/bin/kano-apps
+        }
+        item {
             image=/usr/share/kano-desktop/icons/kano-homefolder.png
             name=Files
             action=/usr/bin/pcmanfm
