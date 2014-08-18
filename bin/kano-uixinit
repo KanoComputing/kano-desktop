@@ -69,7 +69,7 @@ function first_boot_part_1
     while [ $EXIT_CODE -le $LAUNCH_UPDATER ]; do
 
         if [ $EXIT_CODE -eq $LAUNCH_WIFI_CONFIG ]; then
-            rxvt -title \'WiFi\' -e sudo /usr/bin/kano-wifi
+            rxvt -title 'WiFi Setup' -e sudo /usr/bin/kano-wifi
             # Check for internet
             /usr/bin/is_internet
             rc=$?
