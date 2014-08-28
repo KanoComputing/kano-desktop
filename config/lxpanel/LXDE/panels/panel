@@ -81,6 +81,11 @@ Plugin {
 }
 
 Plugin {
+    type = kano_feedback
+}
+
+
+Plugin {
     type = kano_profile
 }
 
