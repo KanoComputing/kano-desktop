@@ -1,7 +1,7 @@
 table Icon
   Caption:
   AppID: /usr/bin/kano-world-launcher
-  Command: kdesk-blur /usr/bin/kano-world-launcher
+  Command: /usr/bin/kano-world-launcher
   Singleton: true
   Message: Kano World
   Icon: /usr/share/kano-desktop/icons/kano-world-launcher.png
