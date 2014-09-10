@@ -12,6 +12,10 @@ Depends: ${misc:Depends}, openbox (>=3.5.2-4~kano.1),
          kano-video-files, kano-init-flow, kano-profile (>=1.2-1)
 Replaces: kano-settings (<< 1.1-1.20140512build2), kano-feedback (<< 1.1-3)
 Breaks: kano-settings (<< 1.1-1.20140512build2), kano-feedback (<< 1.1-3)
+
+# TODO: Move the cgroup-bin conflict to raspberrypi-linux
+Conflicts: cgroup-bin, gnome-themes-standard
+
 Description: The desktop experience of Kanux
  This package contains a variety of configuration files and resources that
  make up the whole KANO desktop experience on top of LXDE.
