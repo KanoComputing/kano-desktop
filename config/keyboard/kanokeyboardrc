@@ -67,3 +67,8 @@
 # Make
 "/usr/bin/kano-signal make"
   m:0x0 + c:194
+
+# Screenshot
+"/usr/bin/kano-screenshot-hotkey"
+  m:0x10 + c:39
+  Mod2 + s
