@@ -36,3 +36,8 @@
 #keystate_numlock = enable
 #keystate_capslock = enable
 #keystate_scrolllock= enable
+
+# generic defintion for the "Print Screen" keyboard key press
+"/usr/bin/kano-screenshot-hotkey"
+  m:0x4 + c:107
+  Control + Print
