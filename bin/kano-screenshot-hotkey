@@ -25,10 +25,8 @@ fi
 
 # Create the screenshots directory if needed
 dirname=`echo $HOME/Screenshots`
-if [[ $dirname == /home/* ]]; then
-    if [ ! -d "$dirname" ]; then
-        mkdir -p "$dirname"
-    fi
+if [ ! -d "$dirname" ] && [[ $dirname == /home/* ]]; then
+    mkdir -p "$dirname"
 fi
 
 # Play camera shutter sound and take a screenshot
