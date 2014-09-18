@@ -30,6 +30,6 @@ if [ ! -d "$dirname" ] && [[ $dirname == /home/* ]]; then
 fi
 
 # Play camera shutter sound and take a screenshot
-aplay /usr/share/kano-media/sounds/camera-shutter.wav
+aplay /usr/share/kano-media/sounds/kano_camera_shutter.wav
 kano-screenshot -f $dirname
 exit $?
