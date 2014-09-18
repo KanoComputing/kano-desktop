@@ -17,6 +17,8 @@ chromium_bookmarks=/etc/chromium/initial_bookmarks.html
 
 lxde_autostart=/etc/xdg/lxsession/LXDE/autostart
 
+SUDOERS_FILE=/etc/sudoers.d/kano-desktop_conf
+
 case "$1" in
     remove|upgrade)
 
@@ -60,6 +62,9 @@ case "$1" in
         if [ -e "$lxde_autostart-old" ]; then
             mv $lxde_autostart-old $lxde_autostart
         fi
+
+        # remove sudoers file to switch VTs
+        rm -f $SUDOERS_FILE
 
         ;;
 esac

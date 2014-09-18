@@ -41,13 +41,3 @@
 "/usr/bin/kano-screenshot-hotkey"
   m:0x4 + c:107
   Control + Print
-
-# Ctrl-Alt-1 will switch to tty1
-"sudo /bin/chvt 1"
-m:0xc + c:10
-Control+Alt + 1
-
-# Ctrl-Alt-2 will switch to tty2
-"sudo /bin/chvt 2"
-m:0xc + c:11
-Control+Alt + 2
