@@ -13,12 +13,12 @@
 
 . /usr/share/kano-toolset/logging.sh
 
-LAUNCH_START=10
-LAUNCH_WIFI_CONFIG=11
-LAUNCH_UPDATER=12
-LAUNCH_SETTINGS=13
-LAUNCH_PROFILE=15
-LAUNCH_SWAG=16
+LAUNCH_START=0
+LAUNCH_WIFI_CONFIG=1
+LAUNCH_UPDATER=2
+LAUNCH_SETTINGS=3
+LAUNCH_PROFILE=5
+LAUNCH_SWAG=6
 
 first_boot_file="$HOME/.kano-settings/first_boot"
 second_boot_file="$HOME/.kano-settings/second_boot"
