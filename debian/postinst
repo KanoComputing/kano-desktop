@@ -26,6 +26,8 @@ custom_lxde_autostart=/usr/share/kano-desktop/config/autostart/autostart
 
 SQUEAKDIR=/usr/share/squeak
 
+TMP_SUDOERS_FILE=/tmp/kano-desktop_conf
+
 case "$1" in
     configure)
 
@@ -112,6 +114,19 @@ case "$1" in
         # Set kdesk as the desktop manager
         cp $lxde_autostart $lxde_autostart-old
         cp $custom_lxde_autostart $lxde_autostart
+
+        # allow user to switch to virtual console terminals
+        # Create custom sudoers file
+        echo "%sudo   ALL=(root) NOPASSWD: /bin/chvt" > $TMP_SUDOERS_FILE
+
+        # The owner and group for the sudoers file must both be 0
+        chown root:root $TMP_SUDOERS_FILE
+
+        # The file permissions must be set to 0440
+        chmod 0440 $TMP_SUDOERS_FILE
+
+        # Move the file to the sudoers directory
+        mv $TMP_SUDOERS_FILE /etc/sudoers.d/
 
         ;;
 esac
