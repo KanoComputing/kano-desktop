@@ -70,8 +70,8 @@
 
 # Screenshot
 "/usr/bin/kano-screenshot-hotkey"
-  m:0x10 + c:39
-  Mod2 + s
+  m:0xc + c:21
+  Control+Alt + equal
 
 # Ctrl-Alt-1 will switch to tty1
 "sudo /bin/chvt 1"
