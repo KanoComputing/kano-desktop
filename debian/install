@@ -1,26 +1,23 @@
 wallpapers usr/share/kano-desktop
 icons usr/share/kano-desktop
 images usr/share/kano-desktop
-config/openbox usr/share/kano-desktop
 lightdm usr/share/kano-desktop
 kdesk usr/share/kano-desktop
 Legal usr/share/kano-desktop
 
-config/lxterminal usr/share/kano-desktop/config
-config/lxsession usr/share/kano-desktop/config
-config/lxpanel usr/share/kano-desktop/config
-config/pcmanfm usr/share/kano-desktop/config
-config/chromium usr/share/kano-desktop/config
-config/profile usr/share/kano-desktop/config
 config/autostart usr/share/kano-desktop/config
-
+config/chromium usr/share/kano-desktop/config
 config/keyboard/kanokeyboardrc usr/share/kano-desktop/config/keyboard
 config/keyboard/generickeyboardrc usr/share/kano-desktop/config/keyboard
-
-videos usr/share/kano-media
-
-gtk-themes/Kano usr/share/themes
-
+config/libfm usr/share/kano-desktop/config
+config/lxpanel usr/share/kano-desktop/config
+config/lxterminal usr/share/kano-desktop/config
+config/lxsession usr/share/kano-desktop/config
+config/openbox usr/share/kano-desktop
+config/pcmanfm usr/share/kano-desktop/config
+config/profile usr/share/kano-desktop/config
 config/rxvt/x11-rxvt etc/X11/Xresources
 
+videos usr/share/kano-media
+gtk-themes/Kano usr/share/themes
 bin usr

@@ -45,6 +45,7 @@ case "$1" in
 
         # Removing links
         rm -f /etc/skel/.config/pcmanfm
+        rm -f /etc/skel/.config/libfm
         rm -f /etc/skel/.config/lxpanel
         rm -f /etc/skel/.config/lxterminal
         rm -f /etc/skel/.config/lxsession

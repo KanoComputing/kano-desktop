@@ -52,6 +52,7 @@ case "$1" in
         # /etc/skel/.config
         mkdir -p /etc/skel/.config
         ln -s /usr/share/kano-desktop/config/pcmanfm /etc/skel/.config/pcmanfm
+        ln -s /usr/share/kano-desktop/config/libfm /etc/skel/.config/libfm
         ln -s /usr/share/kano-desktop/config/lxpanel /etc/skel/.config/lxpanel
         ln -s /usr/share/kano-desktop/config/lxterminal /etc/skel/.config/lxterminal
         ln -s /usr/share/kano-desktop/config/lxsession /etc/skel/.config/lxsession
