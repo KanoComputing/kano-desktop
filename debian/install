@@ -20,4 +20,7 @@ config/rxvt/x11-rxvt etc/X11/Xresources
 
 videos usr/share/kano-media
 gtk-themes/Kano usr/share/themes
-bin usr
+
+bin/kano-screenshot-hotkey usr/bin
+bin/kano-uixinit usr/bin
+bin/open-me.sh etc/skel/.Rabbithole
