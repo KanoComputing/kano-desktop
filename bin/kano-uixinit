@@ -197,13 +197,23 @@ logger_info "Launching startmouse"
 # restrict server communication to max once a week (168 hours)
 if [ $check_for_updates -eq 1 ] && [ is_internet ]; then
     logger_info "Checking for update"
+
+    # present an hourglass
+    python -c "from kdesk import hourglass; hourglass.hourglass_start('check-for-updates');"
     sudo /usr/bin/check-for-updates -t 168 -d
+
+    # remove the hourglass for such cases where check-for-updates decides there is nothing to show
+    python -c "from kdesk import hourglass; hourglass.hourglass_end()');"
+
 else
     logger_info "Not checking for update"
 fi
 
 # lxpanel
 logger_info "Launching LXPanel"
+
+# start hourglass for lxpanel startup
+python -c "from kdesk import hourglass; hourglass.hourglass_start('lxpanel');"
 /usr/bin/lxpanel --profile LXDE &
 
 # starting kdesk
