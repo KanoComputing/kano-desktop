@@ -17,6 +17,7 @@ config/openbox usr/share/kano-desktop
 config/pcmanfm usr/share/kano-desktop/config
 config/profile usr/share/kano-desktop/config
 config/rxvt/x11-rxvt etc/X11/Xresources
+config/gtk-2.0 etc/skel/.config/
 
 videos usr/share/kano-media
 gtk-themes/Kano usr/share/themes
