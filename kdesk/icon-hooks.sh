@@ -24,6 +24,9 @@ if [ "$2" == "debug" ]; then
     debug="true"
 fi
 
+# Name of pipe for Kano Notifications desktop widget
+pipe_filename="$HOME/.kano-notifications.fifo"
+
 # default return code
 rc=0
 
@@ -150,11 +153,17 @@ case $icon_name in
         done
 
         if [ "$rc" == "0" ]; then
+
             if [ "$debug" == "true" ]; then
                 echo "starting kano-sync and check-for-updates"
             fi
             kano-sync --sync --backup -s &
             sudo /usr/bin/check-for-updates -t 24 -d &
+        fi
+
+        # disable Notifications Widget alerts momentarily until the screen saver stops
+        if [ -p "$pipe_filename" ]; then
+            echo "pause" >> $pipe_filename
         fi
         ;;
 
@@ -166,6 +175,11 @@ case $icon_name in
         # kanotracker collects how many times and for long the screen saver runs
         timerun=$2
         kano-profile-cli increment_app_runtime screen-saver $timerun
+
+        # re-enable notifications widget UI alerts so they popup on the now visible Kano Desktop
+        if [ -p "$pipe_filename" ]; then
+            echo "resume" >> $pipe_filename
+        fi
         ;;
 
     *)
