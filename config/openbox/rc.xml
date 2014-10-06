@@ -754,10 +754,6 @@
     <decor>no</decor>
   </application>
 
-  <application class="Make-music">
-    <decor>no</decor>
-  </application>
-
   <application class="pong.py">
     <decor>no</decor>
   </application>
