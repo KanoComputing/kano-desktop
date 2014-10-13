@@ -89,7 +89,7 @@ case $icon_name in
         IFS=$'\n'
 
         # FIXME: Replace below line when API is ready
-        kano_statuses=`kano-profile-cli get_notifications`
+        kano_statuses=`kano-profile-cli get_notifications_count`
         apirc=$?
 
         if [ "$debug" == "true" ]; then
@@ -100,13 +100,13 @@ case $icon_name in
         icon="/usr/share/kano-desktop/icons/kano-world-launcher.png"
 
         # Uncomment line below to test your own notifications
-        #kano_statuses="notifications: 8901976323"
+        #kano_statuses="notifications_count: 8901976323"
 
         for item in $kano_statuses
         do
             eval line_item=($item)
             case ${line_item[0]} in
-                "notifications:")
+                "notifications_count:")
 
                     # Extract numbers only - Any string will become 0 which meansno notifications.
                     notifications=$(printf "%d" ${line_item[1]})
