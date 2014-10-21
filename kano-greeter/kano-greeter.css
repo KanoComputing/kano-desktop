@@ -1,0 +1,21 @@
+GtkLabel {
+    font: Bariol 18;
+    font-weight: bold;
+}
+
+GtkEventBox.user {
+    background: @kano_orange;
+    border-width: 3px;
+    border-radius:3px;
+    padding: 12px;
+}
+
+GtkEventBox.user GtkLabel {
+    color: #ffffff;
+}
+
+GtkEventBox.user.hover {
+    background: @kano_orange_lighter;
+    border-color: @active_border;
+    border-style: solid;
+}

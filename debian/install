@@ -1,9 +1,12 @@
 wallpapers usr/share/kano-desktop
 icons usr/share/kano-desktop
 images usr/share/kano-desktop
-lightdm usr/share/kano-desktop
 kdesk usr/share/kano-desktop
 Legal usr/share/kano-desktop
+
+kano-greeter/kano-greeter.py usr/share/kano-desktop/kano-greeter
+kano-greeter/kano-greeter.css usr/share/kano-desktop/kano-greeter
+kano-greeter/kano-greeter.desktop usr/share/xgreeters
 
 config/autostart usr/share/kano-desktop/config
 config/chromium usr/share/kano-desktop/config
