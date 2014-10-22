@@ -19,6 +19,7 @@ from kano.gtk3.top_bar import TopBar
 from kano.gtk3.buttons import KanoButton
 from kano.gtk3.heading import Heading
 from kano.gtk3.application_window import ApplicationWindow
+from kano.gtk3.kano_dialog import KanoDialog
 
 
 GREETER = None
@@ -154,9 +155,9 @@ class PasswordView(Gtk.Grid):
         self.password.connect('activate', self._login_cb)
         self.attach(self.password, 0, 1, 1, 1)
 
-        login_btn = KanoButton('Login')
-        login_btn.connect('button-release-event', self._login_cb)
-        self.attach(login_btn, 0, 2, 1, 1)
+        self.login_btn = KanoButton('Login')
+        self.login_btn.connect('button-release-event', self._login_cb)
+        self.attach(self.login_btn, 0, 2, 1, 1)
 
         # connect signal handlers to LightDM
         GREETER.connect('show-prompt', self._send_password_cb)
@@ -164,8 +165,10 @@ class PasswordView(Gtk.Grid):
                         self._authentication_complete_cb)
         GREETER.connect('show-message', self._auth_error_cb)
 
-    def _login_cb(self, event, button):
+    def _login_cb(self, event=None, button=None):
         logger.debug('Sending username to LightDM')
+
+        self.login_btn.start_spinner()
         GREETER.authenticate(self.user)
 
         if GREETER.get_is_authenticated():
@@ -173,30 +176,47 @@ class PasswordView(Gtk.Grid):
             start_session()
 
     def _send_password_cb(self, _greeter, text, prompt_type):
+        logger.debug('Need to show prompt: {}'.format(text))
         if _greeter.get_in_authentication():
             logger.debug('Sending password to LightDM')
             _greeter.respond(self.password.get_text())
 
     def _authentication_complete_cb(self, _greeter):
         logger.debug('Authentication process is complete')
-        if _greeter.get_is_authenticated():
-            logger.info(
-                'The user {} is authenticated. Starting LightDM X Session'
-                .format(self.user))
 
-            if not _greeter.start_session_sync('lightdm-xsession'):
-                logger.error('Failed to start session')
-            else:
-                logger.info('Login failed')
+        if not _greeter.get_is_authenticated():
+            logger.warn('Could not authenticate user {}'.format(self.user))
+            self._auth_error_cb('Incorrect password (The default is Kano)')
 
-    def _auth_error_cb(self, text, message_type):
+            return
+
+        logger.info(
+            'The user {} is authenticated. Starting LightDM X Session'
+            .format(self.user))
+
+        if not _greeter.start_session_sync('lightdm-xsession'):
+            logger.error('Failed to start session')
+        else:
+            logger.info('Login failed')
+
+    def _auth_error_cb(self, text, message_type=None):
         logger.info('There was an error logging in: {}'.format(text))
+
+        win = self.get_toplevel()
+        win.go_to_users()
+
+        error = KanoDialog(title_text='Error Logging In',
+                           description_text=text,
+                           parent_window=self.get_toplevel())
+        error.dialog.set_position(Gtk.WindowPosition.CENTER_ALWAYS)
+        error.run()
 
 
 if __name__ == '__main__':
     try:
         # Refresh the wallpaper
         os.system('kdesk -w')
+
         apply_styling_to_screen(
             '/usr/share/kano-desktop/kano-greeter/kano-greeter.css')
         GREETER = LightDM.Greeter()
