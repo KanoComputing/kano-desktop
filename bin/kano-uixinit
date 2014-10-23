@@ -179,7 +179,7 @@ if [ -e $INIT_CONF ]; then
 fi
 
 # The following block is related to the first bootflow
-if [ ! -f $first_boot_file ] && [ "$SKIP" == "true" ]; then
+if [ ! -f $first_boot_file ] && [ "$SKIP" != "true" ]; then
 
     if [ ! -f $second_boot_file ]; then
         # First part
