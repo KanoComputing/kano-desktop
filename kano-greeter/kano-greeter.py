@@ -22,9 +22,6 @@ from kano.gtk3.application_window import ApplicationWindow
 from kano.gtk3.kano_dialog import KanoDialog
 
 
-GREETER = None
-
-
 class GreeterWindow(ApplicationWindow):
     WIDTH = 400
     HEIGHT = -1
@@ -138,12 +135,15 @@ class User(Gtk.EventBox):
 
 
 class PasswordView(Gtk.Grid):
+    greeter = LightDM.Greeter()
 
     def __init__(self, user):
         Gtk.Grid.__init__(self)
 
         self.get_style_context().add_class('password')
         self.set_row_spacing(10)
+
+        self._reset_greeter()
 
         self.user = user
         title = Heading('Enter your password',
@@ -159,19 +159,23 @@ class PasswordView(Gtk.Grid):
         self.login_btn.connect('button-release-event', self._login_cb)
         self.attach(self.login_btn, 0, 2, 1, 1)
 
+    def _reset_greeter(self):
+        PasswordView.greeter = PasswordView.greeter.new()
+        PasswordView.greeter.connect_sync()
+
         # connect signal handlers to LightDM
-        GREETER.connect('show-prompt', self._send_password_cb)
-        GREETER.connect('authentication-complete',
-                        self._authentication_complete_cb)
-        GREETER.connect('show-message', self._auth_error_cb)
+        PasswordView.greeter.connect('show-prompt', self._send_password_cb)
+        PasswordView.greeter.connect('authentication-complete',
+                                     self._authentication_complete_cb)
+        PasswordView.greeter.connect('show-message', self._auth_error_cb)
 
     def _login_cb(self, event=None, button=None):
         logger.debug('Sending username to LightDM')
 
         self.login_btn.start_spinner()
-        GREETER.authenticate(self.user)
+        PasswordView.greeter.authenticate(self.user)
 
-        if GREETER.get_is_authenticated():
+        if PasswordView.greeter.get_is_authenticated():
             logger.debug('User is already authenticated, starting session')
             start_session()
 
@@ -219,8 +223,6 @@ if __name__ == '__main__':
 
         apply_styling_to_screen(
             '/usr/share/kano-desktop/kano-greeter/kano-greeter.css')
-        GREETER = LightDM.Greeter()
-        GREETER.connect_sync()
 
         WIN = GreeterWindow()
         WIN.show_all()
