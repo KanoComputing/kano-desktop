@@ -10,6 +10,7 @@ openbox_rc=/etc/xdg/openbox/rc.xml
 lxde_openbox_rc=/etc/xdg/openbox/LXDE/rc.xml
 
 lightdm_config=/etc/lightdm/lightdm.conf
+lightdm_kdeskrc=/var/lib/lightdm/.kdeskrc
 
 chromium_master_prefs=/etc/chromium/master_preferences
 chromium_bookmarks=/etc/chromium/initial_bookmarks.html
@@ -47,6 +48,7 @@ case "$1" in
         rm -f /etc/skel/.config/lxsession
         rm -rf /etc/skel/Legal
         rm -f /usr/bin/kano-greeter
+        rm -f $lightdm_kdeskrc
 
         # Revert chromium config
         if [ -e "$chromium_bookmarks-old" ]; then

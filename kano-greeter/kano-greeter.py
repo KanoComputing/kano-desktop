@@ -10,6 +10,7 @@
 from gi.repository import Gtk
 from gi.repository import Gdk
 from gi.repository import LightDM
+import os
 
 from kano.logging import logger
 from kano.gtk3.apply_styles import apply_common_to_screen, \
@@ -194,6 +195,8 @@ class PasswordView(Gtk.Grid):
 
 if __name__ == '__main__':
     try:
+        # Refresh the wallpaper
+        os.system('kdesk -w')
         apply_styling_to_screen(
             '/usr/share/kano-desktop/kano-greeter/kano-greeter.css')
         GREETER = LightDM.Greeter()
