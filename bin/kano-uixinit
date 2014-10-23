@@ -68,6 +68,11 @@ function first_boot_part_1
         # Launch init flow from the beginning
         sudo kano-init-flow $LAUNCH_START
         EXIT_CODE=$?
+        
+        # Skip the wifi settings and update for workshops
+        if [ "$FLOW" == "workshops" ]; then
+            EXIT_CODE=$LAUNCH_SETTINGS
+        fi
     else
         # This is not the first boot, RPi reboot before updater step
         # Check for internet
@@ -130,8 +135,12 @@ function first_boot_part_2
     # loads and sets the keyboard layout
     set_keyboard $1
     # Launch login screen
-    kano-login first_boot
-    sudo kano-init-flow $LAUNCH_SWAG
+
+    if [ "$FLOW" != "workshops" ]; then
+        kano-login first_boot
+        sudo kano-init-flow $LAUNCH_SWAG
+    fi
+
     logger_info "Playing os_intro.mkv"
     kano-video-cli /usr/share/kano-media/videos/os_intro.mkv
 }
@@ -151,8 +160,26 @@ kano_keyboard=`python -c "from kano.utils import detect_kano_keyboard; print det
 
 check_for_updates=1
 
+# Load init configuration options
+INIT_CONF=/boot/init.conf
+SKIP="false"
+FLOW="normal"
+if [ -e $INIT_CONF ]; then
+    do_skip=`json-get $INIT_CONF kano_init_flow.skip`
+    rv=$?
+    if [ "$rv" -eq 0 ] && [ "$do_skip" == "True" ]; then
+        SKIP="true"
+    fi
+
+    flow_type=`json-get $INIT_CONF kano_init_flow.flow`
+    rv=$?
+    if [ "$rv" -eq 0 ] && [ -n "$flow_type" ]; then
+        FLOW="$flow_type"
+    fi
+fi
+
 # The following block is related to the first bootflow
-if [ ! -f $first_boot_file ] && [ ! -f /boot/skip ]; then
+if [ ! -f $first_boot_file ] && [ "$SKIP" != "true" ]; then
 
     if [ ! -f $second_boot_file ]; then
         # First part
