@@ -171,7 +171,8 @@ class PasswordView(Gtk.Grid):
 
         self.user = user
         title = Heading('Enter your password',
-                        'If you haven\'t changed your password, use \'Kano\'')
+                        'If you haven\'t changed your password,\n'
+                        'use \'Kano\'')
         self.attach(title.container, 0, 0, 1, 1)
         self.password = Gtk.Entry()
         self.password.set_visibility(False)
@@ -179,7 +180,7 @@ class PasswordView(Gtk.Grid):
         self.password.connect('activate', self._login_cb)
         self.attach(self.password, 0, 1, 1, 1)
 
-        self.login_btn = KanoButton('Login')
+        self.login_btn = KanoButton('LOGIN')
         self.login_btn.connect('button-release-event', self._login_cb)
         self.attach(self.login_btn, 0, 2, 1, 1)
 
