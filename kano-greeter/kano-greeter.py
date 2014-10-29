@@ -20,6 +20,7 @@ from kano.gtk3.buttons import KanoButton
 from kano.gtk3.heading import Heading
 from kano.gtk3.application_window import ApplicationWindow
 from kano.gtk3.kano_dialog import KanoDialog
+from kano.gtk3.buttons import OrangeButton
 
 
 class GreeterWindow(ApplicationWindow):
@@ -42,7 +43,15 @@ class GreeterWindow(ApplicationWindow):
         self._remove_top_bar_buttons()
         self.top_bar.set_size_request(self.WIDTH, -1)
         self.grid.attach(self.top_bar, 0, 0, 3, 1)
-        self.grid.attach(Gtk.Label(), 0, 2, 3, 1)
+
+        self.shutdown_btn = OrangeButton('Shutdown')
+        self.shutdown_btn.connect('clicked', self.shutdown)
+        align = Gtk.Alignment(xalign=1.0,
+                              xscale=0.0)
+        align.add(self.shutdown_btn)
+        self.grid.attach(align, 1, 2, 1, 1)
+
+        self.grid.attach(Gtk.Label(), 0, 3, 3, 1)
 
         self.top_bar.set_prev_callback(self._back_cb)
 
@@ -76,6 +85,16 @@ class GreeterWindow(ApplicationWindow):
 
     def _back_cb(self, event, button):
         self.go_to_users()
+
+    def shutdown(self, *_):
+        confirm = KanoDialog(title_text='Are you sure you want to shut down?',
+                             button_dict={
+                                 'OK': {'return_value': True},
+                                 'CANCEL': {'return_value': False}
+                             })
+        confirm.dialog.set_position(Gtk.WindowPosition.CENTER_ALWAYS)
+        if confirm.run():
+            LightDM.shutdown()
 
 
 class UserList(Gtk.ScrolledWindow):
