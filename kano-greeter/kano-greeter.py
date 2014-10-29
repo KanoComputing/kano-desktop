@@ -39,6 +39,7 @@ class GreeterWindow(ApplicationWindow):
         self.grid.set_row_spacing(30)
 
         self.top_bar = TopBar('Login')
+        self._remove_top_bar_buttons()
         self.top_bar.set_size_request(self.WIDTH, -1)
         self.grid.attach(self.top_bar, 0, 0, 3, 1)
         self.grid.attach(Gtk.Label(), 0, 2, 3, 1)
@@ -51,6 +52,10 @@ class GreeterWindow(ApplicationWindow):
 
         cursor = Gdk.Cursor.new(Gdk.CursorType.ARROW)
         self.get_root_window().set_cursor(cursor)
+
+    def _remove_top_bar_buttons(self):
+        self.top_bar.box.remove(self.top_bar.close_button)
+        self.top_bar.box.remove(self.top_bar.next_button)
 
     def set_main(self, wdg):
         child = self.grid.get_child_at(1, 1)
