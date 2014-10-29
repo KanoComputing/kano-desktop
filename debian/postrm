@@ -33,9 +33,6 @@ case "$1" in
             mv $lxde_openbox_rc-old $lxde_openbox_rc
         fi
 
-        # Don't isplay a list of user names when logging in
-        sed -i 's/#\?\s*\(greeter-hide-users\=\).*/\1true/' "$lightdm_config"
-        sed -i 's/#\?\s*\(user-session\=\).*/\1default/' "$lightdm_config"
         # Revert to the default greeter
         sed -i 's/^\s*\(greeter-session\=\).*/\1lightdm-greeter/' "$lightdm_config"
 
