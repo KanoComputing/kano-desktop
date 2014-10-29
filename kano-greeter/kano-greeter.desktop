@@ -1,0 +1,5 @@
+[Desktop Entry]
+Name=Kano Greeter
+Comment=Kano greeter
+Exec=kano-greeter
+Type=Application

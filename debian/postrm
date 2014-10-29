@@ -9,7 +9,6 @@
 openbox_rc=/etc/xdg/openbox/rc.xml
 lxde_openbox_rc=/etc/xdg/openbox/LXDE/rc.xml
 
-lightdm_greeter_config=/etc/lightdm/lightdm_gtk_greeter.conf
 lightdm_config=/etc/lightdm/lightdm.conf
 
 chromium_master_prefs=/etc/chromium/master_preferences
@@ -34,14 +33,8 @@ case "$1" in
             mv $lxde_openbox_rc-old $lxde_openbox_rc
         fi
 
-        # Revert old lightdm greeter config
-        if [ -e "$lightdm_greeter_config-old" ]; then
-            mv $lightdm_greeter_config-old $lightdm_greeter_config
-        fi
-
-        # Don't isplay a list of user names when logging in
-        sed -i 's/#\?\s*\(greeter-hide-users\=\).*/\1true/' "$lightdm_config"
-        sed -i 's/#\?\s*\(user-session\=\).*/\1default/' "$lightdm_config"
+        # Revert to the default greeter
+        sed -i 's/^\s*\(greeter-session\=\).*/\1lightdm-greeter/' "$lightdm_config"
 
         # Removing links
         rm -f /etc/skel/.config/pcmanfm
@@ -50,6 +43,7 @@ case "$1" in
         rm -f /etc/skel/.config/lxterminal
         rm -f /etc/skel/.config/lxsession
         rm -rf /etc/skel/Legal
+        rm -f /usr/bin/kano-greeter
 
         # Revert chromium config
         if [ -e "$chromium_bookmarks-old" ]; then
