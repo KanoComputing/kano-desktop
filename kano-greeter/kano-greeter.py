@@ -172,7 +172,7 @@ class PasswordView(Gtk.Grid):
         self.user = user
         title = Heading('Enter your password',
                         'If you haven\'t changed your password,\n'
-                        'use \'Kano\'')
+                        'use "kano"')
         self.attach(title.container, 0, 0, 1, 1)
         self.password = Gtk.Entry()
         self.password.set_visibility(False)
@@ -215,7 +215,7 @@ class PasswordView(Gtk.Grid):
 
         if not _greeter.get_is_authenticated():
             logger.warn('Could not authenticate user {}'.format(self.user))
-            self._auth_error_cb('Incorrect password (The default is Kano)')
+            self._auth_error_cb('Incorrect password (The default is "kano")')
 
             return
 
