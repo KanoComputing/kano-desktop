@@ -68,24 +68,29 @@ function first_boot_part_1
         # Launch init flow from the beginning
         sudo kano-init-flow $LAUNCH_START
         EXIT_CODE=$?
-        
+
         # Skip the wifi settings and update for workshops
         if [ "$FLOW" == "workshops" ]; then
             EXIT_CODE=$LAUNCH_SETTINGS
         fi
     else
         # This is not the first boot, RPi reboot before updater step
-        # Check for internet
-        /usr/bin/is_internet
-        rc=$?
-        if [ "$rc" -eq "0" ]; then
-            sudo kano-init-flow $LAUNCH_UPDATER
-            EXIT_CODE=$?
+        # Skip the update for workshops
+        if [ "$FLOW" == "workshops" ]; then
+            EXIT_CODE=$LAUNCH_SETTINGS
         else
-            # Launch again internet screen
-            sudo kano-init-flow $LAUNCH_WIFI_CONFIG
-            EXIT_CODE=$?
-        fi
+            # Check for internet
+            /usr/bin/is_internet
+            rc=$?
+            if [ "$rc" -eq "0" ]; then
+                sudo kano-init-flow $LAUNCH_UPDATER
+                EXIT_CODE=$?
+            else
+                # Launch again internet screen
+                sudo kano-init-flow $LAUNCH_WIFI_CONFIG
+                EXIT_CODE=$?
+            fi
+       fi
     fi
 
     repeats=0
