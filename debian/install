@@ -5,10 +5,6 @@ kdesk usr/share/kano-desktop
 kdesk/.kdeskrc var/lib/lightdm
 Legal usr/share/kano-desktop
 
-kano-greeter/kano-greeter.py usr/share/kano-desktop/kano-greeter
-kano-greeter/kano-greeter.css usr/share/kano-desktop/kano-greeter
-kano-greeter/kano-greeter.desktop usr/share/xgreeters
-
 config/autostart usr/share/kano-desktop/config
 config/chromium usr/share/kano-desktop/config
 config/keyboard/kanokeyboardrc usr/share/kano-desktop/config/keyboard

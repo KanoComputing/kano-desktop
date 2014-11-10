@@ -2,7 +2,7 @@
 
 # postrm
 #
-# Copyright (C) 2013 Kano Computing Ltd.
+# Copyright (C) 2014 Kano Computing Ltd.
 # License:   http://www.gnu.org/licenses/gpl-2.0.txt GNU General Public License v2
 #
 
@@ -33,9 +33,6 @@ case "$1" in
             mv $lxde_openbox_rc-old $lxde_openbox_rc
         fi
 
-        # Revert to the default greeter
-        sed -i 's/^\s*\(greeter-session\=\).*/\1lightdm-greeter/' "$lightdm_config"
-
         # Removing links
         rm -f /etc/skel/.config/pcmanfm
         rm -f /etc/skel/.config/libfm
@@ -43,7 +40,6 @@ case "$1" in
         rm -f /etc/skel/.config/lxterminal
         rm -f /etc/skel/.config/lxsession
         rm -rf /etc/skel/Legal
-        rm -f /usr/bin/kano-greeter
 
         # Revert chromium config
         if [ -e "$chromium_bookmarks-old" ]; then

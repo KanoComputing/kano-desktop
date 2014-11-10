@@ -71,21 +71,6 @@ case "$1" in
         cp $lxde_openbox_rc $lxde_openbox_rc-old
         cat $custom_openbox_rc > $lxde_openbox_rc
 
-        ### Configure lightdm ###
-
-        # Switch to use the Kano Greeter
-        sed -i 's/^\s*\(greeter-session\=\).*/\1kano-greeter/' "$lightdm_config"
-
-        # Create bin link to the Kano Greeter
-        ln -s /usr/share/kano-desktop/kano-greeter/kano-greeter.py /usr/bin/kano-greeter
-
-        # Change the Kano Greeter backgrounds
-        # For now these are identical to every other user's default but will be different in the future
-        #   sed -i 's|^\(\s*Background.File-medium:\s\).*|\1/usr/share/kano-desktop/wallpapers/kanux-background-1024.png|' "$lightdm_kdeskrc"
-        #   sed -i 's|^\(\s*Background.File-4-3:\s\).*|\1/usr/share/kano-desktop/wallpapers/kanux-background-4-3.png|' "$lightdm_kdeskrc"
-        #   sed -i 's|^\(\s*Background.File-16-9:\s\).*|\1/usr/share/kano-desktop/wallpapers/kanux-background-16-9.png|' "$lightdm_kdeskrc"
-
-
         # Configure chromium
         cp $chromium_master_prefs $chromium_master_prefs-old
         cat $custom_chromium_master_prefs > $chromium_master_prefs
