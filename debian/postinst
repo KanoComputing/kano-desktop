@@ -10,9 +10,6 @@ openbox_rc=/etc/xdg/openbox/rc.xml
 lxde_openbox_rc=/etc/xdg/openbox/LXDE/rc.xml
 custom_openbox_rc=/usr/share/kano-desktop/openbox/rc.xml
 
-lightdm_config=/etc/lightdm/lightdm.conf
-lightdm_kdeskrc=/var/lib/lightdm/.kdeskrc
-
 chromium_master_prefs=/etc/chromium/master_preferences
 custom_chromium_master_prefs=/usr/share/kano-desktop/config/chromium/master_preferences
 

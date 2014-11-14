@@ -2,7 +2,6 @@ wallpapers usr/share/kano-desktop
 icons usr/share/kano-desktop
 images usr/share/kano-desktop
 kdesk usr/share/kano-desktop
-kdesk/.kdeskrc var/lib/lightdm
 Legal usr/share/kano-desktop
 
 config/autostart usr/share/kano-desktop/config

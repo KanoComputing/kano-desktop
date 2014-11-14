@@ -9,8 +9,6 @@
 openbox_rc=/etc/xdg/openbox/rc.xml
 lxde_openbox_rc=/etc/xdg/openbox/LXDE/rc.xml
 
-lightdm_config=/etc/lightdm/lightdm.conf
-
 chromium_master_prefs=/etc/chromium/master_preferences
 chromium_bookmarks=/etc/chromium/initial_bookmarks.html
 
