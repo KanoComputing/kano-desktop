@@ -13,17 +13,8 @@
 
 . /usr/share/kano-toolset/logging.sh
 
-LAUNCH_START=0
-LAUNCH_WIFI_CONFIG=1
-LAUNCH_UPDATER=2
-LAUNCH_SETTINGS=3
-LAUNCH_PROFILE=5
-LAUNCH_SWAG=6
-
 first_boot_file="$HOME/.kano-settings/first_boot"
 second_boot_file="$HOME/.kano-settings/second_boot"
-before_update_file="$HOME/.kano-settings/before_update"
-after_update_file="$HOME/.kano-settings/after_update"
 mkdir -p "$HOME/.kano-settings"
 
 function is_installed
@@ -50,104 +41,6 @@ function set_keyboard
     # Set user keyboard layout
     logger_info "Setting the keyboard layout for the user"
     sudo /usr/bin/kano-settings-cli set keyboard --load
-}
-
-function first_boot_part_1
-{
-    # 1: Keyboard tutorial
-    if [ ! -f $before_update_file ] && [ "$1" == "True" ]; then
-        kano-tutorial
-    fi
-    # load background
-    /usr/bin/kdesk -w &
-
-    if [ ! -f $before_update_file ]; then
-        # First boot
-        # Create before update file
-        touch $before_update_file
-        # Launch init flow from the beginning
-        sudo kano-init-flow $LAUNCH_START
-        EXIT_CODE=$?
-
-        # Skip the wifi settings and update for workshops
-        if [ "$FLOW" == "workshops" ]; then
-            EXIT_CODE=$LAUNCH_SETTINGS
-        fi
-    else
-        # This is not the first boot, RPi reboot before updater step
-        # Skip the update for workshops
-        if [ "$FLOW" == "workshops" ]; then
-            EXIT_CODE=$LAUNCH_SETTINGS
-        else
-            # Check for internet
-            /usr/bin/is_internet
-            rc=$?
-            if [ "$rc" -eq "0" ]; then
-                sudo kano-init-flow $LAUNCH_UPDATER
-                EXIT_CODE=$?
-            else
-                # Launch again internet screen
-                sudo kano-init-flow $LAUNCH_WIFI_CONFIG
-                EXIT_CODE=$?
-            fi
-       fi
-    fi
-
-    repeats=0
-    while [ $EXIT_CODE -le $LAUNCH_UPDATER ] && [ $repeats -le 5 ]; do
-        repeats=$((repeats+1))
-
-        if [ $EXIT_CODE -eq $LAUNCH_WIFI_CONFIG ]; then
-            rxvt -title 'WiFi Setup' -e sudo /usr/bin/kano-wifi
-            # Check for internet
-            /usr/bin/is_internet
-            rc=$?
-            if [ "$rc" -eq "0" ]; then
-                sudo kano-init-flow $LAUNCH_UPDATER
-                EXIT_CODE=$?
-            else
-                # Launch again internet screen
-                sudo kano-init-flow $LAUNCH_WIFI_CONFIG
-                EXIT_CODE=$?
-            fi
-        fi
-
-        if [ $EXIT_CODE -eq $LAUNCH_UPDATER ]; then
-            sudo kano-updater -n
-            # Create after update file to make sure we don't go through it again
-            touch $after_update_file
-            rm $before_update_file
-            # regenerating ssh keys
-            if [ `kano-usertools number` -eq 1 ]; then
-                sudo regenerate-ssh-keys &
-            fi
-            sudo kano-init-flow $LAUNCH_SETTINGS
-            EXIT_CODE=$?
-        fi
-
-        # If you close window, stops application crashing
-        if [ $EXIT_CODE -eq 0 ]; then
-            exit $?
-        fi
-
-    done
-}
-
-function first_boot_part_2
-{
-    # load background
-    /usr/bin/kdesk -w &
-    # loads and sets the keyboard layout
-    set_keyboard $1
-    # Launch login screen
-
-    if [ "$FLOW" != "workshops" ]; then
-        kano-login first_boot
-        sudo kano-init-flow $LAUNCH_SWAG
-    fi
-
-    logger_info "Playing os_intro.mkv"
-    kano-video-cli /usr/share/kano-media/videos/os_intro.mkv
 }
 
 ############ STARTS HERE ############
@@ -186,33 +79,39 @@ fi
 # The following block is related to the first bootflow
 if [ ! -f $first_boot_file ] && [ "$SKIP" != "true" ]; then
 
+    # This is backwards compatibility with version prior to Beta 1.3.1
     if [ ! -f $second_boot_file ]; then
-        # First part
-        if [ -f $after_update_file ]; then
-            # load background
-            /usr/bin/kdesk -w &
-            # Resuming first boot
-            logger_info "Launching kano-init-flow after update"
-            sudo kano-init-flow $LAUNCH_SETTINGS
-        else
-            # first boot
-            logger_info "Launching kano-init-flow first part"
-            first_boot_part_1 $kano_keyboard
+        # Keyboard tutorial
+        if [ "$kano_keyboard" == "True" ]; then
+            kano-tutorial
         fi
-        logger_debug "Marking kano-init-flow rebooting"
-        touch $second_boot_file
-        rm $after_update_file
-        sudo reboot
+        # load background
+        /usr/bin/kdesk -w &
+        # Launch init flow
+        logger_info "Launching kano-init-flow"
+        sudo kano-init-flow
+        logger_info "kano-init-flow completed"
     else
-        # second boot reboot
-        logger_info "Launching kano-init-flow second part"
-        first_boot_part_2 $kano_keyboard
-        logger_debug "Marking kano-init-flow completed"
-        sudo kano-init finalise
-        rm $second_boot_file
-        touch $first_boot_file
-        check_for_updates=0
+        # Older versions reboot, so we need to skip the previous part
+        # load background
+        /usr/bin/kdesk -w &
     fi
+    # Login / Create account
+    if [ "$FLOW" != "workshops" ]; then
+        kano-login first_boot
+    fi
+    # Video
+    logger_info "Playing os_intro.mkv"
+    kano-video-cli /usr/share/kano-media/videos/os_intro.mkv
+    # regenerating ssh keys
+    if [ `kano-usertools number` -eq 1 ]; then
+        sudo regenerate-ssh-keys &
+    fi
+    # Finalise
+    sudo kano-init finalise
+    touch $first_boot_file
+    # Do not check for updates on first boot
+    check_for_updates=0
 # The following is executed in subsequent boots
 else
     # load background
