@@ -153,6 +153,7 @@ python -c "from kdesk import hourglass; hourglass.hourglass_start('lxpanel');"
 # starting kdesk
 logger_info "Launching kdesk"
 /usr/bin/kdesk &
+/usr/bin/kano-feedback-widget &
 
 # Report a startup event to Kano Tracker
 kano-profile-cli increment_app_runtime startup 0
