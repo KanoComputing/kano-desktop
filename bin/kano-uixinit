@@ -92,6 +92,8 @@ if [ ! -f $first_boot_file ] && [ "$SKIP" != "true" ]; then
         sudo kano-init-flow
         logger_info "kano-init-flow completed"
     else
+        # load background
+        /usr/bin/kdesk -w &
         # This was an older version, we need to proceed from after update
         sudo kano-init-flow "audio"
         # Remove temp file
