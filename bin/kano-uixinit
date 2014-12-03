@@ -14,7 +14,7 @@
 . /usr/share/kano-toolset/logging.sh
 
 first_boot_file="$HOME/.kano-settings/first_boot"
-second_boot_file="$HOME/.kano-settings/second_boot"
+after_update_file="$HOME/.kano-settings/after_update"
 mkdir -p "$HOME/.kano-settings"
 
 function is_installed
@@ -80,7 +80,7 @@ fi
 if [ ! -f $first_boot_file ] && [ "$SKIP" != "true" ]; then
 
     # This is backwards compatibility with version prior to Beta 1.3.1
-    if [ ! -f $second_boot_file ]; then
+    if [ ! -f $after_update_file ]; then
         # Keyboard tutorial
         if [ "$kano_keyboard" == "True" ]; then
             kano-tutorial
@@ -92,9 +92,10 @@ if [ ! -f $first_boot_file ] && [ "$SKIP" != "true" ]; then
         sudo kano-init-flow
         logger_info "kano-init-flow completed"
     else
-        # Older versions reboot, so we need to skip the previous part
-        # load background
-        /usr/bin/kdesk -w &
+        # This was an older version, we need to proceed from after update
+        sudo kano-init-flow "audio"
+        # Remove temp file
+        rm $after_update_file
     fi
     # Login / Create account
     if [ "$FLOW" != "workshops" ]; then
