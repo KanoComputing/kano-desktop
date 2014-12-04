@@ -94,8 +94,6 @@ if [ ! -f $first_boot_file ] && [ "$SKIP" != "true" ]; then
     else
         # load background
         /usr/bin/kdesk -w &
-        # This was an older version, we need to proceed from after update
-        sudo kano-init-flow "audio"
         # Remove temp file
         rm $after_update_file
     fi
