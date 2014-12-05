@@ -144,13 +144,14 @@ fi
 # lxpanel
 logger_info "Launching LXPanel"
 
-# start hourglass for lxpanel startup
-python -c "from kdesk import hourglass; hourglass.hourglass_start('lxpanel');"
+# start hourglass to wait for the last X11 app to get ready
+python -c "from kdesk import hourglass; hourglass.hourglass_start('kano-feedback-widget');"
 /usr/bin/lxpanel --profile LXDE &
 
 # starting kdesk
 logger_info "Launching kdesk"
 /usr/bin/kdesk &
+/usr/bin/kano-feedback-widget &
 
 # Report a startup event to Kano Tracker
 kano-profile-cli increment_app_runtime startup 0
