@@ -131,12 +131,8 @@ if [ $check_for_updates -eq 1 ] && [ is_internet ]; then
     logger_info "Checking for update"
 
     # present an hourglass
-    python -c "from kdesk import hourglass; hourglass.hourglass_start('check-for-updates');"
+    kdesk-hourglass-app "check-for-updates"
     sudo /usr/bin/check-for-updates -t 168 -d
-
-    # remove the hourglass for such cases where check-for-updates decides there is nothing to show
-    python -c "from kdesk import hourglass; hourglass.hourglass_end()');"
-
 else
     logger_info "Not checking for update"
 fi
@@ -145,7 +141,7 @@ fi
 logger_info "Launching LXPanel"
 
 # start hourglass to wait for the last X11 app to get ready
-python -c "from kdesk import hourglass; hourglass.hourglass_start('kano-feedback-widget');"
+kdesk-hourglass-app "kano-feedback-widget"
 /usr/bin/lxpanel --profile LXDE &
 
 # starting kdesk
