@@ -34,3 +34,16 @@ alias syslog-disable='sudo update-rc.d inetutils-syslogd disable && sudo /etc/in
 # aliases to enable / disable the root user from ssh logins
 alias rootssh-disable='sudo sed -i '\''s/DROPBEAR_EXTRA_ARGS=.*/DROPBEAR_EXTRA_ARGS="-g -w"/g'\'' /etc/default/dropbear && sudo /etc/init.d/dropbear restart'
 alias rootssh-enable='sudo sed -i '\''s/DROPBEAR_EXTRA_ARGS=.*/DROPBEAR_EXTRA_ARGS=/g'\'' /etc/default/dropbear && sudo /etc/init.d/dropbear restart'
+
+# eSpeak is too verbose with warnings which make peple nervous.
+# This mutes the stderr of espeak, but reports any errors.
+function espeak_override()
+{
+    espeak $@ 2>/dev/null
+    if [ "$?" -neq 0 ]; then
+        >&2 echo "ERROR: espeak reported problems."
+        >&2 echo "Please run 'espeak_debug $@' to see the error."
+    fi
+}
+alias espeak=espeak_override
+alias espeak_debug=espeak
