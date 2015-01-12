@@ -13,6 +13,8 @@
 
 . /usr/share/kano-toolset/logging.sh
 
+export LOG_LEVEL="info"
+
 first_boot_file="$HOME/.kano-settings/first_boot"
 after_update_file="$HOME/.kano-settings/after_update"
 mkdir -p "$HOME/.kano-settings"
