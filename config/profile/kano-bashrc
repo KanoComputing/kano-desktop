@@ -46,4 +46,4 @@ function espeak_override()
     fi
 }
 alias espeak=espeak_override
-alias espeak_debug=espeak
+alias espeak_debug=\\espeak
