@@ -11,7 +11,7 @@
 #  We save the current time here so we can estimate usage timings
 #
 
-date +"%s" > /home/$USER/.session-started
+su - $USER -c "date +'%s' > ~/.session-started"
 
 # zero means proceed with login, anything else will cancel the session
-return 0
+exit 0
