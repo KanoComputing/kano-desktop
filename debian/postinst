@@ -23,6 +23,10 @@ SQUEAKDIR=/usr/share/squeak
 
 TMP_SUDOERS_FILE=/tmp/kano-desktop_conf
 
+ldm_conf=/etc/lightdm/lightdm.conf
+ldm_login=/usr/share/kano-desktop/scripts/ldm-session-setup-script
+ldm_logout=/usr/share/kano-desktop/scripts/ldm-session-cleanup-script
+
 case "$1" in
     configure)
 
@@ -91,6 +95,10 @@ case "$1" in
 
         # Move the file to the sudoers directory
         mv $TMP_SUDOERS_FILE /etc/sudoers.d/
+
+        # Add login and logoff hooks to track usage of the kit
+        sed -i "s|#\?\(session-setup-script\=\).*|\1$ldm_login|" $ldm_conf
+        sed -i "s|#\?\(session-cleanup-script\=\).*|\1$ldm_logout|" $ldm_conf
 
         ;;
 esac

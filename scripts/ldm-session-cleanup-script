@@ -1,0 +1,20 @@
+#!/bin/bash
+
+# ldm-session-cleanup-script
+#
+# Copyright (C) 2014 Kano Computing Ltd.
+# License: http://www.gnu.org/licenses/gpl-2.0.txt GNU General Public License v2
+#
+#  https://wiki.ubuntu.com/LightDM
+#
+#  This script is called by lightm when the user logs off
+#  We collect the time the users spent on this session and save it on the tracker
+#
+
+started=`cat /home/$USER/.session-started`
+finish=$(date +"%s")
+session_time=$(($finish-$started))
+
+su - $USER -c "kano-profile-cli increment_app_runtime logon-session $session_time"
+
+return 0

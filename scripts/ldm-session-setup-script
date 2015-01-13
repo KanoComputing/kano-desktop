@@ -1,0 +1,17 @@
+#!/bin/bash
+
+# ldm-session-setup-script
+#
+# Copyright (C) 2014 Kano Computing Ltd.
+# License: http://www.gnu.org/licenses/gpl-2.0.txt GNU General Public License v2
+#
+#  https://wiki.ubuntu.com/LightDM
+#
+#  This script is called by lightm during user logon session
+#  We save the current time here so we can estimate usage timings
+#
+
+su - $USER -c "date +'%s' > ~/.session-started"
+
+# zero means proceed with login, anything else will cancel the session
+exit 0

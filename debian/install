@@ -25,3 +25,5 @@ gtk-themes/Kano usr/share/themes
 bin/kano-screenshot-hotkey usr/bin
 bin/kano-uixinit usr/bin
 bin/open-me.sh etc/skel/.Rabbithole
+
+scripts/* usr/share/kano-desktop/scripts
