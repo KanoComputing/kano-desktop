@@ -123,6 +123,13 @@ else
     set_keyboard $kano_keyboard
 fi
 
+# If keyboard Caps Lock is on, fallback to safe display resolution
+capson=`xset -q | grep "Caps Lock" | awk '{ print $4}'`
+if [ "$capson" == "on" ]; then
+    logger_info "Keyboard CapsLock is on: switching video to safe mode"
+    python -c "from kano_settings.system.display import switch_display_safe_mode; switch_display_safe_mode()"
+fi
+
 # startmouse
 logger_info "Launching startmouse"
 /usr/bin/startmouse &
