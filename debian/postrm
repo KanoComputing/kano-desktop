@@ -16,6 +16,10 @@ lxde_autostart=/etc/xdg/lxsession/LXDE/autostart
 
 SUDOERS_FILE=/etc/sudoers.d/kano-desktop_conf
 
+ldm_conf=/etc/lightdm/lightdm.conf
+ldm_login=/usr/share/kano-desktop/scripts/ldm-session-setup-script
+ldm_logout=/usr/share/kano-desktop/scripts/ldm-session-cleanup-script
+
 case "$1" in
     remove|upgrade)
 
@@ -54,6 +58,10 @@ case "$1" in
 
         # remove sudoers file to switch VTs
         rm -f $SUDOERS_FILE
+
+        # Remove login and logoff hooks
+        sed -i "s/\(session-setup-script\=\).*/#\1/" $ldm_conf
+        sed -i "s/\(session-cleanup-script\=\).*/#\1/" $ldm_conf
 
         ;;
 esac
