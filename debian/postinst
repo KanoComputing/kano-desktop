@@ -97,8 +97,8 @@ case "$1" in
         mv $TMP_SUDOERS_FILE /etc/sudoers.d/
 
         # Add login and logoff hooks to track usage of the kit
-        sed -i "s/#\?\(session-setup-script\=\).*/\1$ldm_login/" $ldm_conf
-        sed -i "s/#\?\(session-cleanup-script\=\).*/\1$ldm_logout/" $ldm_conf
+        sed -i "s|#\?\(session-setup-script\=\).*|\1$ldm_login|" $ldm_conf
+        sed -i "s|#\?\(session-cleanup-script\=\).*|\1$ldm_logout|" $ldm_conf
 
         ;;
 esac
