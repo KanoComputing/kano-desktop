@@ -123,13 +123,6 @@ else
     set_keyboard $kano_keyboard
 fi
 
-# If keyboard Caps Lock is on, fallback to safe display resolution
-capson=`xset -q | grep "Caps Lock" | awk '{ print $4}'`
-if [ "$capson" == "on" ]; then
-    logger_info "Keyboard CapsLock is on: switching video to safe mode"
-    python -c "from kano_settings.system.display import switch_display_safe_mode; switch_display_safe_mode()"
-fi
-
 # startmouse
 logger_info "Launching startmouse"
 /usr/bin/startmouse &
@@ -157,6 +150,11 @@ kdesk-hourglass-app "kano-feedback-widget"
 logger_info "Launching kdesk"
 /usr/bin/kdesk &
 /usr/bin/kano-feedback-widget &
+
+# If the unit was booted in safe mode (shift key pressed) refresh the XServer screen now
+if [ -f /tmp/display-in-safe-mode ]; then
+    /bin/fbset -depth 8 ; /bin/fbset -depth 16; xrefresh
+fi
 
 # Report a startup event to Kano Tracker
 kano-profile-cli increment_app_runtime startup 0
