@@ -151,11 +151,6 @@ logger_info "Launching kdesk"
 /usr/bin/kdesk &
 /usr/bin/kano-feedback-widget &
 
-# If the unit was booted in safe mode (shift key pressed) refresh the XServer screen now
-if [ -f /tmp/display-in-safe-mode ]; then
-    /bin/fbset -depth 8 ; /bin/fbset -depth 16; xrefresh
-fi
-
 # Report a startup event to Kano Tracker
 kano-profile-cli increment_app_runtime startup 0
 
