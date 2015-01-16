@@ -39,7 +39,7 @@ alias rootssh-enable='sudo sed -i '\''s/DROPBEAR_EXTRA_ARGS=.*/DROPBEAR_EXTRA_AR
 # This mutes the stderr of espeak, but reports any errors.
 function espeak_override()
 {
-    espeak $@ 2>/dev/null
+    espeak "$@" 2>/dev/null
     if [ "$?" -ne 0 ]; then
         >&2 echo "ERROR: espeak reported problems."
         >&2 echo "Please run 'espeak_debug $@' to see the error."
