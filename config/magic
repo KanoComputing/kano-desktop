@@ -1,0 +1,13 @@
+# Magic local data for file(1) command.
+# Insert here your local magic data. Format is described in magic(5).
+
+0	search/50	KANO			Kano
+
+>&1	string		MAKE-MINECRAFT	Make Minecraft Project File
+!:mime	application/x-kano-make-minecraft
+
+>&1	string		MAKE-PONG		Make Pong Project File
+!:mime	application/x-kano-make-pong
+
+>&1	string		MAKE-SNAKE		Make Snake Theme File
+!:mime	application/x-kano-make-snake

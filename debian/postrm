@@ -2,7 +2,7 @@
 
 # postrm
 #
-# Copyright (C) 2014 Kano Computing Ltd.
+# Copyright (C) 2015 Kano Computing Ltd.
 # License:   http://www.gnu.org/licenses/gpl-2.0.txt GNU General Public License v2
 #
 
@@ -66,6 +66,14 @@ case "$1" in
         ;;
 esac
 
+
+if ( [ abort-upgrade = "$1" ] && dpkg --compare-versions "$2" le 1.2-1.20150116 ) || \
+     [ remove = "$1" -o abort-install = "$1" -o disappear = "$1" ]; then
+
+        # Permit installation of magic file definitions
+        dpkg-divert --package kano-desktop --remove --rename \
+                    --divert /etc/magic.orig /etc/magic
+fi
 
 #DEBHELPER#
 
