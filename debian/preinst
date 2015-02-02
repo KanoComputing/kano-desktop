@@ -1,0 +1,14 @@
+#!/bin/bash
+
+# preinst
+#
+# Copyright (C) 2015 Kano Computing Ltd.
+# License: http://www.gnu.org/licenses/gpl-2.0.txt GNU General Public License v2
+#
+
+if [ upgrade != "$1" ] || dpkg --compare-versions "$2" le 1.2-1.20150116; then
+
+    # Revert magic file definition diversion
+    dpkg-divert --package kano-desktop --add --rename \
+                --divert /etc/magic.orig /etc/magic
+fi
