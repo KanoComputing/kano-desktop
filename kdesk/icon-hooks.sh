@@ -176,7 +176,7 @@ case $icon_name in
         length=$2
         now=$(date +%s)
         started=$(expr $now - $length)
-        kano-tracker-ctl session log screen-saver $started $timerun
+        kano-tracker-ctl session log screen-saver $started $length
 
         # re-enable notifications widget UI alerts so they popup on the now visible Kano Desktop
         if [ -p "$pipe_filename" ]; then
