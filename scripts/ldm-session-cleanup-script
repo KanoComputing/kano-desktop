@@ -15,6 +15,6 @@ started=`cat /home/$USER/.session-started`
 finish=$(date +"%s")
 session_time=$(($finish-$started))
 
-su - $USER -c "kano-profile-cli increment_app_runtime logon-session $session_time"
+su - $USER -c "kano-tracker-ctl session log logon-session $started $session_time"
 
 return 0

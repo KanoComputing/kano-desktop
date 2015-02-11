@@ -173,8 +173,10 @@ case $icon_name in
         fi
 
         # kanotracker collects how many times and for long the screen saver runs
-        timerun=$2
-        kano-profile-cli increment_app_runtime screen-saver $timerun
+        length=$2
+        now=$(date +%s)
+        started=$(expr $now - $length)
+        kano-tracker-ctl session log screen-saver $started $timerun
 
         # re-enable notifications widget UI alerts so they popup on the now visible Kano Desktop
         if [ -p "$pipe_filename" ]; then
