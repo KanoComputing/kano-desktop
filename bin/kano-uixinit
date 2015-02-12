@@ -50,7 +50,7 @@ function set_keyboard
 kano-tracker-ctl clear
 
 # Start the tracking daemon
-kano-tracker-ctl refresh --watch
+kano-tracker-ctl refresh --watch &
 
 # Disable XServer screen saver time and screen blanking (The display would become black)
 if is_installed xset; then
