@@ -11,7 +11,7 @@
 #  We save the current time here so we can estimate usage timings
 #
 
-su - $USER -c "date +'%s' > ~/.session-started"
+su - $USER -c "kano-tracker-ctl session start logon-session 0"
 
 # zero means proceed with login, anything else will cancel the session
 exit 0
