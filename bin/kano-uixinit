@@ -45,6 +45,13 @@ function set_keyboard
 
 ############ STARTS HERE ############
 
+# Collect any remaining sessions from the previous boot.
+# This must happen as early as possible.
+kano-tracker-ctl clear
+
+# Start the tracking daemon
+kano-tracker-ctl refresh --watch
+
 # Disable XServer screen saver time and screen blanking (The display would become black)
 if is_installed xset; then
     logger_info "Disabling the screensaver"
@@ -157,7 +164,7 @@ logger_info "Launching kdesk"
 /usr/bin/kano-feedback-widget &
 
 # Report a startup event to Kano Tracker
-kano-profile-cli increment_app_runtime startup 0
+kano-tracker-ctl +1 startup
 
 # Remove Homedir "Desktop" folder created by:
 # /usr/share/xsessions/lightdm-xsession.desktop
