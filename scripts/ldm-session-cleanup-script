@@ -11,10 +11,6 @@
 #  We collect the time the users spent on this session and save it on the tracker
 #
 
-started=`cat /home/$USER/.session-started`
-finish=$(date +"%s")
-session_time=$(($finish-$started))
-
-su - $USER -c "kano-tracker-ctl session log logon-session $started $session_time"
+su - $USER -c "kano-tracker-ctl session end logon-session 0"
 
 return 0
