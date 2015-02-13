@@ -32,7 +32,7 @@ table Config
 
   IconHook: /usr/share/kano-desktop/kdesk/icon-hooks.sh
 
-  IconGapHorz: 35
+  IconGapHorz: 70
   IconGapVert: 10
 
   GridWidth: 90
