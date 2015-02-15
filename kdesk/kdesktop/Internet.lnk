@@ -7,6 +7,6 @@ table Icon
   IconHover: /usr/share/kano-desktop/icons/internet-hover.png
   HoverXOffset: 0
   Relative-To: grid
-  X: 5
+  X: 4
   Y: 0
 end
