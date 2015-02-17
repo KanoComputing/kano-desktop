@@ -45,9 +45,8 @@ function set_keyboard
 
 ############ STARTS HERE ############
 
-# Collect any remaining sessions from the previous boot.
-# This must happen as early as possible.
-kano-tracker-ctl clear
+# Track some information about the hardware used
+kano-tracker-ctl generate hw-info
 
 # Start the tracking daemon
 kano-tracker-ctl refresh --watch &
