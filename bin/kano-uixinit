@@ -124,8 +124,6 @@ if [ ! -f $first_boot_file ] && [ "$SKIP" != "true" ]; then
 else
     # load background
     /usr/bin/kdesk -w &
-    # loads and sets the keyboard layout
-    set_keyboard $kano_keyboard
 fi
 
 # If keyboard Caps Lock is on, fallback to safe display resolution
@@ -134,6 +132,9 @@ if [ "$capson" == "on" ]; then
     logger_info "Keyboard CapsLock is on: switching video to safe mode"
     python -c "from kano_settings.system.display import switch_display_safe_mode; switch_display_safe_mode()"
 fi
+
+# loads and sets the keyboard layout
+set_keyboard $kano_keyboard
 
 # startmouse
 logger_info "Launching startmouse"
