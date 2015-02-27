@@ -11,6 +11,7 @@
 #  We save the current time here so we can estimate usage timings
 #
 su - $USER -c "kano-tracker-ctl clear"
+su - $USER -c "kano-tracker-ctl new-token"
 su - $USER -c "kano-tracker-ctl session start logon-session 0"
 
 # zero means proceed with login, anything else will cancel the session
