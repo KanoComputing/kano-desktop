@@ -45,10 +45,7 @@ if [ -p $notification_pipe ]; then
         byline=""
     fi
 
-    # This is a placeholder for now - waiting for an image
-    image="/usr/share/kano-vnc/notification.png"
-
-    # Should this be removed?
+    image="/usr/share/kano-screenshot/notification.png"
     sound="/usr/share/kano-media/sounds/kano_open_app.wav"
 
     message="{\"title\": \"$title\", \"byline\": \"$byline\", \"image\": \"$image\", \"sound\": \"$sound\"}"
