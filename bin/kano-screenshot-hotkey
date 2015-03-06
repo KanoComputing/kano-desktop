@@ -32,4 +32,24 @@ fi
 # Play camera shutter sound and take a screenshot
 aplay /usr/share/kano-media/sounds/kano_camera_shutter.wav
 kano-screenshot -f $dirname
-exit $?
+rc=$?
+
+if [ -p $notification_pipe ]; then
+
+    # Prepare a Desktop notification message
+    if [ $rc == 0 ]; then
+        title="Screenshot taken!"
+        byline="You'll find it in ~/Screenshots"
+    else
+        title="Could not take a screenshot"
+        byline=""
+    fi
+
+    image="/usr/share/kano-screenshot/media/notification.png"
+    sound="/usr/share/kano-media/sounds/kano_open_app.wav"
+
+    message="{\"title\": \"$title\", \"byline\": \"$byline\", \"image\": \"$image\", \"sound\": \"$sound\"}"
+    echo $message >> $HOME/.kano-notifications.fifo
+fi
+
+exit $rc
