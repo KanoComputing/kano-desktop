@@ -45,7 +45,7 @@ if [ -p $notification_pipe ]; then
         byline=""
     fi
 
-    image="/usr/share/kano-screenshot/notification.png"
+    image="/usr/share/kano-screenshot/media/notification.png"
     sound="/usr/share/kano-media/sounds/kano_open_app.wav"
 
     message="{\"title\": \"$title\", \"byline\": \"$byline\", \"image\": \"$image\", \"sound\": \"$sound\"}"
