@@ -151,6 +151,19 @@ logger_info "Launching LXPanel"
 kdesk-hourglass-app "kano-feedback-widget"
 /usr/bin/lxpanel --profile LXDE &
 
+# LXPanel resets the volume level to 100, we need it to be restored to
+# whatever level it was before shutdown or reboot
+if [ -e /etc/init.d/alsa-utils ]; then
+    ret_val="$(/etc/init.d/alsa-utils start)"
+    if [ "$ret_val" -ne 0 ]; then
+        logger_warn "Failed to restore volume level"
+    else
+        logger_info "Audio volume level was successfully restored"
+    fi
+else
+    logger_warn "alsa-utils not found, can't attempt to restore volume level"
+fi
+
 # starting kdesk
 logger_info "Launching kdesk"
 /usr/bin/kdesk &
