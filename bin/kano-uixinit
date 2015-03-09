@@ -154,7 +154,8 @@ kdesk-hourglass-app "kano-feedback-widget"
 # LXPanel resets the volume level to 100, we need it to be restored to
 # whatever level it was before shutdown or reboot
 if [ -e /etc/init.d/alsa-utils ]; then
-    ret_val="$(/etc/init.d/alsa-utils start)"
+    # Redirect both stderr and stdout to null, we can do our own logging
+    ret_val="$(/etc/init.d/alsa-utils start &> /dev/null)"
     if [ "$ret_val" -ne 0 ]; then
         logger_warn "Failed to restore volume level"
     else
