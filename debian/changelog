@@ -1,3 +1,8 @@
+kano-desktop (1.3-1) unstable; urgency=low
+
+  * Audio volume is now persistent across reboots.
+
+ -- Team Kano <dev@kano.me>  Mon, 9 Mar 2015 14:34:15 +0000
 kano-desktop (1.2-1) unstable; urgency=low
 
   * Refactored kano-uixinit with new kano-init-flow
