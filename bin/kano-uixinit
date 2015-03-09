@@ -155,9 +155,10 @@ kdesk-hourglass-app "kano-feedback-widget"
 # whatever level it was before shutdown or reboot
 if [ -e /etc/init.d/alsa-utils ]; then
     # Redirect both stderr and stdout to null, we can do our own logging
-    ret_val="$(/etc/init.d/alsa-utils start &> /dev/null)"
+    /etc/init.d/alsa-utils start &> /dev/null
+    ret_val="$?"
     if [ "$ret_val" -ne 0 ]; then
-        logger_warn "Failed to restore volume level"
+        logger_warn "Failed to restore volume level, ret code: $ret_val"
     else
         logger_info "Audio volume level was successfully restored"
     fi
