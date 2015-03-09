@@ -100,6 +100,9 @@ case "$1" in
         sed -i "s|#\?\(session-setup-script\=\).*|\1$ldm_login|" $ldm_conf
         sed -i "s|#\?\(session-cleanup-script\=\).*|\1$ldm_logout|" $ldm_conf
 
+        # Apply Kano PAM customization to enforce umask for login sessions
+        pam-auth-update --package kano-umask --force
+
         ;;
 esac
 
