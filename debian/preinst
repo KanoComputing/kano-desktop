@@ -6,9 +6,14 @@
 # License: http://www.gnu.org/licenses/gpl-2.0.txt GNU General Public License v2
 #
 
-if [ upgrade != "$1" ] || dpkg --compare-versions "$2" le 1.2-1.20150116; then
+# For 1.2-1.20150116 < version <= 1.2-1.20150217build01 a dpkg-divert was added
+# to /etc/magic; this is redundant now. Remove it if upgrading from an affected
+# version.
+if [ upgrade != "$1" ] \
+    && dpkg --compare-versions "$2" gt 1.2-1.20150116 \
+    && dpkg --compare-versions "$2" le 1.2-1.20150217build01; then
 
     # Revert magic file definition diversion
-    dpkg-divert --package kano-desktop --add --rename \
+    dpkg-divert --package kano-desktop --remove --rename \
                 --divert /etc/magic.orig /etc/magic
 fi
