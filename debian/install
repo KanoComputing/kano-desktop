@@ -28,3 +28,5 @@ bin/kano-uixinit usr/bin
 bin/open-me.sh etc/skel/.Rabbithole
 
 scripts/* usr/share/kano-desktop/scripts
+
+pam-configs/kano-umask /usr/share/pam-configs

@@ -1,0 +1,6 @@
+Name: Kano private users file permissions
+Default: yes
+Priority: 256
+Session-Type: Additional
+Session:
+        optional        pam_umask.so [umask=0077]

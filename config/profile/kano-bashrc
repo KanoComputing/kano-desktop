@@ -45,5 +45,10 @@ function espeak_override()
         >&2 echo "Please run 'espeak_debug $@' to see the error."
     fi
 }
+
 alias espeak=espeak_override
 alias espeak_debug=\\espeak
+
+# Enforce umask so that user files
+# cannot be seen/touched by others
+umask 077
