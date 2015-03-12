@@ -155,10 +155,10 @@ case $icon_name in
         if [ "$rc" == "0" ]; then
 
             if [ "$debug" == "true" ]; then
-                echo "starting kano-sync and check-for-updates"
+                echo "starting kano-sync and checking for updates"
             fi
             kano-sync --sync --backup -s &
-            sudo /usr/bin/check-for-updates -t 24 -d &
+            sudo /usr/bin/kano-updater check --gui --interval 24 &
         fi
 
         # disable Notifications Widget alerts momentarily until the screen saver stops
