@@ -139,7 +139,7 @@ if [ $check_for_updates -eq 1 ] && [ is_internet ]; then
 
     # present an hourglass
     kdesk-hourglass-app "check-for-updates"
-    sudo /usr/bin/check-for-updates -t 168 -d
+    sudo kano-updater check --gui --interval 168
 else
     logger_info "Not checking for update"
 fi
