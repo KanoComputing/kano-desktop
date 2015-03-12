@@ -158,7 +158,7 @@ case $icon_name in
                 echo "starting kano-sync and checking for updates"
             fi
             kano-sync --sync --backup -s &
-            sudo /usr/bin/kano-updater check --gui -t 24 -d &
+            sudo /usr/bin/kano-updater check --gui --interval 24 &
         fi
 
         # disable Notifications Widget alerts momentarily until the screen saver stops
