@@ -52,12 +52,13 @@ case "$1" in
         mkdir -p /etc/skel/.config
         ln -s /usr/share/kano-desktop/config/pcmanfm /etc/skel/.config/pcmanfm
         ln -s /usr/share/kano-desktop/config/libfm /etc/skel/.config/libfm
-        ln -s /usr/share/kano-desktop/config/lxpanel /etc/skel/.config/lxpanel
+
+        # we want users to keep their private local lxpanel customization
+        mkdir -p /etc/skel/.config/lxpanel
+        cp -r /usr/share/kano-desktop/config/lxpanel /etc/skel/.config/lxpanel
+
         ln -s /usr/share/kano-desktop/config/lxterminal /etc/skel/.config/lxterminal
         ln -s /usr/share/kano-desktop/config/lxsession /etc/skel/.config/lxsession
-
-        # ensure the user can write to lxpanel config file
-        chmod -R 777 /usr/share/kano-desktop/config/lxpanel
 
         # /etc/skel/Legal
         ln -s /usr/share/kano-desktop/Legal /etc/skel/Legal
