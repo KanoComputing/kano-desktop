@@ -165,6 +165,9 @@ if [ -e /etc/init.d/alsa-utils ]; then
 else
     logger_warn "alsa-utils not found, can't attempt to restore volume level"
 fi
+# start mount trigger
+logger_info "Launching kano-mount-trigger"
+/usr/bin/kano-mount-trigger "/usr/bin/kano-launcher /usr/bin/pcmanfm pcmanfm" &
 
 # starting kdesk
 logger_info "Launching kdesk"
