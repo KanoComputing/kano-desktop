@@ -51,4 +51,4 @@ alias espeak_debug=\\espeak
 
 # Enforce umask so that user files
 # cannot be seen/touched by others
-umask 077
+umask 022
