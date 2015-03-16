@@ -132,18 +132,6 @@ set_keyboard $kano_keyboard
 logger_info "Launching startmouse"
 /usr/bin/startmouse &
 
-# check for updates and display the update dialog
-# restrict server communication to max once a week (168 hours)
-if [ $check_for_updates -eq 1 ] && [ is_internet ]; then
-    logger_info "Checking for update"
-
-    # present an hourglass
-    kdesk-hourglass-app "check-for-updates"
-    sudo kano-updater check --gui --interval 168
-else
-    logger_info "Not checking for update"
-fi
-
 # lxpanel
 logger_info "Launching LXPanel"
 
@@ -177,8 +165,15 @@ logger_info "Launching kdesk"
 # Report a startup event to Kano Tracker
 kano-tracker-ctl +1 startup
 
-# Run the check-int procedure of the updater
-sudo kano-updater boot-check
+
+if [ $check_for_updates -eq 1 ] && [ is_internet ]; then
+    logger_info "Checking for update"
+    UPDATER_INIT_ARGS='--check-for-updates'
+else
+    logger_info "Not checking for update"
+fi
+
+sudo kano-updater boot-check $UPDATER_INIT_ARGS
 
 # Remove Homedir "Desktop" folder created by:
 # /usr/share/xsessions/lightdm-xsession.desktop
