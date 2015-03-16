@@ -177,6 +177,9 @@ logger_info "Launching kdesk"
 # Report a startup event to Kano Tracker
 kano-tracker-ctl +1 startup
 
+# Run the check-int procedure of the updater
+sudo kano-updater boot-check
+
 # Remove Homedir "Desktop" folder created by:
 # /usr/share/xsessions/lightdm-xsession.desktop
 rm -rf  ~/Desktop
