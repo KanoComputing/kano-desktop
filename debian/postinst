@@ -55,7 +55,7 @@ case "$1" in
 
         # we want users to keep their private local lxpanel customization
         mkdir -p /etc/skel/.config/lxpanel
-        cp -r /usr/share/kano-desktop/config/lxpanel /etc/skel/.config/lxpanel
+        cp -r /usr/share/kano-desktop/config/lxpanel/* /etc/skel/.config/lxpanel
 
         ln -s /usr/share/kano-desktop/config/lxterminal /etc/skel/.config/lxterminal
         ln -s /usr/share/kano-desktop/config/lxsession /etc/skel/.config/lxsession
