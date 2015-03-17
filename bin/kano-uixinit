@@ -162,9 +162,12 @@ logger_info "Launching kdesk"
 /usr/bin/kdesk &
 /usr/bin/kano-feedback-widget &
 
+# Try uploading the tracking data to our servers
+# Should be quiet on failure
+kano-sync --upload-tracking-data --silent
+
 # Report a startup event to Kano Tracker
 kano-tracker-ctl +1 startup
-
 
 if [ $check_for_updates -eq 1 ] && [ is_internet ]; then
     logger_info "Checking for update"
