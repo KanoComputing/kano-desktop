@@ -121,6 +121,10 @@ if [ ! -f $first_boot_file ] && [ "$SKIP" != "true" ]; then
     check_for_updates=0
 # The following is executed in subsequent boots
 else
+
+    # start hourglass to wait for the last X11 app to get ready
+    kdesk-hourglass-app "lxpanel"
+
     # load background
     /usr/bin/kdesk -w &
 fi
@@ -135,8 +139,6 @@ logger_info "Launching startmouse"
 # lxpanel
 logger_info "Launching LXPanel"
 
-# start hourglass to wait for the last X11 app to get ready
-kdesk-hourglass-app "kano-feedback-widget"
 /usr/bin/lxpanel --profile LXDE &
 
 # LXPanel resets the volume level to 100, we need it to be restored to
