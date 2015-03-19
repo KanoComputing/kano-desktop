@@ -54,6 +54,7 @@ case "$1" in
         ln -s /usr/share/kano-desktop/config/libfm /etc/skel/.config/libfm
 
         # we want users to keep their private local lxpanel customization
+        # so we copy the files along into a directory, instead of a symbolic link
         mkdir -p /etc/skel/.config/lxpanel
         cp -r /usr/share/kano-desktop/config/lxpanel/* /etc/skel/.config/lxpanel
 

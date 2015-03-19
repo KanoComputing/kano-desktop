@@ -38,7 +38,10 @@ case "$1" in
         # Removing links
         rm -f /etc/skel/.config/pcmanfm
         rm -f /etc/skel/.config/libfm
-        rm -f /etc/skel/.config/lxpanel
+
+        # lxpanel is now a directory, not a symbolic link (see postinst)
+        rm -rf /etc/skel/.config/lxpanel
+
         rm -f /etc/skel/.config/lxterminal
         rm -f /etc/skel/.config/lxsession
         rm -rf /etc/skel/Legal
