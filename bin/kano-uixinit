@@ -171,7 +171,7 @@ kano-tracker-ctl +1 startup
 if [ is_internet ]; then
     if [ $check_for_updates -eq 1 ]; then
         logger_info "Checking for update"
-        UPDATER_INIT_ARGS='--check-for-updates'
+        sudo kano-updater check --gui &
     else
         logger_info "Not checking for update"
     fi
@@ -180,10 +180,6 @@ if [ is_internet ]; then
     # Should be quiet on failure
     kano-sync --upload-tracking-data --silent
 fi
-
-# Initialise the state of the updater and check
-# for updates if necessary
-sudo kano-updater boot-check $UPDATER_INIT_ARGS
 
 # Remove Homedir "Desktop" folder created by:
 # /usr/share/xsessions/lightdm-xsession.desktop
