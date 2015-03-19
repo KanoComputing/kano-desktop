@@ -171,7 +171,7 @@ kano-tracker-ctl +1 startup
 if [ is_internet ]; then
     if [ $check_for_updates -eq 1 ]; then
         logger_info "Checking for update"
-        sudo kano-updater check --gui &
+        sudo kano-updater check --gui --interval 168 &
     else
         logger_info "Not checking for update"
     fi
