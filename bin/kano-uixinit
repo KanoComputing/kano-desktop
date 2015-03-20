@@ -181,6 +181,10 @@ if [ is_internet ]; then
     kano-sync --upload-tracking-data --silent
 fi
 
+# TODO: This should be in a drop in directory,
+# installed from the updater instead
+sudo kano-updater ui boot-window
+
 # Remove Homedir "Desktop" folder created by:
 # /usr/share/xsessions/lightdm-xsession.desktop
 rm -rf  ~/Desktop
