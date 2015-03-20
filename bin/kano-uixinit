@@ -168,6 +168,10 @@ logger_info "Launching kdesk"
 # Report a startup event to Kano Tracker
 kano-tracker-ctl +1 startup
 
+# TODO: This should be in a drop in directory,
+# installed from the updater instead
+sudo kano-updater ui boot-window
+
 if [ is_internet ]; then
     if [ $check_for_updates -eq 1 ]; then
         logger_info "Checking for update"
@@ -181,9 +185,6 @@ if [ is_internet ]; then
     kano-sync --upload-tracking-data --silent
 fi
 
-# TODO: This should be in a drop in directory,
-# installed from the updater instead
-sudo kano-updater ui boot-window
 
 # Remove Homedir "Desktop" folder created by:
 # /usr/share/xsessions/lightdm-xsession.desktop
