@@ -69,7 +69,9 @@ style "menu"
 {
 	ythickness = 2
 	xthickness = 2
-} 
+	# The following is apparently the color used when the mouse hover event happens
+	bg[SELECTED] = @bg_color
+}
 
 style "entry"
 {
