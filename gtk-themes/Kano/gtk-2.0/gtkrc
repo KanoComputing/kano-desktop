@@ -63,6 +63,7 @@ style "menuitem"
 	xthickness = 2
 
         fg[PRELIGHT]          = @selected_fg_color
+	bg[SELECTED] = @selected_bg_color
 }
 
 style "menu" 
@@ -70,7 +71,7 @@ style "menu"
 	ythickness = 2
 	xthickness = 2
 	# The following is apparently the color used when the mouse hover event happens
-	bg[SELECTED] = @bg_color
+	bg[SELECTED] = @selected_fg_color
 }
 
 style "entry"
@@ -104,6 +105,7 @@ widget_class "*.<GtkComboBox>.<GtkCellView>"   style "mist-text-is-fg-color-work
 
 style "mist-menuitem-text-is-fg-color-workaround"
 {
+	bg[SELECTED] = @selected_bg_color
         text[NORMAL]              = @fg_color
         text[ACTIVE]              = @fg_color
         text[INSENSITIVE]         = mix (0.4, @fg_color, shade (0.85, @bg_color)) #shaded to bg[INSENSITIVE]
