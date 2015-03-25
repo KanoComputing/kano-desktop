@@ -17,6 +17,9 @@ first_boot_file="$HOME/.kano-settings/first_boot"
 after_update_file="$HOME/.kano-settings/after_update"
 mkdir -p "$HOME/.kano-settings"
 
+#prevent gtk apps from warning about lack of accessibility bridge
+export NO_AT_BRIDGE=1
+
 function is_installed
 {
     if [ -n "`which $1`" ]; then
