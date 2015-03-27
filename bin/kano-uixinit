@@ -114,7 +114,7 @@ if [ ! -f $first_boot_file ] && [ "$SKIP" != "true" ]; then
     logger_info "Playing os_intro.mkv"
     kano-video-cli /usr/share/kano-media/videos/os_intro.mkv
     # regenerating ssh keys
-    if [ `kano-usertools number` -eq 1 ]; then
+    if [ `getent group kanousers | wc -l` -eq 1 ]; then
         sudo regenerate-ssh-keys &
     fi
     # Finalise
