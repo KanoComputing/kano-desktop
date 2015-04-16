@@ -1,7 +1,7 @@
 table Icon
   Caption:
   AppID: PlusIcon
-  Command: /usr/bin/kano-launcher /usr/bin/kano-apps
+  Command: /usr/bin/kano-launcher /usr/bin/kano-apps icon-tutorial
   Singleton: true
   Icon: /usr/share/kano-desktop/icons/plus-icon.png
   HoverXOffset: 0
