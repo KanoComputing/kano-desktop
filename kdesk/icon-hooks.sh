@@ -135,6 +135,11 @@ case $icon_name in
         fi
         rc=0
 
+        # disable Notifications Widget alerts momentarily until the screen saver stops
+        if [ -p "$pipe_filename" ]; then
+            echo "pause" >> $pipe_filename
+        fi
+
         #
         # Search for any programs that should not play along with the screen saver
         # process names are pattern matched, so kano-updater will also find kano-updater-gui.
@@ -160,11 +165,6 @@ case $icon_name in
             kano-sync --sync --backup -s &
             sudo /usr/bin/kano-updater check --gui --interval 24 &
         fi
-
-        # disable Notifications Widget alerts momentarily until the screen saver stops
-        if [ -p "$pipe_filename" ]; then
-            echo "pause" >> $pipe_filename
-        fi
         ;;
 
     "ScreenSaverFinish")
@@ -172,16 +172,16 @@ case $icon_name in
             echo "Received hook for Screen Saver Finish"
         fi
 
+        # re-enable notifications widget UI alerts so they popup on the now visible Kano Desktop
+        if [ -p "$pipe_filename" ]; then
+            echo "resume" >> $pipe_filename
+        fi
+
         # kanotracker collects how many times and for long the screen saver runs
         length=$2
         now=$(date +%s)
         started=$(expr $now - $length)
         kano-tracker-ctl session log screen-saver $started $length
-
-        # re-enable notifications widget UI alerts so they popup on the now visible Kano Desktop
-        if [ -p "$pipe_filename" ]; then
-            echo "resume" >> $pipe_filename
-        fi
         ;;
 
     *)
