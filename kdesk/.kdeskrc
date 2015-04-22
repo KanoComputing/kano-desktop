@@ -10,7 +10,7 @@ table Config
   FontName: Bariol
   FontSize: 22
   SubtitleFontSize: 14
-  FontColor: #FFFFFF
+  FontColor: #000000
   ToolTip.FontSize: 10
   ToolTip.FontName: Bariol
   ToolTip.ForeColor: #0000FF
@@ -45,7 +45,7 @@ table Config
 
   Transparency: 255
   Shadow: true
-  ShadowColor: #000000
+  ShadowColor: #5a5a5a
   ShadowX: 1
   ShadowY: 1
   Bold: true
