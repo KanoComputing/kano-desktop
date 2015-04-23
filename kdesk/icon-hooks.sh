@@ -69,9 +69,9 @@ case $icon_name in
     fi
 
     # Update the message area with username and current level
-    msg="$username|Level $level"
+    msg="$username|LEVEL $level"
     if [ "$username" != "" ] && [ "$level" != "" ]; then
-        printf "Message: {80,40} $msg\n"
+        printf "Message: {90,40} $msg\n"
     fi
 
     # Update the icon with user's avatar and experience level icon
