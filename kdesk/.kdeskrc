@@ -8,9 +8,10 @@
 
 table Config
   FontName: Bariol
-  FontSize: 22
-  SubtitleFontSize: 14
-  FontColor: #FFFFFF
+  FontSize: 14
+  SubtitleFontSize: 11
+  FontColor: #323232
+
   ToolTip.FontSize: 10
   ToolTip.FontName: Bariol
   ToolTip.ForeColor: #0000FF
@@ -43,9 +44,9 @@ table Config
   GridIconWidth: 88
   GridIconHeight: 88
 
-  Transparency: 255
+  Transparency: 0
   Shadow: true
-  ShadowColor: #000000
+  ShadowColor: #6e6e6e
   ShadowX: 1
   ShadowY: 1
   Bold: true

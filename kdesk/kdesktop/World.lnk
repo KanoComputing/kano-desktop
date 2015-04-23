@@ -3,12 +3,12 @@ table Icon
   AppID: /usr/bin/kano-world-launcher
   Command: /usr/bin/kano-world-launcher
   Singleton: true
-  Message: Kano World
+  Message: {75,38} Loading...
   Icon: /usr/share/kano-desktop/icons/kano-world-launcher.png
   HoverXOffset: 0
   HAlign: right
-  Width: 300
-  Height: 68
+  Width: 250
+  Height: 90
   Relative-To: top-right
   X: 50
   Y: 30
