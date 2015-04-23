@@ -71,7 +71,7 @@ case $icon_name in
     # Update the message area with username and current level
     msg="$username|LEVEL $level"
     if [ "$username" != "" ] && [ "$level" != "" ]; then
-        printf "Message: {90,40} $msg\n"
+        printf "Message: {90,38} $msg\n"
     fi
 
     # Update the icon with user's avatar and experience level icon
@@ -80,7 +80,7 @@ case $icon_name in
     fi
 
     if [ "$avatar_file" != "" ]; then
-        printf "IconStamp: {14,14} $avatar_file\n"
+        printf "IconStamp: {13,13} $avatar_file\n"
     fi
     ;;
 
@@ -96,35 +96,38 @@ case $icon_name in
             printf "Kano Profile API returns rc=$apirc, data=\n$kano_statuses\n"
         fi
 
-        msg="Kano World"
+        msg1="Kano World"
+        msg2="NOT CONNECTED"
         icon="/usr/share/kano-desktop/icons/kano-world-launcher.png"
+        notification_icon="/usr/share/kano-desktop/images/world-numbers/minus.png"
 
         # Uncomment line below to test your own notifications
-        #kano_statuses="notifications_count: 8901976323"
+        #kano_statuses="notifications_count: 18"
 
         for item in $kano_statuses
         do
             eval line_item=($item)
             case ${line_item[0]} in
                 "notifications_count:")
+		    # If we know the notification count, we are connected
+                    msg2="ONLINE"
 
-                    # Extract numbers only - Any string will become 0 which meansno notifications.
+                    # Extract numbers only - Any string will become 0 which means no notifications.
                     notifications=$(printf "%d" ${line_item[1]})
-
-                    if [ "$notifications" != "0" ]; then
-                        icon="/usr/share/kano-desktop/icons/kano-world-launcher-alerts.png"
-                        if [ "$notifications" == "1" ]; then
-                            msg="$msg|$notifications notification"
-                        else
-                            msg="$msg|$notifications notifications"
-                        fi
+                    if [ $notifications == 0 ]; then
+                        notification_icon="/usr/share/kano-desktop/images/world-numbers/minus.png"
+                    elif [ $notifications -lt 10 ]; then
+                        notification_icon="/usr/share/kano-desktop/images/world-numbers/${notifications}.png"
+                    elif [ $notifications -gt 9 ]; then
+                        notification_icon="/usr/share/kano-desktop/images/world-numbers/9-plus.png"
                     fi
                     ;;
             esac
         done
 
         printf "Icon: $icon\n"
-        printf "Message: $msg\n"
+        printf "Message: {75,38} $msg1|$msg2\n"
+        printf "IconStatus: {30,53} $notification_icon\n"
         ;;
 
 
