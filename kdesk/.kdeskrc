@@ -43,7 +43,7 @@ table Config
   GridIconWidth: 88
   GridIconHeight: 88
 
-  Transparency: 255
+  Transparency: 0
   Shadow: true
   ShadowColor: #5a5a5a
   ShadowX: 1
