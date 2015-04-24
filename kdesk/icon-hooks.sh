@@ -97,7 +97,7 @@ case $icon_name in
         fi
 
         msg1="Kano World"
-        msg2="NOT CONNECTED"
+        msg2="OFFLINE"
         icon="/usr/share/kano-desktop/icons/kano-world-launcher.png"
         notification_icon="/usr/share/kano-desktop/images/world-numbers/minus.png"
 
@@ -124,6 +124,9 @@ case $icon_name in
                     ;;
             esac
         done
+
+        # Uncomment line below to test your status message
+        #msg2="MYSTATUS"
 
         printf "Icon: $icon\n"
         printf "Message: {75,38} $msg1|$msg2\n"
