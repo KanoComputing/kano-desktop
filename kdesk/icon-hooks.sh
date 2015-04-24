@@ -68,6 +68,9 @@ case $icon_name in
         echo -e "\nReturning attributes to Kdesk:\n"
     fi
 
+    # Uncomment line below to test your own username
+    #username="My Long Username"
+
     # Update the message area with username and current level
     msg="$username|LEVEL $level"
     if [ "$username" != "" ] && [ "$level" != "" ]; then
