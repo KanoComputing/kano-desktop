@@ -108,7 +108,7 @@ if [ ! -f $first_boot_file ]; then
         fi
         # Login / Create account
         if [ "$FLOW" != "workshops" ]; then
-            kano-registration-gui
+            kano-login --register
         fi
         # Video
         logger_info "Playing os_intro.mkv"
