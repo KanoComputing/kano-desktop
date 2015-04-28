@@ -50,7 +50,7 @@ case $icon_name in
         eval line_item=($item)
         case ${line_item[0]} in
             "mixed_username:")
-                username=${line_item[1]^}
+                username=${line_item[1]}
                 ;;
             "level:")
                 level=${line_item[1]}
