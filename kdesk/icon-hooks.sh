@@ -72,7 +72,7 @@ case $icon_name in
     #username="My Long Username"
 
     # Update the message area with username and current level
-    msg="$username|LEVEL $level"
+    msg="$username|Level $level"
     if [ "$username" != "" ] && [ "$level" != "" ]; then
         printf "Message: {90,38} $msg\n"
     fi
@@ -90,9 +90,8 @@ case $icon_name in
 
     "world")
         IFS=$'\n'
-
-        # FIXME: Replace below line when API is ready
         kano_statuses=`kano-profile-cli get_notifications_count`
+        is_online=`kano-profile-cli is_registered`
         apirc=$?
 
         if [ "$debug" == "true" ]; then
@@ -100,33 +99,36 @@ case $icon_name in
         fi
 
         msg1="Kano World"
-        msg2="OFFLINE"
         icon="/usr/share/kano-desktop/icons/kano-world-launcher.png"
-        notification_icon="/usr/share/kano-desktop/images/world-numbers/minus.png"
 
         # Uncomment line below to test your own notifications
         #kano_statuses="notifications_count: 18"
 
-        for item in $kano_statuses
-        do
-            eval line_item=($item)
-            case ${line_item[0]} in
-                "notifications_count:")
-		    # If we know the notification count, we are connected
-                    msg2="ONLINE"
+	# Online / Offline status message
+        if [ "$is_online" == "0" ]; then
+            notification_icon="/usr/share/kano-desktop/images/world-numbers/minus.png"
+            msg2="OFFLINE"
+        else
+            msg2="ONLINE"
+            notification_icon=""
 
-                    # Extract numbers only - Any string will become 0 which means no notifications.
-                    notifications=$(printf "%d" ${line_item[1]})
-                    if [ $notifications == 0 ]; then
-                        notification_icon="/usr/share/kano-desktop/images/world-numbers/minus.png"
-                    elif [ $notifications -lt 10 ]; then
-                        notification_icon="/usr/share/kano-desktop/images/world-numbers/${notifications}.png"
-                    elif [ $notifications -gt 9 ]; then
-                        notification_icon="/usr/share/kano-desktop/images/world-numbers/9-plus.png"
-                    fi
-                    ;;
-            esac
-        done
+            # We are online, ask how many notifications are on the queue
+            for item in $kano_statuses
+            do
+                eval line_item=($item)
+                case ${line_item[0]} in
+                    "notifications_count:")
+                        # Extract numbers only - Any string will become 0 which means no notifications.
+                        notifications=$(printf "%d" ${line_item[1]})
+                        if [ $notifications -lt 10 ] && [ $notifications -gt 0 ]; then
+                            notification_icon="/usr/share/kano-desktop/images/world-numbers/${notifications}.png"
+                        elif [ $notifications -gt 9 ]; then
+                            notification_icon="/usr/share/kano-desktop/images/world-numbers/9-plus.png"
+                        fi
+                        ;;
+                esac
+            done
+        fi
 
         # Uncomment line below to test your status message
         #msg2="MYSTATUS"
