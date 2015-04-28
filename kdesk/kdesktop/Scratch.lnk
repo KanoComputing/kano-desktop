@@ -1,0 +1,12 @@
+table Icon
+  Caption:
+  AppID: Scratch
+  Command: /usr/bin/scratch
+  Singleton: true
+  Icon: /usr/share/kano-desktop/icons/scratch.png
+  IconHover: /usr/share/kano-desktop/icons/scratch-hover.png
+  HoverXOffset: 0
+  Relative-To: grid
+  X: 3
+  Y: 1
+end

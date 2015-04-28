@@ -1,0 +1,12 @@
+table Icon
+  Caption:
+  AppID: kano-video
+  Command: /usr/bin/kano-video
+  Singleton: true
+  Icon: /usr/share/kano-desktop/icons/kano-video.png
+  IconHover: /usr/share/kano-desktop/icons/kano-video-hover.png
+  HoverXOffset: 0
+  Relative-To: grid
+  X: 2
+  Y: 1
+end
