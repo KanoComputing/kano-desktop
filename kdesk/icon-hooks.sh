@@ -174,7 +174,7 @@ case $icon_name in
                 echo "starting kano-sync and checking for updates"
             fi
             kano-sync --sync --backup -s &
-            sudo /usr/bin/kano-updater check --gui --interval 24 &
+            sudo /usr/bin/kano-updater check --gui --interval 168 &
         fi
         ;;
 
