@@ -65,8 +65,6 @@ fi
 # detect kano-keyboard
 kano_keyboard=`python -c "from kano.utils import detect_kano_keyboard; print detect_kano_keyboard()"`
 
-check_for_updates=1
-
 # Load init configuration options
 INIT_CONF=/boot/init.conf
 SKIP="false"
@@ -125,11 +123,9 @@ if [ ! -f $first_boot_file ]; then
 
     # Finalise account setup
     sudo kano-init finalise
+    sudo kano-updater first-boot
 
     touch $first_boot_file
-
-    # Disable checking for updates for this boot
-    check_for_updates=0
 else
     # The following is executed in subsequent boots
 
@@ -184,13 +180,6 @@ kano-tracker-ctl +1 startup
 sudo kano-updater ui boot-window
 
 if [ is_internet ]; then
-    if [ $check_for_updates -eq 1 ]; then
-        logger_info "Checking for update"
-        sudo kano-updater check --gui --interval 168 &
-    else
-        logger_info "Not checking for update"
-    fi
-
     # Try uploading the tracking data to our servers
     # Should be quiet on failure
     kano-sync --upload-tracking-data --silent
