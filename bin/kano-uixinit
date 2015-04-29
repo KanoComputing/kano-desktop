@@ -125,6 +125,7 @@ if [ ! -f $first_boot_file ]; then
 
     # Finalise account setup
     sudo kano-init finalise
+    sudo kano-updater first-boot
 
     touch $first_boot_file
 
