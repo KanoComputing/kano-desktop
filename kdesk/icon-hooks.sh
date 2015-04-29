@@ -173,7 +173,7 @@ case $icon_name in
             if [ "$debug" == "true" ]; then
                 echo "starting kano-sync and checking for updates"
             fi
-            kano-sync --sync --backup -s &
+            kano-sync --skip-kdesk --sync --backup -s &
             sudo /usr/bin/kano-updater check --gui --interval 168 &
         fi
         ;;
