@@ -109,8 +109,8 @@ if [ ! -f $first_boot_file ]; then
             kano-login --register
         fi
         # Video
-        logger_info "Playing os_intro.mkv"
-        kano-video-cli /usr/share/kano-media/videos/os_intro.mkv
+        logger_info "Playing os_intro.mp4"
+        kano-video-cli /usr/share/kano-media/videos/os_intro.mp4
 
         # Show the background selector from settings
         sudo kano-settings 14
