@@ -154,14 +154,20 @@ logger_info "Launching LXPanel"
 if [ -e /etc/init.d/alsa-utils ]; then
     # Redirect both stderr and stdout to null, we can do our own logging
     /etc/init.d/alsa-utils start &> /dev/null
-    if [ "$FIRST_BOOT" == "true" ]; then
-        amixer -c 0 -- sset PCM playback 90%
-    fi
     ret_val="$?"
     if [ "$ret_val" -ne 0 ]; then
         logger_warn "Failed to restore volume level, ret code: $ret_val"
     else
         logger_info "Audio volume level was successfully restored"
+    fi
+    if [ "$FIRST_BOOT" == "true" ]; then
+        amixer -c 0 -- sset PCM playback 90% &> /dev/null
+	ret_val="$?"
+	if [ "$ret_val" -ne 0 ]; then
+            logger_warn "Failed to set volume level, ret code: $ret_val"
+	else
+            logger_info "Audio volume level set to 90% on first boot"
+	fi	
     fi
 else
     logger_warn "alsa-utils not found, can't attempt to restore volume level"
