@@ -3,10 +3,12 @@
 # xbindkeys configuration #
 ###########################
 #
-# Copyright (C) 2014,2015 Kano Computing Ltd.
-# License: http://www.gnu.org/licenses/gpl-2.0.txt GNU General Public License v2
+# xbindkeys configuration for keyboard other than the Kano keyboard
 #
-# xbindkeys configuration for keyboard otehr than the Kano keyboard
+# This configuration file is used by xbindkeys
+# which is released under the GPL license
+#
+#  http://www.nongnu.org/xbindkeys/xbindkeys.html#licence
 #
 # Version: 1.8.5
 #
