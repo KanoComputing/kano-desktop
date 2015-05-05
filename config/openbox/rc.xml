@@ -1,4 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
+<!-- openbox rc.xml
+  This file configures the Openbox window manager for KanoOS
+  Openbox is released under the GPLv2 license: http://openbox.org/wiki/Openbox:About
+ -->
 
 <openbox_config xmlns="http://openbox.org/3.4/rc">
 

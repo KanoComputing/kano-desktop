@@ -3,6 +3,13 @@
 # xbindkeys configuration #
 ###########################
 #
+# xbindkeys configuration for the Kano keyboard
+#
+# This configuration file is used by xbindkeys
+# which is released under the GPL license
+#
+#  http://www.nongnu.org/xbindkeys/xbindkeys.html#licence
+#
 # Version: 1.8.5
 #
 # If you edit this file, do not forget to uncomment any lines
