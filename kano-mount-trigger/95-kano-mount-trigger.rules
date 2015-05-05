@@ -1,4 +1,9 @@
-# rules for kano-mount-trigger
+# 95-kano-mount-trigger-rules
+#
+# Copyright (C) 2014,2015 Kano Computing Ltd.
+# License: http://www.gnu.org/licenses/gpl-2.0.txt GNU General Public License v2
+#
+# Udev rules for kano-mount-trigger
 
 # send USR1 to kano-mount-trigger when a disk is present. Don't sent it for subvolumes
 # as pcmanfm checks for them itself
