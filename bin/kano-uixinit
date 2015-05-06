@@ -7,9 +7,14 @@
 #
 #  This script is a wrapper on top of LXDE autoinit.
 #
-#  It starts kano-settings if needed and sets the background wallpaper
-#  It fits well on bootup and logoff-logon transitions.
-#
+#  It performs all configuration, launching, and other processing related to:
+#  First login:
+#    * kano-tutorial, kano-init-flow, kano-login, the OS intro video
+#    * Triggers first login processing of kano-init and kano-updater
+#  Every login:
+#    * Configures: screensaver, audio  (alsa-utils), keyboard, mouse, kano-vnc
+#    * Starts lxpanel, kano-mount-trigger, kdesk, kano-feedback-widget
+#    * Triggers login processing for kano-tracker-ctl, kano-sync, kano-updater
 
 . /usr/share/kano-toolset/logging.sh
 
