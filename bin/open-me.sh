@@ -11,6 +11,6 @@ clear
 typewriter_echo "{{3 Nicely done $USER, you found me! }}" 0 2 0 0
 clear
 # Play rabbit animation
-/usr/share/kano-init/rabbit.py 1 left-to-right
+python /usr/lib/python2.7/dist-packages/kano_init/ascii_art/rabbit.py 1 left-to-right
 # Unlock the easter egg badge
 /usr/bin/kano-profile-cli increment_app_state_variable easter_egg starts 1
