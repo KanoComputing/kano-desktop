@@ -118,8 +118,12 @@ if [ ! -f $first_boot_file ]; then
         logger_info "Playing os_intro.mp4"
         kano-video-cli /usr/share/kano-media/videos/os_intro.mp4
 
-        # Show the background selector from settings
+        # Show the background selector from settings
         sudo kano-settings 14
+
+        # start hourglass to wait for the last X11 app to get ready
+        kdesk-hourglass-app "lxpanel"
+
     fi
 
     # regenerating ssh keys
