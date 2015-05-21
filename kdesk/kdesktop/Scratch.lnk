@@ -7,6 +7,6 @@ table Icon
   IconHover: /usr/share/kano-desktop/icons/scratch-hover.png
   HoverXOffset: 0
   Relative-To: grid
-  X: 3
+  X: 2
   Y: 1
 end
