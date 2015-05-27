@@ -57,6 +57,6 @@ Kano supply a custom keyboard; support for which is in this repo.
 
 A particularly important script is `kdesk/icon_hooks.sh`. This allows dynamic configuration of the icons on the desktop. It is currently used to:
  * Display information from the users profile via [kano-profile](https://github.com/KanoComputing/kano-profile) and 
- * Display online/offline status and information about notifications on (Kano World)[http://world.kano.me)
+ * Display online/offline status and information about notifications on [Kano World](http://world.kano.me)
  * Trigger actions when the screensaver kicks in. (This is a convenient time to run [*kano-sync*](https://github.com/KanoComputing/kano-profile/blob/master/bin/kano-sync) and [*kano-updater*](https://github.com/KanoComputing/kano-updater))
  
