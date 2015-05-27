@@ -4,6 +4,9 @@
 an integrated desktop experience, built on Raspbian's LXDE. Most of the actual code resides in its
 dependencies; what is provided directly are configuration files and integration scripts.
 
+Visit the project's [wiki](https://github.com/KanoComputing/kano-desktop/wiki) to get the full description.
+
+[Collaborate!](https://github.com/KanoComputing/kano-desktop/wiki/Collaboration)
 
 ## *kano-uixinit*
 
