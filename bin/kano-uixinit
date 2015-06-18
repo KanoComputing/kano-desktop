@@ -114,12 +114,20 @@ if [ ! -f $first_boot_file ]; then
         if [ "$FLOW" != "workshops" ]; then
             kano-login --register
         fi
+
+        # Show the background selector from settings
+        # The process will be launched in the background while the video
+        # plays so the window is ready for the user when it's done.
+        sudo kano-settings 14 &
+        SETTINGS_PID=$!
+
         # Video
         logger_info "Playing os_intro.mp4"
         kano-video-cli /usr/share/kano-media/videos/os_intro.mp4
 
-        # Show the background selector from settings
-        sudo kano-settings 14
+        # Wait for the user to select the wallpaper and close the
+        # settings window.
+        wait $SETTINGS_PID
 
         # start hourglass to wait for the last X11 app to get ready
         kdesk-hourglass-app "lxpanel"
