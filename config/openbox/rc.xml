@@ -762,6 +762,10 @@
     <decor>no</decor>
   </application>
 
+  <application class="Kwebapp">
+    <decor>no</decor>
+  </application>
+
   <application class="Kano-levelup-minecraft">
     <position force="yes">
         <x>center</x>
