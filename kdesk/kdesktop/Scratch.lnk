@@ -1,7 +1,7 @@
 table Icon
   Caption:
   AppID: Scratch
-  Command: /usr/bin/scratch
+  Command: kano-tracker-ctl session run scratch /usr/bin/scratch
   Singleton: true
   Icon: /usr/share/kano-desktop/icons/scratch.png
   IconHover: /usr/share/kano-desktop/icons/scratch-hover.png
