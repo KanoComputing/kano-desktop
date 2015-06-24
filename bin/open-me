@@ -1,0 +1,41 @@
+#!/usr/bin/env python
+
+# open-me
+#
+# Copyright (C) 2014, 2015 Kano Computing Ltd.
+# License: http://www.gnu.org/licenses/gpl-2.0.txt GNU GPL v2
+#
+# Execute this file to receive the File Finder badge
+#
+
+import os
+import sys
+import time
+from kano_init.terminal import typewriter_echo, clear_screen
+from kano_init.ascii_art.rabbit import rabbit
+from kano_init.ascii_art.matrix import matrix
+from kano.utils import get_user_unsudoed
+from kano_profile.badges import increment_app_state_variable_with_dialog
+
+if __name__ == '__main__' and __package__ is None:
+    dir_path = os.path.abspath(os.path.join(os.path.dirname(__file__), '..'))
+    if dir_path != '/usr':
+        sys.path.insert(1, dir_path)
+
+
+def main():
+    # Play matrix animation
+    matrix(2, False)
+    clear_screen()
+    # Show text
+    msg = "Nicely done {}, you found me!".format(get_user_unsudoed())
+    typewriter_echo(msg, trailing_linebreaks=2)
+    time.sleep(2)
+    # Play rabbit animation
+    rabbit(1, 'left-to-right')
+    # Unlock the easter egg badge
+    increment_app_state_variable_with_dialog('easter_egg', 'starts', 1)
+    clear_screen()
+
+if __name__ == '__main__':
+    main()
