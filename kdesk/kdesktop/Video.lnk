@@ -1,0 +1,14 @@
+table Icon
+  Caption:
+  AppID: kano-video-browser
+  Command: /usr/bin/kano-video-browser
+  Singleton: true
+  Icon: /usr/share/kano-video/icon/video.png
+  IconHover:
+  HoverXOffset: 0
+  Width: 138
+  Height: 128
+  Relative-To: grid
+  X: 3
+  Y: 1
+end
