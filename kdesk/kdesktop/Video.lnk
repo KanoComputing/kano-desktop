@@ -4,7 +4,7 @@ table Icon
   Command: /usr/bin/kano-video-browser
   Singleton: true
   Icon: /usr/share/kano-video/icon/video.png
-  IconHover:
+  IconHover: /usr/share/kano-desktop/icons/youtube-hover.png
   HoverXOffset: 0
   Width: 138
   Height: 128
