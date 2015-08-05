@@ -85,6 +85,21 @@ case $icon_name in
     if [ "$avatar_file" != "" ]; then
         printf "IconStamp: {13,13} $avatar_file\n"
     fi
+
+    # Evaluate the quests notification icon
+    num_quests=`kano-profile-cli fulfilled_quests_count`
+    if [ $num_quests -gt 0 ] && [ $num_quests -lt 10 ]; then
+        num_file="${num_quests}.png"
+    elif [ $num_quests -gt 9 ]; then
+        num_file="9-plus.png"
+    else
+        num_file=""
+    fi
+
+    if [ -n "$num_file" ]; then
+        numbers_path="/usr/share/kano-desktop/images/world-numbers/"
+        printf "IconStatus: {190,53} $numbers_path$num_file"
+    fi
     ;;
 
 
