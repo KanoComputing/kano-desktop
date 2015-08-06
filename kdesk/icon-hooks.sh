@@ -88,18 +88,15 @@ case $icon_name in
 
     # Evaluate the quests notification icon
     num_quests=`kano-profile-cli fulfilled_quests_count`
+    numbers_path="/usr/share/kano-desktop/images/world-numbers"
     if [ $num_quests -gt 0 ] && [ $num_quests -lt 10 ]; then
-        num_file="${num_quests}.png"
+        num_file="$numbers_path/${num_quests}.png"
     elif [ $num_quests -gt 9 ]; then
-        num_file="9-plus.png"
+        num_file="$numbers_path/9-plus.png"
     else
         num_file=""
     fi
-
-    if [ -n "$num_file" ]; then
-        numbers_path="/usr/share/kano-desktop/images/world-numbers/"
-        printf "IconStatus: {190,53} $numbers_path$num_file"
-    fi
+    printf "IconStatus: {190,53} $num_file"
     ;;
 
 
