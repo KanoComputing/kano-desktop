@@ -70,70 +70,9 @@ fi
 # detect kano-keyboard
 kano_keyboard=`python -c "from kano.utils import detect_kano_keyboard; print detect_kano_keyboard()"`
 
-# Load init configuration options
-INIT_CONF=/boot/init.conf
-SKIP="false"
-FLOW="normal"
-if [ -e $INIT_CONF ]; then
-    do_skip=`json-get $INIT_CONF kano_init_flow.skip`
-    rv=$?
-    if [ "$rv" -eq 0 ] && [ "$do_skip" == "True" ]; then
-        SKIP="true"
-    fi
-
-    flow_type=`json-get $INIT_CONF kano_init_flow.flow`
-    rv=$?
-    if [ "$rv" -eq 0 ] && [ -n "$flow_type" ]; then
-        FLOW="$flow_type"
-    fi
-fi
-FIRST_BOOT="false"
-# The following block is related to the first bootflow
-if [ ! -f $first_boot_file ]; then
-    FIRST_BOOT="true"
-    if [ "$SKIP" != "true" ]; then
-        # This is backwards compatibility with version prior to Beta 1.3.1
-        if [ ! -f $after_update_file ]; then
-            # Keyboard tutorial
-            if [ "$kano_keyboard" == "True" ]; then
-                kano-tutorial
-            fi
-            # load background
-            /usr/bin/kdesk -w &
-            # Launch init flow
-            logger_info "Launching kano-init-flow"
-            sudo kano-init-flow
-            logger_info "kano-init-flow completed"
-        else
-            # load background
-            /usr/bin/kdesk -w &
-            # Remove temp file
-            rm $after_update_file
-        fi
-        # Login / Create account
-        if [ "$FLOW" != "workshops" ]; then
-            kano-login --register
-        fi
-
-        # Show the background selector from settings
-        # The process will be launched in the background while the video
-        # plays so the window is ready for the user when it's done.
-        sudo kano-settings 14 &
-        SETTINGS_PID=$!
-
-        # Video
-        logger_info "Playing os_intro.mp4"
-        kano-video-cli /usr/share/kano-media/videos/os_intro.mp4
-
-        # Wait for the user to select the wallpaper and close the
-        # settings window.
-        wait $SETTINGS_PID
-
-        # start hourglass to wait for the last X11 app to get ready
-        kdesk-hourglass-app "lxpanel"
-
-    fi
-
+kano-init-flow
+rv=$?
+if [ $rv -eq 0 ]; then
     # regenerating ssh keys
     if [ `getent group kanousers | wc -l` -eq 1 ]; then
         sudo regenerate-ssh-keys &
@@ -184,7 +123,7 @@ if [ -e /etc/init.d/alsa-utils ]; then
             logger_warn "Failed to set volume level, ret code: $ret_val"
 	else
             logger_info "Audio volume level set to 90% on first boot"
-	fi	
+	fi
     fi
 else
     logger_warn "alsa-utils not found, can't attempt to restore volume level"
@@ -210,7 +149,7 @@ if [ is_internet ]; then
     # Try uploading the tracking data to our servers
     # Should be quiet on failure
     kano-sync --upload-tracking-data --silent
-    
+
     # Sync objects from the content API in the background
     # TODO: This should be removed once we have the daemon done
     sudo kano-content sync &
