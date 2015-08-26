@@ -82,7 +82,9 @@ if [ $rv -eq 0 ]; then
     sudo kano-init finalise
     sudo kano-updater first-boot
 
-    touch $first_boot_file
+    kano-profile-gui --screen=quests
+
+    #touch $first_boot_file
 else
     # The following is executed in subsequent boots
 
