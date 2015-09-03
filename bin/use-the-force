@@ -1,0 +1,42 @@
+#!/usr/bin/env python
+
+# use-the-force
+#
+# Copyright (C) 2015 Kano Computing Ltd.
+# License:   http://www.gnu.org/licenses/gpl-2.0.txt GNU GPL v2
+#
+
+
+import os
+import sys
+from kano.utils import get_user_unsudoed
+from kano.network import is_internet
+from kano.logging import logger
+from kano_profile.badges import increment_app_state_variable_with_dialog
+from kano_init.terminal import typewriter_echo
+
+
+if __name__ == '__main__' and __package__ is None:
+    dir_path = os.path.abspath(os.path.join(os.path.dirname(__file__), '..'))
+    if dir_path != '/usr':
+        sys.path.insert(1, dir_path)
+
+
+def main():
+        # award badge
+        increment_app_state_variable_with_dialog('use_the_force', 'starts', 1)
+        # launch film
+        os.system('rxvt -title \'Star Wars\' -e telnet towel.blinkenlights.nl')
+        sys.exit(0)
+
+if __name__ == '__main__':
+    # Check for internet
+    if is_internet():
+        logger.info('use-the-force correctly executed')
+        main()
+    else:
+        logger.info('use-the-force executed with no internet')
+        # Show text
+        msg = "\n\nInternet you must have my young padawan {}.".format(get_user_unsudoed())
+        typewriter_echo(msg, trailing_linebreaks=2)
+        sys.exit(1)
