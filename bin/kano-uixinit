@@ -82,7 +82,8 @@ if [ $rv -eq 0 ]; then
     sudo kano-init finalise
     sudo kano-updater first-boot
 
-    kano-profile-gui --screen=quests
+    # TODO: disabled for production 7
+    #kano-profile-gui --screen=quests
 
     #touch $first_boot_file
 else
