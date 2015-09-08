@@ -169,3 +169,6 @@ if [ -e $startvnc ]; then
     logger_info "Launching startvnc"
     $startvnc
 fi
+
+# Launch the world onboarding at the end
+kdesk-blur '/usr/bin/kano-world-slideshow'
