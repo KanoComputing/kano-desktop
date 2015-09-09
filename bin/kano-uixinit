@@ -71,8 +71,8 @@ fi
 kano_keyboard=`python -c "from kano.utils import detect_kano_keyboard; print detect_kano_keyboard()"`
 
 kano-init-flow
-rv=$?
-if [ $rv -eq 0 ]; then
+kano_init_flow_rv=$?
+if [ $kano_init_flow_rv -eq 0 ]; then
     # regenerating ssh keys
     if [ `getent group kanousers | wc -l` -eq 1 ]; then
         sudo regenerate-ssh-keys &
@@ -84,9 +84,6 @@ if [ $rv -eq 0 ]; then
 
     # TODO: disabled for production 7
     #kano-profile-gui --screen=quests
-
-    # Launch the world onboarding at the end
-    kdesk-blur '/usr/bin/kano-world-slideshow' &
 
     #touch $first_boot_file
 else
@@ -171,4 +168,9 @@ startvnc=/usr/share/kano-vnc/startvnc
 if [ -e $startvnc ]; then
     logger_info "Launching startvnc"
     $startvnc
+fi
+
+# Only launch the kano world information at the end of the first boot
+if [ $kano_init_flow_rv -eq 0 ]; then
+    kdesk-blur '/usr/bin/kano-world-slideshow' &
 fi
