@@ -85,6 +85,9 @@ if [ $rv -eq 0 ]; then
     # TODO: disabled for production 7
     #kano-profile-gui --screen=quests
 
+    # Launch the world onboarding at the end
+    kdesk-blur '/usr/bin/kano-world-slideshow' &
+
     #touch $first_boot_file
 else
     # The following is executed in subsequent boots
@@ -169,6 +172,3 @@ if [ -e $startvnc ]; then
     logger_info "Launching startvnc"
     $startvnc
 fi
-
-# Launch the world onboarding at the end
-kdesk-blur '/usr/bin/kano-world-slideshow'
