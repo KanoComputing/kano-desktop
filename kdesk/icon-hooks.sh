@@ -186,7 +186,7 @@ case $icon_name in
                 echo "starting kano-sync and checking for updates"
             fi
             kano-sync --skip-kdesk --sync --backup -s &
-            sudo /usr/bin/kano-updater check --gui --interval 168 &
+            sudo /usr/bin/kano-updater download --low-prio &
         fi
         ;;
 
