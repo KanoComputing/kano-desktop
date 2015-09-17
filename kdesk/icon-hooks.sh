@@ -119,7 +119,7 @@ case $icon_name in
 	# Online / Offline status message
         if [ "$is_online" == "0" ]; then
             notification_icon="/usr/share/kano-desktop/images/world-numbers/minus.png"
-            msg2="OFFLINE"
+            msg2="SIGN UP"
         else
             msg2="ONLINE"
             notification_icon=""
