@@ -86,6 +86,9 @@ if [ $kano_init_flow_rv -eq 0 ]; then
     #kano-profile-gui --screen=quests
 
     #touch $first_boot_file
+
+    logger_info "Playing os_intro.mp4"
+    kano-video-cli /usr/share/kano-media/videos/os_intro.mp4
 else
     # The following is executed in subsequent boots
 
@@ -168,9 +171,4 @@ startvnc=/usr/share/kano-vnc/startvnc
 if [ -e $startvnc ]; then
     logger_info "Launching startvnc"
     $startvnc
-fi
-
-# Only launch the kano world information at the end of the first boot
-if [ $kano_init_flow_rv -eq 0 ]; then
-    kdesk-blur '/usr/bin/kano-world-slideshow' &
 fi
