@@ -166,6 +166,9 @@ logger_info "Launching LXPanel"
 
 /usr/bin/lxpanel --profile LXDE &
 
+# Notification widget
+/usr/bin/kano-notifications-daemon &
+
 # LXPanel resets the volume level to 100, we need it to be restored to
 # whatever level it was before shutdown or reboot
 if [ -e /etc/init.d/alsa-utils ]; then
