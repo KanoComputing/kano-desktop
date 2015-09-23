@@ -102,30 +102,29 @@ case $icon_name in
 
     "world")
         IFS=$'\n'
-        activity_stats=`kano-profile-cli get_stats_activity`
-        notif_count=`kano-profile-cli get_notifications_count`
-        is_online=`kano-profile-cli is_registered`
+        # Returns if online, prints notification count and stats activity
+        info=`kano-profile-cli get_world_info`
         apirc=$?
 
         if [ "$debug" == "true" ]; then
-            printf "Kano Profile API returns rc=$apirc, data=\n$notif_count\n"
-            printf "Activity stats: $activity_stats\n"
+            printf "Kano Profile API returns rc=$apirc, data=\n$info\n"
         fi
 
         msg1="Kano World"
         icon="/usr/share/kano-desktop/icons/kano-world-launcher.png"
 
         # Uncomment line below to test your own notifications
-        #notif_count="notifications_count: 18"
+        #info="notifications_count: 18"
 
         # Online / Offline status message
-        if [ "$is_online" == "0" ]; then
+        if [ "$info" == "0" ]; then
             notification_icon="/usr/share/kano-desktop/images/world-numbers/minus.png"
             msg2="OFFLINE"
         else
-            # We are online, ask how many notifications are on the queue
+            # We are online, get how many notifications are on the queue and the activity stats
             notification_icon=""
-            for item in $notif_count
+            msg2="ONLINE"
+            for item in $info
             do
                 eval line_item=($item)
                 case ${line_item[0]} in
@@ -138,15 +137,6 @@ case $icon_name in
                             notification_icon="/usr/share/kano-desktop/images/world-numbers/9-plus.png"
                         fi
                         ;;
-                esac
-            done
-
-            # Get the activity stats
-            msg2="ONLINE"
-            for item in $activity_stats
-            do
-                eval line_item=($item)
-                case ${line_item[0]} in
                     "total_active_today:")
                         msg2=$(printf "%d ONLINE" ${line_item[1]})
                         ;;
