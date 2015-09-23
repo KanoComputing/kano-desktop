@@ -102,30 +102,30 @@ case $icon_name in
 
     "world")
         IFS=$'\n'
-        kano_statuses=`kano-profile-cli get_notifications_count`
+        activity_stats=`kano-profile-cli get_stats_activity`
+        notif_count=`kano-profile-cli get_notifications_count`
         is_online=`kano-profile-cli is_registered`
         apirc=$?
 
         if [ "$debug" == "true" ]; then
-            printf "Kano Profile API returns rc=$apirc, data=\n$kano_statuses\n"
+            printf "Kano Profile API returns rc=$apirc, data=\n$notif_count\n"
+            printf "Activity stats: $activity_stats\n"
         fi
 
         msg1="Kano World"
         icon="/usr/share/kano-desktop/icons/kano-world-launcher.png"
 
         # Uncomment line below to test your own notifications
-        #kano_statuses="notifications_count: 18"
+        #notif_count="notifications_count: 18"
 
-	# Online / Offline status message
+        # Online / Offline status message
         if [ "$is_online" == "0" ]; then
             notification_icon="/usr/share/kano-desktop/images/world-numbers/minus.png"
             msg2="OFFLINE"
         else
-            msg2="ONLINE"
-            notification_icon=""
-
             # We are online, ask how many notifications are on the queue
-            for item in $kano_statuses
+            notification_icon=""
+            for item in $notif_count
             do
                 eval line_item=($item)
                 case ${line_item[0]} in
@@ -140,11 +140,21 @@ case $icon_name in
                         ;;
                 esac
             done
+
+            # Get the activity stats
+            msg2="ONLINE"
+            for item in $activity_stats
+            do
+                eval line_item=($item)
+                case ${line_item[0]} in
+                    "total_active_today:")
+                        msg2=$(printf "%d ONLINE" ${line_item[1]})
+                        ;;
+                esac
+            done
         fi
 
-        # Uncomment line below to test your status message
-        #msg2="MYSTATUS"
-
+        # Update the icon with the values
         printf "Icon: $icon\n"
         printf "Message: {75,38} $msg1|$msg2\n"
         printf "IconStatus: {30,53} $notification_icon\n"
