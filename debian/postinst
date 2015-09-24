@@ -105,6 +105,17 @@ case "$1" in
         # Apply Kano PAM customization to enforce umask for login sessions
         pam-auth-update --package kano-umask --force
 
+        # Fix hourglass staying too long when starting more than 1 lxterminal
+        lxterm_desktop_file='/usr/share/applications/auto_terminal.desktop'
+
+        if [ -f "$lxterm_desktop_file" ]; then
+            # then apply the patch: tell lxde to forget about it (add/force StartupNotify=false)
+            sed -i '/^StartupNotify=/{h;s/=.*/=false/};${x;/^$/{s//StartupNotify=false/;H};x}' $lxterm_desktop_file
+
+            # and wrap lxterminal inside kdesk hourglass command line tool
+            sed -i "s/Exec=.*/Exec=\/bin\/bash -c \"kdesk-hourglass-app lxterminal ; lxterminal\"/g" $lxterm_desktop_file
+        fi
+
         ;;
 esac
 
