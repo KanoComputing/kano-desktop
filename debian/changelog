@@ -1,3 +1,9 @@
+kano-desktop (2.2-1) unstable; urgency=low
+
+  * Change the updater command that runs on Screen saver start
+
+ -- Team Kano <dev@kano.me>  Mon, 16 Sep 2015 11:39:15 +0000
+
 kano-desktop (1.3-1) unstable; urgency=low
 
   * Audio volume is now persistent across reboots.
