@@ -144,7 +144,10 @@ logger_info "Launching kano-mount-trigger"
 # starting kdesk
 logger_info "Launching kdesk"
 /usr/bin/kdesk &
+
+# launching desktop widgets
 /usr/bin/kano-feedback-widget &
+/usr/bin/kano-world-widget &
 
 
 # Report a startup event to Kano Tracker
