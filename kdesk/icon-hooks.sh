@@ -117,7 +117,7 @@ case $icon_name in
         #info="notifications_count: 18"
 
         # Online / Offline status message
-        if [ "$info" == "0" ]; then
+        if [ "$apirc" == "0" ]; then
             notification_icon="/usr/share/kano-desktop/images/world-numbers/minus.png"
             msg2="SIGN UP"
         else
