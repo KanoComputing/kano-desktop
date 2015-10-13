@@ -98,6 +98,10 @@ case "$1" in
         # Create custom sudoers file
         echo "%sudo   ALL=(root) NOPASSWD: /bin/chvt" > $TMP_SUDOERS_FILE
 
+        # Allow the new version of scratch to be sudoed and preserve the environment
+        # This is because it now starts up inside a virtual machine.
+        echo "%sudo   ALL=NOPASSWD:SETENV: /usr/bin/squeak" >> $TMP_SUDOERS_FILE
+
         # The owner and group for the sudoers file must both be 0
         chown root:root $TMP_SUDOERS_FILE
 
