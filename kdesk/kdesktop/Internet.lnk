@@ -1,9 +1,9 @@
 table Icon
   Caption:
-  AppID: midori
-  Command: kano-tracker-ctl session run midori 'midori'
+  AppID: chromium
+  Command: kano-tracker-ctl session run chromium 'chromium'
   Singleton: true
-  Icon: /usr/share/kano-desktop/icons/internet-desktop.png
+  Icon: /usr/share/icons/Kano/66x66/apps/chromium-app.png
   IconHover: /usr/share/kano-desktop/icons/internet-hover.png
   HoverXOffset: 0
   Relative-To: grid
