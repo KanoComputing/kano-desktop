@@ -4,6 +4,7 @@ images usr/share/kano-desktop
 kdesk usr/share/kano-desktop
 Legal usr/share/kano-desktop
 
+config/alsa/.asoundrc etc/skel/.asoundrc
 config/autostart usr/share/kano-desktop/config
 config/chromium usr/share/kano-desktop/config
 config/keyboard/kanokeyboardrc usr/share/kano-desktop/config/keyboard
@@ -18,7 +19,6 @@ config/profile usr/share/kano-desktop/config
 config/rxvt/x11-rxvt etc/X11/Xresources
 config/gtk-2.0 etc/skel/.config/
 config/dconf etc/skel/.config/
-config/alsa/.asoundrc etc/skel/
 
 videos usr/share/kano-media
 gtk-themes/Kano usr/share/themes
