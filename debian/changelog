@@ -1,9 +1,3 @@
-kano-desktop (2.2-2) unstable; urgency=low
-
-  * Increased version for KanoOS Jessie version
-
- -- Team Kano <dev@kano.me>  Tue, 13 Oct 2015 10:47:50 +0100
-
 kano-desktop (2.2-1) unstable; urgency=low
 
   * Change the updater command that runs on Screen saver start
