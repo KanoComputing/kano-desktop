@@ -70,6 +70,21 @@ fi
 # detect kano-keyboard
 kano_keyboard=`python -c "from kano.utils import detect_kano_keyboard; print detect_kano_keyboard()"`
 
+# Set the initial default volume
+if [ -e /etc/init.d/alsa-utils ]; then
+    amixer -c 0 -- sset PCM 0 &> /dev/null
+    ret_val_pcm="$?"
+
+    amixer -c 0 -- sset Master 6 &> /dev/null
+    ret_val_master="$?"
+
+    if [ "$ret_val_pcm" -ne 0 ] || [ "$ret_val_master" -ne 0 ]; then
+        logger_warn "Failed to set initial volume level, ret code: $ret_val"
+    fi
+else
+    logger_warn "alsa-utils not found, volume not set"
+fi
+
 kano-init-flow
 kano_init_flow_rv=$?
 if [ $kano_init_flow_rv -eq 0 ]; then
@@ -124,16 +139,6 @@ if [ -e /etc/init.d/alsa-utils ]; then
         logger_warn "Failed to restore volume level, ret code: $ret_val"
     else
         logger_info "Audio volume level was successfully restored"
-    fi
-    if [ "$FIRST_BOOT" == "true" ]; then
-        amixer -c 0 -- sset PCM 0 &> /dev/null
-        amixer -c 0 -- sset Master 6 &> /dev/null
-	ret_val="$?"
-	if [ "$ret_val" -ne 0 ]; then
-            logger_warn "Failed to set volume level, ret code: $ret_val"
-	else
-            logger_info "Audio volume level set to 86 on first boot"
-	fi
     fi
 else
     logger_warn "alsa-utils not found, can't attempt to restore volume level"
