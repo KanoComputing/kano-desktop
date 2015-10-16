@@ -126,12 +126,13 @@ if [ -e /etc/init.d/alsa-utils ]; then
         logger_info "Audio volume level was successfully restored"
     fi
     if [ "$FIRST_BOOT" == "true" ]; then
-        amixer -c 0 -- sset PCM playback 90% &> /dev/null
+        amixer -c 0 -- sset PCM 0 &> /dev/null
+        amixer -c 0 -- sset Master 6 &> /dev/null
 	ret_val="$?"
 	if [ "$ret_val" -ne 0 ]; then
             logger_warn "Failed to set volume level, ret code: $ret_val"
 	else
-            logger_info "Audio volume level set to 90% on first boot"
+            logger_info "Audio volume level set to 86 on first boot"
 	fi
     fi
 else
