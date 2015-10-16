@@ -4,7 +4,7 @@ images usr/share/kano-desktop
 kdesk usr/share/kano-desktop
 Legal usr/share/kano-desktop
 
-config/alsa/.asoundrc etc/skel
+config/alsa/.asound* etc/skel
 config/autostart usr/share/kano-desktop/config
 config/chromium usr/share/kano-desktop/config
 config/keyboard/kanokeyboardrc usr/share/kano-desktop/config/keyboard
