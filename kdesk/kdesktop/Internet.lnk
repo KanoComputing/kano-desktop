@@ -3,7 +3,7 @@ table Icon
   AppID: chromium
   Command: kano-tracker-ctl session run chromium 'chromium'
   Singleton: true
-  Icon: /usr/share/icons/Kano/66x66/apps/chromium-app.png
+  Icon: /usr/share/kano-desktop/icons/internet-desktop.png
   IconHover: /usr/share/kano-desktop/icons/internet-hover.png
   HoverXOffset: 0
   Relative-To: grid
