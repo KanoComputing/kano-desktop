@@ -93,17 +93,15 @@ if [ $kano_init_flow_rv -eq 0 ]; then
         sudo regenerate-ssh-keys &
     fi
 
+    logger_info "Playing os_intro.mp4"
+    kano-video-cli /usr/share/kano-media/videos/os_intro.mp4
+
     # Finalise account setup
     sudo kano-init finalise
     sudo kano-updater first-boot
 
     # TODO: disabled for production 7
     #kano-profile-gui --screen=quests
-
-    #touch $first_boot_file
-
-    logger_info "Playing os_intro.mp4"
-    kano-video-cli /usr/share/kano-media/videos/os_intro.mp4
 else
     # The following is executed in subsequent boots
 
