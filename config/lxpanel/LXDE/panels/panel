@@ -32,12 +32,12 @@ Plugin {
         item {
             image=/usr/share/kano-desktop/icons/apps.png
             name=Apps
-            action=/usr/bin/kano-apps
+            action=/bin/bash -c "kdesk-hourglass-app kano-apps && /usr/bin/kano-apps"
         }
         item {
             image=/usr/share/kano-desktop/icons/kano-homefolder.png
             name=Files
-            action=/usr/bin/pcmanfm
+            action=/bin/bash -c "kdesk-hourglass-app pcmanfm && /usr/bin/pcmanfm"
         }
         separator {
         }
