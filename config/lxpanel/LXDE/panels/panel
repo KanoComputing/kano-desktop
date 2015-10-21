@@ -44,7 +44,7 @@ Plugin {
         item {
         image=gnome-logout
         name=Shutdown
-        action=kano-shutdown
+        action=kdesk-blur kano-shutdown
         }
     }
 }
