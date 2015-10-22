@@ -66,6 +66,17 @@ case "$1" in
         sed -i "s|#\?\(session-setup-script\=\).*|#\1|" $ldm_conf
         sed -i "s|#\?\(session-cleanup-script\=\).*|#\1|" $ldm_conf
 
+        # Remove the hourglass fix when starting multiple lxterminals through desktop menu
+        lxterm_desktop_file='/usr/share/applications/auto_terminal.desktop'
+
+        if [ -f "$lxterm_desktop_file" ]; then
+            # Remove the StartupNotify flag
+            sed -i '/^StartupNotify=.*/g' $lxterm_desktop_file
+
+            # Remove Kano hourglass wrapper tool
+            sed -i "s/Exec=.*/Exec=lxterminal/g" $lxterm_desktop_file
+        fi
+
         ;;
 esac
 
