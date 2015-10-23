@@ -182,3 +182,10 @@ if [ -e $startvnc ]; then
     logger_info "Launching startvnc"
     $startvnc
 fi
+
+# Show the badge as a notification
+# Check if this is the first boot
+if [ $kano_init_flow_rv -eq 0 ]; then
+    # This should trigger the commander badge notification
+    kano-profile-cli save_app_state_variable init-flow-completed level 1
+fi
