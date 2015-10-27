@@ -12,5 +12,8 @@
 #
 
 su - $USER -c "kano-tracker-ctl session end logon-session 0"
+su - $USER -c "kano-tracker-ctl clear"
+su - $USER -c "kano-tracker-ctl new-token"
+su - $USER -c "kano-sync --upload-tracking-data"
 
 return 0
