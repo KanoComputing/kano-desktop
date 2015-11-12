@@ -85,8 +85,18 @@ else
     logger_warn "alsa-utils not found, volume not set"
 fi
 
+# Are we in Noobs ? (check for more than 2 partitions)
+# If in noobs, make an xrefresh happen after 50 seconds
+if [ $( lsblk -n | wc -l ) -gt 2 ] ; then
+    (sleep  50; xrefresh ) &
+fi
+
 kano-init-flow
 kano_init_flow_rv=$?
+
+# if xrefresh is still waiting to run, stop it
+kill %?xrefresh
+    
 if [ $kano_init_flow_rv -eq 0 ]; then
     # regenerating ssh keys
     if [ `getent group kanousers | wc -l` -eq 1 ]; then
