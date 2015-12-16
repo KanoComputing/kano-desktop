@@ -59,6 +59,9 @@ kano-tracker-ctl generate hw-info
 # Start the tracking daemon
 kano-tracker-ctl refresh --watch &
 
+# Start the hardware boards daemon
+kano-boards-daemon &
+
 # Disable XServer screen saver time and screen blanking (The display would become black)
 if is_installed xset; then
     logger_info "Disabling the screensaver"
@@ -163,13 +166,12 @@ logger_info "Launching kdesk"
 /usr/bin/kano-feedback-widget &
 /usr/bin/kano-world-widget &
 
+# Starting the LED Speaker CPU Monitor animation
+# and checking kano-settings for preference setting
+kano-speakerleds cpu-monitor start --check &
 
 # Report a startup event to Kano Tracker
 kano-tracker-ctl +1 startup
-
-# TODO: This should be in a drop in directory,
-# installed from the updater instead
-sudo kano-updater ui boot-window
 
 if [ is_internet ]; then
     # Try uploading the tracking data to our servers
@@ -192,6 +194,10 @@ if [ -e $startvnc ]; then
     logger_info "Launching startvnc"
     $startvnc
 fi
+
+# TODO: This should be in a drop in directory,
+# installed from the updater instead
+sudo kano-updater ui boot-window
 
 # Show the badge as a notification
 # Check if this is the first boot
