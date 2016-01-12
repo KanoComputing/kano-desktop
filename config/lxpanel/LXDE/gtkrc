@@ -1,0 +1,14 @@
+style "menu-style"
+{
+   xthickness = 0
+   ythickness = 0
+
+   bg[NORMAL] = "#ff8323"
+   bg[SELECTED] = "#ff8323"
+   bg[PRELIGHT] = "#ffae3f"
+   bg[ACTIVE] = "#ff8323"
+   bg[INSENSITIVE] = "#ff8323"
+
+}
+
+widget "*menu*"      style "menu-style"
