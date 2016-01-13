@@ -42,7 +42,7 @@ Plugin {
         separator {
         }
         item {
-        image=gnome-logout
+        image=/usr/share/kano-desktop/icons/kano-shutdown.png
         name=Shutdown
         action=kdesk-blur kano-shutdown
         }
