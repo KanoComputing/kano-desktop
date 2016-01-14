@@ -2,8 +2,8 @@
 
 # kano-uixinit
 #
-# Copyright (C) 2014,2015 Kano Computing Ltd.
-# License: http://www.gnu.org/licenses/gpl-2.0.txt GNU General Public License v2
+# Copyright (C) 2014-2016 Kano Computing Ltd.
+# License: http://www.gnu.org/licenses/gpl-2.0.txt GNU GPL v2
 #
 #  This script is a wrapper on top of LXDE autoinit.
 #
@@ -59,6 +59,9 @@ kano-tracker-ctl generate hw-info
 # Start the tracking daemon
 kano-tracker-ctl refresh --watch &
 
+# Start the hardware boards daemon
+kano-boards-daemon &
+
 # Disable XServer screen saver time and screen blanking (The display would become black)
 if is_installed xset; then
     logger_info "Disabling the screensaver"
@@ -96,7 +99,7 @@ kano_init_flow_rv=$?
 
 # if xrefresh is still waiting to run, stop it
 kill %?xrefresh
-    
+
 if [ $kano_init_flow_rv -eq 0 ]; then
     # regenerating ssh keys
     if [ `getent group kanousers | wc -l` -eq 1 ]; then
@@ -163,13 +166,12 @@ logger_info "Launching kdesk"
 /usr/bin/kano-feedback-widget &
 /usr/bin/kano-world-widget &
 
+# Starting the LED Speaker CPU Monitor animation
+# and checking kano-settings for preference setting
+kano-speakerleds cpu-monitor start --check &
 
 # Report a startup event to Kano Tracker
 kano-tracker-ctl +1 startup
-
-# TODO: This should be in a drop in directory,
-# installed from the updater instead
-sudo kano-updater ui boot-window
 
 if [ is_internet ]; then
     # Try uploading the tracking data to our servers
@@ -192,6 +194,10 @@ if [ -e $startvnc ]; then
     logger_info "Launching startvnc"
     $startvnc
 fi
+
+# TODO: This should be in a drop in directory,
+# installed from the updater instead
+sudo kano-updater ui boot-window
 
 # Show the badge as a notification
 # Check if this is the first boot
