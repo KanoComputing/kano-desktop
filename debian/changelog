@@ -1,3 +1,9 @@
+kano-desktop (2.3.0-1) unstable; urgency=low
+
+  * Change grid position for Scratch and Video
+
+ -- Team Kano <dev@kano.me>  Wed, 20 Jan 2016 15:41:50 +0100
+
 kano-desktop (2.2-2) unstable; urgency=low
 
   * Increased version for KanoOS Jessie version
