@@ -223,11 +223,13 @@
     <action name="ToggleShowDesktop"/>
   </keybind>
   -->
-
-  <!-- Keybindings for windows - Disabled
-  <keybind key="A-F4">
+  
+  <!-- Keybinding for closing apps -->
+  <keybind key="C-q">
     <action name="Close"/>
   </keybind>
+
+  <!-- Keybindings for windows - Disabled
   <keybind key="A-Escape">
     <action name="Lower"/>
     <action name="FocusToBottom"/>
