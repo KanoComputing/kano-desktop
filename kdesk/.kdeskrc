@@ -33,6 +33,8 @@ table Config
 
   IconHook: /usr/share/kano-desktop/kdesk/icon-hooks.sh
 
+  DefaultDesktopIcon: /usr/share/kano-desktop/icons/default-icon.png
+
   LastGridIcon: PlusIcon.lnk
 
   IconGapHorz: 54
