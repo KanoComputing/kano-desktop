@@ -181,6 +181,8 @@ if [ is_internet ]; then
     # Sync objects from the content API in the background
     # TODO: This should be removed once we have the daemon done
     sudo kano-content sync &
+
+    kano-tracker-ctl +1 'internet-connection-established'
 fi
 
 
