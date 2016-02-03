@@ -2,7 +2,7 @@
 
 # icon-hooks.sh
 #
-# Copyright (C) 2014,2015 Kano Computing Ltd.
+# Copyright (C) 2014-2016 Kano Computing Ltd.
 # License: http://www.gnu.org/licenses/gpl-2.0.txt GNU General Public License v2
 #
 # KDesk Icon Hooks script - Dynamically update the desktops icons attributes.
@@ -45,24 +45,10 @@ case $icon_name in
         printf "Kano Profile API returns rc=$apirc, data=\n$kano_statuses\n"
     fi
 
-    for item in $kano_statuses
-    do
-        eval line_item=($item)
-        case ${line_item[0]} in
-            "mixed_username:")
-                username=${line_item[1]}
-                ;;
-            "level:")
-                level=${line_item[1]}
-                ;;
-            "progress_image_path:")
-                progress_file=${line_item[1]}
-                ;;
-            "avatar_image_path:")
-                avatar_file=${line_item[1]}
-                ;;
-        esac
-    done
+    username=$(echo "$kano_statuses" | awk '/mixed_username:/ {printf "%s", $2}')
+    level=$(echo "$kano_statuses" | awk '/level:/ {printf "%s", $2}')
+    progress_image_path=$(echo "$kano_statuses" | awk '/progress_image_path:/ {printf "%s", $2}')
+    avatar_image_path=$(echo "$kano_statuses" | awk '/avatar_image_path:/ {printf "%s", $2}')
 
     if [ "$debug" == "true" ]; then
         echo -e "\nReturning attributes to Kdesk:\n"
@@ -124,24 +110,19 @@ case $icon_name in
             # We are online, get how many notifications are on the queue and the activity stats
             notification_icon=""
             msg2="ONLINE"
-            for item in $info
-            do
-                eval line_item=($item)
-                case ${line_item[0]} in
-                    "notifications_count:")
-                        # Extract numbers only - Any string will become 0 which means no notifications.
-                        notifications=$(printf "%d" ${line_item[1]})
-                        if [ $notifications -lt 10 ] && [ $notifications -gt 0 ]; then
-                            notification_icon="/usr/share/kano-desktop/images/world-numbers/${notifications}.png"
-                        elif [ $notifications -gt 9 ]; then
-                            notification_icon="/usr/share/kano-desktop/images/world-numbers/9-plus.png"
-                        fi
-                        ;;
-                    "total_active_today:")
-                        msg2=$(printf "%d ONLINE" ${line_item[1]})
-                        ;;
-                esac
-            done
+            notifications=$(echo "$info" | awk '/notifications_count:/ {printf "%s", $2}')
+            if [ -n "$notifications" ]; then
+                # Extract numbers only - Any string will become 0 which means no notifications.
+                if [ $notifications -lt 10 ] && [ $notifications -gt 0 ]; then
+                    notification_icon="/usr/share/kano-desktop/images/world-numbers/${notifications}.png"
+                elif [ $notifications -gt 9 ]; then
+                    notification_icon="/usr/share/kano-desktop/images/world-numbers/9-plus.png"
+                fi
+            fi
+            active_online=$(echo "$info" | awk '/total_active_today:/ {printf "%s", $2}')
+            if [ -n "$active_online" ]; then
+                msg2=$(printf "%d ONLINE" ${active_online})
+            fi
         fi
 
         # Update the icon with the values
