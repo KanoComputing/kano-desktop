@@ -47,8 +47,8 @@ case $icon_name in
 
     username=$(echo "$kano_statuses" | awk '/mixed_username:/ {printf "%s", $2}')
     level=$(echo "$kano_statuses" | awk '/level:/ {printf "%s", $2}')
-    progress_image_path=$(echo "$kano_statuses" | awk '/progress_image_path:/ {printf "%s", $2}')
-    avatar_image_path=$(echo "$kano_statuses" | awk '/avatar_image_path:/ {printf "%s", $2}')
+    progress_file=$(echo "$kano_statuses" | awk '/progress_image_path:/ {printf "%s", $2}')
+    avatar_file=$(echo "$kano_statuses" | awk '/avatar_image_path:/ {printf "%s", $2}')
 
     if [ "$debug" == "true" ]; then
         echo -e "\nReturning attributes to Kdesk:\n"
