@@ -47,8 +47,8 @@ case $icon_name in
 
     username=$(echo "$kano_statuses" | awk '/mixed_username:/ {printf "%s", $2}')
     level=$(echo "$kano_statuses" | awk '/level:/ {printf "%s", $2}')
-    progress_file=$(echo "$kano_statuses" | awk '/progress_image_path:/ {printf "%s", $2}')
-    avatar_file=$(echo "$kano_statuses" | awk '/avatar_image_path:/ {printf "%s", $2}')
+    progress_image_path=$(echo "$kano_statuses" | awk '/progress_image_path:/ {printf "%s", $2}')
+    avatar_image_path=$(echo "$kano_statuses" | awk '/avatar_image_path:/ {printf "%s", $2}')
 
     if [ "$debug" == "true" ]; then
         echo -e "\nReturning attributes to Kdesk:\n"
@@ -64,12 +64,12 @@ case $icon_name in
     fi
 
     # Update the icon with user's avatar and experience level icon
-    if [ "$progress_file" != "" ]; then
-        printf "Icon: $progress_file\n"
+    if [ "$progress_image_path" != "" ]; then
+        printf "Icon: $progress_image_path\n"
     fi
 
-    if [ "$avatar_file" != "" ]; then
-        printf "IconStamp: {13,13} $avatar_file\n"
+    if [ "$avatar_image_path" != "" ]; then
+        printf "IconStamp: {13,13} $avatar_image_path\n"
     fi
 
     # Evaluate the quests notification icon
@@ -82,7 +82,9 @@ case $icon_name in
     else
         num_file=""
     fi
-    printf "IconStatus: {190,53} $num_file"
+    if [ "$num_file" != "" ]; then
+	printf "IconStatus: {190,53} $num_file\n"
+    fi
     ;;
 
 
