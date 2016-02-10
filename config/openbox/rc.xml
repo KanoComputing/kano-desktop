@@ -59,7 +59,7 @@
   <animateIconify>yes</animateIconify>
   <font place="ActiveWindow">
     <name>Bariol</name>
-    <size>13</size>
+    <size>14</size>
     <!-- font size in points -->
     <weight>bold</weight>
     <!-- 'bold' or 'normal' -->
@@ -68,7 +68,7 @@
   </font>
   <font place="InactiveWindow">
     <name>Bariol</name>
-    <size>13</size>
+    <size>14</size>
     <!-- font size in points -->
     <weight>bold</weight>
     <!-- 'bold' or 'normal' -->
