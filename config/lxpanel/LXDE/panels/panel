@@ -90,10 +90,6 @@ Plugin {
 }
 
 Plugin {
-    type = kano_notifications
-}
-
-Plugin {
     type = kano_internet
 }
 
