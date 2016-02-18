@@ -125,6 +125,9 @@ else
     /usr/bin/kdesk -w &
 fi
 
+# load compositor if the new driver is running
+(xdriinfo | grep vc4 ) && xcompmgr &
+
 # loads and sets the keyboard layout
 set_keyboard $kano_keyboard
 
