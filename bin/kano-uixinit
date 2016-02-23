@@ -145,9 +145,9 @@ logger_info "Launching LXPanel"
 
 # LXPanel resets the volume level to 100, we need it to be restored to
 # whatever level it was before shutdown or reboot
-if [ -e /etc/init.d/alsa-utils ]; then
+if [ -e /lib/systemd/system/alsa-restore.service ]; then
     # Redirect both stderr and stdout to null, we can do our own logging
-    /etc/init.d/alsa-utils start &> /dev/null
+    sudo systemctl start alsa-restore &> /dev/null
     ret_val="$?"
     if [ "$ret_val" -ne 0 ]; then
         logger_warn "Failed to restore volume level, ret code: $ret_val"
@@ -155,7 +155,7 @@ if [ -e /etc/init.d/alsa-utils ]; then
         logger_info "Audio volume level was successfully restored"
     fi
 else
-    logger_warn "alsa-utils not found, can't attempt to restore volume level"
+    logger_warn "alsa-restore not found, can't attempt to restore volume level"
 fi
 # start mount trigger
 logger_info "Launching kano-mount-trigger"
