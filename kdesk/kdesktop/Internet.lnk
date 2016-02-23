@@ -1,7 +1,7 @@
 table Icon
   Caption:
   AppID: chromium
-  Command: kano-tracker-ctl session run chromium 'chromium'
+  Command: kano-tracker-ctl session run x-www-browser 'x-www-browser'
   Singleton: true
   Icon: /usr/share/kano-desktop/icons/internet-desktop.png
   IconHover: /usr/share/kano-desktop/icons/internet-hover.png
