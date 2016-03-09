@@ -73,6 +73,18 @@ fi
 # detect kano-keyboard
 kano_keyboard=`python -c "from kano.utils import detect_kano_keyboard; print detect_kano_keyboard()"`
 
+# loads and sets the keyboard layout
+set_keyboard $kano_keyboard
+
+# Jump to Dashboard Mode, unless instructed otherwise
+if [ "${DESKTOP_MODE}" != "1" ]; then
+    logger_info "Starting in Dashboard mode"
+    exec kano-dashboard-supervisor
+    exit 0
+else
+    logger_info "Starting in Desktop Mode"
+fi
+
 # Set the initial default volume
 if [ -e /etc/init.d/alsa-utils ]; then
     amixer -c 0 -- sset PCM 0 &> /dev/null
@@ -127,9 +139,6 @@ fi
 
 # load compositor if the new driver is running
 (xdriinfo | grep vc4 ) && xcompmgr &
-
-# loads and sets the keyboard layout
-set_keyboard $kano_keyboard
 
 # startmouse
 logger_info "Launching startmouse"
