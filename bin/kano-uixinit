@@ -19,12 +19,12 @@
 . /usr/share/kano-toolset/logging.sh
 
 # If we are in Kano v3, jump to Dashboard Mode, unless instructed otherwise
-if [ `grep -c "3.0.0" /etc/kanux_version` == "1" ] && [ "${DESKTOP_MODE}" != "1" ]; then
-    logger_info "Starting Kano v3 in Dashboard mode"
+if [ "${DESKTOP_MODE}" != "1" ]; then
+    logger_info "Starting in Dashboard mode"
     exec kano-dashboard-supervisor
     exit 0
 else
-    logger_info "Starting Kano v3 in Desktop Mode"
+    logger_info "Starting in Desktop Mode"
 fi
 
 first_boot_file="$HOME/.kano-settings/first_boot"
