@@ -1,8 +1,9 @@
 table Icon
   Caption:
-  AppID: kano-profile-gui
-  Command: /usr/bin/kano-profile-gui
-  Message: Welcome!
+  AppID:
+  Command: /usr/bin/kano-dashboard-confirm
+  Message:
+  Icon: /usr/share/kano-desktop/icons/dashboard-icon.png
   Singleton: true
   HoverXOffset: 0
   HAlign: left

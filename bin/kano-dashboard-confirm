@@ -1,0 +1,20 @@
+#!/bin/bash
+#
+# Copyright (C) 2016 Kano Computing Ltd.
+# License: http://www.gnu.org/licenses/gpl-2.0.txt GNU GPL v2
+#
+#  GUI script to request user confirmation, then jump to Dashboard mode.
+#  It is called from the Dashboard Desktop icon.
+#
+
+kano-dialog title="Dashboard Mode" \
+    description="Do you want to switch to Dashboard Mode now?" \
+    buttons=Yes:orange:1,Later:orange:2
+
+if [ "$rc" == "1" ]; then
+    # Yes, let's do it
+    sudo kano-dashboard-uimode dashboard
+    exit 0
+fi
+
+exit 1
