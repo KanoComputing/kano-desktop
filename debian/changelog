@@ -1,3 +1,9 @@
+kano-desktop (3.0.1-1) unstable; urgency=low
+
+  * Added desktop icon to switch to Dashboard mode
+
+ -- Team Kano <dev@kano.me>  Wed, 17 Mar 2016 12:56:37 +0100
+
 kano-desktop (3.0.0-1) unstable; urgency=low
 
   * Added Launch Kano v3 Dashboard mode by default

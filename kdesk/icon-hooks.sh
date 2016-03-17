@@ -32,62 +32,6 @@ rc=0
 
 case $icon_name in
 
-    "profile")
-    # Ask kano-profile for the username, experience and level,
-    # Then update the icon attributes accordingly.
-    IFS=$'\n'
-    kano_statuses=`kano-profile-cli get_stats`
-    apirc=$?
-
-    # Uncomment me to debug kano profile API
-    if [ "$debug" == "true" ]; then
-        echo "Received hook call for $icon_name, updating attributes.."
-        printf "Kano Profile API returns rc=$apirc, data=\n$kano_statuses\n"
-    fi
-
-    username=$(echo "$kano_statuses" | awk '/mixed_username:/ {printf "%s", $2}')
-    level=$(echo "$kano_statuses" | awk '/level:/ {printf "%s", $2}')
-    progress_image_path=$(echo "$kano_statuses" | awk '/progress_image_path:/ {printf "%s", $2}')
-    avatar_image_path=$(echo "$kano_statuses" | awk '/avatar_image_path:/ {printf "%s", $2}')
-
-    if [ "$debug" == "true" ]; then
-        echo -e "\nReturning attributes to Kdesk:\n"
-    fi
-
-    # Uncomment line below to test your own username
-    #username="My Long Username"
-
-    # Update the message area with username and current level
-    msg="$username|Level $level"
-    if [ "$username" != "" ] && [ "$level" != "" ]; then
-        printf "Message: {90,38} $msg\n"
-    fi
-
-    # Update the icon with user's avatar and experience level icon
-    if [ "$progress_image_path" != "" ]; then
-        printf "Icon: $progress_image_path\n"
-    fi
-
-    if [ "$avatar_image_path" != "" ]; then
-        printf "IconStamp: {13,13} $avatar_image_path\n"
-    fi
-
-    # Evaluate the quests notification icon
-    num_quests=`kano-profile-cli fulfilled_quests_count`
-    numbers_path="/usr/share/kano-desktop/images/world-numbers"
-    if [ $num_quests -gt 0 ] && [ $num_quests -lt 10 ]; then
-        num_file="$numbers_path/${num_quests}.png"
-    elif [ $num_quests -gt 9 ]; then
-        num_file="$numbers_path/9-plus.png"
-    else
-        num_file=""
-    fi
-    if [ "$num_file" != "" ]; then
-	printf "IconStatus: {190,53} $num_file\n"
-    fi
-    ;;
-
-
     "world")
         IFS=$'\n'
         # Returns if online, prints notification count and stats activity
