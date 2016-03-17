@@ -11,9 +11,6 @@ kano-dialog title="Dashboard Mode" \
     description="Do you want to switch to Dashboard Mode now?" \
     buttons=Yes:orange:1,Later:orange:2
 
-rc=$?
-echo "rc=$rc"
-
 if [ "$rc" == "1" ]; then
     # Yes, let's do it
     sudo kano-dashboard-uimode dashboard
