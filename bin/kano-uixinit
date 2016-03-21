@@ -106,13 +106,16 @@ if [ $( lsblk -n | wc -l ) -gt 3 ] ; then
     (sleep  50; xrefresh ) &
 fi
 
-kano-init-flow
-kano_init_flow_rv=$?
+# Finalise account setup
+# NB sudo costs us 1 second here, could save it by checking the
+# json file
+sudo kano-init finalise
+kano_init_rv=$?
 
 # if xrefresh is still waiting to run, stop it
 kill %?xrefresh
 
-if [ $kano_init_flow_rv -eq 0 ]; then
+if [ $kano_init_rv -eq 0 ]; then
     # regenerating ssh keys
     if [ `getent group kanousers | wc -l` -eq 1 ]; then
         sudo regenerate-ssh-keys &
@@ -122,7 +125,6 @@ if [ $kano_init_flow_rv -eq 0 ]; then
     kano-video-cli /usr/share/kano-media/videos/os_intro.mp4
 
     # Finalise account setup
-    sudo kano-init finalise
     sudo kano-updater first-boot
 
     # TODO: disabled for production 7
