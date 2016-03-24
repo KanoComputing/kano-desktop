@@ -1,14 +1,14 @@
 table Icon
   Caption:
-  AppID:
+  AppID: kano-dialog
   Command: /usr/bin/kano-dashboard-confirm
   Message:
   Icon: /usr/share/kano-desktop/icons/dashboard-icon.png
   Singleton: true
   HoverXOffset: 0
   HAlign: left
-  Width: 200
-  Height: 90
+  Width: 108
+  Height: 108
   Relative-To: top-left
   X: 50
   Y: 30
