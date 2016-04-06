@@ -16,7 +16,7 @@
 #    * Starts lxpanel, kano-mount-trigger, kdesk, kano-feedback-widget
 #    * Triggers login processing for kano-tracker-ctl, kano-sync, kano-updater
 
-. /usr/share/kano-toolset/logging.sh
+logger --id --tag "info" "kano-uixinit starts"
 
 first_boot_file="$HOME/.kano-settings/first_boot"
 after_update_file="$HOME/.kano-settings/after_update"
@@ -43,11 +43,11 @@ function set_keyboard
     else
         keyboard_conf="$keyboard_conf_dir/generickeyboardrc"
     fi
-    logger_info "Launching xbindkeys with configuration: $keyboard_conf"
+    logger --id --tag "info" "Launching xbindkeys with configuration: $keyboard_conf"
     /usr/bin/xbindkeys -f $keyboard_conf
 
     # Set user keyboard layout
-    logger_info "Setting the keyboard layout for the user"
+    logger --id --tag "info" "Setting the keyboard layout for the user"
     sudo /usr/bin/kano-settings-cli set keyboard --load
 }
 
@@ -64,7 +64,7 @@ kano-boards-daemon &
 
 # Disable XServer screen saver time and screen blanking (The display would become black)
 if is_installed xset; then
-    logger_info "Disabling the screensaver"
+    logger --id --tag "info" "Disabling the screensaver"
     xset s off
     xset -dpms
     xset s noblank
@@ -78,11 +78,11 @@ set_keyboard $kano_keyboard
 
 # Jump to Dashboard Mode, unless instructed otherwise
 if [ "${DESKTOP_MODE}" != "1" ]; then
-    logger_info "Starting in Dashboard mode"
+    logger --id --tag "info" "kano-uixinit terminates into Dashboard Supervisor"
     exec kano-dashboard-supervisor
     exit 0
 else
-    logger_info "Starting in Desktop Mode"
+    logger --id --tag "info" "Starting in Desktop Mode"
 fi
 
 # Set the initial default volume
@@ -94,10 +94,10 @@ if [ -e /etc/init.d/alsa-utils ]; then
     ret_val_master="$?"
 
     if [ "$ret_val_pcm" -ne 0 ] || [ "$ret_val_master" -ne 0 ]; then
-        logger_warn "Failed to set initial volume level, ret code: $ret_val"
+	logger --id --tag "warn" "Failed to set initial volume level, ret code: $ret_val"
     fi
 else
-    logger_warn "alsa-utils not found, volume not set"
+    logger --id --tag "warn" "alsa-utils not found, volume not set"
 fi
 
 # Are we in Noobs ? (check for more than 2 partitions)
@@ -121,13 +121,13 @@ if [ $kano_init_rv -eq 0 ]; then
         sudo regenerate-ssh-keys &
     fi
 
-    logger_info "Playing os_intro.mp4"
+    logger --id --tag "info" "Playing intro video: os_intro.mp4"
     kano-video-cli /usr/share/kano-media/videos/os_intro.mp4
 
     # Finalise account setup
     sudo kano-updater first-boot
 
-    # TODO: disabled for production 7
+    # TODO: disabled for production 7
     #kano-profile-gui --screen=quests
 else
     # The following is executed in subsequent boots
@@ -143,12 +143,11 @@ fi
 (xdriinfo | grep vc4 ) && xcompmgr &
 
 # startmouse
-logger_info "Launching startmouse"
+logger --id --tag "info" "Launching startmouse"
 /usr/bin/startmouse &
 
 # lxpanel
-logger_info "Launching LXPanel"
-
+logger --id --tag "info" "Launching lxpanel"
 /usr/bin/lxpanel --profile LXDE &
 
 # LXPanel resets the volume level to 100, we need it to be restored to
@@ -158,19 +157,19 @@ if [ -e /lib/systemd/system/alsa-restore.service ]; then
     sudo systemctl start alsa-restore &> /dev/null
     ret_val="$?"
     if [ "$ret_val" -ne 0 ]; then
-        logger_warn "Failed to restore volume level, ret code: $ret_val"
+        logger --id --tag "warn" "Failed to restore volume level, ret code: $ret_val"
     else
-        logger_info "Audio volume level was successfully restored"
+	logger --id --tag "info" "Audio volume level was successfully restored"
     fi
 else
-    logger_warn "alsa-restore not found, can't attempt to restore volume level"
+    logger --id --tag "warn" "alsa-restore not found, cannott attempt to restore volume level"
 fi
 # start mount trigger
-logger_info "Launching kano-mount-trigger"
+logger --id --tag "info" "Launching kano-mount-trigger"
 /usr/bin/kano-mount-trigger "/usr/bin/kano-launcher /usr/bin/pcmanfm pcmanfm" &
 
 # starting kdesk
-logger_info "Launching kdesk"
+logger --id --tag "info" "Launching kdesk"
 /usr/bin/kdesk &
 
 # launching desktop widgets
@@ -204,7 +203,7 @@ rm -rf  ~/Desktop
 # starting kano-vnc
 startvnc=/usr/share/kano-vnc/startvnc
 if [ -e $startvnc ]; then
-    logger_info "Launching startvnc"
+    logger --id --tag "info" "Launching startvnc"
     $startvnc
 fi
 
@@ -218,3 +217,5 @@ if [ $kano_init_flow_rv -eq 0 ]; then
     # This should trigger the commander badge notification
     kano-profile-cli save_app_state_variable init-flow-completed level 1
 fi
+
+logger --id --tag "info" "kano-uixinit terminates into Desktop mode"
