@@ -129,6 +129,9 @@ case "$1" in
             sed -i "s/Exec=.*/Exec=\/bin\/bash -c \"kdesk-hourglass-app lxterminal ; lxterminal\"/g" $lxterm_desktop_file
         fi
 
+        # configure console
+        cp usr/share/kano-desktop/config/console/console-setup /etc/default/
+
         ;;
 esac
 
