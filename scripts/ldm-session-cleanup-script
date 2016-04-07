@@ -16,4 +16,21 @@ su - $USER -c "kano-tracker-ctl clear"
 su - $USER -c "kano-tracker-ctl new-token"
 su - $USER -c "kano-sync --upload-tracking-data --silent"
 
+# kill old session: kills any processes still running from
+# the old session.
+
+# Annoyingly, we are not passed our session ID. For now,
+# kill all sessions in 'closing' state
+
+# List the sessions
+SESSIONS=$(loginctl --no-legend --no-pager |awk '{print $1}')
+
+for s in $SESSIONS; do
+    # Kill if in closing state
+    STATE=$(loginctl show-session $s -p State)
+    if [ "$STATE" = "State=closing" ] ; then
+       loginctl kill-session $s
+    fi
+done
+
 return 0
