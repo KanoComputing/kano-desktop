@@ -53,6 +53,29 @@ function set_keyboard
 
 ############ STARTS HERE ############
 
+# Is this the first time we executed this boot?
+
+test -f /run/lock/desktop_init_run
+DESKTOP_RUN=$?
+touch /run/lock/desktop_init_run
+FIRST_BOOT=0
+
+if [ "$DESKTOP_RUN" -eq 1 ] ; then
+   logger --id --tag "info" "kano-uixinit first execution"
+   # Finalise account setup
+   # NB sudo costs us 1 second here, could save it by checking the
+   # json file
+   sudo kano-init finalise || FIRST_BOOT=1
+
+
+   if [ "$FIRST_BOOT" -eq 1 ] ; then
+       # Finalise account setup
+       logger --id --tag "info" "kano-uixinit first boot"
+       sudo kano-updater first-boot
+   fi
+
+fi
+
 # Track some information about the hardware used
 kano-tracker-ctl generate hw-info
 
@@ -79,6 +102,8 @@ set_keyboard $kano_keyboard
 # Jump to Dashboard Mode, unless instructed otherwise
 if [ "${DESKTOP_MODE}" != "1" ]; then
     logger --id --tag "info" "kano-uixinit terminates into Dashboard Supervisor"
+    # only run updater once each boot
+    [ "$DESKTOP_RUN" -eq 1 ]  &&  sudo kano-updater ui boot-window
     exec kano-dashboard-supervisor
     exit 0
 else
@@ -106,16 +131,11 @@ if [ $( lsblk -n | wc -l ) -gt 3 ] ; then
     (sleep  50; xrefresh ) &
 fi
 
-# Finalise account setup
-# NB sudo costs us 1 second here, could save it by checking the
-# json file
-sudo kano-init finalise
-kano_init_rv=$?
 
 # if xrefresh is still waiting to run, stop it
 kill %?xrefresh
 
-if [ $kano_init_rv -eq 0 ]; then
+if [ "$FIRST_BOOT" -eq 1 ]; then
     # regenerating ssh keys
     if [ `getent group kanousers | wc -l` -eq 1 ]; then
         sudo regenerate-ssh-keys &
@@ -123,9 +143,6 @@ if [ $kano_init_rv -eq 0 ]; then
 
     logger --id --tag "info" "Playing intro video: os_intro.mp4"
     kano-video-cli /usr/share/kano-media/videos/os_intro.mp4
-
-    # Finalise account setup
-    sudo kano-updater first-boot
 
     # TODO: disabled for production 7
     #kano-profile-gui --screen=quests
@@ -207,9 +224,6 @@ if [ -e $startvnc ]; then
     $startvnc
 fi
 
-# TODO: This should be in a drop in directory,
-# installed from the updater instead
-sudo kano-updater ui boot-window
 
 # Show the badge as a notification
 # Check if this is the first boot
