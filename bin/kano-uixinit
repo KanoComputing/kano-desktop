@@ -108,7 +108,7 @@ set_keyboard $kano_keyboard
 if [ "${DESKTOP_MODE}" != "1" ]; then
     logger --id --tag "info" "kano-uixinit terminates into Dashboard Supervisor"
     # only run updater once each boot
-    [ "$DESKTOP_RUN" -eq 1 ]  &&  sudo kano-updater ui boot-window
+    [ "$DESKTOP_RUN" -eq 1 ]  &&  sudo kano-updater-quickcheck
     exec kano-dashboard-supervisor
     exit 0
 else
