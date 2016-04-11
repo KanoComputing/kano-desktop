@@ -5,16 +5,21 @@
 # Copyright (C) 2014-2016 Kano Computing Ltd.
 # License: http://www.gnu.org/licenses/gpl-2.0.txt GNU GPL v2
 #
-#  This script is a wrapper on top of LXDE autoinit.
+#  This script is a wrapper on top of the Kano OS graphical startup.
 #
-#  It performs all configuration, launching, and other processing related to:
+#  It will bring the user either to the new fast Dashboard,
+#  or to the Computer mode (LXDE) Desktop.
+#
+#  On the LXDE side, it performs the basic setup to get the GUI and services:
+#
 #  First login:
-#    * kano-tutorial, kano-init-flow, kano-login, the OS intro video
-#    * Triggers first login processing of kano-init and kano-updater
+#    * The first login process has been revamped and it is now part of the Dashboard.
+#
 #  Every login:
 #    * Configures: screensaver, audio  (alsa-utils), keyboard, mouse, kano-vnc
 #    * Starts lxpanel, kano-mount-trigger, kdesk, kano-feedback-widget
 #    * Triggers login processing for kano-tracker-ctl, kano-sync, kano-updater
+#    * Starts daemons needed by LED speakers, and the Lighboard.
 
 logger --id --tag "info" "kano-uixinit starts"
 
@@ -141,10 +146,8 @@ if [ "$FIRST_BOOT" -eq 1 ]; then
         sudo regenerate-ssh-keys &
     fi
 
-    logger --id --tag "info" "Playing intro video: os_intro.mp4"
-    kano-video-cli /usr/share/kano-media/videos/os_intro.mp4
-
     # TODO: disabled for production 7
+    # FIXME: Is it safe to remove it alltogether?
     #kano-profile-gui --screen=quests
 else
     # The following is executed in subsequent boots
