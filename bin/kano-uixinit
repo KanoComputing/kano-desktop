@@ -145,10 +145,6 @@ if [ "$FIRST_BOOT" -eq 1 ]; then
     if [ `getent group kanousers | wc -l` -eq 1 ]; then
         sudo regenerate-ssh-keys &
     fi
-
-    # TODO: disabled for production 7
-    # FIXME: Is it safe to remove it alltogether?
-    #kano-profile-gui --screen=quests
 else
     # The following is executed in subsequent boots
 
