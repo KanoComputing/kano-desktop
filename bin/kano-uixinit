@@ -81,14 +81,14 @@ function track_startup
 test -f /run/lock/desktop_init_run
 DESKTOP_RUN=$?
 touch /run/lock/desktop_init_run
-FIRST_BOOT=0
+FIRST_BOOT=1
 
 if [ "$DESKTOP_RUN" -eq 1 ] ; then
    logger --id --tag "info" "kano-uixinit first execution"
    # Finalise account setup
    # NB sudo costs us 1 second here, could save it by checking the
    # json file
-   sudo kano-init finalise || FIRST_BOOT=1
+   sudo kano-init finalise || FIRST_BOOT=0
 
    track_startup
 
