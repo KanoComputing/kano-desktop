@@ -1,0 +1,12 @@
+table Icon
+  Caption:
+  AppID: chromium-browser
+  Command: kano-tracker-ctl session run kano-adventures 'x-www-browser --start-maximized http://adventures.kano.me/'
+  Singleton: true
+  Icon: /usr/share/kano-video/icon/adventures.png
+  IconHover: /usr/share/kano-desktop/icons/adventures-hover.png
+  HoverXOffset: 0
+  Relative-To: grid
+  X: 6
+  Y: 1
+end
