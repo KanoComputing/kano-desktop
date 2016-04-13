@@ -1,7 +1,7 @@
 table Icon
   Caption:
-  AppID: chromium-browser
-  Command: kano-tracker-ctl session run kano-adventures 'x-www-browser --start-maximized http://adventures.kano.me/'
+  AppID: make-adventures
+  Command: /usr/bin/make-adventures
   Singleton: true
   Icon: /usr/share/kano-video/icon/adventures.png
   IconHover: /usr/share/kano-desktop/icons/adventures-hover.png

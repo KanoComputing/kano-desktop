@@ -30,6 +30,7 @@ bin/kano-uixinit usr/bin
 bin/open-me etc/skel/.Rabbithole
 bin/use-the-force usr/bin
 bin/kano-dashboard-confirm usr/bin
+bin/make-adventures usr/bin
 
 scripts/* usr/share/kano-desktop/scripts
 

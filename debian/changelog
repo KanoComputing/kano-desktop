@@ -1,3 +1,9 @@
+kano-desktop (3.1.1-1) unstable; urgency=low
+
+  * Added Make Adventures on the desktop
+
+ -- Team Kano <dev@kano.me>  Wed, 13 Apr 2016 17:28:08 +0100
+
 kano-desktop (3.0.1-1) unstable; urgency=low
 
   * Added desktop icon to switch to Dashboard mode
