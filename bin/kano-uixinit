@@ -96,6 +96,8 @@ if [ "$DESKTOP_RUN" -eq 1 ] ; then
        # Finalise account setup
        logger --id --tag "info" "kano-uixinit first boot"
        sudo kano-updater first-boot
+   else
+       aplay /usr/share/kano-media/sounds/kano_boot_up.wav
    fi
 
 fi
