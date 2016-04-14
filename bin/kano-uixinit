@@ -109,6 +109,9 @@ kano-tracker-ctl refresh --watch &
 # Start the hardware boards daemon
 kano-boards-daemon &
 
+# Start the desktop notifications daemon
+kano-notifications-daemon &
+
 # Disable XServer screen saver time and screen blanking (The display would become black)
 if is_installed xset; then
     logger --id --tag "info" "Disabling the screensaver"
