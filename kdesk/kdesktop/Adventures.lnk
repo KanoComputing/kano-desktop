@@ -3,7 +3,7 @@ table Icon
   AppID: make-adventures
   Command: /usr/bin/make-adventures
   Singleton: true
-  Icon: /usr/share/kano-video/icon/adventures.png
+  Icon: /usr/share/kano-desktop/icons/adventures.png
   IconHover: /usr/share/kano-desktop/icons/adventures-hover.png
   HoverXOffset: 0
   Relative-To: grid
