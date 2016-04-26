@@ -19,7 +19,6 @@ config/profile usr/share/kano-desktop/config
 config/rxvt/x11-rxvt etc/X11/Xresources
 config/gtk-2.0 etc/skel/.config/
 config/dconf etc/skel/.config/
-config/systemd/* usr/lib/systemd/system.conf.d
 config/console usr/share/kano-desktop/config
 
 videos usr/share/kano-media
