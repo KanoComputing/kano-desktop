@@ -132,6 +132,16 @@ case "$1" in
         # configure console
         cp usr/share/kano-desktop/config/console/console-setup /etc/default/
 
+        # configure systemd
+        # For now, we have to edit system.conf, as v215 doesn't support
+        # system.conf.d yet.
+        
+        systemd_conf='/etc/systemd/system.conf'
+
+        # configure systemd -  remove watchdog error message
+        sed -i "s/#ShutdownWatchdogSec=.*$/ShutdownWatchdogSec=0/g" $systemd_conf
+        # configure systemd - reduce reboot timeout.
+        sed -i "s/#DefaultTimeoutStopSec=.*$/DefaultTimeoutStopSec=30s/g"  $systemd_conf
         ;;
 esac
 
