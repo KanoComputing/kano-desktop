@@ -126,8 +126,12 @@ kano_keyboard=`python -c "from kano.utils import detect_kano_keyboard; print det
 # loads and sets the keyboard layout
 set_keyboard $kano_keyboard
 
-# Jump to Dashboard Mode, unless instructed otherwise
-if [ "${DESKTOP_MODE}" != "1" ]; then
+is_rpi2_or_above=`python -c "from kano.utils.hardware import has_min_performance,\
+RPI_2_B_SCORE ; print has_min_performance(RPI_2_B_SCORE)"`
+
+# By default always go to the Dashboard Mode, except if switching to Desktop Mode,
+# or the Raspberry model is below RPi2B, because Dashboard is not supported.
+if [ "${DESKTOP_MODE}" != "1" ] && [ "$is_rpi2_or_above" == "True" ] ; then
     logger --id --tag "info" "kano-uixinit terminates into Dashboard Supervisor"
     # only run updater once each boot
     [ "$DESKTOP_RUN" -eq 1 ]  &&  sudo kano-updater-quickcheck

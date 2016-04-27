@@ -7,14 +7,28 @@
 #  It is called from the Dashboard Desktop icon.
 #
 
-kano-dialog title="Dashboard Mode" \
+# If the kit is running on a RaspberryPI model below 2B,
+# do not switch, because the Dashboard is not supported.
+is_rpi2_or_above=`python -c "from kano.utils.hardware import has_min_performance,\
+  RPI_2_B_SCORE ; print has_min_performance(RPI_2_B_SCORE)"`
+
+if [ "$is_rpi2_or_above" != "True" ]; then
+    kano-dialog title="The Dashboard is not supported on your device" \
+        description="Please upgrade to the Raspberry Pi 2 or above" \
+        buttons=Ok:orange:1
+
+    exit 1
+else
+    # We are good to go, ask confirmation and switch to Dashboard
+    kano-dialog title="Dashboard Mode" \
     description="Do you want to return to the Dashboard now?" \
     buttons=Yes:orange:1,Later:orange:2
 
-if [ "$?" == "1" ]; then
-    # Yes, let's do it
-    sudo kano-dashboard-uimode dashboard
-    exit 0
-fi
+    if [ "$?" == "1" ]; then
+        # Yes, let's do it
+        sudo kano-dashboard-uimode dashboard
+        exit 0
+    fi
 
-exit 1
+    exit 1
+fi
