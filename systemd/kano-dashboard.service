@@ -1,0 +1,17 @@
+#
+# kano-dashboard.service
+#
+# Starts the Dashboard supervisor
+#
+# The "Conflicts" clause automatically stops the Desktop systemd service
+#
+# FIXME: For now it's still under early testing
+#
+
+[Unit]
+Description=Kano Dashboard
+Conflicts=kano-desktop.service
+
+[Service]
+ExecStart=/usr/bin/kano-dashboard --platform eglfs
+Environment=DISPLAY=:0

@@ -1,0 +1,20 @@
+#
+# kano-desktop.service
+#
+# Starts the Desktop systemd service
+#
+# The "Requires" clause makes a the lxpanel start along with it,
+# which allows for grouping several services from this one.
+#
+# FIXME: For now it's still under early testing (starts kdesk only with hourglass)
+#
+
+[Unit]
+Description=Kano Desktop Kdesk
+Requires=kano-desktop-lxpanel.service
+Conflicts=kano-dashboard.service
+
+[Service]
+ExecStartPre=/usr/bin/kdesk-hourglass-app "lxpanel"
+ExecStart=/usr/bin/kdesk
+Environment=DISPLAY=:0
