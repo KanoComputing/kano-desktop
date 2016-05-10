@@ -18,6 +18,9 @@
 #  FIXME: This is still in early development stage.
 #
 
+# We want systemd to populate the environment to user services
+systemctl --user import-environment
+
 # Are we on a RaspberryPI 2 or above?
 is_rpi2_or_above=`python -c "from kano.utils.hardware import has_min_performance,\
 RPI_2_B_SCORE ; print has_min_performance(RPI_2_B_SCORE)"`
