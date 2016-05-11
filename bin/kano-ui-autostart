@@ -19,6 +19,7 @@
 #
 
 # We want systemd to populate the environment to user services
+# FIXME: MANAGERPID is not exported, SHLVL=2 instead of 1.
 systemctl --user import-environment
 
 # Are we on a RaspberryPI 2 or above?

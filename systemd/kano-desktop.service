@@ -13,8 +13,9 @@
 Description=Kano Desktop Kdesk
 Requires=kano-desktop-lxpanel.service
 Conflicts=kano-dashboard.service
+AllowIsolate=yes
 
 [Service]
 ExecStartPre=/usr/bin/kdesk-hourglass-app "lxpanel"
 ExecStart=/usr/bin/kdesk
-Environment=DISPLAY=:0
+Environment=DISPLAY=:0 NO_AT_BRIDGE=1
