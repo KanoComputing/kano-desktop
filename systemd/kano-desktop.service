@@ -12,7 +12,6 @@
 [Unit]
 Description=Kano Desktop Icons
 Requires=kano-desktop-lxpanel.service kano-desktop-uixinit.service
-Conflicts=kano-dashboard.service
 AllowIsolate=yes
 
 [Service]
