@@ -10,12 +10,11 @@
 #
 
 [Unit]
-Description=lxpanel
+Description=Kano LXPanel Taskbar
 BindsTo=kano-desktop.service
 
 [Service]
 ExecStart=/usr/bin/lxpanel --profile LXDE
-Environment=DISPLAY=:0
 
 [Install]
 WantedBy=kano-desktop.service

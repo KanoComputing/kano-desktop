@@ -13,13 +13,14 @@
 #
 #  To switch from either mode, do:
 #
-#  $ systemctl --user start kano-dasbhoard / desktop
-#  
-#  FIXME: This is still in early development stage.
+#  $ systemctl --user isolate kano-dasbhoard / kano-desktop
+#
+#  Preferably, use the dashboard tool: kano-dashboard-uimode <dashboard|desktop>
 #
 
 # We want systemd to populate the environment to user services
-# FIXME: MANAGERPID is not exported, SHLVL=2 instead of 1.
+# FIXME: MANAGERPID is not exported, SHLVL=2 instead of 1. why?
+export NO_AT_BRIDGE=1
 systemctl --user import-environment
 
 # Are we on a RaspberryPI 2 or above?

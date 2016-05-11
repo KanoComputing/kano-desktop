@@ -1,0 +1,25 @@
+#
+# kano-desktop-uixinit.service
+#
+# Starts the Desktop UIX Init service
+#
+# The "BindsTo" clause makes a behaviour dependency with the main service.
+# It is started and stopped along with the Desktop unit.
+#
+# FIXME: For now it's still under early testing
+#
+
+[Unit]
+Description=Kano Desktop setup script
+BindsTo=kano-desktop.service
+Requires=kano-desktop-boards-daemon.service kano-desktop-mouse.service \
+ kano-desktop-notifications.service kano-desktop-tracker-watch.service \
+ kano-desktop-feedback-widget.service kano-desktop-mount-trigger.service \
+ kano-desktop-world-widget.service kano-desktop-speakerleds.service \
+ kano-desktop-vcn.service
+
+[Service]
+ExecStart=/usr/bin/kano-uixinit-systemd
+
+[Install]
+WantedBy=kano-desktop.service

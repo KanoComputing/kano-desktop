@@ -1,0 +1,13 @@
+#
+# kano-desktop-mount-trigger
+#
+
+[Unit]
+Description=Kano external disk mount daemon
+BindsTo=kano-desktop.service
+
+[Service]
+ExecStart=/usr/bin/kano-mount-trigger "/usr/bin/kano-launcher /usr/bin/pcmanfm pcmanfm"
+
+[Install]
+WantedBy=kano-desktop.service

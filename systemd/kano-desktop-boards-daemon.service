@@ -1,0 +1,13 @@
+#
+# kano-desktop-boards-daemon
+#
+
+[Unit]
+Description=Kano Boards Daemon
+BindsTo=kano-desktop.service
+
+[Service]
+ExecStart=/usr/bin/kano-boards-daemon
+
+[Install]
+WantedBy=kano-desktop.service

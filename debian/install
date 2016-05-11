@@ -25,7 +25,7 @@ videos usr/share/kano-media
 gtk-themes/Kano usr/share/themes
 
 bin/kano-screenshot-hotkey usr/bin
-bin/kano-uixinit usr/bin
+bin/kano-uixinit-systemd /usr/bin
 bin/open-me etc/skel/.Rabbithole
 bin/use-the-force usr/bin
 bin/kano-dashboard-confirm usr/bin
