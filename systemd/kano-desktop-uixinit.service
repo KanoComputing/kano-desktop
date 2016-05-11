@@ -16,7 +16,7 @@ Requires=kano-desktop-boards-daemon.service kano-desktop-mouse.service \
  kano-desktop-notifications.service kano-desktop-tracker-watch.service \
  kano-desktop-feedback-widget.service kano-desktop-mount-trigger.service \
  kano-desktop-world-widget.service kano-desktop-speakerleds.service \
- kano-desktop-vcn.service
+ kano-desktop-vnc.service
 
 [Service]
 ExecStart=/usr/bin/kano-uixinit-systemd
