@@ -1,43 +1,28 @@
 #!/bin/bash
 
-# kano-uixinit
+# kano-uixinit-systemd
 #
-# Copyright (C) 2014-2016 Kano Computing Ltd.
+# Copyright (C) 2016 Kano Computing Ltd.
 # License: http://www.gnu.org/licenses/gpl-2.0.txt GNU GPL v2
 #
-#  This script is a wrapper on top of the Kano OS graphical startup.
+#  This script is a wrapper on top of the Kano OS Desktop mode startup.
+#  It is meant to be running under the umbrella of a systemd unit file.
 #
-#  It will bring the user either to the new fast Dashboard,
-#  or to the Computer mode (LXDE) Desktop.
+#  It performs the following tasks:
 #
-#  On the LXDE side, it performs the basic setup to get the GUI and services:
+#   * Announces finalisation to kano-init
+#   * Sets up the Kano keyboard and hotkeys, mouse calibration
+#   * Disables screen power off mode (DPMS)
+#   * Triggers event processing for kano-tracker-ctl, kano-sync, kano-updater
+#   * Sets up system sound volume
 #
-#  First login:
-#    * The first login process has been revamped and it is now part of the Dashboard.
+#  Logging takes place from systemd itself (journalctl).
 #
-#  Every login:
-#    * Configures: screensaver, audio  (alsa-utils), keyboard, mouse, kano-vnc
-#    * Starts lxpanel, kano-mount-trigger, kdesk, kano-feedback-widget
-#    * Triggers login processing for kano-tracker-ctl, kano-sync, kano-updater
-#    * Starts daemons needed by LED speakers, and the Lighboard.
 
-logger --id --tag "info" "kano-uixinit starts"
+logger --id --tag "info" "uixinit systemd starts"
 
-first_boot_file="$HOME/.kano-settings/first_boot"
-after_update_file="$HOME/.kano-settings/after_update"
+# FIXME: is this still needed?
 mkdir -p "$HOME/.kano-settings"
-
-#prevent gtk apps from warning about lack of accessibility bridge
-export NO_AT_BRIDGE=1
-
-function is_installed
-{
-    if [ -n "`which $1`" ]; then
-        return 0
-    else
-        return 1
-    fi
-}
 
 function set_keyboard
 {
@@ -84,7 +69,9 @@ touch /run/lock/desktop_init_run
 FIRST_BOOT=1
 
 if [ "$DESKTOP_RUN" -eq 1 ] ; then
-   logger --id --tag "info" "kano-uixinit first execution"
+
+   logger --id --tag "info" "kano-uixinit-systemd first execution"
+
    # Finalise account setup
    # NB sudo costs us 1 second here, could save it by checking the
    # json file
@@ -103,18 +90,8 @@ fi
 # Track some information about the hardware used
 kano-tracker-ctl generate hw-info
 
-# Start the tracking daemon
-kano-tracker-ctl refresh --watch &
-
-# Start the hardware boards daemon
-kano-boards-daemon &
-
-# Start the desktop notifications daemon
-kano-notifications-daemon &
-
 # Disable XServer screen saver time and screen blanking (The display would become black)
-if is_installed xset; then
-    logger --id --tag "info" "Disabling the screensaver"
+if [ -n "`which xset`" ]; then
     xset s off
     xset -dpms
     xset s noblank
@@ -126,20 +103,8 @@ kano_keyboard=`python -c "from kano.utils import detect_kano_keyboard; print det
 # loads and sets the keyboard layout
 set_keyboard $kano_keyboard
 
-is_rpi2_or_above=`python -c "from kano.utils.hardware import has_min_performance,\
-RPI_2_B_SCORE ; print has_min_performance(RPI_2_B_SCORE)"`
-
-# By default always go to the Dashboard Mode, except if switching to Desktop Mode,
-# or the Raspberry model is below RPi2B, because Dashboard is not supported.
-if [ "${DESKTOP_MODE}" != "1" ] && [ "$is_rpi2_or_above" == "True" ] ; then
-    logger --id --tag "info" "kano-uixinit terminates into Dashboard Supervisor"
-    # only run updater once each boot
-    [ "$DESKTOP_RUN" -eq 1 ]  &&  sudo kano-updater-quickcheck
-    exec kano-dashboard-supervisor
-    exit 0
-else
-    logger --id --tag "info" "Starting in Desktop Mode"
-fi
+# Calibrates the mouse pointer speed
+/usr/bin/startmouse
 
 # Set the initial default volume
 if [ -e /etc/init.d/alsa-utils ]; then
@@ -156,41 +121,26 @@ else
     logger --id --tag "warn" "alsa-utils not found, volume not set"
 fi
 
+# TODO: move me to a systemd unit service
 # Are we in Noobs ? (check for more than 2 partitions)
 # If in noobs, make an xrefresh happen after 50 seconds
 if [ $( lsblk -n | wc -l ) -gt 3 ] ; then
     (sleep  50; xrefresh ) &
 fi
 
-
 # if xrefresh is still waiting to run, stop it
 kill %?xrefresh
 
+# TODO: move me to a systemd unit service
 if [ "$FIRST_BOOT" -eq 1 ]; then
     # regenerating ssh keys
     if [ `getent group kanousers | wc -l` -eq 1 ]; then
         sudo regenerate-ssh-keys &
     fi
-else
-    # The following is executed in subsequent boots
-
-    # start hourglass to wait for the last X11 app to get ready
-    kdesk-hourglass-app "lxpanel"
-
-    # load background
-    /usr/bin/kdesk -w &
 fi
 
 # load compositor if the new driver is running
 (xdriinfo | grep vc4 ) && xcompmgr &
-
-# startmouse
-logger --id --tag "info" "Launching startmouse"
-/usr/bin/startmouse &
-
-# lxpanel
-logger --id --tag "info" "Launching lxpanel"
-/usr/bin/lxpanel --profile LXDE &
 
 # LXPanel resets the volume level to 100, we need it to be restored to
 # whatever level it was before shutdown or reboot
@@ -206,39 +156,9 @@ if [ -e /lib/systemd/system/alsa-restore.service ]; then
 else
     logger --id --tag "warn" "alsa-restore not found, cannott attempt to restore volume level"
 fi
-# start mount trigger
-logger --id --tag "info" "Launching kano-mount-trigger"
-/usr/bin/kano-mount-trigger "/usr/bin/kano-launcher /usr/bin/pcmanfm pcmanfm" &
-
-# starting kdesk
-logger --id --tag "info" "Launching kdesk"
-/usr/bin/kdesk &
-
-# launching desktop widgets
-/usr/bin/kano-feedback-widget &
-/usr/bin/kano-world-widget &
-
-# Starting the LED Speaker CPU Monitor animation
-# and checking kano-settings for preference setting
-kano-speakerleds cpu-monitor start --check &
 
 # Remove Homedir "Desktop" folder created by:
 # /usr/share/xsessions/lightdm-xsession.desktop
 rm -rf  ~/Desktop
 
-# starting kano-vnc
-startvnc=/usr/share/kano-vnc/startvnc
-if [ -e $startvnc ]; then
-    logger --id --tag "info" "Launching startvnc"
-    $startvnc
-fi
-
-
-# Show the badge as a notification
-# Check if this is the first boot
-if [ $kano_init_flow_rv -eq 0 ]; then
-    # This should trigger the commander badge notification
-    kano-profile-cli save_app_state_variable init-flow-completed level 1
-fi
-
-logger --id --tag "info" "kano-uixinit terminates into Desktop mode"
+logger --id --tag "info" "kano-uixinit-systemd terminated"

@@ -1,0 +1,13 @@
+#
+# kano-desktop-tracker-watch
+#
+
+[Unit]
+Description=Kano Tracker Watcher daemon
+BindsTo=kano-desktop.service
+
+[Service]
+ExecStart=/usr/bin/kano-tracker-ctl refresh --watch
+
+[Install]
+WantedBy=kano-desktop.service

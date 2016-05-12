@@ -1,0 +1,20 @@
+#
+# kano-desktop-lxpanel.service
+#
+# Starts the Desktop LXpanel app
+#
+# The "BindsTo" clause makes a behaviour dependency with the main service.
+# It is started and stopped along with the Desktop unit.
+#
+# FIXME: For now it's still under early testing
+#
+
+[Unit]
+Description=Kano LXPanel Taskbar
+BindsTo=kano-desktop.service
+
+[Service]
+ExecStart=/usr/bin/lxpanel --profile LXDE
+
+[Install]
+WantedBy=kano-desktop.service

@@ -1,0 +1,38 @@
+#!/bin/bash
+#
+#  kano-ui-autostart
+#
+#  This is the Kano version of Lightdm autostart script, which runs once per boot,
+#  and each time a successful Greeter login takes place.
+#
+#  It decides wether to go into Dashboard or Desktop mode via systemd services.
+#  Allows for switching between the two very fast, because lightdm is never restarted.
+#
+#  This script replaces kano-uixinit, which moves into systemd services,
+#  (look at the systemd subdirectory)
+#
+#  To switch from either mode, do:
+#
+#  $ systemctl --user isolate kano-dasbhoard / kano-desktop
+#
+#  Preferably, use the dashboard tool: kano-dashboard-uimode <dashboard|desktop>
+#
+
+# We want systemd to populate the environment to user services
+# FIXME: MANAGERPID is not exported, SHLVL=2 instead of 1. why?
+export NO_AT_BRIDGE=1
+systemctl --user import-environment
+
+# Are we on a RaspberryPI 2 or above?
+is_rpi2_or_above=`python -c "from kano.utils.hardware import has_min_performance,\
+RPI_2_B_SCORE ; print has_min_performance(RPI_2_B_SCORE)"`
+
+# By default always go to the Dashboard Mode, except if switching to Desktop Mode,
+# or the Raspberry model is below RPi2B, because Dashboard is not supported.
+if [ "${DESKTOP_MODE}" != "1" ] && [ "$is_rpi2_or_above" == "True" ] ; then
+    logger --id --tag "info" "Starting systemd Dashboard mode"
+    systemctl --user start kano-dashboard.service
+else
+    logger --id --tag "info" "Starting systemd Desktop mode"
+    systemctl --user start kano-desktop.service
+fi

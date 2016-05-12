@@ -1,0 +1,14 @@
+#
+# kano-desktop-notifications
+#
+#
+
+[Unit]
+Description=Kano Speaker LEDs daemon
+BindsTo=kano-desktop.service
+
+[Service]
+ExecStart=/bin/sh -c "/usr/bin/kano-speakerleds cpu-monitor start --check"
+
+[Install]
+WantedBy=kano-desktop.service

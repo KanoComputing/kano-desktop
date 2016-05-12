@@ -1,3 +1,9 @@
+kano-desktop (3.2.1-1) unstable; urgency=low
+
+  * Migrated Dashboard and Computer modes to systemd
+
+ -- Team Kano <dev@kano.me>  Thu, 12 May 2016 18:38:08 +0100
+
 kano-desktop (3.1.1-1) unstable; urgency=low
 
   * Added Make Adventures on the desktop

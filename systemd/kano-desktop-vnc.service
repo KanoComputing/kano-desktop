@@ -1,0 +1,13 @@
+#
+# kano-desktop-vnc.service
+#
+
+[Unit]
+Description=Kano Desktop VNC daemon
+BindsTo=kano-desktop.service
+
+[Service]
+ExecStart=/usr/share/kano-vnc/startvnc
+
+[Install]
+WantedBy=kano-desktop.service
