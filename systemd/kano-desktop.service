@@ -13,6 +13,7 @@
 Description=Kano Desktop Icons
 Requires=kano-desktop-lxpanel.service kano-desktop-uixinit.service
 AllowIsolate=yes
+Conflicts=kano-dashboard.service
 
 [Service]
 ExecStartPre=/usr/bin/kdesk-hourglass-app "lxpanel"
