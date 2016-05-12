@@ -103,6 +103,9 @@ kano_keyboard=`python -c "from kano.utils import detect_kano_keyboard; print det
 # loads and sets the keyboard layout
 set_keyboard $kano_keyboard
 
+# Calibrates the mouse pointer speed
+/usr/bin/startmouse
+
 # Set the initial default volume
 if [ -e /etc/init.d/alsa-utils ]; then
     amixer -c 0 -- sset PCM 0 &> /dev/null

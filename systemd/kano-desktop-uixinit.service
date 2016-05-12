@@ -12,7 +12,7 @@
 [Unit]
 Description=Kano Desktop setup script
 BindsTo=kano-desktop.service
-Requires=kano-desktop-boards-daemon.service kano-desktop-mouse.service \
+Requires=kano-desktop-boards-daemon.service \
  kano-desktop-notifications.service kano-desktop-tracker-watch.service \
  kano-desktop-feedback-widget.service kano-desktop-mount-trigger.service \
  kano-desktop-world-widget.service kano-desktop-speakerleds.service \
