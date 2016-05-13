@@ -1,0 +1,10 @@
+#
+# kano-common-boards
+#
+
+[Unit]
+Description=Kano Boards Daemon
+IgnoreOnIsolate=true
+
+[Service]
+ExecStart=/usr/bin/kano-boards-daemon
