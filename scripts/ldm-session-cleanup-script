@@ -16,14 +16,7 @@ su - $USER -c "kano-tracker-ctl clear"
 su - $USER -c "kano-tracker-ctl new-token"
 su - $USER -c "kano-sync --upload-tracking-data --silent"
 
-
-# kill old session: kills any processes still running from
-# the old session.
-
-# For now, kill a blacklist of daemons.
-pkill -f '/usr/bin/kano-tracker-ctl refresh --watch'
-pkill -f '/usr/bin/kano-boards-daemon'
-pkill -f '/usr/bin/kano-mount-trigger'
-pkill -f '/usr/bin/kano-speakerleds cpu-monitor start --check'
+# All user apps and keep-alive processes
+# are killed automatically by systemd, nothing to do here.
 
 return 0
