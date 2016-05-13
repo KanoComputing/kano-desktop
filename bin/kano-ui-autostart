@@ -36,3 +36,8 @@ else
     logger --id --tag "info" "Starting systemd Desktop mode"
     systemctl --user start kano-desktop.service
 fi
+
+# Restart user keep-alive services
+# These are running throughout Dashboard and Desktop modes,
+# until the user does a logoff or shutdown
+systemctl --user restart kano-common.target

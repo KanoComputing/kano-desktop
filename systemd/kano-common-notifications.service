@@ -1,14 +1,11 @@
 #
-# kano-desktop-notifications
+# kano-common-notifications
 #
 #
 
 [Unit]
 Description=Kano user notifications daemon
-BindsTo=kano-desktop.service
+IgnoreOnIsolate=true
 
 [Service]
 ExecStart=/usr/bin/kano-notifications-daemon
-
-[Install]
-WantedBy=kano-desktop.service
