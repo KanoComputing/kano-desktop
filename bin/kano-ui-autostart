@@ -23,9 +23,58 @@
 export NO_AT_BRIDGE=1
 systemctl --user import-environment
 
+function track_startup
+{
+    touch /tmp/ztartup
+
+    # Report a startup event to Kano Tracker
+    kano-tracker-ctl +1 startup
+
+    if [ is_internet ]; then
+        # Try uploading the tracking data to our servers
+        # Should be quiet on failure
+        kano-sync --upload-tracking-data --silent
+
+        # Sync objects from the content API in the background
+        # TODO: This should be removed once we have the daemon done
+        sudo kano-content sync &
+
+        kano-tracker-ctl +1 'internet-connection-established'
+    fi
+}
+
+# Is this the first time we executed this boot?
+test -f /run/lock/desktop_init_run
+DESKTOP_RUN=$?
+touch /run/lock/desktop_init_run
+FIRST_BOOT=1
+
+if [ "$DESKTOP_RUN" -eq 1 ] ; then
+
+   logger --id --tag "info" "kano-uixinit-systemd first execution"
+
+   # Finalise account setup
+   # NB sudo costs us 1 second here, could save it by checking the
+   # json file
+   sudo kano-init finalise || FIRST_BOOT=0
+
+   track_startup
+
+   if [ "$FIRST_BOOT" -eq 1 ] ; then
+       # Finalise account setup
+       logger --id --tag "info" "kano-uixinit first boot"
+       sudo kano-updater first-boot
+   fi
+
+fi
+
 # Are we on a RaspberryPI 2 or above?
 is_rpi2_or_above=`python -c "from kano.utils.hardware import has_min_performance,\
 RPI_2_B_SCORE ; print has_min_performance(RPI_2_B_SCORE)"`
+
+#
+# Dashboard Or Desktop mode ?
+#
 
 # By default always go to the Dashboard Mode, except if switching to Desktop Mode,
 # or the Raspberry model is below RPi2B, because Dashboard is not supported.
