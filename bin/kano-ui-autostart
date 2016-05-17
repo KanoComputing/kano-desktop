@@ -25,8 +25,6 @@ systemctl --user import-environment
 
 function track_startup
 {
-    touch /tmp/ztartup
-
     # Report a startup event to Kano Tracker
     kano-tracker-ctl +1 startup
 
