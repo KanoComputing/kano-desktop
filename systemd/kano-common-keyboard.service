@@ -1,0 +1,11 @@
+#
+# kano-common-keyboard
+#
+
+[Unit]
+Description=Kano Keyboard Hotkeys
+IgnoreOnIsolate=true
+
+[Service]
+ExecStart=/usr/bin/kano-keyboard-hotkeys
+Type=forking
