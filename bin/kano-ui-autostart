@@ -74,9 +74,10 @@ RPI_2_B_SCORE ; print has_min_performance(RPI_2_B_SCORE)"`
 # Dashboard Or Desktop mode ?
 #
 
-# By default always go to the Dashboard Mode, except if switching to Desktop Mode,
-# or the Raspberry model is below RPi2B, because Dashboard is not supported.
-if [ "${DESKTOP_MODE}" != "1" ] && [ "$is_rpi2_or_above" == "True" ] ; then
+# By default always go to the Dashboard when Lightdm starts (bootup, greeter login)
+# Except on Raspberry models below RPi2B, because Dashboard is not supported.
+# Switching between both modes goes through systemd units (no lightdm restart).
+if [ "$is_rpi2_or_above" == "True" ] ; then
     logger --id --tag "info" "Starting systemd Dashboard mode"
     systemctl --user start kano-dashboard.service
 else
