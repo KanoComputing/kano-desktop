@@ -21,11 +21,11 @@ custom_lxde_autostart=/usr/share/kano-desktop/config/autostart/autostart
 
 SQUEAKDIR=/usr/share/squeak
 
-TMP_SUDOERS_FILE=/tmp/kano-desktop_conf
-
 ldm_conf=/etc/lightdm/lightdm.conf
 ldm_login=/usr/share/kano-desktop/scripts/ldm-session-setup-script
 ldm_logout=/usr/share/kano-desktop/scripts/ldm-session-cleanup-script
+
+SUDOERS_DIR=/etc/sudoers.d
 
 case "$1" in
     configure)
@@ -94,22 +94,9 @@ case "$1" in
         cp $lxde_autostart $lxde_autostart-old
         cp $custom_lxde_autostart $lxde_autostart
 
-        # allow user to switch to virtual console terminals
-        # Create custom sudoers file
-        echo "%sudo   ALL=(root) NOPASSWD: /bin/chvt" > $TMP_SUDOERS_FILE
-
-        # Allow the new version of scratch to be sudoed and preserve the environment
-        # This is because it now starts up inside a virtual machine.
-        echo "%sudo   ALL=NOPASSWD:SETENV: /usr/bin/squeak" >> $TMP_SUDOERS_FILE
-
-        # The owner and group for the sudoers file must both be 0
-        chown root:root $TMP_SUDOERS_FILE
-
-        # The file permissions must be set to 0440
-        chmod 0440 $TMP_SUDOERS_FILE
-
-        # Move the file to the sudoers directory
-        mv $TMP_SUDOERS_FILE /etc/sudoers.d/
+        # Enforce permissions to our sudoers files
+        chmod 0440 $SUDOERS_DIR/kano-desktop_conf
+        chmod 0440 $SUDOERS_DIR/kano-environment_conf
 
         # Add login and logoff hooks to track usage of the kit
         sed -i "s|#\?\(session-setup-script\=\).*|\1$ldm_login|" $ldm_conf

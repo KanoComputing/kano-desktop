@@ -1,0 +1,7 @@
+
+# allow user to switch to virtual console terminals
+%sudo   ALL=(root) NOPASSWD: /bin/chvt
+
+# Allow the new version of scratch to be sudoed and preserve the environment
+# This is because it now starts up inside a virtual machine
+%sudo   ALL=NOPASSWD:SETENV: /usr/bin/squeak
