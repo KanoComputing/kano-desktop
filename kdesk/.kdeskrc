@@ -68,9 +68,9 @@ table Config
   Background.Source: /
 
   ScreenMedResWidth: 1025
-  Background.File-medium: /usr/share/kano-desktop/wallpapers/kanux-default-1024.png
-  Background.File-4-3: /usr/share/kano-desktop/wallpapers/kanux-default-4-3.png
-  Background.File-16-9: /usr/share/kano-desktop/wallpapers/kanux-default-16-9.png
+  Background.File-medium: /usr/share/kano-desktop/wallpapers/backdrops-1024.png
+  Background.File-4-3: /usr/share/kano-desktop/wallpapers/backdrops-4-3.png
+  Background.File-16-9: /usr/share/kano-desktop/wallpapers/backdrops-16-9.png
   Background.Mode: scale
   Background.Color: #C2CCFF
 end
