@@ -1,0 +1,12 @@
+#!/bin/bash
+
+# kano-scratch-launch
+#
+# Copyright (C) 2016 Kano Computing Ltd.
+# License: http://www.gnu.org/licenses/gpl-2.0.txt GNU GPL v2
+#
+# For the time being launch scratch using sudo
+
+export WRAPPER=sudo 
+/usr/bin/scratch
+

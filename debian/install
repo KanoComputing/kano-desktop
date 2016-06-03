@@ -34,6 +34,7 @@ bin/use-the-force usr/bin
 bin/kano-dashboard-confirm usr/bin
 bin/make-adventures usr/bin
 bin/kano-keyboard-hotkeys usr/bin
+bin/kano-scratch-launch /usr/bin
 
 scripts/* usr/share/kano-desktop/scripts
 
