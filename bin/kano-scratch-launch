@@ -7,6 +7,5 @@
 #
 # For the time being launch scratch using sudo
 
-export WRAPPER=sudo 
-/usr/bin/scratch
+sudo /usr/bin/scratch
 
