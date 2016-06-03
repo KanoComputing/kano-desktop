@@ -14,3 +14,4 @@ Cmnd_Alias KILL_DESKTOP_WIDGETS = /usr/bin/pkill -f kano-settings, /usr/bin/pkil
 # Allow the new version of scratch to be sudoed and preserve the environment
 # This is because it now starts up inside a virtual machine
 %sudo   ALL=NOPASSWD:SETENV: /usr/bin/squeak
+%sudo   ALL=NOPASSWD:SETENV: /usr/bin/scratch
