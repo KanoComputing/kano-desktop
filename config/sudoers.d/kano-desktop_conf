@@ -1,4 +1,13 @@
 
+# Adding restricted command aliases to kill widgets that have been sudoed from LXPanel taskbar
+# The reason behind this is that systemd cannot kill them if sudoed this way for some reason
+# The alias allows us to limit the scope of a password-less pkill run as the superuser.
+# Look at kano-desktop-lxpanel systemd unit to see usage of these aliases.
+#
+Cmnd_Alias KILL_DESKTOP_WIDGETS = /usr/bin/pkill -f kano-settings, /usr/bin/pkill -f kano-wifi-gui
+
+%sudo   ALL=(root) NOPASSWD: KILL_DESKTOP_WIDGETS
+
 # allow user to switch to virtual console terminals
 %sudo   ALL=(root) NOPASSWD: /bin/chvt
 
