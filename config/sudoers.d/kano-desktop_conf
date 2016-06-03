@@ -4,7 +4,10 @@
 # The alias allows us to limit the scope of a password-less pkill run as the superuser.
 # Look at kano-desktop-lxpanel systemd unit to see usage of these aliases.
 #
-Cmnd_Alias KILL_DESKTOP_WIDGETS = /usr/bin/pkill -f kano-settings, /usr/bin/pkill -f kano-wifi-gui
+# Scratch is sudoed from kdesk and suffers from a similar issue.
+#
+Cmnd_Alias KILL_DESKTOP_WIDGETS = /usr/bin/pkill -f kano-settings, \
+  /usr/bin/pkill -f kano-wifi-gui, /usr/bin/pkill -f scratch
 
 %sudo   ALL=(root) NOPASSWD: KILL_DESKTOP_WIDGETS
 

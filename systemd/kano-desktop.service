@@ -6,7 +6,8 @@
 # The "Requires" clause makes a the lxpanel start along with it,
 # which allows for grouping several services from this one.
 #
-# FIXME: For now it's still under early testing (starts kdesk only with hourglass)
+# Forcibly closing scratch on termination, because it is sudoed
+# and is misteriously started outside systemd cgroup.
 #
 
 [Unit]
@@ -18,3 +19,4 @@ Conflicts=kano-dashboard.service
 [Service]
 ExecStartPre=/usr/bin/kdesk-hourglass-app "lxpanel"
 ExecStart=/usr/bin/kdesk
+ExecStop=/usr/bin/sudo /usr/bin/pkill -f scratch
