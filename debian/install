@@ -21,7 +21,7 @@ config/gtk-2.0 etc/skel/.config/
 config/dconf etc/skel/.config/
 config/console usr/share/kano-desktop/config
 
-config/sudoers.d/* /etc/sudoers.d
+config/sudoers.d/* usr/share/kano-desktop/config/sudoers.d
 
 videos usr/share/kano-media
 gtk-themes/Kano usr/share/themes
@@ -34,6 +34,7 @@ bin/use-the-force usr/bin
 bin/kano-dashboard-confirm usr/bin
 bin/make-adventures usr/bin
 bin/kano-keyboard-hotkeys usr/bin
+bin/kano-scratch-launch /usr/bin
 
 scripts/* usr/share/kano-desktop/scripts
 

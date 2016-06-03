@@ -94,6 +94,9 @@ case "$1" in
         cp $lxde_autostart $lxde_autostart-old
         cp $custom_lxde_autostart $lxde_autostart
 
+        # Copy the sudoers files
+        cp /usr/share/kano-desktop/config/sudoers.d/* /etc/sudoers.d/
+
         # Enforce permissions to our sudoers files
         chmod 0440 $SUDOERS_DIR/kano-desktop_conf
         chmod 0440 $SUDOERS_DIR/kano-environment_conf
