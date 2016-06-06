@@ -765,6 +765,14 @@
     </position>
   </application>
 
+  <!-- Force squeak not to go above the top of the screen.-->
+  <application class="Squeak">
+    <position force="yes">
+        <x>center</x>
+        <y>0</y>
+    </position>
+  </application>
+
 </applications>
 
 </openbox_config>
