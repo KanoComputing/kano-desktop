@@ -2,20 +2,19 @@
 #
 #  kano-ui-autostart
 #
-#  This is the Kano version of Lightdm autostart script, which runs once per boot,
-#  and each time a successful Greeter login takes place.
+#  This is the Kano version of Lightdm autostart script.
+#  It is run everytime the kit boots up, and each time a successful Greeter login takes place.
 #
 #  It decides wether to go into Dashboard or Desktop mode via systemd services.
-#  Allows for switching between the two very fast, because lightdm is never restarted.
+#  Switching takes place by restarting systemd services, which makes it happen very fast.
+#  Look at /usr/lib/systemd/user Kano unit files for more details.
 #
-#  This script replaces kano-uixinit, which moves into systemd services,
-#  (look at the systemd subdirectory)
+#  Finally, this script does most of the old kano-uixinit tasks: mouse, keyboard setup,
+#  disabling screen DPMS, and Kano Tracking.
 #
-#  To switch from either mode, do:
+#  To switch from either mode from a terminal or ssh session:
 #
-#  $ systemctl --user isolate kano-dasbhoard / kano-desktop
-#
-#  Preferably, use the dashboard tool: kano-dashboard-uimode <dashboard|desktop>
+#  $ kano-dashboard-uimode <dashboard | desktop>
 #
 
 # We want systemd to populate the environment to user services
@@ -69,6 +68,66 @@ fi
 # Are we on a RaspberryPI 2 or above?
 is_rpi2_or_above=`python -c "from kano.utils.hardware import has_min_performance,\
 RPI_2_B_SCORE ; print has_min_performance(RPI_2_B_SCORE)"`
+
+
+# FIXME: is this still needed?
+mkdir -p "$HOME/.kano-settings"
+
+# Track some information about the hardware used
+kano-tracker-ctl generate hw-info
+
+# Disable XServer screen saver time and screen blanking (The display would become black)
+if [ -n "`which xset`" ]; then
+    xset s off
+    xset -dpms
+    xset s noblank
+fi
+
+# Calibrates the mouse pointer speed
+/usr/bin/startmouse
+
+# Set the initial default volume
+if [ -e /etc/init.d/alsa-utils ]; then
+    amixer -c 0 -- sset PCM 0 &> /dev/null
+    ret_val_pcm="$?"
+
+    amixer -c 0 -- sset Master 6 &> /dev/null
+    ret_val_master="$?"
+
+    if [ "$ret_val_pcm" -ne 0 ] || [ "$ret_val_master" -ne 0 ]; then
+	logger --id --tag "warn" "Failed to set initial volume level, ret code: $ret_val"
+    fi
+else
+    logger --id --tag "warn" "alsa-utils not found, volume not set"
+fi
+
+# User environment preparations: mouse speed, keyboard, DPMS, tracking, accelerated x11compositor.
+
+# TODO: move me to a systemd unit service
+# Are we in Noobs ? (check for more than 2 partitions)
+# If in noobs, make an xrefresh happen after 50 seconds
+if [ $( lsblk -n | wc -l ) -gt 3 ] ; then
+    (sleep  50; xrefresh ) &
+fi
+
+# if xrefresh is still waiting to run, stop it
+kill %?xrefresh
+
+# TODO: move me to a systemd unit service
+if [ "$FIRST_BOOT" -eq 1 ]; then
+    # regenerating ssh keys
+    if [ `getent group kanousers | wc -l` -eq 1 ]; then
+        sudo regenerate-ssh-keys &
+    fi
+fi
+
+# load compositor if the new driver is running
+(xdriinfo | grep vc4 ) && xcompmgr &
+
+# Remove Homedir "Desktop" folder created by:
+# /usr/share/xsessions/lightdm-xsession.desktop
+rm -rf  ~/Desktop
+
 
 #
 # Dashboard Or Desktop mode ?
