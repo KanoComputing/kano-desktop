@@ -19,4 +19,3 @@ Conflicts=kano-dashboard.service
 [Service]
 ExecStartPre=/usr/bin/kdesk-hourglass-app "lxpanel"
 ExecStart=/usr/bin/kdesk
-ExecStop=/usr/bin/sudo /usr/bin/pkill -f scratch
