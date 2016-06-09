@@ -122,14 +122,11 @@ if [ -e /lib/systemd/system/alsa-restore.service ]; then
     sudo systemctl start alsa-restore &> /dev/null
     ret_val="$?"
     if [ "$ret_val" -ne 0 ]; then
-	touch /tmp/sound-failed
         logger --id --tag "warn" "Failed to restore volume level, ret code: $ret_val"
     else
-	touch /tmp/sound-restored
 	logger --id --tag "info" "Audio volume level was successfully restored"
     fi
 else
-    touch /tmp/sound-error
     logger --id --tag "warn" "alsa-restore not found, cannott attempt to restore volume level"
 fi
 
