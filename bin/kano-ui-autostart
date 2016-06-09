@@ -41,31 +41,36 @@ function track_startup
 }
 
 
-# Detect if we are running for the first time since boot
-boot_control_file=/var/run/lock/kano_ui_autostart_first_boot
-if [ -f $boot_control_file ]; then
-    FIRST_BOOT=0
-else
-    touch $boot_control_file
-    FIRST_BOOT=1
-fi
+#
+# Is this the first time we executed this boot?
+#
+# FIRST_LOGIN is 1 when we login as a result of a new user being created
+# DESKTOP_RUN is 1 only when we run for the first time after boot.
+#
+test -f /run/lock/desktop_init_run
+DESKTOP_RUN=$?
+touch /run/lock/desktop_init_run
+FIRST_LOGIN=1
 
-if [ "$FIRST_BOOT" -eq 1 ] ; then
+if [ "$DESKTOP_RUN" -eq 1 ] ; then
 
-    logger --id --tag "info" "kano-ui-autostart first execution, completing kano-init"
+    logger --id --tag "info" "kano-uixinit-systemd first execution"
 
     # Finalise account setup
     # NB sudo costs us 1 second here, could save it by checking the
     # json file
-    sudo kano-init finalise
+    sudo kano-init finalise || FIRST_LOGIN=0
 
     track_startup
 
-    # Finalise account setup
-    logger --id --tag "info" "kano-ui-autostart running kano-updater first-boot"
-    sudo kano-updater first-boot
+    if [ "$FIRST_LOGIN" -eq 1 ] ; then
+	# Finalise account setup
+	logger --id --tag "info" "kano-uixinit first boot"
+	sudo kano-updater first-boot
+    fi
 
 fi
+
 
 # Are we on a RaspberryPI 2 or above?
 is_rpi2_or_above=`python -c "from kano.utils.hardware import has_min_performance,\
@@ -88,20 +93,6 @@ fi
 # Calibrates the mouse pointer speed
 /usr/bin/startmouse
 
-# Set the initial default volume
-if [ -e /etc/init.d/alsa-utils ]; then
-    amixer -c 0 -- sset PCM 0 &> /dev/null
-    ret_val_pcm="$?"
-
-    amixer -c 0 -- sset Master 6 &> /dev/null
-    ret_val_master="$?"
-
-    if [ "$ret_val_pcm" -ne 0 ] || [ "$ret_val_master" -ne 0 ]; then
-	logger --id --tag "warn" "Failed to set initial volume level, ret code: $ret_val"
-    fi
-else
-    logger --id --tag "warn" "alsa-utils not found, volume not set"
-fi
 
 # User environment preparations: mouse speed, keyboard, DPMS, tracking, accelerated x11compositor.
 
@@ -116,27 +107,30 @@ fi
 kill %?xrefresh
 
 # TODO: move me to a systemd unit service
-if [ "$FIRST_BOOT" -eq 1 ]; then
+if [ "$FIRST_LOGIN" -eq 1 ]; then
 
     # regenerating ssh keys
     logger --id --tag "info" "kano-ui-autostart regenerating ssh host keys"
     if [ `getent group kanousers | wc -l` -eq 1 ]; then
         sudo regenerate-ssh-keys &
     fi
+fi
 
-    # Restore sound volume on boot
-    if [ -e /lib/systemd/system/alsa-restore.service ]; then
-	# Redirect both stderr and stdout to null, we can do our own logging
-	sudo systemctl start alsa-restore &> /dev/null
-	ret_val="$?"
-	if [ "$ret_val" -ne 0 ]; then
-            logger --id --tag "warn" "Failed to restore volume level, ret code: $ret_val"
-	else
-	    logger --id --tag "info" "Audio volume level was successfully restored"
-	fi
+# Restore sound volume on boot
+if [ -e /lib/systemd/system/alsa-restore.service ]; then
+    # Redirect both stderr and stdout to null, we can do our own logging
+    sudo systemctl start alsa-restore &> /dev/null
+    ret_val="$?"
+    if [ "$ret_val" -ne 0 ]; then
+	touch /tmp/sound-failed
+        logger --id --tag "warn" "Failed to restore volume level, ret code: $ret_val"
     else
-	logger --id --tag "warn" "alsa-restore not found, cannott attempt to restore volume level"
+	touch /tmp/sound-restored
+	logger --id --tag "info" "Audio volume level was successfully restored"
     fi
+else
+    touch /tmp/sound-error
+    logger --id --tag "warn" "alsa-restore not found, cannott attempt to restore volume level"
 fi
 
 
