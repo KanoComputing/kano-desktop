@@ -19,4 +19,4 @@ su - $USER -c "kano-sync --upload-tracking-data --silent"
 # All user apps and keep-alive processes
 # are killed automatically by systemd, nothing to do here.
 
-return 0
+exit 0
