@@ -11,7 +11,8 @@
 import os
 import sys
 import time
-from kano_init.terminal import typewriter_echo, clear_screen
+import subprocess
+
 from kano_init.ascii_art.rabbit import rabbit
 from kano_init.ascii_art.matrix import matrix
 from kano.utils import get_user_unsudoed
@@ -26,16 +27,16 @@ if __name__ == '__main__' and __package__ is None:
 def main():
     # Play matrix animation
     matrix(2, False)
-    clear_screen()
+    subprocess.call(['clear'])
     # Show text
     msg = "Nicely done {}, you found me!".format(get_user_unsudoed())
-    typewriter_echo(msg, trailing_linebreaks=2)
+    subprocess.call(['typewriter_echo', msg, '0', '3'])
     time.sleep(2)
     # Play rabbit animation
     rabbit(1, 'left-to-right')
     # Unlock the easter egg badge
     increment_app_state_variable_with_dialog('easter_egg', 'starts', 1)
-    clear_screen()
+    subprocess.call(['clear'])
 
 if __name__ == '__main__':
     main()
