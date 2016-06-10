@@ -9,6 +9,8 @@
 
 import os
 import sys
+import subprocess
+
 from kano.utils import get_user_unsudoed
 from kano.network import is_internet
 from kano.logging import logger
@@ -38,5 +40,5 @@ if __name__ == '__main__':
         logger.info('use-the-force executed with no internet')
         # Show text
         msg = "\n\nInternet you must have my young padawan {}.".format(get_user_unsudoed())
-        typewriter_echo(msg, trailing_linebreaks=2)
+        subprocess.call(['typewriter_echo', msg, '0', '3'])
         sys.exit(1)
