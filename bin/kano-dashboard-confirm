@@ -19,16 +19,6 @@ if [ "$is_rpi2_or_above" != "True" ]; then
 
     exit 1
 else
-    # We are good to go, ask confirmation and switch to Dashboard
-    kano-dialog title="Dashboard Mode" \
-    description="Do you want to return to the Dashboard now?" \
-    buttons=Yes:orange:1,Later:orange:2
-
-    if [ "$?" == "1" ]; then
-        # Yes, let's do it
-        kano-dashboard-uimode dashboard
-        exit 0
-    fi
-
-    exit 1
+    kano-dashboard-uimode dashboard
+    exit 0
 fi
