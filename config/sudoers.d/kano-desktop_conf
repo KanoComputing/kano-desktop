@@ -6,8 +6,8 @@
 #
 # Scratch is sudoed from kdesk and suffers from a similar issue.
 #
-Cmnd_Alias KILL_DESKTOP_WIDGETS = /usr/bin/pkill -f kano-settings, \
-  /usr/bin/pkill -f kano-wifi-gui
+Cmnd_Alias KILL_DESKTOP_WIDGETS = /usr/bin/pkill kano-settings, \
+  /usr/bin/pkill kano-wifi-gui
 
 %sudo   ALL=(root) NOPASSWD: KILL_DESKTOP_WIDGETS
 
