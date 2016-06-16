@@ -1,0 +1,108 @@
+#!/usr/bin/env python
+
+# open-me
+#
+# Copyright (C) 2014, 2015 Kano Computing Ltd.
+# License: http://www.gnu.org/licenses/gpl-2.0.txt GNU GPL v2
+#
+# Run common dev commands. Expects to run as root
+
+"""
+kano-dev runs common dev commands on the pi
+
+Usage:
+  kano-dev rootssh
+  kano-dev production (all|api|apt)
+  kano-dev staging (all|api|apt)
+
+ Options:
+"""
+
+import docopt
+import os
+
+
+def runcmd(cmd):
+    rc = os.system(cmd)
+    if rc:
+        print "Error"
+        exit(1)
+
+
+args = docopt.docopt(__doc__)
+
+if args['rootssh']:
+    cmd = """
+sed -i 's/DROPBEAR_EXTRA_ARGS="-g -w"/DROPBEAR_EXTRA_ARGS=""/g' /etc/default/dropbear
+"""
+    print "Setting config"
+    runcmd(cmd)
+    print "Restarting dropbear"
+    runcmd('service dropbear restart')
+
+if args['production']:
+    print "Setting to production:"
+    if args['apt'] or args['all']:
+        print "... kano.list"
+        cmd1 = """
+        sed -i 's|http://dev.kano.me/archive-jessie/|http://repo.kano.me/archive-jessie/|g' /etc/apt/sources.list.d/kano.list
+        """
+        runcmd(cmd1)
+
+        cmd2 = "sed -i 's| devel | release |g' /etc/apt/sources.list.d/kano.list"
+        runcmd(cmd2)
+
+        print "... raspi.list"
+        cmd3 = "sed  -i 's|http://dev.kano.me/mirrors/raspberrypi-jessie/|http://repo.kano.me/raspberrypi-jessie/|g' /etc/apt/sources.list.d/raspi.list"
+        runcmd(cmd3)
+
+
+    if args['api'] or args['all']:
+        print "... kano-content.conf"
+        try:
+            os.remove('/etc/kano-content.conf')
+        except OSError as e:
+            if e.errno == 2:
+                pass # no such file
+            else:
+                raise
+
+        print "... kano-world.conf"
+        try:
+            os.remove('/etc/kano-world.conf')
+        except OSError as e:
+            if e.errno == 2:
+                pass # no such file
+            else:
+                raise
+
+
+if args['staging']:
+    print "Setting to staging:"
+    if args['apt'] or args['all']:
+        print "... kano.list"
+        cmd1 = """
+        sed -i 's|http://repo.kano.me/archive-jessie/|http://dev.kano.me/archive-jessie/|g' /etc/apt/sources.list.d/kano.list
+        """
+        runcmd(cmd1)
+
+        cmd2 = "sed -i 's| release | devel |g' /etc/apt/sources.list.d/kano.list"
+        runcmd(cmd2)
+
+        print "... raspi.list"
+        cmd3 = "sed  -i 's|http://repo.kano.me/raspberrypi-jessie/|http://dev.kano.me/mirrors/raspberrypi-jessie/|g' /etc/apt/sources.list.d/raspi.list"
+        runcmd(cmd3)
+
+    if args['api'] or args['all']:
+        print "... kano-content.conf"
+        cmd = "echo 'api-url: http://kano-content-api-test.herokuapp.com' >/etc/kano-content.conf"
+        runcmd(cmd)
+
+        print "... kano-world.conf"
+        cmd = """
+cat >/etc/kano-world.conf <<END 
+api_url: http://kano-api-staging.herokuapp.com
+world_url: http://world-staging.kano.me
+END
+"""
+        runcmd(cmd)
