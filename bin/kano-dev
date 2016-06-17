@@ -14,6 +14,7 @@ Usage:
   kano-dev rootssh
   kano-dev production (all|api|apt)
   kano-dev staging (all|api|apt)
+  kano-dev scratch
 
  Options:
 """
@@ -21,12 +22,59 @@ Usage:
 import docopt
 import os
 
+KANO_CONTENT_STAGING = "api-url: http://kano-content-api-test.herokuapp.com\n"
+
+KANO_WORLD_STAGING = """api_url: http://kano-api-staging.herokuapp.com
+world_url: http://world-staging.kano.me
+"""
+
+KANO_DEV_URL = "http://dev.kano.me/archive-jessie/"
+KANO_PROD_URL = "http://repo.kano.me/archive-jessie/"
+RASPI_DEV_URL = "http://dev.kano.me/mirrors/raspberrypi-jessie/"
+RASPI_PROD_URL = "http://repo.kano.me/raspberrypi-jessie/"
+
 
 def runcmd(cmd):
     rc = os.system(cmd)
     if rc:
         print "Error"
         exit(1)
+
+
+def set_kano_apt_suite(suite):
+    cmd = "sed -i 's# \(release|scratch|devel\) # {} #g' /etc/apt/sources.list.d/kano.list".format(suite)
+    runcmd(cmd)
+
+
+def set_kano_apt_url(url):
+        cmd = """
+        sed -i 's#http://[^ ]*.kano.me/archive-jessie/#{}#g' /etc/apt/sources.list.d/kano.list
+        """.format(url)
+        runcmd(cmd)
+
+
+def set_raspi_apt_url(url):
+        cmd = """
+        sed -i 's#http://[^ ]*.kano.me/raspberrypi-jessie/#{}#g' /etc/apt/sources.list.d/raspi.list
+        """.format(url)
+        runcmd(cmd)
+
+
+def rmfile(filename):
+    try:
+        os.remove(filename)
+    except OSError as e:
+        if e.errno == 2:
+            pass  # no such file
+        else:
+            raise
+
+
+def writefile(filename, content):
+    f = open(filename, "w")
+    f.write(content)
+    f.close()
+
 
 
 args = docopt.docopt(__doc__)
@@ -44,65 +92,42 @@ if args['production']:
     print "Setting to production:"
     if args['apt'] or args['all']:
         print "... kano.list"
-        cmd1 = """
-        sed -i 's|http://dev.kano.me/archive-jessie/|http://repo.kano.me/archive-jessie/|g' /etc/apt/sources.list.d/kano.list
-        """
-        runcmd(cmd1)
-
-        cmd2 = "sed -i 's| devel | release |g' /etc/apt/sources.list.d/kano.list"
-        runcmd(cmd2)
+        set_kano_apt_url(KANO_PROD_URL)
+        set_kano_apt_suite('release')
 
         print "... raspi.list"
-        cmd3 = "sed  -i 's|http://dev.kano.me/mirrors/raspberrypi-jessie/|http://repo.kano.me/raspberrypi-jessie/|g' /etc/apt/sources.list.d/raspi.list"
-        runcmd(cmd3)
-
+        set_raspi_apt_url(RASPI_PROD_URL)
 
     if args['api'] or args['all']:
         print "... kano-content.conf"
-        try:
-            os.remove('/etc/kano-content.conf')
-        except OSError as e:
-            if e.errno == 2:
-                pass # no such file
-            else:
-                raise
+        rmfile('/etc/kano-content.conf')
 
         print "... kano-world.conf"
-        try:
-            os.remove('/etc/kano-world.conf')
-        except OSError as e:
-            if e.errno == 2:
-                pass # no such file
-            else:
-                raise
+        rmfile('/etc/kano-world.conf')
 
 
 if args['staging']:
     print "Setting to staging:"
     if args['apt'] or args['all']:
         print "... kano.list"
-        cmd1 = """
-        sed -i 's|http://repo.kano.me/archive-jessie/|http://dev.kano.me/archive-jessie/|g' /etc/apt/sources.list.d/kano.list
-        """
-        runcmd(cmd1)
 
-        cmd2 = "sed -i 's| release | devel |g' /etc/apt/sources.list.d/kano.list"
-        runcmd(cmd2)
+        set_kano_apt_url(KANO_DEV_URL)
+        set_kano_apt_suite('devel')
 
         print "... raspi.list"
-        cmd3 = "sed  -i 's|http://repo.kano.me/raspberrypi-jessie/|http://dev.kano.me/mirrors/raspberrypi-jessie/|g' /etc/apt/sources.list.d/raspi.list"
-        runcmd(cmd3)
+        set_raspi_apt_url(RASPI_DEV_URL)
 
     if args['api'] or args['all']:
         print "... kano-content.conf"
-        cmd = "echo 'api-url: http://kano-content-api-test.herokuapp.com' >/etc/kano-content.conf"
-        runcmd(cmd)
+        writefile('/etc/kano-content.conf', KANO_CONTENT_STAGING)
 
         print "... kano-world.conf"
-        cmd = """
-cat >/etc/kano-world.conf <<END 
-api_url: http://kano-api-staging.herokuapp.com
-world_url: http://world-staging.kano.me
-END
-"""
-        runcmd(cmd)
+        writefile('/etc/kano-world.conf', KANO_WORLD_STAGING)
+
+if args['scratch']:
+        print "... kano.list"
+        set_kano_apt_url(KANO_DEV_URL)
+        set_kano_apt_suite('scratch')
+
+        print "... raspi.list"
+        set_raspi_apt_url(RASPI_DEV_URL)
