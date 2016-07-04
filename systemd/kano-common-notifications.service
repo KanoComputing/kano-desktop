@@ -1,6 +1,7 @@
 #
 # kano-common-notifications
 #
+# Daemon to provide system wide notifications using QML
 #
 
 [Unit]
@@ -8,4 +9,4 @@ Description=Kano user notifications daemon
 IgnoreOnIsolate=true
 
 [Service]
-ExecStart=/usr/bin/kano-notifications-daemon
+ExecStart=/usr/bin/kano-notifications -d -v
