@@ -3,6 +3,9 @@
 #
 # Daemon to provide system wide notifications using QML
 #
+# FIXME: This service deprecates /usr/bin/kano-notifications-daemon
+# which is still contained in the kano-widgets package.
+#
 
 [Unit]
 Description=Kano user notifications daemon
