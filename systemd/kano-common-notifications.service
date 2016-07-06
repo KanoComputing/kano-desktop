@@ -1,6 +1,10 @@
 #
 # kano-common-notifications
 #
+# Daemon to provide system wide notifications using QML
+#
+# FIXME: This service deprecates /usr/bin/kano-notifications-daemon
+# which is still contained in the kano-widgets package.
 #
 
 [Unit]
@@ -8,4 +12,6 @@ Description=Kano user notifications daemon
 IgnoreOnIsolate=true
 
 [Service]
-ExecStart=/usr/bin/kano-notifications-daemon
+ExecStart=/usr/bin/kano-notifications -d -v --sound=file:////usr/share/kano-media/sounds/kano_open_app.wav --timeout=3000
+Type=forking
+StandardOutput=syslog
