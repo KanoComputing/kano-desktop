@@ -10,3 +10,5 @@ IgnoreOnIsolate=true
 
 [Service]
 ExecStart=/usr/bin/kano-notifications -d -v
+Type=forking
+StandardOutput=syslog
