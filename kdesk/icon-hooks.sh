@@ -79,16 +79,12 @@ case $icon_name in
 
 
     "ScreenSaverStart")
+
         # By default we let the screen saver kick in
         if [ "$debug" == "true" ]; then
             echo "Received hook for Screen Saver Start"
         fi
         rc=0
-
-        # disable Notifications Widget alerts momentarily until the screen saver stops
-        if [ -p "$pipe_filename" ]; then
-            echo "pause" >> $pipe_filename
-        fi
 
         #
         # Search for any programs that should not play along with the screen saver
@@ -109,15 +105,21 @@ case $icon_name in
 
         if [ "$rc" == "0" ]; then
 
+            # Screen saver can proceed, disable notifications while it is running
+            if [ -p "$pipe_filename" ]; then
+                echo "pause" >> $pipe_filename
+            fi
+
             if [ "$debug" == "true" ]; then
                 echo "starting kano-sync and checking for updates"
             fi
             kano-sync --skip-kdesk --sync --backup --upload-tracking-data -s &
-            sudo /usr/bin/kano-updater download --low-prio &
+            sudo /usr/bin/kano-updater download --low-prio --no-notifications &
         fi
         ;;
 
     "ScreenSaverFinish")
+
         if [ "$debug" == "true" ]; then
             echo "Received hook for Screen Saver Finish"
         fi
