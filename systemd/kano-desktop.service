@@ -19,3 +19,4 @@ Conflicts=kano-dashboard.service
 [Service]
 ExecStartPre=/usr/bin/kdesk-hourglass-app "lxpanel"
 ExecStart=/usr/bin/kdesk
+Environment="KDESK_EGLSAVER_LAYER=5"
