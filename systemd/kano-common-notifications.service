@@ -15,3 +15,5 @@ IgnoreOnIsolate=true
 ExecStart=/usr/bin/kano-notifications -d -v --sound=file:////usr/share/kano-media/sounds/kano_achievement_unlock.wav --timeout=3000
 Type=forking
 StandardOutput=syslog
+RestartSec=1
+Restart=always
