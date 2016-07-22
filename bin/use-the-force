@@ -15,7 +15,6 @@ from kano.utils import get_user_unsudoed
 from kano.network import is_internet
 from kano.logging import logger
 from kano_profile.badges import increment_app_state_variable_with_dialog
-from kano_init.terminal import typewriter_echo
 
 
 if __name__ == '__main__' and __package__ is None:
