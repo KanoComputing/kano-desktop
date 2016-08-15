@@ -8,6 +8,7 @@ BindsTo=kano-desktop.service
 
 [Service]
 ExecStart=/usr/share/kano-vnc/startvnc
+Type=forking
 
 [Install]
 WantedBy=kano-desktop.service
