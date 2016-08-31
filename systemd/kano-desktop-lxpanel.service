@@ -6,9 +6,11 @@
 # The "BindsTo" clause makes a behaviour dependency with the main service.
 # It is started and stopped along with the Desktop unit.
 #
-# The ExecStop statement kills sudoed widgets started from the taskbar,
-# which systemd cannot kill himself, even if they belong to the same cgroup namespace.
-# See kano-desktop sudoers definition for details.
+# The ExecStop statement terminates lxpanel gracefully,
+# he does not like a regular kill, which makes systemd think something went wrong.
+#
+# ExecStopPost terminates taskbar widgets which might have started sudoed apps,
+# because they would fail outside the user's cgroup namespace.
 #
 
 [Unit]
@@ -18,7 +20,8 @@ BindsTo=kano-desktop.service
 [Service]
 ExecStart=/usr/bin/lxpanel --profile LXDE
 Environment="DESKTOP_MODE=1"
-ExecStop=/usr/bin/sudo /usr/bin/pkill kano-settings ; /usr/bin/sudo /usr/bin/pkill kano-wifi-gui
+ExecStop=/usr/bin/lxpanelctl exit
+ExecStopPost=-/bin/sh -c "/usr/bin/sudo /usr/bin/pkill kano-settings ; /usr/bin/sudo /usr/bin/pkill kano-wifi-gui"
 
 [Install]
 WantedBy=kano-desktop.service
