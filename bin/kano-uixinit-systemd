@@ -10,4 +10,7 @@
 #  since the introduction of Dashboard mode and systemd units.
 #
 
+# Just in case the cursor is missing, put it back.
+kano-dashboard-cursor --terminate
+
 exit 0
