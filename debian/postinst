@@ -11,6 +11,7 @@ lxde_openbox_rc=/etc/xdg/openbox/LXDE/rc.xml
 custom_openbox_rc=/usr/share/kano-desktop/openbox/rc.xml
 
 chromium_master_prefs=/usr/lib/chromium-browser/master_preferences
+chromium_master_prefs_dir=/usr/lib/chromium-browser
 custom_chromium_master_prefs=/usr/share/kano-desktop/config/chromium/master_preferences
 
 chromium_bookmarks=/usr/lib/chromium-browser/initial_bookmarks.html
@@ -79,8 +80,8 @@ case "$1" in
             cp $chromium_master_prefs $chromium_master_prefs-old
         fi
 
-        # Set our own  preferences file
-        cat $custom_chromium_master_prefs > $chromium_master_prefs
+        # Set our own preferences file
+        cp $custom_chromium_master_prefs* $chromium_master_prefs_dir
 
         # Do a safeguard copy of the Chromium bookmarks
         if [ -f "$chromium_bookmarks" ]; then
