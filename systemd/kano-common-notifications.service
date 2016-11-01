@@ -12,7 +12,7 @@ Description=Kano user notifications daemon
 IgnoreOnIsolate=true
 
 [Service]
-ExecStart=/usr/bin/kano-notifications -d -v --sound=file:////usr/share/kano-media/sounds/kano_achievement_unlock.wav --timeout=3000
+ExecStart=/usr/bin/kano-notifications -d --sound=file:////usr/share/kano-media/sounds/kano_achievement_unlock.wav --timeout=3000
 Type=forking
 StandardOutput=syslog
 RestartSec=1
