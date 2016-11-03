@@ -160,5 +160,6 @@ fi
 systemctl --user restart kano-common.target
 
 
-# Start the Design Museum idle monitor daemon to wipe the OS user data
+# Start the Design Museum idle monitor daemon to wipe the OS user data when idle.
+sudo /usr/bin/design-museum-reset
 sudo /usr/bin/kano-idle-daemon &
