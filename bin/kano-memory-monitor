@@ -1,0 +1,51 @@
+#!/usr/bin/env python
+
+# kano-memory-monitor
+#
+# Copyright (C) 2015-2016 Kano Computing Ltd.
+# License: http://www.gnu.org/licenses/gpl-2.0.txt GNU GPL v2
+#
+# DBus daemon which handles memory reservation and monitoring
+
+# The deamon uses a system bus under the bus name 'me.kano.memory'
+
+
+import sys
+import traceback
+import dbus.exceptions
+from dbus.mainloop.glib import DBusGMainLoop
+
+from gi.repository import GObject
+
+from kano.logging import logger
+
+from kano_monitor.service import MonitorService, BUS_NAME
+
+
+
+def main():
+    GObject.threads_init()
+    DBusGMainLoop(set_as_default=True)
+
+    try:
+        # reserving the bus name, other instances of $0 will fail
+        bus_name = dbus.service.BusName(BUS_NAME, bus=dbus.SystemBus(), do_not_queue=True)
+
+        # available services, add more here
+        service = MonitorService(bus_name)
+
+    except dbus.exceptions.NameExistsException as e:
+        logger.warn('Could not reserve the SystemBus name, most likely another instance'
+                    ' of kano-boards-daemon already exists. - [{}]'.format(e))
+        return 1
+
+    except Exception as e:
+        logger.error('Unexpected error when starting the services.\n{}'
+                     .format(traceback.format_exc()))
+        return 2
+
+    GObject.MainLoop().run()
+
+
+if __name__ == '__main__':
+    sys.exit(main())
