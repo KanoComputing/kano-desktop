@@ -9,4 +9,4 @@ Description=Kano Common User Services
 IgnoreOnIsolate=true
 Requires=kano-common-tracker.service kano-common-notifications.service \
  kano-common-speakerleds.service kano-common-boards.service \
- kano-common-keyboard.service
+ kano-common-keyboard.service kano-home-button.service
