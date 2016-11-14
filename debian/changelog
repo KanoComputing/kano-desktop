@@ -1,3 +1,9 @@
+kano-desktop (3.3.2-1) unstable; urgency=low
+
+  * Added Kano OS Home Button feature
+
+ -- Team Kano <dev@kano.me>  Mon, 14 Nov 2016 11:09:39 +0100
+
 kano-desktop (3.2.2-1) unstable; urgency=low
 
   * Migrated system notifications daemon to QML version
