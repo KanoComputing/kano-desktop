@@ -21,6 +21,8 @@ config/gtk-2.0 etc/skel/.config/
 config/dconf etc/skel/.config/
 config/console usr/share/kano-desktop/config
 
+config/dbus/me.kano.monitor.conf /etc/dbus-1/system.d/
+
 config/sudoers.d/* usr/share/kano-desktop/config/sudoers.d
 
 config/systemd/kano.conf /lib/systemd/system/user@.service.d
@@ -35,6 +37,7 @@ bin/open-me etc/skel/.Rabbithole
 bin/use-the-force usr/bin
 bin/make-adventures usr/bin
 bin/kano-keyboard-hotkeys usr/bin
+bin/kano-memory-monitor usr/bin
 
 scripts/* usr/share/kano-desktop/scripts
 
@@ -44,3 +47,5 @@ kano-mount-trigger/kano-mount-trigger /usr/bin/
 kano-mount-trigger/95-kano-mount-trigger.rules /lib/udev/rules.d/
 
 systemd/* /usr/lib/systemd/user/
+
+kano_monitor /usr/lib/python2.7/dist-packages/
