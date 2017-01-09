@@ -21,7 +21,7 @@ function set_keyboard
         keyboard_conf="$keyboard_conf_dir/generickeyboardrc"
     fi
 
-    echo "setting keyboard $keyboard_conf" >> $logfile
+    echo "setting keyboard $keyboard_conf"
     logger --id --tag "info" "Launching xbindkeys with configuration: $keyboard_conf"
     /usr/bin/xbindkeys -f $keyboard_conf
 

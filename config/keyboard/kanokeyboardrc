@@ -44,8 +44,9 @@
 #keystate_capslock = enable
 #keystate_scrolllock= enable
 
-# FN + K : minimize all windows (Web Home)
-"wmctrl -k on"
+# FN + K : Return to Dashboard (Home button)
+# Note that we assume we run on a RPI >= 2B that supports Dashboard (yes)
+"/usr/share/kano-home-button/hooks/hook-script.sh home_button_clicked 0 0 yes"
   m:0x10 + c:180
   Mod2 + XF86HomePage
 
