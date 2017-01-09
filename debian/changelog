@@ -1,3 +1,9 @@
+kano-desktop (3.3.3-1) unstable; urgency=low
+
+  * Added Kano K Hotkey, it clicks on the Home Button
+
+ -- Team Kano <dev@kano.me>  Mon, 9 Jan 2017 16:04:12 +0100
+
 kano-desktop (3.3.2-1) unstable; urgency=low
 
   * Added Kano OS Home Button feature
