@@ -33,7 +33,6 @@ bin/kano-uixinit-systemd /usr/bin
 bin/kano-ui-autostart /usr/bin
 bin/open-me etc/skel/.Rabbithole
 bin/use-the-force usr/bin
-bin/make-adventures usr/bin
 bin/kano-keyboard-hotkeys usr/bin
 
 scripts/* usr/share/kano-desktop/scripts
