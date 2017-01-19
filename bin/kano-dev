@@ -1,0 +1,133 @@
+#!/usr/bin/env python
+
+# kano-dev
+#
+# Copyright (C) 2016 Kano Computing Ltd.
+# License: http://www.gnu.org/licenses/gpl-2.0.txt GNU GPL v2
+#
+# Run common dev commands. Expects to run as root
+
+"""
+kano-dev runs common dev commands on the pi
+
+Usage:
+  kano-dev rootssh
+  kano-dev production (all|api|apt)
+  kano-dev staging (all|api|apt)
+  kano-dev scratch
+
+ Options:
+"""
+
+import docopt
+import os
+
+KANO_CONTENT_STAGING = "api-url: http://kano-content-api-test.herokuapp.com\n"
+
+KANO_WORLD_STAGING = """api_url: http://kano-api-staging.herokuapp.com
+world_url: http://world-staging.kano.me
+"""
+
+KANO_DEV_URL = "http://dev.kano.me/archive-jessie/"
+KANO_PROD_URL = "http://repo.kano.me/archive-jessie/"
+RASPI_DEV_URL = "http://dev.kano.me/mirrors/raspberrypi-jessie/"
+RASPI_PROD_URL = "http://repo.kano.me/raspberrypi-jessie/"
+
+
+def runcmd(cmd):
+    rc = os.system(cmd)
+    if rc:
+        print "Error"
+        exit(1)
+
+
+def set_kano_apt_suite(suite):
+    cmd = "sed -i 's# \(release\|scratch\|devel\) # {} #g' /etc/apt/sources.list.d/kano.list".format(suite)
+    runcmd(cmd)
+
+
+def set_kano_apt_url(url):
+        cmd = """
+        sed -i 's#http://[^ ]*.kano.me/archive-jessie/#{}#g' /etc/apt/sources.list.d/kano.list
+        """.format(url)
+        runcmd(cmd)
+
+
+def set_raspi_apt_url(url):
+        cmd = """
+        sed -i 's#http://[^ ]*.kano.me/raspberrypi-jessie/#{}#g' /etc/apt/sources.list.d/raspi.list
+        """.format(url)
+        runcmd(cmd)
+
+
+def rmfile(filename):
+    try:
+        os.remove(filename)
+    except OSError as e:
+        if e.errno == 2:
+            pass  # no such file
+        else:
+            raise
+
+
+def writefile(filename, content):
+    f = open(filename, "w")
+    f.write(content)
+    f.close()
+
+
+
+args = docopt.docopt(__doc__)
+
+if args['rootssh']:
+    cmd = """
+sed -i 's/DROPBEAR_EXTRA_ARGS="-g -w"/DROPBEAR_EXTRA_ARGS=""/g' /etc/default/dropbear
+"""
+    print "Setting config"
+    runcmd(cmd)
+    print "Restarting dropbear"
+    runcmd('service dropbear restart')
+
+if args['production']:
+    print "Setting to production:"
+    if args['apt'] or args['all']:
+        print "... kano.list"
+        set_kano_apt_url(KANO_PROD_URL)
+        set_kano_apt_suite('release')
+
+        print "... raspi.list"
+        set_raspi_apt_url(RASPI_PROD_URL)
+
+    if args['api'] or args['all']:
+        print "... kano-content.conf"
+        rmfile('/etc/kano-content.conf')
+
+        print "... kano-world.conf"
+        rmfile('/etc/kano-world.conf')
+
+
+if args['staging']:
+    print "Setting to staging:"
+    if args['apt'] or args['all']:
+        print "... kano.list"
+
+        set_kano_apt_url(KANO_DEV_URL)
+        set_kano_apt_suite('devel')
+
+        print "... raspi.list"
+        set_raspi_apt_url(RASPI_DEV_URL)
+
+    if args['api'] or args['all']:
+        print "... kano-content.conf"
+        writefile('/etc/kano-content.conf', KANO_CONTENT_STAGING)
+
+        print "... kano-world.conf"
+        writefile('/etc/kano-world.conf', KANO_WORLD_STAGING)
+
+if args['scratch']:
+        print "... kano.list"
+        set_kano_apt_url(KANO_DEV_URL)
+        set_kano_apt_suite('scratch')
+
+        print "... raspi.list"
+        set_raspi_apt_url(RASPI_DEV_URL)
