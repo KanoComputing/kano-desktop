@@ -7,15 +7,59 @@ Build-Depends: debhelper (>=9.0.0)
 
 Package: kano-desktop
 Architecture: all
-Depends: ${misc:Depends}, openbox (>=3.5.2-4~kano.1),
-         kdesk (>=1.4-1), kano-themes, lxmenu-data (>=0.1.2-3~kano), kano-video (>= 1.2-1),
-         kano-video-files (>=1.1-2), kano-init-flow (>=2.2-1), kano-profile (>=2.2.0-4),
-         libkdesk-dev, kano-greeter, kano-updater (>=3.0.0-1), kano-home-button,
-         kano-apps (>=2.0-1), kano-settings (>=2.0-1), kano-content, telnet,
-         kano-widgets (>=2.2-1), kano-applets, chromium-browser (>= 41.0), kano-dashboard(>=0.1),
-         rpi-chromium-mods-kano, chromium
+Depends:
+    ${misc:Depends},
+    openbox (>=3.5.2-4~kano.1),
+    kdesk (>=1.4-1),
+    kano-wallpapers,
+    kano-themes,
+    lxmenu-data (>=0.1.2-3~kano),
+    kano-video (>= 1.2-1),
+    kano-video-files (>=1.1-2),
+    kano-init-flow (>=2.2-1),
+    kano-profile (>=2.2.0-4),
+    libkdesk-dev,
+    kano-greeter,
+    kano-updater (>=3.0.0-1),
+    kano-home-button,
+    kano-apps (>=2.0-1),
+    kano-settings (>=2.0-1),
+    kano-content,
+    telnet,
+    kano-widgets (>=2.2-1),
+    kano-applets,
+    chromium-browser (>= 41.0),
+    kano-dashboard(>=0.1),
+    rpi-chromium-mods-kano,
+    chromium
 Replaces: kano-settings (<< 1.1-1.20140512build2), kano-feedback (<< 1.1-3)
 Breaks: kano-settings (<< 1.1-1.20140512build2), kano-feedback (<< 1.1-3)
 Description: The desktop experience of Kanux
  This package contains a variety of configuration files and resources that
  make up the whole KANO desktop experience on top of LXDE.
+
+Package: kano-wallpapers
+Architecture: all
+Depends:
+    ${misc:Depends},
+    kano-wallpapers-data
+Description: Wallpapers for Kanux OS
+ Provides the set of wallpapers for the Kanux OS system.
+
+Package: kano-wallpapers-variant-edu-ar
+Architecture: all
+Depends:
+    ${misc:Depends},
+    kano-wallpapers-data
+Conflicts: kano-wallpapers
+Provides: kano-wallpapers
+Description: Wallpapers for branded Kanux OS
+ Provides the set of wallpapers for the Kanux OS system.
+
+Package: kano-wallpapers-data
+Architecture: all
+Depends: ${misc:Depends}
+Breaks: kano-desktop (<<3.9.0)
+Replaces: kano-desktop (<<3.9.0)
+Description: Wallpaper assets for Kanux OS
+ Provides the set of wallpapers for the Kanux OS system.
