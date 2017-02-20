@@ -1,0 +1,15 @@
+# kdeskrc_plain
+#
+# Copyright (C) 2014-2017 Kano Computing Ltd.
+# License: http://www.gnu.org/licenses/gpl-2.0.txt GNU GPL v2
+#
+#
+
+
+  Background.Delay: 0
+  Background.Source: /
+  Background.File-medium: /usr/share/kano-desktop/wallpapers/kanux-default-1024.png
+  Background.File-4-3: /usr/share/kano-desktop/wallpapers/kanux-default-4-3.png
+  Background.File-16-9: /usr/share/kano-desktop/wallpapers/kanux-default-16-9.png
+  Background.Mode: scale
+  Background.Color: #C2CCFF
