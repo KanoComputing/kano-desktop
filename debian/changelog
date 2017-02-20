@@ -1,8 +1,9 @@
-kano-desktop (3.4.3-1) unstable; urgency=low
+kano-desktop (3.9.0-1) unstable; urgency=low
 
   * Added Localized icons for Argentina locale
+  * Split wallpapers out into a new kano-wallpapers package
 
- -- Team Kano <dev@kano.me>  Mon, 20 Feb 2017 16:25:12 +0100
+ -- Team Kano <dev@kano.me>  Mon, 20 Feb 2017 15:55:00 +0000
 
 kano-desktop (3.3.3-1) unstable; urgency=low
 
