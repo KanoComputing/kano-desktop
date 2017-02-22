@@ -20,6 +20,12 @@
 # We want systemd to populate the environment to user services
 # FIXME: MANAGERPID is not exported, SHLVL=2 instead of 1. why?
 export NO_AT_BRIDGE=1
+
+# International keyboard mapping for QT5 apps
+# FIXME: Changing the layout requires a reboot
+export XKB_DEFAULT_RULES=evdev
+export XKB_DEFAULT_LAYOUT=`setxkbmap -query | grep layout | awk '{print $2}'`
+
 systemctl --user import-environment
 
 function track_startup
