@@ -1,3 +1,9 @@
+kano-desktop (3.4.3-1) unstable; urgency=low
+
+  * Added Localized icons for Argentina locale
+
+ -- Team Kano <dev@kano.me>  Mon, 20 Feb 2017 16:25:12 +0100
+
 kano-desktop (3.3.3-1) unstable; urgency=low
 
   * Added Kano K Hotkey, it clicks on the Home Button
