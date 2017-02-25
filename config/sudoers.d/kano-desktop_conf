@@ -13,3 +13,6 @@ Cmnd_Alias KILL_DESKTOP_WIDGETS = /usr/bin/pkill kano-settings, \
 
 # allow user to switch to virtual console terminals
 %sudo   ALL=(root) NOPASSWD: /bin/chvt
+
+# kano-memory-monitor is run as root to allow pid tracking
+%sudo   ALL=(root) NOPASSWD: /usr/bin/kano-memory-monitor

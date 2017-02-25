@@ -1,0 +1,10 @@
+#
+# kano-common-monitor
+#
+
+[Unit]
+Description=Kano Memory Monitor
+IgnoreOnIsolate=true
+
+[Service]
+ExecStart=/usr/bin/sudo /usr/bin/kano-memory-monitor
