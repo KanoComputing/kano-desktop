@@ -118,10 +118,12 @@ kill %?xrefresh
 # TODO: move me to a systemd unit service
 if [ "$FIRST_LOGIN" -eq 1 ]; then
 
-    # regenerating ssh keys
-    logger --id --tag "info" "kano-ui-autostart regenerating ssh host keys"
-    if [ `getent group kanousers | wc -l` -eq 1 ]; then
-        sudo regenerate-ssh-keys &
+    # regenerating ssh keys only if we find one kano user.
+    # we want to have one unique set of host ssh keys per kano kit.
+    # getent format: kanousers:x:1000:user1,user2,user3
+    if [ `getent group kanousers | awk '{lng=split($0, array, ",")} END{print lng }'` -eq 1 ]; then
+	logger --id --tag "info" "kano-ui-autostart regenerating ssh host keys"
+	sudo regenerate-ssh-keys &
     fi
 fi
 
