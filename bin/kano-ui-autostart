@@ -22,7 +22,9 @@
 export NO_AT_BRIDGE=1
 
 # International keyboard mapping for QT5 apps
+# export QT_LOGGING_RULES=qt.qpa.input=true to debug QT5 input drivers
 # FIXME: Changing the layout requires a reboot
+# FIXME: QT5 support for accent keys is still erratic - vowels show up naked
 export XKB_DEFAULT_RULES=evdev
 export XKB_DEFAULT_LAYOUT=`setxkbmap -query | grep layout | awk '{print $2}'`
 
