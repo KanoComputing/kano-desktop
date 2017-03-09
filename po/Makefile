@@ -17,9 +17,8 @@ clean: clean_locales
 	rm -f messages.pot
 
 define run-xgettext
-xgettext -o messages.pot -L C --keyword=Q_ ../bin/* \
-    --keyword=N_ --package-name=$(APPNAME) --copyright-holder=$(ORG)
-
+xgettext -o messages.pot --language=shell ../bin/* \
+	--package-name=$(APPNAME) --copyright-holder=$(ORG)
 endef
 
 messages:

@@ -9,6 +9,10 @@
 # image file under $dirname directory, which is created if it does not exist.
 #
 
+# pull i18n macros and set translation file
+. gettext.sh
+export TEXTDOMAIN="kano-desktop"
+
 lockfile="/var/run/lock/kano-screenshot-hotkey.lock"
 
 function unlock {
@@ -38,10 +42,10 @@ if [ -p $notification_pipe ]; then
 
     # Prepare a Desktop notification message
     if [ $rc == 0 ]; then
-        title="Screenshot taken!"
-        byline="You'll find it in ~/Screenshots"
+        title=`eval_gettext "Screenshot taken!"`
+        byline=`eval_gettext "You'll find it in ~/Screenshots"`
     else
-        title="Could not take a screenshot"
+        title=`eval_gettext "Could not take a screenshot"`
         byline=""
     fi
 
