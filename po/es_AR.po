@@ -1,0 +1,22 @@
+# Spanish translations for kano-desktop package.
+# Copyright (C) 2017 Kano Computing Ltd.
+# This file is distributed under the same license as the kano-widgets package.
+# Automatically generated, 2017.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: kano-desktop\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2017-03-09 17:40+0000\n"
+"PO-Revision-Date: 2017-03-09 17:40+0000\n"
+"Last-Translator: Automatically generated\n"
+"Language-Team: none\n"
+"Language: es_AR\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=ASCII\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+# screenshot
+msgid "Haw"
+msgstr "Jaw"
