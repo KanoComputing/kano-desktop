@@ -20,7 +20,7 @@ msgstr ""
 #: ../bin/kano-screenshot-hotkey:45
 #, sh-format
 msgid "Screenshot taken!"
-msgstr "Captura de pantalla hecha!"
+msgstr "Captura de pantalla!"
 
 #: ../bin/kano-screenshot-hotkey:46
 #, sh-format
