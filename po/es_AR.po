@@ -1,0 +1,33 @@
+# Spanish translations for kano-desktop package.
+# Copyright (C) 2017 Kano Computing Ltd.
+# This file is distributed under the same license as the kano-widgets package.
+# Automatically generated, 2017.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: kano-desktop\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2017-03-09 17:40+0000\n"
+"PO-Revision-Date: 2017-03-09 17:40+0000\n"
+"Last-Translator: Automatically generated\n"
+"Language-Team: none\n"
+"Language: es_AR\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#: ../bin/kano-screenshot-hotkey:45
+#, sh-format
+msgid "Screenshot taken!"
+msgstr "Captura de pantalla!"
+
+#: ../bin/kano-screenshot-hotkey:46
+#, sh-format
+msgid "You'll find it in ~/Screenshots"
+msgstr "La encontrarás en ~/Screenshots"
+
+#: ../bin/kano-screenshot-hotkey:48
+#, sh-format
+msgid "Could not take a screenshot"
+msgstr "No se pudo obtener captura de pantalla"

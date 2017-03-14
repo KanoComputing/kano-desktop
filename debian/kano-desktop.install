@@ -42,3 +42,5 @@ kano-mount-trigger/kano-mount-trigger /usr/bin/
 kano-mount-trigger/95-kano-mount-trigger.rules /lib/udev/rules.d/
 
 systemd/* /usr/lib/systemd/user/
+
+locale/* usr/share/locale/

@@ -1,3 +1,9 @@
+kano-desktop (3.9.1-1) unstable; urgency=low
+
+  * Added Localized messages for kano-screenshot
+
+ -- Team Kano <dev@kano.me>  Thu, 09 Mar 2017 17:42:00 +0000
+
 kano-desktop (3.9.0-1) unstable; urgency=low
 
   * Added Localized icons for Argentina locale
