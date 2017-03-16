@@ -1,3 +1,9 @@
+kano-desktop (3.10.0-1) unstable; urgency=low
+
+  * Migrate Kano boards systemd units into the kano-peripherals repository
+
+ -- Team Kano <dev@kano.me>  Wed, 15 Mar 2017 12:10:00 +0000
+
 kano-desktop (3.9.1-1) unstable; urgency=low
 
   * Added Localized messages for kano-screenshot
