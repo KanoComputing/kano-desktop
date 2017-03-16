@@ -4,5 +4,6 @@
 	dh $@
 
 override_dh_auto_build:
+	make
 	cd po && make messages.pot
 	cd po && make
