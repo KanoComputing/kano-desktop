@@ -1,19 +1,32 @@
 pcm.master {
-       	type softvol
-       	slave {
-          	pcm "hw:0"
-        }
-     	control {
-               	name "Master"
-              	card 0
-		count 1
-        }
-     	min_dB -26.0
-     	max_dB 4.0
-     	resolution 8
+    type softvol
+    min_dB -26.0
+    max_dB 4.0
+    resolution 8
+
+    slave {
+        pcm "hw:0"
+    }
+    control {
+        name "Master"
+        card 0
+        count 1
+    }
+}
+
+pcm.usb_mic {
+    type hw
+    card 1
 }
 
 pcm.!default {
-	type plug
-  	slave.pcm "master"
+    type asym
+    playback.pcm {
+        type plug
+        slave.pcm "master"
+    }
+    capture.pcm {
+        type plug
+        slave.pcm "usb_mic"
+    }
 }
