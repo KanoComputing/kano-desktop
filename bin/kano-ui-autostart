@@ -38,6 +38,13 @@ function track_startup
     # Report a startup event to Kano Tracker
     kano-tracker-ctl +1 startup
 
+    # If the kit comes with the Kano Screen Kit, track it
+    # FIXME: The query below needs testing on real hardware
+    screen_kit=`python -c "from kano_settings.system import display; print display.get_model()"`
+    if [screen_kit == "" ]; then
+        kano-tracker-ctl +1 kano_screen_kit
+    fi
+
     if [ is_internet ]; then
         # Try uploading the tracking data to our servers
         # Should be quiet on failure
