@@ -39,9 +39,8 @@ function track_startup
     kano-tracker-ctl +1 startup
 
     # If the kit comes with the Kano Screen Kit, track it
-    # FIXME: The query below needs testing on real hardware
-    screen_kit=`python -c "from kano_settings.system import display; print display.get_model()"`
-    if [screen_kit == "" ]; then
+    screen_kit=`python -c "from kano_settings.system import display; print display.is_screen_kit()"`
+    if [ "$screen_kit" == "True" ]; then
         kano-tracker-ctl +1 kano_screen_kit
     fi
 
