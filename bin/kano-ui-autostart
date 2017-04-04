@@ -33,6 +33,16 @@ export PYTHONIOENCODING=UTF-8
 
 systemctl --user import-environment
 
+
+# If we are in the middle of the Overture Onboarding, quit now.
+# This means that the Overture app started the X server in the background
+# TODO: Do we want a special wallpaper here? It will be black, as the overture terminal
+initflow=`sudo kano-init status`
+if [ "$initflow" != "disabled" ]; then
+    exit 0
+fi
+
+
 function track_startup
 {
     # Report a startup event to Kano Tracker
