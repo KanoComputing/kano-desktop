@@ -3,10 +3,14 @@
 #
 # Common keep-alive services until logoff or shutdown
 #
+# Note that "Wanted" is a softer version of "Requires".
+# This unit will try to bring up all dependent services,
+# regardless if any should fail to start.
+#
 
 [Unit]
 Description=Kano Common User Services
 IgnoreOnIsolate=true
-Requires=kano-common-tracker.service kano-common-notifications.service \
+Wants=kano-common-tracker.service kano-common-notifications.service \
  kano-common-speakerleds.service kano-common-boards.service \
  kano-common-keyboard.service kano-home-button.service
