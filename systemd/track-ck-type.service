@@ -1,0 +1,22 @@
+# track-ck-type.service
+#
+# Copyright (C) 2017 Kano Computing Ltd.
+# License: http://www.gnu.org/licenses/gpl-2.0.txt GNU GPL v2
+#
+# Unit file to execute the script which detects and tracks which
+# computer kit it is.
+
+
+[Unit]
+Description=Track Computer Kit Type
+BindsTo=kano-boards.service
+After=kano-boards.service
+IgnoreOnIsolate=true
+DefaultDependencies=true
+
+[Service]
+Type=oneshot
+ExecStart=/usr/bin/track-ck-type
+
+[Install]
+WantedBy=multi-user.target
