@@ -1,0 +1,50 @@
+#!/usr/bin/env python
+
+# track-ck-type
+#
+# Copyright (C) 2017 Kano Computing Ltd.
+# License: http://www.gnu.org/licenses/gpl-2.0.txt GNU GPLv2
+#
+# Small script executed with systemd at boot to track whether
+# this is a Kano Kit Lite or Pro.
+
+
+import sys
+
+from kano_profile.tracker import track_action
+from kano.logging import logger
+
+from kano_peripherals.pi_hat.driver.high_level import get_pihat_interface
+from kano_peripherals.power_hat.driver.high_level import get_powerhat_interface
+
+
+IFACE_CONNECT_RETRIES = 5
+
+
+def main():
+
+    # Grab the DBus interfaces to the PiHat and PowerHat boards.
+    pihat_iface = get_pihat_interface(retry_count=IFACE_CONNECT_RETRIES)
+    powerhat_iface = get_powerhat_interface(retry_count=IFACE_CONNECT_RETRIES)
+
+    # Detect CK Lite via the PiHat board.
+    if pihat_iface and pihat_iface.detect():
+        logger.info("Kano Computer Kit Lite detected")
+        track_action('ck-lite-detected')
+
+    # Detect CK Pro via the PowerHat board.
+    elif powerhat_iface and powerhat_iface.detect():
+        logger.info("Kano Computer Kit Pro detected")
+        track_action('ck-pro-detected')
+
+    # If neither boards are present, no current means of telling which it is.
+    else:
+        logger.info("Could not infer either CK Lite or Pro")
+        track_action('neither-ck-lite-or-pro')
+
+    # Exit cleanly.
+    return 0
+
+
+if __name__ == '__main__':
+    sys.exit(main())
