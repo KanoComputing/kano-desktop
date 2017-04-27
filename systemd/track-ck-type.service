@@ -17,6 +17,3 @@ DefaultDependencies=true
 [Service]
 Type=oneshot
 ExecStart=/usr/bin/track-ck-type
-
-[Install]
-WantedBy=multi-user.target
