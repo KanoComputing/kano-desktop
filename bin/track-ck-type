@@ -15,7 +15,7 @@ from kano_profile.tracker import track_action
 from kano.logging import logger
 
 from kano_peripherals.pi_hat.driver.high_level import get_pihat_interface
-from kano_peripherals.power_hat.driver.high_level import get_powerhat_interface
+from kano_peripherals.ck2_pro_hat.driver.high_level import get_ck2_pro_hat_interface
 
 
 IFACE_CONNECT_RETRIES = 5
@@ -25,7 +25,7 @@ def main():
 
     # Grab the DBus interfaces to the PiHat and PowerHat boards.
     pihat_iface = get_pihat_interface(retry_count=IFACE_CONNECT_RETRIES)
-    powerhat_iface = get_powerhat_interface(retry_count=IFACE_CONNECT_RETRIES)
+    ck2prohat_iface = get_ck2_pro_hat_interface(retry_count=IFACE_CONNECT_RETRIES)
 
     # Detect CK Lite via the PiHat board.
     if pihat_iface and pihat_iface.detect():
@@ -33,7 +33,7 @@ def main():
         track_action('ck-lite-detected')
 
     # Detect CK Pro via the PowerHat board.
-    elif powerhat_iface and powerhat_iface.detect():
+    elif ck2prohat_iface and ck2prohat_iface.detect():
         logger.info("Kano Computer Kit Pro detected")
         track_action('ck-pro-detected')
 
