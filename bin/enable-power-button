@@ -1,0 +1,40 @@
+#!/usr/bin/env python
+
+# enable-power-button
+#
+# Copyright (C) 2017 Kano Computing Ltd.
+# License: http://www.gnu.org/licenses/gpl-2.0.txt GNU GPLv2
+#
+# Small script executed with systemd at boot enable any power button
+# connected via a Kano hat.
+
+
+import sys
+
+from kano_peripherals.pi_hat.driver.high_level import get_pihat_interface
+from kano_peripherals.ck2_pro_hat.driver.high_level import get_ck2_pro_hat_interface
+
+
+IFACE_CONNECT_RETRIES = 5
+
+
+def main():
+
+    # Grab the DBus interfaces to the PiHat and PowerHat boards.
+    pihat_iface = get_pihat_interface(retry_count=IFACE_CONNECT_RETRIES)
+    ck2prohat_iface = get_ck2_pro_hat_interface(retry_count=IFACE_CONNECT_RETRIES)
+
+    # Enable the power button on the PiHat board.
+    if pihat_iface:
+        pihat_iface.set_power_button_enabled(True)
+
+    # Enable the power button on the PowerHat board.
+    if ck2prohat_iface:
+        ck2prohat_iface.set_power_button_enabled(True)
+
+    # Exit cleanly.
+    return 0
+
+
+if __name__ == '__main__':
+    sys.exit(main())

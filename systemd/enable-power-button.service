@@ -1,0 +1,19 @@
+# enable-power-button.service
+#
+# Copyright (C) 2017 Kano Computing Ltd.
+# License: http://www.gnu.org/licenses/gpl-2.0.txt GNU GPL v2
+#
+# Unit file to enable any power button that may be connected
+# via a Kano hat.
+
+
+[Unit]
+Description=Enable Power Button
+BindsTo=kano-boards.service
+After=kano-boards.service
+IgnoreOnIsolate=true
+DefaultDependencies=true
+
+[Service]
+Type=oneshot
+ExecStart=/usr/bin/enable-power-button
