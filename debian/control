@@ -21,7 +21,7 @@ Depends:
     libkdesk-dev,
     kano-greeter,
     kano-updater (>=3.0.0-1),
-    kano-home-button,
+    kano-home-button (>=1.3-2),
     kano-apps (>=2.0-1),
     kano-settings (>=2.0-1),
     kano-content,
