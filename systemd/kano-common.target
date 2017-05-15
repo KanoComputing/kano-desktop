@@ -12,6 +12,6 @@
 Description=Kano Common User Services
 IgnoreOnIsolate=true
 Wants=kano-common-tracker.service kano-common-notifications.service \
- kano-common-speakerleds.service kano-common-boards.service \
+ kano-boards.service kano-speakerleds.service \
  kano-common-keyboard.service kano-home-button.service track-ck-type.service \
  enable-power-button.service
