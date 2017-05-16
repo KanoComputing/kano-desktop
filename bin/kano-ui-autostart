@@ -75,6 +75,9 @@ systemctl --user start kano-home-button
 initflow=`sudo kano-init status`
 if [ "$initflow" != "disabled" ]; then
 
+    # Start the boards daemon so we can talk to hardware periherals during Overture
+    systemctl --user start kano-boards
+
     # Nothing more to do now, empty desktop behind the overture app
     exit 0
 fi
