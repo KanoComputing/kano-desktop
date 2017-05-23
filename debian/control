@@ -9,6 +9,7 @@ Package: kano-desktop
 Architecture: all
 Depends:
     ${misc:Depends},
+    dh-exec,
     openbox (>=3.5.2-4~kano.1),
     kdesk (>=1.4-1),
     kano-wallpapers,
