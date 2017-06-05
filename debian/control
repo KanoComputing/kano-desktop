@@ -3,13 +3,12 @@ Maintainer: Team Kano <dev@kano.me>
 Section: x11
 Priority: optional
 Standards-Version: 3.9.4
-Build-Depends: debhelper (>=9.0.0)
+Build-Depends: debhelper (>=9.0.0), dh-exec
 
 Package: kano-desktop
 Architecture: all
 Depends:
     ${misc:Depends},
-    dh-exec,
     openbox (>=3.5.2-4~kano.1),
     kdesk (>=1.4-1),
     kano-wallpapers,
