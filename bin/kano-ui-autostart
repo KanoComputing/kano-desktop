@@ -71,9 +71,8 @@ systemctl --user start kano-home-button
 
 # If we are in the middle of the Overture Onboarding, quit now.
 # This means that the Overture app started the X server in the background
-# TODO: Do we want a special wallpaper here? It will be black, as the overture terminal
 initflow=`sudo kano-init status`
-if [ "$initflow" != "disabled" ]; then
+if [ "$initflow" != "disabled" ] || [ -f "/var/lib/overture/progress" ]; then
 
     # Start the boards daemon so we can talk to hardware periherals during Overture
     systemctl --user start kano-boards
