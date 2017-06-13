@@ -5,7 +5,14 @@
 #
 # Unit file to enable any power button that may be connected
 # via a Kano hat.
-
+#
+# There is a startup delay to coordinate with the Dashboard.
+# Make sure to start with this command:
+#
+#  $ systemctl --user start enable-power-button &
+#
+# Subsequent "start" commands will return immediately.
+#
 
 [Unit]
 Description=Enable Power Button
@@ -16,4 +23,6 @@ DefaultDependencies=true
 
 [Service]
 Type=oneshot
+RemainAfterExit=yes
+ExecStartPre=/bin/sleep 15
 ExecStart=/usr/bin/enable-power-button
