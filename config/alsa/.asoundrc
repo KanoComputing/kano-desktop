@@ -2,7 +2,7 @@ pcm.master {
     type softvol
     min_dB -26.0
     max_dB 4.0
-    resolution 8
+    resolution 16
 
     slave {
         pcm "hw:0"
