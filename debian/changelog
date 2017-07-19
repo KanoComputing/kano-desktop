@@ -22,6 +22,12 @@ kano-desktop (3.10.0-1) unstable; urgency=low
 
  -- Team Kano <dev@kano.me>  Wed, 15 Mar 2017 12:10:00 +0000
 
+kano-desktop (3.9.1-2) unstable; urgency=low
+
+  * Added final wallpapers for Argentina locale
+
+ -- Team Kano <dev@kano.me>  Wed, 19 Jul 2017 16:35:00 +0000
+
 kano-desktop (3.9.1-1) unstable; urgency=low
 
   * Added Localized messages for kano-screenshot
