@@ -1,3 +1,9 @@
+kano-desktop (3.11.0-0) unstable; urgency=low
+
+  * Added new matrix screen saver system wide
+
+ -- Team Kano <dev@kano.me>  Tue, 17 Jul 2017 13:58:37 +0100
+
 kano-desktop (3.10.3-1) unstable; urgency=low
 
   * Doubled audio volume resolution steps

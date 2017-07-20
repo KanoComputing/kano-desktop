@@ -26,7 +26,7 @@ table Config
   SoundDisabledIcon: /usr/share/kano-media/sounds/kano_error.wav
 
   ScreenSaverTimeout: 900
-  ScreenSaverProgram: /usr/bin/kdesk-eglsaver
+  ScreenSaverProgram: /usr/bin/qmlmatrix
 
   OneClick: true
   MaximizeSingleton: true
