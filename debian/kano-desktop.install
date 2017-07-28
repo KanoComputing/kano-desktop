@@ -37,7 +37,6 @@ bin/kano-ui-autostart /usr/bin
 bin/open-me etc/skel/.Rabbithole
 bin/use-the-force usr/bin
 bin/kano-keyboard-hotkeys usr/bin
-bin/enable-power-button usr/bin
 bin/track-ck-type usr/bin
 
 scripts/* usr/share/kano-desktop/scripts
