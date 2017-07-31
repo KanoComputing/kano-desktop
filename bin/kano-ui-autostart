@@ -114,6 +114,9 @@ if [ "$DESKTOP_RUN" -eq 1 ] ; then
 	sudo kano-updater first-boot
     fi
 
+    # Play a welcome sound before entering the Dashboard screen
+    aplay "/usr/share/kano-media/sounds/kano_boot_up.wav"
+
 fi
 
 
