@@ -1,3 +1,9 @@
+kano-desktop (3.11.1-0) unstable; urgency=low
+
+  * Added a Dashboard bootup welcome sound
+
+ -- Team Kano <dev@kano.me>  Mon, 31 Jul 2017 17:15:00 +0100
+
 kano-desktop (3.11.0-0) unstable; urgency=low
 
   * Added new matrix screen saver system wide
