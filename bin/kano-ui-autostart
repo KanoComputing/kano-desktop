@@ -114,8 +114,12 @@ if [ "$DESKTOP_RUN" -eq 1 ] ; then
 	sudo kano-updater first-boot
     fi
 
+    # We need the boards daemon for sound to work correctly
+    systemctl --user start kano-boards.service
+    sleep 5
+
     # Play a welcome sound before entering the Dashboard screen
-    welcome_sound="/usr/share/kano-media/sounds/kano_open_app.wav"
+    welcome_sound="/usr/share/kano-media/sounds/kano_boot_up.wav"
     python -c "from kano.utils import audio; audio.play_sound('$welcome_sound')"
 
 fi
