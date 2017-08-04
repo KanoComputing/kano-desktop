@@ -116,7 +116,6 @@ if [ "$DESKTOP_RUN" -eq 1 ] ; then
 
     # We need the boards daemon for sound to work correctly
     systemctl --user start kano-boards.service
-    sleep 5
 
     # Play a welcome sound before entering the Dashboard screen
     welcome_sound="/usr/share/kano-media/sounds/kano_boot_up.wav"
