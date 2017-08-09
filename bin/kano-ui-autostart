@@ -62,6 +62,18 @@ export XKB_DEFAULT_LAYOUT=`setxkbmap -query | grep layout | awk '{print $2}'`
 # Tell python modules to use UTF-8 on the console for i18n messages to display accurately.
 export PYTHONIOENCODING=UTF-8
 
+#
+# Is this the first time we are here directly from a bootup?
+#
+# FIRST_LOGIN is 1 when we login as a result of a new user being created
+# COMING_FROM_BOOT is 1 only when we run for the first time after boot.
+# It will switch to 0 when the Xserver is restarted, for example during a logout transition.
+#
+test -f /run/lock/desktop_init_run
+COMING_FROM_BOOT=$?
+touch /run/lock/desktop_init_run
+FIRST_LOGIN=1
+
 # systemd user services will inherit the environment allocated to us
 # Xserver authority files amongst other important details
 systemctl --user import-environment
@@ -86,18 +98,8 @@ fi
 # This is a standard Xserver login startup, popup the loading message dialog
 kano-home-button-visible show_dialog
 
-#
-# Is this the first time we executed this boot?
-#
-# FIRST_LOGIN is 1 when we login as a result of a new user being created
-# DESKTOP_RUN is 1 only when we run for the first time after boot.
-#
-test -f /run/lock/desktop_init_run
-DESKTOP_RUN=$?
-touch /run/lock/desktop_init_run
-FIRST_LOGIN=1
-
-if [ "$DESKTOP_RUN" -eq 1 ] ; then
+# We need to do special steps if coming from a bootup
+if [ "$COMING_FROM_BOOT" -eq 1 ] ; then
 
     logger --id --tag "info" "kano-uixinit-systemd first execution"
 
@@ -113,14 +115,6 @@ if [ "$DESKTOP_RUN" -eq 1 ] ; then
 	logger --id --tag "info" "kano-uixinit first boot"
 	sudo kano-updater first-boot
     fi
-
-    # We need the boards daemon for sound to work correctly
-    systemctl --user start kano-boards.service
-
-    # Play a welcome sound before entering the Dashboard screen
-    welcome_sound="/usr/share/kano-media/sounds/kano_boot_up.wav"
-    python -c "from kano.utils import audio; audio.play_sound('$welcome_sound')"
-
 fi
 
 
