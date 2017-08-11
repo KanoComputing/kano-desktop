@@ -71,8 +71,10 @@ export PYTHONIOENCODING=UTF-8
 #
 test -f /run/lock/desktop_init_run
 COMING_FROM_BOOT=$?
+export COMING_FROM_BOOT
 touch /run/lock/desktop_init_run
 FIRST_LOGIN=1
+export FIRST_LOGIN
 
 # systemd user services will inherit the environment allocated to us
 # Xserver authority files amongst other important details
