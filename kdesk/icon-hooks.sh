@@ -2,8 +2,8 @@
 
 # icon-hooks.sh
 #
-# Copyright (C) 2014-2016 Kano Computing Ltd.
-# License: http://www.gnu.org/licenses/gpl-2.0.txt GNU General Public License v2
+# Copyright (C) 2014-2017 Kano Computing Ltd.
+# License: http://www.gnu.org/licenses/gpl-2.0.txt GNU GPLv2
 #
 # KDesk Icon Hooks script - Dynamically update the desktops icons attributes.
 #
@@ -110,8 +110,9 @@ case $icon_name in
         if [ "$rc" == "0" ]; then
 
             if [ "$debug" == "true" ]; then
-                echo "starting kano-sync and checking for updates"
+                echo "Pausing tracking, starting kano-sync and checking for updates"
             fi
+            kano-tracker-ctl pause-sessions
             kano-sync --skip-kdesk --sync --backup --upload-tracking-data -s &
             sudo /usr/bin/kano-updater download --low-prio &
         fi
@@ -127,6 +128,7 @@ case $icon_name in
             echo "resume" >> $pipe_filename
         fi
 
+        kano-tracker-ctl resume-sessions
         # kanotracker collects how many times and for long the screen saver runs
         length=$2
         now=$(date +%s)
