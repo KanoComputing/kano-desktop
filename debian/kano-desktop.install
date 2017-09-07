@@ -1,11 +1,9 @@
-#!/usr/bin/dh-exec
-
 icons usr/share/kano-desktop
 images usr/share/kano-desktop
 kdesk usr/share/kano-desktop
 Legal usr/share/kano-desktop
 
-config/alsa/.asound* etc/skel
+config/alsa/asound.conf etc/asound.conf
 config/autostart usr/share/kano-desktop/config
 config/chromium usr/share/kano-desktop/config
 config/keyboard/kanokeyboardrc usr/share/kano-desktop/config/keyboard
@@ -25,8 +23,6 @@ config/console usr/share/kano-desktop/config
 config/sudoers.d/* usr/share/kano-desktop/config/sudoers.d
 
 config/systemd/kano.conf /lib/systemd/system/user@.service.d
-
-config/alsa/.asoundrc => etc/asound.conf
 
 videos usr/share/kano-media
 gtk-themes/Kano usr/share/themes
