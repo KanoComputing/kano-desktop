@@ -1,6 +1,7 @@
 kano-desktop (3.12.0-0) unstable; urgency=low
 
   * Removed local installation of the ALSA config file
+  * Removed the Volume plugin in LXPanel
 
  -- Team Kano <dev@kano.me>  Fri, 8 Sep 2017 10:48:00 +0100
 
