@@ -17,3 +17,14 @@ if [ upgrade != "$1" ] \
     dpkg-divert --package kano-desktop --remove --rename \
                 --divert /etc/magic.orig /etc/magic
 fi
+
+
+# In 3.12.0, we removed the installation of the ALSA config file from skel.
+# For some reason, dpkg still thinks it owns the file and it is not removed.
+# Here we remove the file before installing the package, which will then only
+# install the config file under /etc
+if [ upgrade == "$1" ] \
+        && dpkg --compare-versions "$2" lt 3.12; then
+
+    rm -f /etc/skel/.asoundrc
+fi
