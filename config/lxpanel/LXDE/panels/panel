@@ -102,10 +102,6 @@ Plugin {
 }
 
 Plugin {
-    type = volumealsa
-}
-
-Plugin {
     type = space
     Config {
         Size=12
