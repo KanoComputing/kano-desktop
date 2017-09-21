@@ -129,7 +129,7 @@ RPI_2_B_SCORE ; print has_min_performance(RPI_2_B_SCORE)"`
 mkdir -p "$HOME/.kano-settings"
 
 # Track some information about the hardware used
-kano-tracker-ctl generate hw-info
+kano-tracker-ctl generate hw-info &
 
 # Disable XServer screen saver time and screen blanking (The display would become black)
 if [ -n "`which xset`" ]; then
