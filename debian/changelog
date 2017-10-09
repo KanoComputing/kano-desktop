@@ -1,3 +1,9 @@
+kano-desktop (3.9.2-0) unstable; urgency=low
+
+  * Added Argentinian Spanish .desktop translation for K > Shutdown (backport)
+
+ -- Team Kano <dev@kano.me>  Mon, 9 Oct 2017 13:43:00 +0000
+
 kano-desktop (3.9.1-1) unstable; urgency=low
 
   * Added final wallpapers for Argentina locale

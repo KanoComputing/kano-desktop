@@ -1,0 +1,8 @@
+[Desktop Entry]
+Encoding=UTF-8
+Type=Application
+Icon=/usr/share/kano-desktop/icons/kano-shutdown.png
+Exec=kdesk-blur kano-shutdown
+StartupNotify=true
+Name=Shutdown
+Name[es_AR]=Apagar
