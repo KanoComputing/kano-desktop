@@ -1,6 +1,7 @@
 icons usr/share/kano-desktop
 images usr/share/kano-desktop
 kdesk usr/share/kano-desktop
+kdesk-icon/*.desktop usr/share/applications
 Legal usr/share/kano-desktop
 
 config/alsa/asound.conf etc
