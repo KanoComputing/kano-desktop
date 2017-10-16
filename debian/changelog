@@ -43,7 +43,7 @@ kano-desktop (3.10.0-1) unstable; urgency=low
 
  -- Team Kano <dev@kano.me>  Wed, 15 Mar 2017 12:10:00 +0000
 
- kano-desktop (3.9.2-0) unstable; urgency=low
+kano-desktop (3.9.2-0) unstable; urgency=low
 
   * Added Argentinian Spanish .desktop translation for K > Shutdown (backport)
 
