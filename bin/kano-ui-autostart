@@ -1,21 +1,23 @@
 #!/bin/bash
+
+# kano-ui-autostart
 #
-#  kano-ui-autostart
+# Copyright (C) 2014-2017 Kano Computing Ltd.
+# License: http://www.gnu.org/licenses/gpl-2.0.txt GNU GPL v2
 #
-#  This is the Kano version of Lightdm autostart script.
-#  It is run everytime the kit boots up, and each time a successful Greeter login takes place.
+# This is the Kano version of Lightdm autostart script.
+# It is run everytime the kit boots up, and each time a successful Greeter login takes place.
 #
-#  It decides wether to go into Dashboard or Desktop mode via systemd services.
-#  Switching takes place by restarting systemd services, which makes it happen very fast.
-#  Look at /usr/lib/systemd/user Kano unit files for more details.
+# It decides whether to go into Dashboard or Desktop mode via systemd services.
+# Switching takes place by restarting systemd services, which makes it happen very fast.
+# Look at /usr/lib/systemd/user Kano unit files for more details.
 #
-#  Finally, this script does most of the old kano-uixinit tasks: mouse, keyboard setup,
-#  disabling screen DPMS, and Kano Tracking.
+# Finally, this script does most of the old kano-uixinit tasks: mouse, keyboard setup,
+# disabling screen DPMS, and Kano Tracking.
 #
-#  To switch from either mode from a terminal or ssh session:
+# To switch from either mode from a terminal or ssh session:
 #
-#  $ kano-dashboard-uimode <dashboard | desktop>
-#
+# $ kano-dashboard-uimode <dashboard | desktop>
 
 
 function track_startup
