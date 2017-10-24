@@ -53,10 +53,10 @@ export FIRST_LOGIN
 systemctl --user import-environment
 
 # We need the home button service for the loading dialog
-systemctl --user start kano-home-button
+systemctl --user start kano-home-button &
 
 # If we are in the middle of the Overture Onboarding, quit now.
-# This means that the Overture app started the X server in the background
+# This means that the Overture app started the X server in the background.
 # TODO: Do we want a special wallpaper here? It will be black, as the overture terminal
 initflow=`sudo kano-init status`
 if [ "$initflow" != "disabled" ]; then
@@ -70,7 +70,7 @@ if [ "$initflow" != "disabled" ]; then
 fi
 
 # This is a standard Xserver login startup, popup the loading message dialog
-kano-home-button-visible show_dialog
+kano-home-button-visible show_dialog &
 
 # We need to do special steps if coming from a bootup
 if [ "$COMING_FROM_BOOT" -eq 1 ] ; then
@@ -137,8 +137,8 @@ if [ "$FIRST_LOGIN" -eq 1 ]; then
     # we want to have one unique set of host ssh keys per kano kit.
     # getent format: kanousers:x:1000:user1,user2,user3
     if [ `getent group kanousers | awk '{lng=split($0, array, ",")} END{print lng }'` -eq 1 ]; then
-	logger --id --tag "info" "kano-ui-autostart regenerating ssh host keys"
-	sudo regenerate-ssh-keys &
+        logger --id --tag "info" "kano-ui-autostart regenerating ssh host keys"
+        sudo regenerate-ssh-keys &
     fi
 fi
 
@@ -150,7 +150,7 @@ if [ -e /lib/systemd/system/alsa-restore.service ]; then
     if [ "$ret_val" -ne 0 ]; then
         logger --id --tag "warn" "Failed to restore volume level, ret code: $ret_val"
     else
-	logger --id --tag "info" "Audio volume level was successfully restored"
+        logger --id --tag "info" "Audio volume level was successfully restored"
     fi
 else
     logger --id --tag "warn" "alsa-restore not found, cannott attempt to restore volume level"
@@ -184,4 +184,4 @@ fi
 # Restart user keep-alive services
 # These are running throughout Dashboard and Desktop modes,
 # until the user does a logoff or shutdown
-systemctl --user restart kano-common.target
+systemctl --user restart kano-common.target &
