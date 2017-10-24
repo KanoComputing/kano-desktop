@@ -30,18 +30,6 @@ function track_startup
     if [ "$screen_kit" == "True" ]; then
         kano-tracker-ctl +1 kano_screen_kit
     fi
-
-    if [ is_internet ]; then
-        # Try uploading the tracking data to our servers
-        # Should be quiet on failure
-        kano-sync --upload-tracking-data --silent
-
-        # Sync objects from the content API in the background
-        # TODO: This should be removed once we have the daemon done
-        sudo kano-content sync &
-
-        kano-tracker-ctl +1 'internet-connection-established'
-    fi
 }
 
 
