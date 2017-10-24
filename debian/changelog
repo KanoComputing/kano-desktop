@@ -1,8 +1,10 @@
 kano-desktop (3.14.0-0) unstable; urgency=low
 
   * Applied changes from v3.9.2 es_AR backports to latest
+  * Bootup to Dashboard performance improvements:
+  *   - First boot async event tracking and Updater routine
 
- -- Team Kano <dev@kano.me>  Mon, 16 Oct 2017 15:12:00 +0100
+ -- Team Kano <dev@kano.me>  Tue, 24 Oct 2017 12:40:00 +0100
 
 kano-desktop (3.13.0-0) unstable; urgency=low
 
