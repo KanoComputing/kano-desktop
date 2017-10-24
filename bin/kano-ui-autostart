@@ -115,9 +115,9 @@ if [ "$COMING_FROM_BOOT" -eq 1 ] ; then
     track_startup
 
     if [ "$FIRST_LOGIN" -eq 1 ] ; then
-	# Finalise account setup
-	logger --id --tag "info" "kano-uixinit first boot"
-	sudo kano-updater first-boot
+        logger --id --tag "info" "kano-uixinit first boot"
+        kano-tracker-ctl generate first-boot &
+        sudo kano-updater first-boot &
     fi
 fi
 
