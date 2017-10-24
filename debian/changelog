@@ -4,8 +4,9 @@ kano-desktop (3.14.0-0) unstable; urgency=low
   * Bootup to Dashboard performance improvements:
   *   - First boot async event tracking and Updater routine
   *   - Moved kano content and tracking sync to network hooks
+  *   - Moved 'startup' and 'kano_screen_kit' events to tracker and call async
 
- -- Team Kano <dev@kano.me>  Tue, 24 Oct 2017 14:20:00 +0100
+ -- Team Kano <dev@kano.me>  Tue, 24 Oct 2017 16:56:00 +0100
 
 kano-desktop (3.13.0-0) unstable; urgency=low
 
