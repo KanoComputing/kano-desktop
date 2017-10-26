@@ -1,6 +1,6 @@
 kano-desktop (3.14.0-0) unstable; urgency=low
 
-  * Prevent screensaver from overing youtube player
+  * Prevent screensaver from covering youtube player
   * Applied changes from v3.9.2 es_AR backports to latest
   * Bootup to Dashboard performance improvements:
   *   - First boot async event tracking and Updater routine
