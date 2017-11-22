@@ -70,7 +70,7 @@ if [ "$initflow" != "disabled" ]; then
 fi
 
 # This is a standard Xserver login startup, popup the loading animation
-kano-start-splash -b 0 loader-animation
+kano-start-splash -b 0 loader-animation &
 
 # We need to do special steps if coming from a bootup
 if [ "$COMING_FROM_BOOT" -eq 1 ] ; then
