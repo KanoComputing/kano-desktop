@@ -7,8 +7,9 @@ kano-desktop (3.14.0-0) unstable; urgency=low
   *   - Moved kano content and tracking sync to network hooks
   *   - Moved 'startup' and 'kano_screen_kit' events to tracker and call async
   *   - Starting more services in the background to speed up initialisation time
+  * Replaced dashboard loading dialog for kano-splash animation
 
- -- Team Kano <dev@kano.me>  Tue, 24 Oct 2017 18:29:00 +0100
+ -- Team Kano <dev@kano.me>  Wed, 22 Nov 2017 18:15:00 +0100
 
 kano-desktop (3.13.0-0) unstable; urgency=low
 
