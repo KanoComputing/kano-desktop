@@ -1,0 +1,19 @@
+#
+#  boot-splash-terminate.service
+#
+#  Terminates kano-splash bootup window started by "kano-os-loader"
+#
+
+[Unit]
+Description=Stop Kano Splash Boot animation
+DefaultDependencies=true
+After=multi-user.target graphical.target
+
+[Service]
+Type=oneshot
+ExecStart=/usr/bin/kano-stop-splash boot
+Restart=no
+RemainAfterExit=yes
+
+[Install]
+WantedBy=multi-user.target graphical.target

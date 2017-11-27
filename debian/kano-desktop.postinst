@@ -123,6 +123,10 @@ case "$1" in
         sed -i "s/#ShutdownWatchdogSec=.*$/ShutdownWatchdogSec=0/g" $systemd_conf
         # configure systemd - reduce reboot timeout.
         sed -i "s/#DefaultTimeoutStopSec=.*$/DefaultTimeoutStopSec=30s/g"  $systemd_conf
+
+        # Service to stop to bootup splash animation
+        systemctl enable boot-splash-terminate
+
         ;;
 esac
 
