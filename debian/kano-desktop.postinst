@@ -127,6 +127,14 @@ case "$1" in
         # Service to stop to bootup splash animation
         systemctl enable boot-splash-terminate
 
+        # Tell the kernel to load our splash loader, instead of the default system init process
+        cmdline_file="/boot/cmdline.txt"
+        grep "init=" $cmdline_file
+        if [ $? != 0 ]; then
+            tf=$(tempfile)
+            cat $cmdline_file | awk '{ print $0 " init=/usr/bin/kano-os-loader" }' > $tf
+            cp $tf $cmdline_file
+        fi
         ;;
 esac
 
