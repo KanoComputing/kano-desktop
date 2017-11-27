@@ -10,7 +10,7 @@ kano-desktop (3.14.0-0) unstable; urgency=low
   * Replaced dashboard loading dialog for kano-splash animation
   * Added fast bootup animation using kano-splash
 
- -- Team Kano <dev@kano.me>  Mon, 27 Nov 2017 16:53:00 +0100
+ -- Team Kano <dev@kano.me>  Mon, 27 Nov 2017 17:40:00 +0100
 
 kano-desktop (3.13.0-0) unstable; urgency=low
 
