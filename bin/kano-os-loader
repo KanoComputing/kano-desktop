@@ -14,7 +14,7 @@ export BASH=$BASH:/usr/bin:/bin:/sbin
 /bin/mount -o remount,rw /dev/mmcblk0p2 /
 
 # Cleanup any possible leftovers from previous interrupted splash windows
-rm -rf /var/lib/kano-splash/*
+rm -rf /var/tmp/kano-splash
 
 # We need /proc so we can follow process trees
 mount /proc -t proc /proc
