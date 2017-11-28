@@ -124,7 +124,7 @@ case "$1" in
         # configure systemd - reduce reboot timeout.
         sed -i "s/#DefaultTimeoutStopSec=.*$/DefaultTimeoutStopSec=30s/g"  $systemd_conf
 
-        # Service to stop to bootup splash animation
+        # Service to stop the bootup splash animation
         systemctl enable boot-splash-terminate
 
         # Tell the kernel to load our splash loader, instead of the default system init process

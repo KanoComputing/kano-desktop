@@ -80,8 +80,9 @@ case "$1" in
         # Service to stop to bootup splash animation
         systemctl disable boot-splash-terminate
 
-        # Remove the custom kano splash init process
-        sed -i 's/init=.*//' /boot/cmdline.txt
+        # Remove our custom kano splash init process,
+        # do not touch it if init points to something else
+        sed -i 's/init=\/usr\/bin\/kano-os-loader//' /boot/cmdline.txt
         ;;
 esac
 
