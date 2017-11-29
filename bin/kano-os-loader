@@ -1,0 +1,26 @@
+#!/bin/bash
+#
+# Copyright (C) 2017 Kano Computing Ltd.
+# License: http://www.gnu.org/licenses/gpl-2.0.txt GNU GPL v2
+#
+# kano-os-loader
+#
+# We install this script via cmdline.txt "init" kernel parameter
+#
+
+export BASH=$BASH:/usr/bin:/bin:/sbin
+
+# We need R/W access in order to save splash daemon details
+/bin/mount -o remount,rw /dev/mmcblk0p2 /
+
+# Cleanup any possible leftovers from previous interrupted splash windows
+rm -rf /var/tmp/kano-splash
+
+# We need /proc so we can follow process trees
+mount /proc -t proc /proc
+
+# Launch splash animation in the background, see kano-splash.service
+kano-splash-daemonize boot "/usr/share/kano-desktop/animations/bootup"
+
+# Give control the actual system init
+exec /sbin/init

@@ -123,6 +123,18 @@ case "$1" in
         sed -i "s/#ShutdownWatchdogSec=.*$/ShutdownWatchdogSec=0/g" $systemd_conf
         # configure systemd - reduce reboot timeout.
         sed -i "s/#DefaultTimeoutStopSec=.*$/DefaultTimeoutStopSec=30s/g"  $systemd_conf
+
+        # Service to stop the bootup splash animation
+        systemctl enable boot-splash-terminate
+
+        # Tell the kernel to load our splash loader, instead of the default system init process
+        cmdline_file="/boot/cmdline.txt"
+        grep "init=" $cmdline_file
+        if [ $? != 0 ]; then
+            tf=$(tempfile)
+            cat $cmdline_file | awk '{ print $0 " init=/usr/bin/kano-os-loader" }' > $tf
+            cp $tf $cmdline_file
+        fi
         ;;
 esac
 

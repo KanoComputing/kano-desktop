@@ -1,5 +1,6 @@
 icons usr/share/kano-desktop
 images usr/share/kano-desktop
+animations usr/share/kano-desktop
 kdesk usr/share/kano-desktop
 kdesk-icon/*.desktop usr/share/applications
 Legal usr/share/kano-desktop
@@ -34,6 +35,7 @@ bin/kano-ui-autostart /usr/bin
 bin/open-me etc/skel/.Rabbithole
 bin/use-the-force usr/bin
 bin/kano-keyboard-hotkeys usr/bin
+bin/kano-os-loader usr/bin
 
 scripts/* usr/share/kano-desktop/scripts
 
@@ -42,6 +44,6 @@ pam-configs/kano-umask /usr/share/pam-configs
 kano-mount-trigger/kano-mount-trigger /usr/bin/
 kano-mount-trigger/95-kano-mount-trigger.rules /lib/udev/rules.d/
 
-systemd/* /usr/lib/systemd/user/
+systemd/* /usr/lib/systemd/
 
 locale/* usr/share/locale/
