@@ -8,6 +8,7 @@ kano-desktop (3.14.0-0) unstable; urgency=low
   *   - Moved 'startup' and 'kano_screen_kit' events to tracker and call async
   *   - Starting more services in the background to speed up initialisation time
   * Replaced dashboard loading dialog for kano-splash animation
+  * Matched Chromium icon on the Desktop with the one on Dashboard 
 
  -- Team Kano <dev@kano.me>  Wed, 22 Nov 2017 18:15:00 +0100
 
