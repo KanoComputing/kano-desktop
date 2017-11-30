@@ -9,7 +9,8 @@ kano-desktop (3.14.0-0) unstable; urgency=low
   *   - Starting more services in the background to speed up initialisation time
   * Replaced dashboard loading dialog for kano-splash animation
   * Added fast bootup animation using kano-splash
-  * Matched Chromium icon on the Desktop with the one on Dashboard 
+  * Matched Chromium icon on the Desktop with the one on Dashboard
+  * Change to use kano-start-browser
 
  -- Team Kano <dev@kano.me>  Mon, 27 Nov 2017 17:40:00 +0100
 
