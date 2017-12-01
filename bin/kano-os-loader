@@ -20,7 +20,7 @@ rm -rf /var/tmp/kano-splash
 mount /proc -t proc /proc
 
 # Launch splash animation in the background, see kano-splash.service
-kano-splash-daemonize boot "/usr/share/kano-desktop/animations/bootup"
+kano-splash-daemonize boot "-t 30 /usr/share/kano-desktop/animations/bootup"
 
 # Give control the actual system init
 exec /sbin/init
