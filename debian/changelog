@@ -11,8 +11,9 @@ kano-desktop (3.14.0-0) unstable; urgency=low
   * Added fast bootup animation using kano-splash
   * Matched Chromium icon on the Desktop with the one on Dashboard
   * Change to use kano-start-browser
+  * Fix for low battery signal on boot software regression
 
- -- Team Kano <dev@kano.me>  Mon, 27 Nov 2017 17:40:00 +0100
+ -- Team Kano <dev@kano.me>  Mon, 06 Dec 2017 14:37:00 +0100
 
 kano-desktop (3.13.0-0) unstable; urgency=low
 
