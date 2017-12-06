@@ -20,7 +20,9 @@ rm -rf /var/tmp/kano-splash
 mount /proc -t proc /proc
 
 # Launch splash animation in the background, see kano-splash.service
+# Then return the filesystem to Read-Only mode.
 kano-splash-daemonize boot "-t 30 /usr/share/kano-desktop/animations/bootup"
+/bin/mount -o remount,ro /dev/mmcblk0p2 /
 
 # Give control the actual system init
 exec /sbin/init
