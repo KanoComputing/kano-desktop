@@ -55,6 +55,13 @@ systemctl --user import-environment
 # We need the home button service for the loading dialog
 systemctl --user start kano-home-button &
 
+# Disable XServer screen saver time and screen blanking (The display would become black)
+if [ -n "`which xset`" ]; then
+    xset s off
+    xset -dpms
+    xset s noblank
+fi
+
 # If we are in the middle of the Overture Onboarding, quit now.
 # This means that the Overture app started the X server in the background.
 # TODO: Do we want a special wallpaper here? It will be black, as the overture terminal
@@ -106,13 +113,6 @@ mkdir -p "$HOME/.kano-settings"
 
 # Track some information about the hardware used
 kano-tracker-ctl generate hw-info &
-
-# Disable XServer screen saver time and screen blanking (The display would become black)
-if [ -n "`which xset`" ]; then
-    xset s off
-    xset -dpms
-    xset s noblank
-fi
 
 # Calibrates the mouse pointer speed
 /usr/bin/startmouse
