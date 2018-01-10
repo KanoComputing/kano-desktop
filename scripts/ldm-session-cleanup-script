@@ -10,6 +10,8 @@
 #  This script is called by lightm when the user logs off
 #  We collect the time the users spent on this session and save it on the tracker
 #
+#  WARNING: This script is run as root, not the interactive user
+#
 
 su - $USER -c "kano-tracker-ctl session end logon-session 0"
 su - $USER -c "kano-tracker-ctl clear"

@@ -2,7 +2,7 @@
 
 # ldm-session-setup-script
 #
-# Copyright (C) 2014,2015 Kano Computing Ltd.
+# Copyright (C) 2014,2015,2018 Kano Computing Ltd.
 # License: http://www.gnu.org/licenses/gpl-2.0.txt GNU General Public License v2
 #
 #  https://wiki.ubuntu.com/LightDM
@@ -10,11 +10,20 @@
 #  This script is called by lightm during user logon session
 #  We save the current time here so we can estimate usage timings
 #
+#  WARNING: This script is run as root, not the interactive user
+#
 
 # Tracking of actions, in the background saves ~ 2secs on a RPi2
 su - $USER -c "kano-tracker-ctl clear &"
 su - $USER -c "kano-tracker-ctl new-token &"
 su - $USER -c "kano-tracker-ctl session start logon-session 0 &"
+
+# Disable XServer screen saver time and screen blanking (The display would become black)
+if [ -n "`which xset`" ]; then
+    xset s off
+    xset -dpms
+    xset s noblank
+fi
 
 # zero means proceed with login, anything else will cancel the session
 exit 0
