@@ -7,11 +7,11 @@
 
 
 mount -o remount,rw /
-mkdir -p /overlays/upper
 mkdir -p /overlays/scratch
 mkdir -p /overlays/old
 mkdir -p /overlays/merged
 source /overlays/set_current.sash
+mkdir -p $CURRENT
 mount -t overlay overlay -o lowerdir=/,upperdir=$CURRENT,workdir=/overlays/scratch /overlays/merged
 cd /overlays/merged
 pivot_root . /overlays/merged/overlays/old/

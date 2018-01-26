@@ -135,6 +135,14 @@ case "$1" in
             cat $cmdline_file | awk '{ print $0 " init=/usr/bin/kano-os-loader" }' > $tf
             cp $tf $cmdline_file
         fi
+
+        # make initial overlay dirs
+        mkdir -p /overlays/initial
+        if [ ! -f /overlays/set_current.sash ] ; then
+           cat >/overlays/set_current.sash <<EOF
+setenv CURRENT /overlays/initial
+EOF
+        fi
         ;;
 esac
 
