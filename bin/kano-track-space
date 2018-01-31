@@ -53,7 +53,7 @@ def get_fs_space_data(path):
 
 def get_path_space(path):
     try:
-        stdout = subprocess.check_output('du -sbx "{}"'.format(path),
+        stdout = subprocess.check_output('du -sbx {} || true'.format(path),
                                          shell=True)
         return int(stdout.split('\t')[0])
     except:
