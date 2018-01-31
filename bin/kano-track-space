@@ -1,0 +1,73 @@
+#!/usr/bin/env python
+#
+# Copyright (C) 2018 Kano Computing Ltd.
+# License: http://www.gnu.org/licenses/gpl-2.0.txt GNU GPL v2
+#
+# kano-os-loader
+#
+# We install this script via cmdline.txt "init" kernel parameter
+#
+
+import subprocess
+from itertools import imap
+import os
+from kano_profile.tracker import track_data
+
+
+def get_package_space():
+    # return space used by debian packages (in units of bytes, but not
+    # expected to be precise to 1 byte)
+    o = subprocess.Popen("dpkg-query -Wf '${Installed-Size}\n'",
+                         shell=True, stdout=subprocess.PIPE)
+
+    def item(x):
+        try:
+            return int(x)
+        except:
+            return 0
+        # use imap instead of map to avoid reading whole output at once
+    try:
+        res = sum(imap(item, o.stdout)) * 1024
+    except:
+        res = None
+
+    return res
+
+
+def get_fs_space_data(path):
+    # Return size and available space of boot and root.
+    # and inode counts. Sizes in units of byte but not expected to be precise
+    # to a byte.
+
+    stat = os.statvfs(path)
+    # statvfs returns something almost, but not quite, like a dict.
+    # make it a real dict.
+    data = {
+        "size": stat.f_frsize * stat.f_blocks,
+        "avail": stat.f_frsize * stat.f_bavail,
+        "inodes": stat.f_files,
+        "inodes_avail": stat.f_favail
+    }
+    return data
+
+
+def get_path_space(path):
+    try:
+        stdout = subprocess.check_output('du -sbx "{}"'.format(path),
+                                         shell=True)
+        return int(stdout.split('\t')[0])
+    except:
+        return None
+
+
+def get_space_data():
+    data = {
+        'packages': get_package_space(),
+        'root': get_fs_space_data('/'),
+        'boot': get_fs_space_data('/boot'),
+        'user': get_path_space('~/')
+    }
+    return data
+
+if __name__ == '__main__':
+    track_data('sd_card_space', get_space_data())
