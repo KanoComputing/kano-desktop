@@ -36,6 +36,7 @@ bin/open-me etc/skel/.Rabbithole
 bin/use-the-force usr/bin
 bin/kano-keyboard-hotkeys usr/bin
 bin/kano-os-loader usr/bin
+bin/kano-track-space usr/bin
 
 scripts/* usr/share/kano-desktop/scripts
 

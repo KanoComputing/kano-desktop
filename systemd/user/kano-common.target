@@ -13,4 +13,5 @@ Description=Kano Common User Services
 IgnoreOnIsolate=true
 Wants=kano-common-tracker.service kano-common-notifications.service \
  kano-boards.service kano-speakerleds.service \
- kano-common-keyboard.service kano-home-button.service
+ kano-common-keyboard.service kano-home-button.service \
+ kano-common-track-space.service
