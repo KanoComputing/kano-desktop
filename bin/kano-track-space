@@ -3,9 +3,9 @@
 # Copyright (C) 2018 Kano Computing Ltd.
 # License: http://www.gnu.org/licenses/gpl-2.0.txt GNU GPL v2
 #
-# kano-os-loader
+# kano-track-space
 #
-# We install this script via cmdline.txt "init" kernel parameter
+# Submits a tracking data for space usage.
 #
 
 import subprocess
