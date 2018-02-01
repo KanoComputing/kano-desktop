@@ -13,7 +13,7 @@
 Description=Kano Desktop setup script
 BindsTo=kano-desktop.service
 Requires=kano-desktop-feedback-widget.service kano-desktop-mount-trigger.service \
- kano-desktop-world-widget.service kano-desktop-vnc.service
+ kano-desktop-vnc.service
 
 [Service]
 ExecStart=/usr/bin/kano-uixinit-systemd
