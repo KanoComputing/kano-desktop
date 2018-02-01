@@ -1,8 +1,9 @@
 kano-desktop (3.15.0-0) unstable; urgency=low
 
   * Fixed eventual black screen saver after onboarding on first boot
+  * Disable the Kano World Widget in Classic Mode
 
- -- Team Kano <dev@kano.me>  Thu, 21 Dec 2017 10:45:00 +0100
+ -- Team Kano <dev@kano.me>  Thu, 1 Feb 2018 12:48:00 +0100
 
 kano-desktop (3.14.0-0) unstable; urgency=low
 
