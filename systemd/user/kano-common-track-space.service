@@ -4,7 +4,6 @@
 
 [Unit]
 Description=Kano SD card space tracking
-BindsTo=kano-desktop.service
 Requires=kano-common-tracker.service
 
 [Service]
