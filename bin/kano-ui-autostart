@@ -99,6 +99,10 @@ if [ "$COMING_FROM_BOOT" -eq 1 ] ; then
         logger --id --tag "info" "kano-uixinit first boot"
         kano-tracker-ctl generate first-boot &
         sudo kano-updater first-boot &
+    else
+        # Check whether the Updater was running in the last boot. If so,
+        # resume the update process.
+        sudo kano-updater ui boot-window
     fi
 fi
 
