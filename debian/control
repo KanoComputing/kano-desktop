@@ -32,7 +32,9 @@ Depends:
     kano-dashboard-common (>= 3.10.0-1),
     rpi-chromium-mods-kano,
     chromium,
-    qmlmatrix
+    qmlmatrix,
+    kano-splash,
+    kano-os-loader
 Replaces: kano-settings (<< 1.1-1.20140512build2), kano-feedback (<< 1.1-3)
 Breaks: kano-settings (<< 1.1-1.20140512build2), kano-feedback (<< 1.1-3)
 Description: The desktop experience of Kanux
