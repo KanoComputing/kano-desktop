@@ -1,0 +1,26 @@
+#
+#  boot-splash-start.service
+#
+#  Starts kano-splash bootup window when "kano-os-loader"
+#  starts, and stops it again when graphical or multiuser  targets starts
+#
+
+
+[Unit]
+Description=Start Kano Splash Boot animation
+DefaultDependencies=no
+After=kano-os-loader.service
+
+[Service]
+StandardOutput=journal
+Type=forking
+Restart=no
+RemainAfterExit=yes
+ExecStartPre=/bin/mount -o remount,rw /dev/mmcblk0p2 /
+ExecStartPre=-/bin/bash -c "/bin/rm /var/tmp/kano-splash/name-boot"
+ExecStart=/usr/bin/kano-splash-daemonize boot "-t 30 /usr/share/kano-desktop/animations/bootup"
+ExecStop=/usr/bin/kano-stop-splash boot
+TimeoutSec=0
+
+[Install]
+WantedBy=kano-os-loader.service

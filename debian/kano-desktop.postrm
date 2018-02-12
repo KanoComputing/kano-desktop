@@ -77,12 +77,10 @@ case "$1" in
             sed -i "s/Exec=.*/Exec=lxterminal/g" $lxterm_desktop_file
         fi
 
-        # Service to stop to bootup splash animation
+        # Services to start/stop to bootup splash animation
+        systemctl disable boot-splash-start
         systemctl disable boot-splash-terminate
 
-        # Remove our custom kano splash init process,
-        # do not touch it if init points to something else
-        sed -i 's/init=\/usr\/bin\/kano-os-loader//' /boot/cmdline.txt
         ;;
 esac
 
