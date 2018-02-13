@@ -1,0 +1,72 @@
+#!/usr/bin/env python
+#
+# Copyright (C) 2018 Kano Computing Ltd.
+# License: http://www.gnu.org/licenses/gpl-2.0.txt GNU GPL v2
+#
+# kano-boot-splash-cli
+#
+# Set the boot splash for subsequent boots
+#
+
+"""
+Command line tool for changing settings on the Kano
+
+Usage:
+    kano-boot-splash-cli set <path>
+    kano-boot-splash-cli status
+    kano-boot-splash-cli clear
+    kano-boot-splash-cli -h | --help
+
+Commands:
+    status      Print the current boot splash path
+    set         Set the boot splash path
+    clear       Restore default splash
+"""
+
+import os
+import docopt
+import sys
+
+from kano.logging import logger
+
+RC_SUCCESS = 0
+RC_INCORRECT_ARGS = 1
+RC_INVALID_PATH = 2
+
+SPLASH_LINK_PATH = '/var/cache/kano-desktop'
+SPLASH_LINK_FILENAME = 'boot_splash.link'
+
+
+def main(args):
+    linkpath = os.path.join(SPLASH_LINK_PATH, SPLASH_LINK_FILENAME)
+    if args['set']:
+        if args['<path>']:
+            # ensure directory exists
+            os.system('mkdir -p {}'.format(SPLASH_LINK_PATH))
+
+            # first check whether pass looks reasonable
+            path = args['<path>']
+            if not os.path.exists(path):
+                logger.error("Invalid path")
+                exit(RC_INVALID_PATH)
+
+            tmp = os.tempnam(SPLASH_LINK_PATH)
+            os.symlink(path, tmp)
+            # atomically overwrite old link
+            os.rename(tmp, linkpath)
+    elif args['status']:
+        if os.path.islink(linkpath):
+            print os.path.readlink(linkpath)
+        else:
+            print "Error reading link"
+    elif args['clear']:
+        os.unlink(linkpath)
+
+if __name__ == '__main__':
+    try:
+        args = docopt.docopt(__doc__)
+    except docopt.DocoptExit:
+        print __doc__
+        sys.exit(RC_INCORRECT_ARGS)
+
+    sys.exit(main(args) or RC_SUCCESS)

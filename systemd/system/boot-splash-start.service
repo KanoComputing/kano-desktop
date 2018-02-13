@@ -18,7 +18,7 @@ Restart=no
 RemainAfterExit=yes
 ExecStartPre=/bin/mount -o remount,rw /dev/mmcblk0p2 /
 ExecStartPre=-/bin/bash -c "/bin/rm /var/tmp/kano-splash/name-boot"
-ExecStart=/usr/bin/kano-splash-daemonize boot "-t 30 /usr/share/kano-desktop/animations/bootup"
+ExecStart=/usr/bin/kano-boot-splash
 ExecStop=/usr/bin/kano-stop-splash boot
 TimeoutSec=0
 
