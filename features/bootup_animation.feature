@@ -7,7 +7,7 @@ Feature: Boot Animation
           And The boot animation stops before overture
 
     Scenario: The OS boots up to dashboard
-        Given An OS which has not booted before
+        Given An OS which has booted before and gone through overture
          When The OS is booted
          Then The boot animation displays
           And The boot animation stops before the dashboard startup animation
