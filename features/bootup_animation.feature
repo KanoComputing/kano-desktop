@@ -9,6 +9,8 @@ Feature: Boot Animation
     Scenario: The OS boots up to dashboard
         Given An OS which has booted before and gone through overture
          When The OS is booted
+          And The updater has not been interrupted
+          And An image has not been set by `kano-boot-splash-cli set <image.png>`
          Then The boot animation displays
           And The boot animation stops before the dashboard startup animation
 
