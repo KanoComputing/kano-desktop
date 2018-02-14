@@ -32,6 +32,7 @@ from kano.logging import logger
 RC_SUCCESS = 0
 RC_INCORRECT_ARGS = 1
 RC_INVALID_PATH = 2
+RC_WRONG_PERMISSIONS = 3
 
 SPLASH_LINK_PATH = '/var/cache/kano-desktop'
 SPLASH_LINK_FILENAME = 'boot_splash.link'
@@ -44,16 +45,20 @@ def main(args):
             # ensure directory exists
             os.system('mkdir -p {}'.format(SPLASH_LINK_PATH))
 
-            # first check whether pass looks reasonable
+            # first check whether path looks reasonable
             path = args['<path>']
             if not os.path.exists(path):
                 logger.error("Invalid path")
                 exit(RC_INVALID_PATH)
 
             tmp = os.tempnam(SPLASH_LINK_PATH)
-            os.symlink(path, tmp)
-            # atomically overwrite old link
-            os.rename(tmp, linkpath)
+            try:
+                os.symlink(path, tmp)
+                # atomically overwrite old link
+                os.rename(tmp, linkpath)
+            except Exception as e:
+                print "Failed to write link"
+                logger.error("Failed to write link", exception=e)
     elif args['status']:
         if os.path.islink(linkpath):
             print os.path.readlink(linkpath)
@@ -63,6 +68,10 @@ def main(args):
         os.unlink(linkpath)
 
 if __name__ == '__main__':
+    if os.getuid() != 0:
+        print 'Program must be run as root.'
+        sys.exit(RC_WRONG_PERMISSIONS)
+
     try:
         args = docopt.docopt(__doc__)
     except docopt.DocoptExit:
