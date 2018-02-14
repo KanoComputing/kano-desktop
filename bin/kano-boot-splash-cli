@@ -9,7 +9,7 @@
 #
 
 """
-Command line tool for changing settings on the Kano
+Command line tool for changing the boot splash
 
 Usage:
     kano-boot-splash-cli set <path>
@@ -28,6 +28,7 @@ import docopt
 import sys
 
 from kano.logging import logger
+from kano.utils import ensure_dir
 
 RC_SUCCESS = 0
 RC_INCORRECT_ARGS = 1
@@ -43,7 +44,7 @@ def main(args):
     if args['set']:
         if args['<path>']:
             # ensure directory exists
-            os.system('mkdir -p {}'.format(SPLASH_LINK_PATH))
+            ensure_dir(SPLASH_LINK_PATH)
 
             # first check whether path looks reasonable
             path = args['<path>']
