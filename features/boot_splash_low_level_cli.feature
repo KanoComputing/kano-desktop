@@ -11,7 +11,7 @@ Feature: Boot splash low level cli
          And the os is then rebooted
          And /path/to/image.png is a valid png image
         Then the image is displayed on boot
-         And the image is removed before the dashbord loading image is displayed.
+         And the image is removed before the dashboard loading image is displayed.
 
     Scenario: A different image is set by the command line, but then removed
         Given the OS boots normally
@@ -20,6 +20,6 @@ Feature: Boot splash low level cli
          And subsequently the command `sudo kano-boot-splash-cli clear` is run
          And the os is then rebooted
         Then the normal boot animation is displayed on boot
-         And the boot animation is removed before the dashbord loading image is displayed.
+         And the boot animation is removed before the dashboard loading image is displayed.
 
 # Note that the updater will run kano-boot-splash-cli clear

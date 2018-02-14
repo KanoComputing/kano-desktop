@@ -1,4 +1,11 @@
 #!/bin/bash
+#
+# Copyright (C) 2018 Kano Computing Ltd.
+# License: http://www.gnu.org/licenses/gpl-2.0.txt GNU GPL v2
+#
+# kano-boot-splash
+#
+# Execute boot splash via symlink
 
 SPLASH_LINK_PATH=/var/cache/kano-desktop/boot_splash.link
 SPLASH_PATH_DEFAULT=/usr/share/kano-desktop/animations/bootup
