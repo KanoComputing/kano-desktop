@@ -62,7 +62,7 @@ def main(args):
                 logger.error("Failed to write link", exception=e)
     elif args['status']:
         if os.path.islink(linkpath):
-            print os.path.readlink(linkpath)
+            print os.readlink(linkpath)
         else:
             print "Error reading link"
     elif args['clear']:
