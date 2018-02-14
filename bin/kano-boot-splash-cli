@@ -65,7 +65,10 @@ def main(args):
         else:
             print "Error reading link"
     elif args['clear']:
-        os.unlink(linkpath)
+        try:
+            os.unlink(linkpath)
+        except OSError:
+            pass
 
 if __name__ == '__main__':
     if os.getuid() != 0:
