@@ -1,0 +1,13 @@
+#!/bin/bash
+#
+# Copyright (C) 2018 Kano Computing Ltd.
+# License: http://www.gnu.org/licenses/gpl-2.0.txt GNU GPL v2
+#
+# kano-os-loader
+#
+# This script exists for backwards compatibility in case
+# it failed to be removed from /boot/cmdline.txt
+#
+
+# Give control the actual system init
+exec /sbin/init
