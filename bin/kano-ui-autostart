@@ -98,8 +98,8 @@ if [ "$COMING_FROM_BOOT" -eq 1 ] ; then
         sudo kano-updater first-boot &
     else
         # Check whether the Updater was running in the last boot. If so,
-        # resume the update process.
-        sudo kano-updater ui boot-window
+        # resume the update Recovery Mode (started from kano-os-recovery).
+        sudo kano-updater-recovery
     fi
 fi
 
