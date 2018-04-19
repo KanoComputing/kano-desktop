@@ -1,3 +1,9 @@
+kano-desktop (4.0.0-0) unstable; urgency=low
+
+  * Removed system wide SDL_VIDEODRIVER=rpi envvar
+
+ -- Team Kano <dev@kano.me>  Thu, 19 Apr 2018 17:20:00 +0100
+
 kano-desktop (3.15.0-0) unstable; urgency=low
 
   * Fixed eventual black screen saver after onboarding on first boot
