@@ -1,11 +1,11 @@
 #!/usr/bin/env bash
 
 # kano-bashrc
-# 
+#
 # Copyright (C) 2014,2015 Kano Computing Ltd.
 # License: http://www.gnu.org/licenses/gpl-2.0.txt GNU General Public License v2
 #
-# 
+#
 
 # Setting prompt
 PS1='${debian_chroot:+($debian_chroot)}\[\033[01;33m\]\u@\h\[\033[00m\] \[\033[01;34m\]\w \$\[\033[00m\] '
@@ -54,11 +54,6 @@ alias espeak_debug=\\espeak
 if [ `pidof lxsession` ]; then
     export $(cat /proc/$(pidof lxsession)/environ |xargs -0 echo )
 fi
-
-# The default systemd environment will export the X11 bindings for graphic apps.
-# Force SDL to discard this option and use the RPi dispmanX driver instead.
-# Fixes problem if user wants to start SDL apps from ssh or lxterminal.
-export SDL_VIDEODRIVER="rpi"
 
 # Enforce umask so that user files
 # cannot be seen/touched by others
