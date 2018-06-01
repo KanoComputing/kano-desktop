@@ -5,7 +5,7 @@ Feature: Touchscreen flipping
          When Overture is running
          Then Touching touch-sensitive elements works
          
-    Scenario: The OS is flipped and 
+    Scenario: The OS is flipped and boots up to Overture
         Given An OS which has booted before
           And configured for the screen to be flipped
          When Overture is running (eg, a new user)
