@@ -34,6 +34,10 @@ export XKB_DEFAULT_LAYOUT=`setxkbmap -query | grep layout | awk '{print $2}'`
 # Tell python modules to use UTF-8 on the console for i18n messages to display accurately.
 export PYTHONIOENCODING=UTF-8
 
+
+# set up QT and X11 screen rotation
+source /usr/share/kano-peripherals/scripts/set_rotate.sh
+
 #
 # Is this the first time we are here directly from a bootup?
 #
