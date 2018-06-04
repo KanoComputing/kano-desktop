@@ -36,8 +36,7 @@ export PYTHONIOENCODING=UTF-8
 
 
 # set up QT and X11 screen rotation
-source /usr/share/kano-peripherals/scripts/set_rotate.sh
-
+systemctl --user start kano-touch-flip.service
 #
 # Is this the first time we are here directly from a bootup?
 #
