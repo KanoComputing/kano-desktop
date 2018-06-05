@@ -35,8 +35,6 @@ export XKB_DEFAULT_LAYOUT=`setxkbmap -query | grep layout | awk '{print $2}'`
 export PYTHONIOENCODING=UTF-8
 
 
-# set up QT and X11 screen rotation
-systemctl --user start kano-touch-flip.service
 #
 # Is this the first time we are here directly from a bootup?
 #
@@ -54,6 +52,9 @@ export FIRST_LOGIN
 # systemd user services will inherit the environment allocated to us
 # Xserver authority files amongst other important details
 systemctl --user import-environment
+
+# set up QT and X11 screen rotation
+systemctl --user start kano-touch-flip.service &
 
 # We need the home button service for the loading dialog
 systemctl --user start kano-home-button &
