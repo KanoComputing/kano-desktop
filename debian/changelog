@@ -2,6 +2,7 @@ kano-desktop (4.0.0-0) unstable; urgency=low
 
   * Added touch flipping support
   * Removed system wide SDL_VIDEODRIVER=rpi envvar
+  * Increased size of titlebars
 
  -- Team Kano <dev@kano.me>  Thu, 19 Apr 2018 17:20:00 +0100
 
