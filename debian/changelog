@@ -1,5 +1,6 @@
 kano-desktop (4.0.0-0) unstable; urgency=low
 
+  * Fixed Home Button to start after kdesk is ready
   * Added touch flipping support
   * Removed system wide SDL_VIDEODRIVER=rpi envvar
   * Increased size of titlebars
