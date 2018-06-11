@@ -19,4 +19,5 @@ Conflicts=kano-dashboard.service
 [Service]
 ExecStartPre=/usr/bin/kdesk-hourglass-app "lxpanel"
 ExecStart=/usr/bin/kdesk
+ExecStartPost=/usr/bin/kano-home-button-visible yes
 Environment="KDESK_EGLSAVER_LAYER=5"
