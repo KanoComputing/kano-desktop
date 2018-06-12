@@ -9,6 +9,9 @@
 # Forcibly closing scratch on termination, because it is sudoed
 # and is misteriously started outside systemd cgroup.
 #
+# On ExecStartPost we launch the touch home button, which guarantees
+# that Classic mode is ready, and the home button can work.
+#
 
 [Unit]
 Description=Kano Desktop Icons
@@ -19,4 +22,5 @@ Conflicts=kano-dashboard.service
 [Service]
 ExecStartPre=/usr/bin/kdesk-hourglass-app "lxpanel"
 ExecStart=/usr/bin/kdesk
+ExecStartPost=/usr/bin/kano-home-button-visible yes
 Environment="KDESK_EGLSAVER_LAYER=5"
