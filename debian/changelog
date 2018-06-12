@@ -1,5 +1,6 @@
 kano-desktop (4.0.0-0) unstable; urgency=low
 
+  * Added dependency with Home Directory Content package
   * Added touch flipping support
   * Removed system wide SDL_VIDEODRIVER=rpi envvar
   * Increased size of titlebars
