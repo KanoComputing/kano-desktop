@@ -23,9 +23,6 @@ ldm_logout=/usr/share/kano-desktop/scripts/ldm-session-cleanup-script
 case "$1" in
     remove|upgrade)
 
-        # Remove squeak, but only from skel
-        rm -rf /etc/skel/squeak
-
         # Revert old openbox config
         if [ -e "$openbox_rc-old" ]; then
             mv $openbox_rc-old $openbox_rc
