@@ -93,8 +93,10 @@ case $icon_name in
         #
         # Search for any programs that should not play along with the screen saver
         # process names are pattern matched, so kano-updater will also find kano-updater-gui.
+        # FIXME: Make this configurable for other apps such that they install
+        # a file to be in this list.
         IFS=" "
-        non_ssaver_processes="kano-updater kano-xbmc xbmc.bin minecraft-pi omxplayer kano-video-browser"
+        non_ssaver_processes="kano-updater minecraft-pi omxplayer kano-video-browser kano-overworld pong flappy-judoka overture"
         for p in $non_ssaver_processes
         do
             isalive=`pgrep -f "$p"`
