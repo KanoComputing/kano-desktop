@@ -21,7 +21,7 @@ config/rxvt/x11-rxvt etc/X11/Xresources
 config/gtk-2.0 etc/skel/.config/
 config/dconf etc/skel/.config/
 config/console usr/share/kano-desktop/config
-config/tuxpaint/tuxpaintrc /etc/skel/.tuxpaintrc
+config/tuxpaint/.tuxpaintrc /etc/skel/
 
 config/sudoers.d/* usr/share/kano-desktop/config/sudoers.d
 
