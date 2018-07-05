@@ -11,7 +11,7 @@ After=multi-user.target graphical.target
 
 [Service]
 Type=oneshot
-ExecStart=/usr/bin/kano-stop-splash boot
+ExecStart=/bin/systemctl stop boot-splash-start.service
 Restart=no
 RemainAfterExit=yes
 
