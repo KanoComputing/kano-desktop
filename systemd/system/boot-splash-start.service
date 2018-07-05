@@ -13,13 +13,9 @@ After=kano-os-loader.service
 
 [Service]
 StandardOutput=journal
-Type=forking
 Restart=no
 RemainAfterExit=yes
-ExecStartPre=/bin/mount -o remount,rw /dev/mmcblk0p2 /
-ExecStartPre=-/bin/bash -c "/bin/rm /var/tmp/kano-splash/name-boot"
 ExecStart=/usr/bin/kano-boot-splash
-ExecStop=/usr/bin/kano-stop-splash boot
 TimeoutSec=0
 
 [Install]
