@@ -123,16 +123,6 @@ kano-tracker-ctl generate hw-info &
 # User environment preparations: mouse speed, keyboard, DPMS, tracking, accelerated x11compositor.
 
 # TODO: move me to a systemd unit service
-# Are we in Noobs ? (check for more than 2 partitions)
-# If in noobs, make an xrefresh happen after 50 seconds
-if [ $( lsblk -n | wc -l ) -gt 3 ] ; then
-    (sleep  50; xrefresh ) &
-fi
-
-# if xrefresh is still waiting to run, stop it
-kill %?xrefresh
-
-# TODO: move me to a systemd unit service
 if [ "$FIRST_LOGIN" -eq 1 ]; then
 
     # regenerating ssh keys only if we find one kano user.
