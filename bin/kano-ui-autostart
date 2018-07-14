@@ -2,7 +2,7 @@
 
 # kano-ui-autostart
 #
-# Copyright (C) 2014-2017 Kano Computing Ltd.
+# Copyright (C) 2014-2018 Kano Computing Ltd.
 # License: http://www.gnu.org/licenses/gpl-2.0.txt GNU GPL v2
 #
 # This is the Kano version of Lightdm autostart script.
@@ -107,11 +107,6 @@ if [ "$COMING_FROM_BOOT" -eq 1 ] ; then
     fi
 fi
 
-
-# Are we on a RaspberryPI 2 or above?
-is_rpi2_or_above=`python -c "from kano.utils.hardware import has_min_performance,\
-RPI_2_B_SCORE ; print has_min_performance(RPI_2_B_SCORE)"`
-
 # FIXME: is this still needed?
 mkdir -p "$HOME/.kano-settings"
 
@@ -168,22 +163,9 @@ fi
 # /usr/share/xsessions/lightdm-xsession.desktop
 rm -rf  ~/Desktop
 
-
-#
-# Dashboard Or Desktop mode ?
-#
-
-# By default always go to the Dashboard when Lightdm starts (bootup, greeter login)
-# Except on Raspberry models below RPi2B, because Dashboard is not supported.
-# Switching between both modes goes through systemd units (no lightdm restart).
-if [ "$is_rpi2_or_above" == "True" ] ; then
-    logger --id --tag "info" "kano-ui-autostart Starting systemd Dashboard mode"
-    systemctl --user start kano-dashboard.service
-else
-    logger --id --tag "info" "kano-ui-autostart Starting systemd Desktop mode"
-    kano-stop-splash dashboard
-    systemctl --user start kano-desktop.service
-fi
+# Start the OS Dashboard.
+logger --id --tag "info" "kano-ui-autostart Starting systemd Dashboard mode"
+systemctl --user start kano-dashboard.service &
 
 # Restart user keep-alive services
 # These are running throughout Dashboard and Desktop modes,
