@@ -7,8 +7,9 @@ kano-desktop (4.0.0-0) unstable; urgency=low
   * Increased size of titlebars
   * Update list of app which prevent screensaver
   * Don't remount the filesystem when launching boot animation
+  * Fix low chance of bootup freezing due to animated bootup and spinner
 
- -- Team Kano <dev@kano.me>  Thu, 21 Jun 2018 17:20:00 +0100
+ -- Team Kano <dev@kano.me>  Wed, 18 Jul 2018 15:20:00 +0100
 
 kano-desktop (3.15.0-0) unstable; urgency=low
 
