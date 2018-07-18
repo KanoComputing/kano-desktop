@@ -11,7 +11,7 @@ SPLASH_LINK_PATH=/var/cache/kano-desktop/boot_splash.link
 
 # FIXME: Using an animated splash here may freeze the kit during bootup.
 #SPLASH_PATH_DEFAULT=/usr/share/kano-desktop/animations/bootup
-SPLASH_PATH_DEFAULT=/usr/share/kano-desktop/animations/bootup/kano_bootup_00020.png
+SPLASH_PATH_DEFAULT=/usr/share/kano-desktop/animations/bootup/kano_bootup_static.png
 
 # read link, and detect failure
 SPLASH_PATH=""
