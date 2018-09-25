@@ -1,6 +1,7 @@
 kano-desktop (4.1.0-0) unstable; urgency=low
 
   * Remove RPi2 checks to either startup to Dashboard or Desktop
+  * Add openbox config to /etc/skel
 
  -- Team Kano <dev@kano.me>  Mon, 13 Aug 2018 12:49:00 +0100
 
