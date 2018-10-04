@@ -1,3 +1,9 @@
+kano-desktop (4.2.0-0) unstable; urgency=low
+
+  * Updated the Privacy Policy file in user's home folder
+
+ -- Team Kano <dev@kano.me>  Thu, 4 Oct 2018 11:30:00 +0100
+
 kano-desktop (4.1.0-0) unstable; urgency=low
 
   * Remove RPi2 checks to either startup to Dashboard or Desktop
