@@ -1,3 +1,9 @@
+kano-desktop (4.2.1-0) unstable; urgency=low
+
+  * Reversed kano-notifications dependency on kano-desktop, fix dependency loop
+
+ -- Team Kano <dev@kano.me>  Tue, 22 Jan 2019 11:30:00 +0000
+
 kano-desktop (4.2.0-0) unstable; urgency=low
 
   * Updated the Privacy Policy file in user's home folder
