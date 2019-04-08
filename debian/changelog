@@ -1,3 +1,9 @@
+kano-desktop (4.3.0-0) unstable; urgency=low
+
+  * Removed master_preferences for Chromium from this project
+
+ -- Team Kano <dev@kano.me>  Mon, 8 Apr 2019 18:30:00 +0100
+
 kano-desktop (4.2.1-0) unstable; urgency=low
 
   * Reversed kano-notifications dependency on kano-desktop, fix dependency loop
