@@ -9,7 +9,6 @@
 openbox_rc=/etc/xdg/openbox/rc.xml
 lxde_openbox_rc=/etc/xdg/openbox/LXDE/rc.xml
 
-chromium_master_prefs=/etc/chromium/master_preferences
 chromium_bookmarks=/etc/chromium/initial_bookmarks.html
 
 lxde_autostart=/etc/xdg/lxsession/LXDE/autostart
@@ -46,9 +45,6 @@ case "$1" in
         # Revert chromium config
         if [ -e "$chromium_bookmarks-old" ]; then
             mv $chromium_bookmarks-old $chromium_bookmarks
-        fi
-        if [ -e "$chromium_master_prefs-old" ]; then
-            mv $chromium_master_prefs-old $chromium_master_prefs
         fi
 
         # Unset kdesk as the desktop manager
