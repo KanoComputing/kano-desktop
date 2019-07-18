@@ -1,0 +1,17 @@
+File Edit Options Buffers Tools Help
+#
+# kano-common-refresh-token.service
+#
+# Invokes the kano-renew-token script to make sure the
+# Kano World login token does not expire.
+#
+# This service file is invoked through the kano-common-refresh-token.timer unit.
+#
+
+[Unit]
+Description=Kano World Token Refresh
+IgnoreOnIsolate=true
+
+[Service]
+ExecStart=-/usr/bin/kano-refresh-token
+Type=forking

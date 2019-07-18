@@ -14,4 +14,5 @@ IgnoreOnIsolate=true
 Wants=kano-common-tracker.service kano-common-notifications.service \
  kano-boards.service kano-speakerleds.service \
  kano-common-keyboard.service kano-home-button.service \
- kano-common-track-space.service kano-touch-flip.service
+ kano-common-track-space.service kano-touch-flip.service \
+ kano-common-refresh-token.timer
