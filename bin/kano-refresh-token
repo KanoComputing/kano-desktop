@@ -38,7 +38,7 @@ if __name__ == '__main__':
 
     rc = 1
     args = docopt.docopt(__doc__)
-    verbose = True if args['--verbose'] else False
+    verbose = args['--verbose']
 
     # TODO: add docopt, move out code into a function, implement a test option
     debug_print(verbose, 'accessing mercury KanoWorld')
