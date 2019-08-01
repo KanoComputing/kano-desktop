@@ -39,7 +39,8 @@ Depends:
     kano-touch-support,
     kano-os-homedir-content,
     kano-notifications (>= 4.2.1),
-    python3-docopt
+    python3-docopt,
+    python-mercury
 Replaces: 
     kano-settings (<< 1.1-1.20140512build2), 
     kano-feedback (<< 1.1-3)
