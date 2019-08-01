@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 #
-# Copyright (C) 2018 Kano Computing Ltd.
+# Copyright (C) 2019 Kano Computing Ltd.
 # License: http://www.gnu.org/licenses/gpl-2.0.txt GNU GPL v2
 #
 # kano-refresh-token
@@ -27,17 +27,15 @@ if __name__ == '__main__':
     w = mercury.KanoWorld()
     logged_in = w.is_logged_in(True)
     if logged_in:
-        rc = 0
-        print('user is logged in, no action required')
-    else:
-        if not os.path.isfile(w.data_filename) or not len(w.token):
-            print('user never logged in, no token available')
+        print('user is logged in, refreshing the token')
+        success = w.refresh_token(w.token, True)
+        print(success)
+        if success:
+            rc = 0
+            print('new token: {}'.format(w.token))
         else:
-            print('refreshing token: {}'.format(w.token))
-            success = w.refresh_token(w.token, True)
-            print(success)
-            if success:
-                rc = 0
-                print('new token: {}'.format(w.token))
+            print('error refreshing token')
+    else:
+        print('user is not logged in, nothing to do')
 
     sys.exit(rc)
