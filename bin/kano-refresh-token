@@ -12,6 +12,8 @@ import mercury
 import os
 import sys
 
+from kano.logging import logger
+
 
 def test_refresh():
     # Not implemented yet
@@ -23,19 +25,18 @@ if __name__ == '__main__':
     rc = 1
 
     # TODO: add docopt, move out code into a function, implement a test option
-    print('accessing mercury KanoWorld')
+    logger.info('accessing mercury KanoWorld')
     w = mercury.KanoWorld()
     logged_in = w.is_logged_in(True)
     if logged_in:
-        print('user is logged in, refreshing the token')
+        logger.info('user is logged in, refreshing the token')
         success = w.refresh_token(w.token, True)
-        print(success)
         if success:
             rc = 0
-            print('new token: {}'.format(w.token))
+            logger.info('new token: {}'.format(w.token))
         else:
-            print('error refreshing token')
+            logger.error('error refreshing token')
     else:
-        print('user is not logged in, nothing to do')
+        logger.info('user is not logged in, nothing to do')
 
     sys.exit(rc)
