@@ -8,35 +8,51 @@
 # Python3 script to refresh the Kano World login token, using the new API.
 #
 
+'''
+Command line tool for refreshing the Kano World login token
+
+Usage:
+    kano-refresh-token refresh [--verbose]
+    kano-refresh-token -h | --help
+
+Commands:
+    refresh         Request a token refresh to the server if the user is logged in
+
+Options
+    -v, --verbose   Explain the steps taken
+
+'''
+
+import docopt
 import mercury
 import os
 import sys
 
-from kano.logging import logger
 
-
-def test_refresh():
-    # Not implemented yet
-    pass
+def debug_print(verbose, literal):
+    if verbose:
+        print(literal)
 
 
 if __name__ == '__main__':
 
     rc = 1
+    args = docopt.docopt(__doc__)
+    verbose = True if args['--verbose'] else False
 
     # TODO: add docopt, move out code into a function, implement a test option
-    logger.info('accessing mercury KanoWorld')
+    debug_print(verbose, 'accessing mercury KanoWorld')
     w = mercury.KanoWorld()
     logged_in = w.is_logged_in(True)
     if logged_in:
-        logger.info('user is logged in, refreshing the token')
+        debug_print(verbose, 'user is logged in, refreshing the token')
         success = w.refresh_token(w.token, True)
         if success:
             rc = 0
-            logger.info('new token: {}'.format(w.token))
+            debug_print(verbose, 'new token: {}'.format(w.token))
         else:
-            logger.error('error refreshing token')
+            debug_print(verbose, 'error refreshing token')
     else:
-        logger.info('user is not logged in, nothing to do')
+        debug_print(verbose, 'user is not logged in, nothing to do')
 
     sys.exit(rc)
