@@ -40,6 +40,7 @@ bin/kano-track-space usr/bin
 bin/kano-boot-splash usr/bin
 bin/kano-boot-splash-cli usr/bin
 bin/kano-os-loader usr/bin
+bin/kano-refresh-token usr/bin
 
 scripts/* usr/share/kano-desktop/scripts
 

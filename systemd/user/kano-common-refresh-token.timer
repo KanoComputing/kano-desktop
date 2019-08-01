@@ -1,0 +1,16 @@
+#
+# kano-common-refresh-token.timer
+#
+# Systemd timer service to periodically refresh the Kano World login token.
+#
+# This timer is bound to the kano-common.target file,
+# and it will call the Unit file described below when triggered.
+#
+# Use "systemctl --user list-timers --all" to query the status of this timer.
+#
+
+[Timer]
+OnBootSec=60sec
+OnUnitActiveSec=60min
+
+Unit=kano-common-refresh-token.service

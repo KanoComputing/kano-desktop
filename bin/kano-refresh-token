@@ -1,0 +1,58 @@
+#!/usr/bin/env python3
+#
+# Copyright (C) 2019 Kano Computing Ltd.
+# License: http://www.gnu.org/licenses/gpl-2.0.txt GNU GPL v2
+#
+# kano-refresh-token
+#
+# Python3 script to refresh the Kano World login token, using the new API.
+#
+
+'''
+Command line tool for refreshing the Kano World login token
+
+Usage:
+    kano-refresh-token refresh [--verbose]
+    kano-refresh-token -h | --help
+
+Commands:
+    refresh         Request a token refresh to the server if the user is logged in
+
+Options
+    -v, --verbose   Explain the steps taken
+
+'''
+
+import docopt
+import mercury
+import os
+import sys
+
+
+def debug_print(verbose, literal):
+    if verbose:
+        print(literal)
+
+
+if __name__ == '__main__':
+
+    rc = 1
+    args = docopt.docopt(__doc__)
+    verbose = args['--verbose']
+
+    # TODO: add docopt, move out code into a function, implement a test option
+    debug_print(verbose, 'accessing mercury KanoWorld')
+    w = mercury.KanoWorld()
+    logged_in = w.is_logged_in(True)
+    if logged_in:
+        debug_print(verbose, 'user is logged in, refreshing the token')
+        success = w.refresh_token(w.token, True)
+        if success:
+            rc = 0
+            debug_print(verbose, 'new token: {}'.format(w.token))
+        else:
+            debug_print(verbose, 'error refreshing token')
+    else:
+        debug_print(verbose, 'user is not logged in, nothing to do')
+
+    sys.exit(rc)
