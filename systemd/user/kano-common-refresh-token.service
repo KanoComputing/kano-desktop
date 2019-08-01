@@ -13,4 +13,4 @@ IgnoreOnIsolate=true
 
 [Service]
 ExecStart=-/usr/bin/kano-refresh-token
-Type=forking
+Type=oneshot
