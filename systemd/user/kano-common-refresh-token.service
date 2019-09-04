@@ -12,5 +12,5 @@ Description=Kano World Token Refresh
 IgnoreOnIsolate=true
 
 [Service]
-ExecStart=-/usr/bin/kano-refresh-token
+ExecStart=-/usr/bin/kano-refresh-token refresh
 Type=oneshot

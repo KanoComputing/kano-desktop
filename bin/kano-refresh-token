@@ -46,10 +46,10 @@ if __name__ == '__main__':
     logged_in = w.is_logged_in(True)
     if logged_in:
         debug_print(verbose, 'user is logged in, refreshing the token')
-        success = w.refresh_token(w.token, True)
+        success = w.refresh_token(w.get_token(), True)
         if success:
             rc = 0
-            debug_print(verbose, 'new token: {}'.format(w.token))
+            debug_print(verbose, 'new token: {}'.format(w.get_token()))
         else:
             debug_print(verbose, 'error refreshing token')
     else:
